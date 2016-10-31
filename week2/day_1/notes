@@ -1,0 +1,77 @@
+OOP & Classes.
+
+OO      Procedurals
+
+Ruby    Pascal
+Java    Cobol
+C#      Fortran
+VB      C
+JS      Perl
+Python  Lisp
+.Net
+C++
+
+CLASSES
+
+Classes are like blueprints or templates. A cookie cutter perhaps. (House Blueprint)
+
+OBJECTS
+
+Actual things created from the classes/blueprints. (Actual houses)
+Instances of classes.
+
+e.g
+
+Person = class. People = object.
+
+==> Use person(class) to make some people(objects) with the following attributes.....eyes, hair, etc.
+
+
+Examples of classes: array, string, 
+
+my_array=[]
+my_array.class
+=> array
+
+Array.method
+=> Returns available methods. (.upcase etc)
+
+
+
+New classes which we define can also have defined methods.
+methods are attached to a class.
+
+
+INSTANCE VARIABLE
+
+A special type of variable which lives with the object while the object is alive.
+
+(further info on setting and updating these variables (attr_accessor) in bank_accounts.rb
+
+
+==========================
+
+so far:
+
+1. Understand OO
+2. Define a class.
+3. Instantiate objects (.new .....initialize)
+4. Instance variables & methods (Getters and setters) (attr_accessors, custom function)
+
+
+MULTIPLE CLASSES
+====================
+Previously...... Object - features (name, age, etc)
+                        - methods (change age, etc) - "Instance methods"
+
+
+So, everything in Ruby is an object. When we want to call functionality on an object we.....
+string.upcase
+(object)(Instance Method)
+
+
+
+
+
+
+

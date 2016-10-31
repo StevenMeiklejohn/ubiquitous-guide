@@ -1,0 +1,19 @@
+Marvel Arc.
+
+get and format 'creators'
+get and format 'titles'
+get and format 'year'
+
+create 'arc'
+=> (creator, title, year)
+
+save arc to localDatabase
+
+display saved arc.
+
+
+CSS.
+
+MArvel Arc logo.
+Drop Down design.
+display saved arc.

@@ -1,0 +1,147 @@
+Day 4 Notes. Pokemon. Many to Many.
+
+Table/class:
+attributes:
+
+
+
+Pokemon
+=======
+name (varchar)
+id (serial4)
+
+
+Owned Pokemon
+=============
+Pokemon_id (integer4)
+Trainer_id (integer4)
+Unique_id
+
+
+Trainer
+=======
+name (varcher)
+id (serial4)
+
+
+
+Creating a Join Table.
+
+type t1 to return values for trainer1 (id = 13)
+type pqsl pokemon.
+try to create a working join function in pqsl
+-
+SELECT pokemons.* FROM pokemons
+
+(only return from pokemons table in pokemons db)
+
+INNER JOIN ownedpokemons
+
+(Create join table to ownedpokemons. pokemons <-> ownedpokemons. INNER JOIN ensures that only data overlappping between the two tables is returned.)
+
+ON ownedpokemons.pokemon_id = pokemons_.d
+
+(This is the data we want to 'line up', i.e. use as the joining attribute. The things which should match in both tables.)
+
+WHERE trainer_id =7;
+
+(This qualification prevents everything being returned. In this case we only want the data associated with trainer with id = 7.
+The trainer id can be found by typing 'SELECT * FROM trainers' in psql, oe t1 in ruby.)
+
+
+=>
+
+SELECT pokemons.* FROM pokemons
+INNER JOIN ownedpokemons
+ON ownedpokemons.pokemon_id = pokemons.id
+WHERE trainer_id =7;
+
+
+this can also be written as;
+============================
+  
+SELECT p.* FROM pokemons p
+
+(same as above but also giving function pokemons the alias 'p'. The alias is assigned by typing 'pokemons p')
+
+INNER JOIN ownedpokemons op
+
+(same as above but assigning alias 'op' to ownedpokemons table.)
+
+ON op.pokemon_id = p.id 
+
+(as above except using aliases)
+
+WHERE trainer_id =7;
+
+
+=>
+
+SELECT p.* FROM pokemons p
+INNER JOIN ownedpokemons op
+ON op.pokemon_id = p.id 
+WHERE trainer_id =7;
+
+
+As this method is dependant of the trainer's id, it belongs in the trainer.rb
+However, we don't want te method to be dependent on any individual trainer id (else it would only work for him), so we make it more dynamic.
+
+=>
+=>
+
+def pokemons 
+
+(define method)
+
+  sql = "SELECT p.* FROM pokemons p
+        INNER JOIN ownedpokemons op
+        ON op.pokemon_id = p.id 
+        WHERE trainer_id = #{@id}"
+(@id because the trainer's id is called @id in options)
+        return Pokemon.map_items(sql)
+
+(return the result of running map_items (the pokemon class map_items) with the argument of the sql term.)
+
+end
+
+
+
+Now, in pry we can return any item in the array individually by running
+t1.pokemons[0]
+
+further to this;
+
+t1.pokemons.each { |pokemon| puts pokemon.name }
+
+for each item in the pokemons array, output the pokemons name.
+so 
+
+pokemons_name = t1.pokemons.each { |pokemon| puts pokemon.name }
+
+to return this as a hash;
+
+pokemons_name = t1.pokemons.each { |pokemon| {name: pokemon.name, id: pokemon.id } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

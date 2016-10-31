@@ -1,0 +1,181 @@
+﻿
+
+<div class="message" ng-if="packages && !packages.length">There are no ActivCanvas packages available for your account type at this time.</div>
+<div class="message" style="margin-top: 10px;" ng-if="packages && !packages.length && userProfile.Gallery">If you are a gallery and are interested in using ActivCanvas please contact us at <a href="mailto:hello@artretailnetwork.com">hello@artretailnetwork.com</a> to discuss getting set up.</div>
+
+
+<!--<div class="message success offer" ng-if="packages.length">-->
+	<!--<h3>Product Launch Offer</h3>-->
+	<!--<p>Sign up before 31st December and recieve the Master Artist Package <strong>forever</strong> at the price of the Emerging Artist Package!</p>-->
+<!--</div>-->
+
+
+<div class="packages">
+	<div ng-repeat="p in packages" class="package">
+
+		<h3>{{p.Name}}</h3>
+		
+		<div class="price">&pound;{{p.Price ? p.Price : 'FREE'}} {{p.Price ? '/month' : ''}}</div>
+
+		<div class="features">
+			<div>Access to Gallery Marketplace</div>
+
+			<!--<div ng-if="p.ID===2">Activate upto 25 artworks with 5 unique videos</div>-->
+
+			<div ng-if="p.ID===3">Activate unlimited artworks with unlimited videos</div>
+			<div ng-if="p.ID===3">Unlimited Scans</div>
+			<div ng-if="p.ID===3">Social Connect - Collectors connect directly with you through ActivCanvas</div>
+			<!--<div ng-if="p.ID===3">Access to Marketing resource centre (coming soon)</div>-->
+
+			<div ng-if="p.ID===1">X</div>
+			<div ng-if="p.ID===1 || p.ID===2">X</div>
+			<div ng-if="p.ID===1 || p.ID===2">X</div>
+			<!--<div ng-if="p.ID===1 || p.ID===2">X</div>-->
+
+		</div>
+
+		<div class="buttons">
+			<a ng-if="p.ID===1" class="button gold"><i class="fa fa-check"></i><span class="text">Current Package</span></a>
+			<!--<a ng-if="p.ID===2" class="button"><i class="fa fa-ban"></i><span class="text">Not Available While Offer Running</span></a>-->
+			<a ng-if="p.ID===3" class="button blue" ng-click="setPackage(p);next()"><i class="fa fa-shopping-cart"></i><span class="text">Upgrade</span></a>
+		</div>
+
+		<!--<div ng-if="p.ID===3" class="offer-img"></div>-->
+
+	</div>
+</div>
+
+<!--<div class="buttons right">
+	<a class="button blue" ng-show="package" ng-click="next()">Next ></a>
+</div>-->
+
+
+<style>
+
+
+	.message.offer {
+		text-align: center;
+	}
+
+	.packages {
+		display: flex;
+		margin: 25px 0 15px;
+		max-width: 600px;
+	}
+
+	.packages .package {
+		flex-grow: 1;
+		margin: 0 15px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		padding: 5px 15px;
+		/*cursor: pointer;*/
+		transition: ease-in-out all 0.3s;
+		background: #fff;
+		width: 33%;
+		line-height: 1.75em;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+	.packages .package:first-child {
+		margin-left: 0;
+	}
+	.packages .package:last-child {
+		margin-right: 0;
+	}
+	.packages .package:hover {
+		border-color: #ccc;
+	}
+	.packages .package.selected {
+		/*border-color: #68b981;
+		background: #b1efc4;*/
+		background: #444;
+		color: #fff;
+	}
+
+	.packages .package h2 {
+		margin: 10px 0;
+	}
+
+	.packages .package .price {
+		font-size: 1.65em;
+		color: #999;
+	}
+
+	
+
+	.packages .package .price-old {
+		color: red;
+		text-decoration: line-through;
+		text-decoration-color: #dd0f0f;
+	}
+	
+	.packages .package .price-old > span {
+		color: #aaa;
+	}
+
+
+	.packages .package .features {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		border-top: 1px dotted #ddd;
+		border-bottom: 1px dotted #ddd;
+		margin: 10px 0;
+		padding: 10px 0;
+	}
+
+	.packages .package .features > div {
+		flex-grow: 1;
+		margin: 8px 0;
+		/*min-height: 40px;*/
+	}
+
+	/*.packages .package .offer-img {
+		background: url('/img/offer-200.png') no-repeat center center;
+		background-size: contain;
+		width: 200px;
+		height: 189px;
+		position: absolute;
+		top: -16px;
+		right: -17px;
+	}*/
+
+
+	
+	.packages .package .offer-img {
+		background: url('/img/offer-170.png') no-repeat center center;
+		background-size: contain;
+		width: 170px;
+		height: 161px;
+		position: absolute;
+		top: -14px;
+		right: -15px;
+	}
+
+	
+
+	.packages .package .buttons {
+		padding: 10px 0 20px;
+	}
+
+
+	@media (max-width: 1160px) {
+		.packages .package {
+			padding-top: 20px;
+		}
+	}
+	@media (max-width: 1100px) {
+		.packages .package {
+			padding-top: 30px;
+		}
+	}
+	@media (max-width: 1000px) {
+		.packages .package {
+			padding-top: 40px;
+		}
+	}
+
+</style>

@@ -1,0 +1,26 @@
+﻿<div class="artist-info">
+
+	<table class="datalist vertical">
+		<tr>
+			<td>Nationality</td>
+			<td>{{profile.Artist.Nationality || '-'}}</td>
+		</tr>
+		<tr>
+			<td>Location</td>
+			<td>{{profile.Artist.Location || '-'}}</td>
+		</tr>
+		<tr>
+			<td>Age Bracket</td>
+			<td>{{profile.Artist.AgeBracket || '-'}}</td>
+		</tr>
+		<tr>
+			<td>Type(s)</td>
+			<td><span ng-repeat="type in profile.Artist.Types">{{type.Type + ($last ? '' : ', ')}}</span></td>
+		</tr>
+		<tr>
+			<td>Preferred Work Space(s)</td>
+			<td><span ng-repeat="workspace in profile.Artist.WorkingSpaces">{{workspace.Description + ($last ? '' : ', ')}}</span></td>
+		</tr>
+	</table>
+
+</div>

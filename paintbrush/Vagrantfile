@@ -1,0 +1,125 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu/trusty64"
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+    # Configure cached packages to be shared between instances of the same base box.
+    # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+    config.cache.scope = :box
+
+    # OPTIONAL: If you are using VirtualBox, you might want to use that to enable
+    # NFS for shared folders. This is also very useful for vagrant-libvirt if you
+    # want bi-directional sync
+    config.cache.synced_folder_opts = {
+      type: :nfs,
+      # The nolock option can be useful for an NFSv3 client that wants to avoid the
+      # NLM sideband protocol. Without this option, apt-get might hang if it tries
+      # to lock files needed for /var/cache/* operations. All of this can be avoided
+      # by using NFSv4 everywhere. Please note that the tcp option is not the default.
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+    }
+    # For more information please check http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
+  end
+
+  config.vm.hostname = "paintbrush"
+
+  config.vm.synced_folder ".", "/home/vagrant/paintbrush"
+
+
+#   config.vm.provision "shell", inline: <<-SHELL
+#     sudo apt-get update
+#     sudo apt-get upgrade -q -y
+#     sudo locale-gen en_GB.UTF-8
+#
+#     sudo apt-get install -q -y curl git vim curl
+#
+#     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password'
+#     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
+#     sudo apt-get install -q -y mysql-server
+#
+#     sudo apt-get install -y nodejs
+#     sudo ln -s /usr/bin/nodejs /usr/bin/node
+#     sudo apt-get install -y npm
+#
+#     sudo npm install -g npm
+#
+#     sudo npm cache clean -f
+#     sudo npm install -g n
+#     sudo n stable
+#
+#     sudo npm install -g coffee-script grunt grunt-cli mocha express-generator bower gulp generator-angular
+#
+# #    (cd paintbrush && sudo npm install express && sudo npm install)
+#
+#     # export NODE_PATH=/usr/local/lib/node:/usr/local/lib/node_modules
+#   echo -e '\nexport NODE_PATH=/usr/local/lib/node:/usr/local/lib/node_modules' >> .profile
+#
+#     # grunt-tasks
+#
+#   SHELL
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/vagrant.yml"
+    # output as much as you can, or comment this out for silence
+    ansible.verbose = "vvvv"
+    ansible.sudo = true
+    ansible.inventory_path = "provisioning/vagrant"
+    ansible.limit = "all"
+  end
+
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "22.22.22.101"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  config.vm.network "public_network"#, ip: "192.168.1.106"
+
+  # Forward node debug port on host to guest for host-side debugging
+  # Not working for some reason, use ./scripts/vagrant-ssh to establish a connection and port forward
+  #config.vm.network "forwarded_port", guest: 5858, host: 5858, host_ip: '127.0.0.1', guest_ip: '127.0.0.1'
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+    # Customize the amount of memory on the VM:
+    vb.memory = "2048"
+  end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
+  # such as FTP and Heroku are also available. See the documentation at
+  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
+  # config.push.define "atlas" do |push|
+  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
+  # end
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   sudo apt-get update
+  #   sudo apt-get install -y apache2
+  # SHELL
+end

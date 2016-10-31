@@ -1,0 +1,17 @@
+{
+  "name": "myRobot",
+  "version": "1.0.0",
+  "description": "A robot friend",
+  "main": "robot.js",
+  "scripts": {
+    "test": "mocha robot_spec.js"
+  },
+  "author": "Steven Meiklejohn",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  }
+}

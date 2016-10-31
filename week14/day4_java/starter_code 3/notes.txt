@@ -1,0 +1,365 @@
+Abstract class. 
+===============
+An abstract class is a class which cannot be instantiated, meaning you cannot create new instances of an abstract class. The purpose of an abstract class is to function as a base for subclasses.
+
+Declaring an Abstract Class in Java
+====================================
+
+In Java you declare that a class is abstract by adding the abstract keyword to the class declaration. Here is a Java abstract class example:
+
+#public abstract class MyAbstractClass {
+#}
+
+It is now impossible to create instances of MyAbstractClass.
+
+Abstract Methods
+================
+
+An abstract class can have abstract methods. You declare a method abstract by adding the abstract keyword in front of the method declaration. Here is a Java abstract method example:
+
+#public abstract class MyAbstractClass {
+#    public abstract void abstractMethod();
+#}
+
+An abstract method has no implementation. Its just has a method signature. Just like methods in a Java interface.
+If a class has an abstract method, the whole class must be declared abstract. Not all methods in an abstract class have to be abstract methods. An abstract class can have a mixture of abstract and non-abstract methods.
+
+Subclasses of an abstract class must implement (override) all abstract methods of its abstract superclass. The non-abstract methods of the superclass are just inherited as they are. They can also be overridden, if needed.
+
+Here is an example subclass of the abstract class MyAbstractClass:
+
+#public class MySubClass extends MyAbstractClass {
+#    public void abstractMethod() {
+#        System.out.println("My method implementation");
+#    }
+#}
+
+Notice how MySubClass has to implement the abstract method abstractMethod() from its abstract superclass MyAbstractClass.
+
+The only time a subclass of an abstract class is not forced to implement all abstract methods of its superclass, is if the subclass is also an abstract class.
+
+
+
+
+Interface
+==========
+An interface is a reference type in Java, it is similar to class, it is a collection of abstract methods. A class implements an interface, thereby inheriting the abstract methods of the interface.
+
+Along with abstract methods an interface may also contain constants, default methods, static methods, and nested types. Method bodies exist only for default methods and static methods.
+
+Writing an interface is similar to writing a class. But a class describes the attributes and behaviours of an object. And an interface contains behaviours that a class implements.
+
+Unless the class that implements the interface is abstract, all the methods of the interface need to be defined in the class.
+
+An interface is similar to a class in the following ways:
+
+An interface can contain any number of methods.
+
+An interface is written in a file with a .java extension, with the name of the interface matching the name of the file.
+
+The byte code of an interface appears in a .class file.
+
+Interfaces appear in packages, and their corresponding bytecode file must be in a directory structure that matches the package name.
+
+However, an interface is different from a class in several ways, including:
+
+You cannot instantiate an interface.
+
+An interface does not contain any constructors.
+
+All of the methods in an interface are abstract.
+
+An interface cannot contain instance fields. The only fields that can appear in an interface must be declared both static and final.
+
+An interface is not extended by a class; it is implemented by a class.
+
+An interface can extend multiple interfaces.
+
+Declaring Interfaces:
+The interface keyword is used to declare an interface. Here is a simple example to declare an interface:
+
+Example:
+Below given is an example of an interface:
+
+/* File name : NameOfInterface.java */
+import java.lang.*;
+//Any number of import statements
+
+public interface NameOfInterface
+{
+   //Any number of final, static fields
+   //Any number of abstract method declarations\
+}
+Interfaces have the following properties:
+
+An interface is implicitly abstract. You do not need to use the abstract keyword while declaring an interface.
+
+Each method in an interface is also implicitly abstract, so the abstract keyword is not needed.
+
+Methods in an interface are implicitly public.
+
+Example:
+/* File name : Animal.java */
+interface Animal {
+
+   public void eat();
+   public void travel();
+}
+Implementing Interfaces:
+When a class implements an interface, you can think of the class as signing a contract, agreeing to perform the specific behaviors of the interface. If a class does not perform all the behaviors of the interface, the class must declare itself as abstract.
+
+A class uses the implements keyword to implement an interface. The implements keyword appears in the class declaration following the extends portion of the declaration.
+
+/* File name : MammalInt.java */
+public class MammalInt implements Animal{
+
+   public void eat(){
+      System.out.println("Mammal eats");
+   }
+
+   public void travel(){
+      System.out.println("Mammal travels");
+   } 
+
+   public int noOfLegs(){
+      return 0;
+   }
+
+   public static void main(String args[]){
+      MammalInt m = new MammalInt();
+      m.eat();
+      m.travel();
+   }
+} 
+This would produce the following result:
+
+Mammal eats
+Mammal travels
+When overriding methods defined in interfaces there are several rules to be followed:
+
+Checked exceptions should not be declared on implementation methods other than the ones declared by the interface method or subclasses of those declared by the interface method.
+
+The signature of the interface method and the same return type or subtype should be maintained when overriding the methods.
+
+An implementation class itself can be abstract and if so interface methods need not be implemented.
+
+When implementation interfaces there are several rules:
+
+A class can implement more than one interface at a time.
+
+A class can extend only one class, but implement many interfaces.
+
+An interface can extend another interface, similarly to the way that a class can extend another class.
+
+Extending Interfaces:
+An interface can extend another interface, similarly to the way that a class can extend another class. The extends keyword is used to extend an interface, and the child interface inherits the methods of the parent interface.
+
+The following Sports interface is extended by Hockey and Football interfaces.
+
+//Filename: Sports.java
+public interface Sports
+{
+   public void setHomeTeam(String name);
+   public void setVisitingTeam(String name);
+}
+
+//Filename: Football.java
+public interface Football extends Sports
+{
+   public void homeTeamScored(int points);
+   public void visitingTeamScored(int points);
+   public void endOfQuarter(int quarter);
+}
+
+//Filename: Hockey.java
+public interface Hockey extends Sports
+{
+   public void homeGoalScored();
+   public void visitingGoalScored();
+   public void endOfPeriod(int period);
+   public void overtimePeriod(int ot);
+}
+The Hockey interface has four methods, but it inherits two from Sports; thus, a class that implements Hockey needs to implement all six methods. Similarly, a class that implements Football needs to define the three methods from Football and the two methods from Sports.
+
+Extending Multiple Interfaces:
+A Java class can only extend one parent class. Multiple inheritance is not allowed. Interfaces are not classes, however, and an interface can extend more than one parent interface.
+
+The extends keyword is used once, and the parent interfaces are declared in a comma-separated list.
+
+For example, if the Hockey interface extended both Sports and Event, it would be declared as:
+
+public interface Hockey extends Sports, Event
+Tagging Interfaces:
+The most common use of extending interfaces occurs when the parent interface does not contain any methods. For example, the MouseListener interface in the java.awt.event package extended java.util.EventListener, which is defined as:
+
+package java.util;
+public interface EventListener
+{}
+An interface with no methods in it is referred to as a tagging interface. There are two basic design purposes of tagging interfaces:
+
+Creates a common parent: As with the EventListener interface, which is extended by dozens of other interfaces in the Java API, you can use a tagging interface to create a common parent among a group of interfaces. For example, when an interface extends EventListener, the JVM knows that this particular interface is going to be used in an event delegation scenario.
+
+Adds a data type to a class: This situation is where the term tagging comes from. A class that implements a tagging interface does not need to define any methods (since the interface does not have any), but the class becomes an interface type through polymorphism.
+
+======================================
+======================================
+
+
+
+E-NUMS
+=======
+
+A Java Enum is a special Java type used to define collections of constants. More precisely, a Java enum type is a special kind of Java class. An enum can contain constants, methods etc. Java enums were added in Java 5.
+
+A Java Enum is a special Java type used to define collections of constants. More precisely, a Java enum type is a special kind of Java class. An enum can contain constants, methods etc. Java enums were added in Java 5.
+
+Enum Example
+Here is a simple Java enum example:
+
+public enum Level {
+    HIGH,
+    MEDIUM,
+    LOW
+}
+Notice the enum keyword which is used in place of class or interface. The Java enum keyword signals to the Java compiler that this type definition is an enum.
+
+You can refer to the constants in the enum above like this:
+
+Level level = Level.HIGH;
+Notice how the level variable is of the type Level which is the Java enum type defined in the example above. The level variable can take one of the Level enum constants as value (HIGH, MEDIUM or LOW). In this case level is set to HIGH.
+
+Enums in if Statements
+Since Java enums are constants you will often have to compare a variable pointing to an enum constant against the possible constants in the enum type. Here is an example of using a Java enum in an if-statement:
+
+Level level = ...  //assign some Level constant to it
+
+if( level == Level.HIGH) {
+
+} else if( level == Level.MEDIUM) {
+
+} else if( level == Level.LOW) {
+
+}
+This code compares the level variable against each of the possible enum constants in the Level enum.
+
+If one of the enum values occur more often than the others, checking for that value in the first if-statement will result in better performance, as less comparison on average are executed. This is not a big difference though, unless the comparisons are executed a lot.
+
+Enums in switch Statements
+If your Java enum types contain a lot constants and you need to check a variable against the values as shown in the previous section, using a Java switch statement might be a good idea.
+
+You can use enums in switch statements like this:
+
+Level level = ...  //assign some Level constant to it
+
+switch (level) {
+    case HIGH   : ...; break;
+    case MEDIUM : ...; break;
+    case LOW    : ...; break;
+}
+Replace the ... with the code to execute if the level variable matches the given Level constant value. The code could be a simple Java operation, a method call etc.
+
+Enum Iteration
+You can obtain an array of all the possible values of a Java enum type by calling its static values() method. All enum types get a static values() method automatically by the Java compiler. Here is an example of iterating all values of an enum:
+
+for (Level level : Level.values()) {
+    System.out.println(level);
+}
+Running this Java code would print out all the enum values. Here is the output:
+
+HIGH
+MEDIUM
+LOW
+Notice how the names of the constants themselves are printed out. This is one area where Java enums are different than static final constants.
+
+Enum Fields
+You can add fields to a Java enum. Thus, each constant enum value gets these fields. The field values must be supplied to the constructor of the enum when defining the constants. Here is an example:
+
+public enum Level {
+    HIGH  (3),  //calls constructor with value 3
+    MEDIUM(2),  //calls constructor with value 2
+    LOW   (1)   //calls constructor with value 1
+    ; // semicolon needed when fields / methods follow
+
+
+    private final int levelCode;
+
+    private Level(int levelCode) {
+        this.levelCode = levelCode;
+    }
+}
+Notice how the Java enum in the example above has a constructor which takes an int. The enum constructor sets the int field. When the constant enum values are defined, an int value is passed to the enum constructor.
+
+The enum constructor must be either private or package scope (default). You cannot use public or protected constructors for a Java enum.
+
+Enum Methods
+You can add methods to a Java enum too. Here is an example:
+
+public enum Level {
+    HIGH  (3),  //calls constructor with value 3
+    MEDIUM(2),  //calls constructor with value 2
+    LOW   (1)   //calls constructor with value 1
+    ; // semicolon needed when fields / methods follow
+
+
+    private final int levelCode;
+
+    Level(int levelCode) {
+        this.levelCode = levelCode;
+    }
+    
+    public int getLevelCode() {
+        return this.levelCode;
+    }
+    
+}
+You call an enum method via a reference to one of the constant values. Here is Java enum method call example:
+
+Level level = Level.HIGH;
+
+System.out.println(level.getLevelCode());
+This code would print out the value 3 which is the value of the levelCode field for the enum constant HIGH.
+
+You are not restricted to simple getter and setter methods. You can also create methods that make calculations based on the field values of the enum constant. If your fields are not declared final you can even modify the values of the fields (although that may not be so good an idea, considering that the enums are supposed to be constants).
+
+Enum Miscellaneous Details
+Java enums extend the java.lang.Enum class implicitly, so your enum types cannot extend another class.
+
+If a Java enum contains fields and methods, the definition of fields and methods must always come after the list of constants in the enum. Additionally, the list of enum constants must be terminated by a semicolon;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Can contain properties.
+Can contain abstract methods that must be implemented in the sub class.(Though they can be overriden).
+
+
+Interaces are abstract class and all their methods are abstract.
+Interface cannot contain properties and only contains method names. 
+How the methods are implemented is defined in the sub class.
+
+
+
+A subclass can only inherit from one superclass.
+
+
+
+Template Pattern.
+=================
+Ours bears do the same thing every day in the same order.
+However, they all do it differently. I.e. Fish, hunt for honey, etc.
+We can achieve via abstract methods and concrete methods.
+See starter code 4.
+# remove Gatherer.java
+# Create runner.

@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Marvel';
+  src: url('my_fonts/the-fontry_avengeance/AVENGEANCE HEROIC AVENGER BD.ttf') format('truetype');
+}
+
+h2{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+}
+
+body{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: :20px;
+  background-color: #e23636;
+}
+
+img{
+  text-align: center;
+}
+
+#logo{
+  text-align: center;
+}
+
+ul{
+  text-align: center;
+  font-size: :50px;
+}
+
+#drop-nav{
+  text-align: center;
+  font-size: :50px;
+}
+
+
+

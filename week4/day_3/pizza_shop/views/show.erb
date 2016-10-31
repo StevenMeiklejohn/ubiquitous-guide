@@ -1,0 +1,7 @@
+<b>Name:</b>
+<p><%= @pizza.pretty_name() %></p>
+
+<b>Order:</b>
+<p><%= @pizza.quantity %> x <%= @pizza.topping %></p>
+
+<a href="/pizzas/<%= @pizza.id %>/edit">Edit</a>

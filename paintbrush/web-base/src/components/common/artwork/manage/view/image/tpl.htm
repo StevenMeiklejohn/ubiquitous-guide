@@ -1,0 +1,41 @@
+﻿<div class="image-info">
+
+	<div class="image-wrap">
+		<img ng-if="artworkImageURI" ng-src="{{artworkImageURI}}" ng-click="viewImage()" />
+		<i class="fa fa-search fa-fw fa-2x" ng-click="viewImage()"></i>
+	</div>
+
+	<style>
+		.image-info {
+			line-height: 0;
+			text-align: center;
+		}
+		.image-info img {
+			width: 100%;
+			max-width: 401px;
+
+
+			max-width: 550px;
+			max-height: 90vh;
+		}
+		.image-info img, .image-info i {
+			cursor: pointer;
+		}
+		.image-info .image-wrap {
+			position: relative;
+			display: inline-block;
+		}
+		.image-info .image-wrap i {
+			bottom: 10px;
+			color: rgba(255, 255, 255, 0.25);
+			position: absolute;
+			right: 5px;
+			text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+			transition: color 0.3s ease-in-out 0s;
+		}
+		.image-info .image-wrap:hover i {
+			color: rgba(255, 255, 255, 0.75);
+		}
+	</style>
+</div>
+

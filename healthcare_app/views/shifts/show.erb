@@ -1,0 +1,54 @@
+
+
+
+<li>
+<p>Shift ID:</p>
+<%= @shift.id %><br>
+</li><br>
+
+<li>
+<p>Employee id:</p>
+<%=@shift.employee.id %><br>
+</li><br>
+
+
+<li>
+<p>Employee:</p>
+<%=@shift.employee.name %><br>
+<img src="<%= @shift.employee.image %>" height="300" width=300><br
+</li><br>
+
+<li>
+<p>Client:</p>
+<%=@shift.client.name %><br>
+<img src="<%= @shift.client.image %>" height="300" width=300><br
+</li><br>
+
+
+
+<li>
+<p>Shift Date:</p>
+<%=@shift.shift_date %><br>
+</li><br>
+
+<li>
+<p>Shift Time:</p>
+<%= @shift.shift_time %><br>
+</li><br>
+
+<li>
+<p>Availability:</p>
+<%=@shift.shift_status %><br>
+</li><br>
+
+
+
+
+
+<a href="<%= @shift.id %>/edit">Edit/Volunteer for shift</a>
+
+
+<form action="/shifts/<%= @shift.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete shift">
+</form>

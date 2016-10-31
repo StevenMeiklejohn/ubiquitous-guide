@@ -1,0 +1,100 @@
+@import url(https://fonts.googleapis.com/css?family=Teko:400,500,700,300,600);
+
+/* Global */
+
+html, body {
+  height: 100%;
+  font-family: Helvetica;
+}
+
+body {
+  background: linear-gradient(-170deg, #2376ae 0%, #c16ecf 100%) no-repeat center center fixed; 
+  background-size: cover;
+  color: white;
+  font-size: 18px;
+}
+
+/* Header */
+
+header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.main-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 160px;
+  font-weight: 900;
+  transform: rotate(-15deg);
+  font-family: 'Teko', sans-serif;
+  line-height: 120px;
+  text-shadow: 5px 5px 0px rgba(0, 0, 0, 0.168627);
+}
+
+.lead-title {
+  color: white;
+}
+
+.sub-title {
+  color: #feff00;
+}
+
+/* Text */
+
+.tagline {
+  text-align: center;
+}
+
+/* Layout */
+
+.container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+form {
+ display: inline-block;
+ text-align: center;
+}
+
+.content {
+  background-color: rgba( 0, 0, 0, 0.168676 );
+  padding: 15px 25px;
+  margin-bottom: 100px;
+  border-radius: 10px;
+}
+
+.content h2 {
+  border-bottom: 1px solid #feff00;
+  text-transform: uppercase;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(60, 60, 60, 0), rgba(60, 60, 60, 0.75), rgba(60, 60, 60, 0));
+}
+
+#quote-list{
+  list-style: none;
+}
+
+.my-button {
+  padding: 8px;
+  height: 40px;
+  background: #FEFF8A;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+blockquote {
+  cursor:pointer;
+}
+
+blockquote {
+  display:inline-block;
+}

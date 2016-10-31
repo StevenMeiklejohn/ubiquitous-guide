@@ -1,0 +1,13 @@
+.datagrid.tpl-table .quantity {
+	min-width: 40px;
+}
+.datagrid.tpl-table .size {
+	min-width: 70px;
+}
+.datagrid.tpl-table .buttons {
+	width: 25px;
+}
+
+.datagrid.tpl-table tr:last-child td {
+	border-bottom: 0;
+}

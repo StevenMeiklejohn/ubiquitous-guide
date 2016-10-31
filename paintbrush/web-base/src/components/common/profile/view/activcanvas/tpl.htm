@@ -1,0 +1,47 @@
+﻿<div class="activcanvas-info">
+
+	<div ng-if="profile.ActivCanvas.StatusID!==3">
+		<ui-message config="{ message: 'This is only available to ActivCanvas Premium accounts' }"></ui-message>
+	</div>
+
+	<div ng-if="profile.ActivCanvas.StatusID===3">
+
+		<table class="datalist vertical">
+			<tr>
+				<td>Link Text</td>
+				<td>{{profile.ActivCanvas.LinkText || '-'}}</td>
+			</tr>
+			<tr>
+				<td>Link URL</td>
+				<td ng-if="profile.ActivCanvas.Link"><a href="{{profile.ActivCanvas.Link}}" target="_blank">{{profile.ActivCanvas._Link}}</a></td>
+				<td ng-if="!profile.ActivCanvas.Link">-</td>
+			</tr>
+			<tr>
+				<td>Default Video</td>
+				<td>{{profile.ActivCanvas.VideoName || 'No Video'}}</td>
+			</tr>
+			<tr ng-if="thumbURI">
+				<td></td>
+				<td>
+					<img class="thumbnail" ng-src="{{thumbURI}}" />
+					<!--<video controls><source ng-repeat="uri in videoURIs" src="{{uri}}"/></video>-->
+				</td>
+			</tr>
+			<tr>
+				<td>Auto Play Videos</td>
+				<td>{{profile.ActivCanvas.AutoPlay ? 'Yes' : 'No'}}</td>
+			</tr>
+		</table>
+
+
+	</div>
+
+	<style>
+		.activcanvas-info .thumbnail {
+			max-width: 500px;
+			width: 100%;
+		}
+
+	</style>
+
+</div>

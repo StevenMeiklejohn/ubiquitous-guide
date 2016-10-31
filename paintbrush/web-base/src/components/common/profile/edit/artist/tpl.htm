@@ -1,0 +1,68 @@
+﻿<div class="artist-info">
+
+	<form>
+
+		<ui-message config="error"></ui-message>
+
+		<div class="field inline">
+			<label for="Nationality">Nationality</label>
+			<input type="text" name="Nationality" id="Nationality" value="{{profile.Artist.Nationality}}" maxlength="45" />
+		</div>
+
+		<div class="field inline">
+			<label for="Location" class="question">Where are you currently based?</label>
+			<input type="text" name="Location" id="Location" value="{{profile.Artist.Location}}" maxlength="100" placeholder="City, Country" />
+		</div>
+
+		<div class="field inline">
+			<label for="AgeBracketID">Age bracket</label>
+			<select name="AgeBracketID" id="AgeBracketID">
+				<option></option>
+				<option ng-repeat="age in ageBrackets" ng-selected="profile.Artist.AgeBracketID === age.ID" value="{{age.ID}}">{{age.Description}}</option>
+			</select>
+		</div>
+
+		<!---->
+		<!--<div class="field inline">-->
+			<!--<label for="OpenToCommissions" class="question">Open to discuss commissions?</label>-->
+			<!--&lt;!&ndash;<input type="checkbox" name="OpenToCommissions" ng-checked="profile.Artist.OpenToCommissions" />&ndash;&gt;-->
+			<!--<select name="OpenToCommissions" >-->
+				<!--<option ng-selected="profile.Artist.OpenToCommissions" value="true">Yes</option>-->
+				<!--<option ng-selected="profile.Artist.OpenToCommissions === false" value="false">No</option>-->
+			<!--</select>-->
+		<!--</div>-->
+
+
+		<div class="field inline">
+			<label for="Types" class="question">Which of the following best describes you as an artist?</label>
+			<div widget="multi-select" class="types" data-name="Types" data-max="2" data-min="1">
+				<div class="values">
+					<div ng-repeat="m in artistTypes" title="{{m.Description}}"><input ng-checked="_types.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Types" />{{m.Type}}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="field inline">
+			<label for="WorkingSpaces" class="question">Are there any particular spaces you are interested in working with?</label>
+			<div widget="multi-select" class="workspaces" data-name="WorkingSpaces" data-min="1">
+				<div class="values">
+					<div ng-repeat="m in workspaces" title="{{m.Description}}"><input ng-checked="_workSpaces.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="WorkingSpaces" />{{m.Description}}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div ng-if="ready">
+			<div class="buttons right padded" ng-show="!pendingRequest">
+				<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+				<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+			</div>
+			<div class="buttons right padded" ng-show="pendingRequest">
+				<div class="ajax-loader"></div>
+			</div>
+		</div>
+
+	</form>
+
+</div>

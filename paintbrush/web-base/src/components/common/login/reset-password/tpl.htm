@@ -1,0 +1,32 @@
+﻿
+<div class="message" ng-show="!reset_token && !authenticated">You must be <a ng-href="/login">logged in</a> or have a <a ng-href="/login?v=forgot">reset token</a> to use this form</div>
+
+<div class="message" ng-show="invalidResetToken">The reset token you are using has expired or no longer exists - <a ng-href="/login?v=forgot">send a new reset token</a></div>
+
+<form class="reset-password" ng-show="(reset_token && !invalidResetToken) || authenticated ">
+
+	<div class="field" ng-show="!reset_token">
+		<label for="OldPassword">Old Password</label>
+		<input type="password" name="OldPassword" required />
+	</div>
+
+
+	<div class="field">
+		<label for="NewPassword">New Password</label>
+		<input type="password" name="NewPassword" required />
+	</div>
+
+
+	<div class="field">
+		<label for="ConfirmPassword">Confirm Password</label>
+		<input type="password" name="ConfirmPassword" required />
+	</div>
+
+
+	<div class="buttons">
+		<a class="cancel button" ng-href="/login" ng-show="!reset_token"><i class="fa fa-arrow-left"></i> Cancel</a>
+		<a class="reset button sky-blue" ng-click="resetPassword()"><i class="fa fa-lock"></i> Reset</a>
+	</div>
+</form>
+
+

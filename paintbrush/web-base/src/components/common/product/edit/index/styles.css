@@ -1,0 +1,192 @@
+.variant-groups {
+
+}
+
+
+.variant-groups .group > .title {
+	position: relative;
+	margin-bottom: 10px;
+}
+.variant-groups .group.deleted > .title .name {
+	text-decoration: line-through;
+}
+.variant-groups .group > .title .buttons {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+.variant-groups .group > .title .name {
+	border: 1px solid #ddd;
+	background: #eee;
+	padding: 10px;
+}
+
+
+.variant-groups .variants .variants-wrap {
+	padding: 0 5px 10px 5px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.form-panel,
+.variant-groups .variants .variant {
+	padding: 10px 10px 10px 20px;
+	margin: 0;
+	border: 1px solid #ddd;
+	background: #eee;
+	background: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+	display: flex;
+	opacity: 1;
+	transition: all ease-in-out 0.3s;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.025);
+}
+form.ui .field input[disabled],
+.variant-groups .variants .variant input {
+	transition: background ease-in-out 0.3s;
+}
+.variant-groups .variants .variant {
+	margin: 5px;
+}
+.form-panel {
+	flex-direction: column;
+}
+.variant-groups .variants .variant .form-wrap {
+	margin-right: 10px;
+}
+.variant-groups .variants .variant .form-wrap input:not([type=checkbox]) {
+	min-width: 208px;
+}
+.variant-groups .variants .variant .buttons a {
+	cursor: pointer;
+}
+
+.variant-groups .variants .variant.deleted {
+	opacity: 0.75;
+	background: #eee;
+}
+.variant-groups .variants .variant.deleted label {
+	color: graytext;
+}
+
+
+
+.variant-prefs {
+	margin: 15px 0 10px;
+}
+
+
+
+.variant-details.buttons {
+	float: right;
+	padding-top: 4px;
+}
+
+
+
+
+
+
+.message.inline {
+	margin-bottom: 15px;
+}
+
+
+
+
+
+
+.flex-wrap {
+	display: flex;
+}
+.flex-wrap > div:first-child {
+	flex-grow: 1;
+}
+.flex-wrap > div {
+	display: flex;
+	flex-direction: column;
+}
+.flex-wrap > div > form,
+.flex-wrap > div > img {
+	flex-grow: 1;
+}
+.flex-wrap > .artwork-image {
+	margin-left: 20px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.025);
+}
+.flex-wrap > .artwork-image > div {
+	line-height: 0;
+}
+.flex-wrap > .artwork-image img {
+	max-height: 265px;
+	border-radius: 5px;
+}
+
+
+
+.flex-wrap h2 {
+	display: none;
+}
+
+.advanced,
+.buttons.bottom {
+	margin-top: 20px;
+}
+.buttons.bottom {
+	border-top: 1px solid #eee;
+	padding-top: 20px;
+}
+
+
+
+
+form.ui .field label {
+	align-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+form.ui .field label::after {
+	display: none !important;
+}
+form.ui .field label .text::after {
+	content: ":";
+	display: inline-block;
+	min-width: 10px;
+}
+
+
+
+form.ui .field input:focus {
+	border-color: #ccc;
+}
+
+
+
+form.ui .field input[disabled],
+form.ui .field select[disabled],
+form.ui .field select[disabled] option,
+form.ui .field textarea[disabled] {
+	background: #eee;
+}
+
+
+form.ui .field.radio > label {
+	justify-content: initial;
+	padding-top: 6px;
+}
+form.ui .field.radio > div.options {
+	display: flex;
+	flex-direction: column;
+}
+form.ui .field.radio > div.options .option {
+	display: flex;
+	padding: 3px 0;
+}
+form.ui .field.radio > div.options .option input {
+	min-width: 0px;
+}
+form.ui .field.radio > div.options .option label {
+	flex-grow:1;
+	width:auto;
+}

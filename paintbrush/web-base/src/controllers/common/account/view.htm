@@ -1,0 +1,83 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{userProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Account Settings</h1>
+</header>
+
+<div class="account-settings">
+
+	<!--<div class="message"></div>-->
+
+	<div class="grid">
+		<div class="column">
+			<h3><i class="fa fa-fw fa-lg fa-lock"></i><span>Sign-in &amp; Security</span></h3>
+			<p><strong>Control your password and account-access settings</strong></p>
+
+			<div class="links">
+				<a ng-href="/account/authentication">Signing in</a>
+				<a ng-href="/account/devices">Device activity</a>
+			</div>
+		</div>
+		<!--<div class="column">-->
+			<!--<h3><i class="fa fa-fw fa-lg fa-user"></i><span>Personal info</span></h3>-->
+			<!--<p><strong></strong></p>-->
+
+		<!--</div>-->
+		<div class="column">
+			<h3><i class="fa fa-fw fa-lg fa-cog"></i><span>Account Preferences</span></h3>
+			<p><strong>Manage your subscriptions and other settings</strong></p>
+
+			<div class="links">
+				<a ng-href="/account/subscriptions">Subscriptions</a>
+				<a ng-href="/account/notifications">Notifications</a>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<style>
+
+	.grid {
+		flex-wrap: wrap;
+	}
+
+	.grid .column {
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		box-shadow: 0 0 6px rgba(0,0,0,0.05);
+		margin: 0 10px 20px 0;
+		padding: 0 0 20px;
+		transition: box-shadow ease-in-out 0.4s, border-color ease-in-out 0.4s;
+		width: 350px;
+		max-width: 90vw;
+		max-width: calc(100vw - 40px);
+	}
+	.grid .column:hover {
+		/*border-color: #ddd;*/
+		box-shadow: 0 0 6px rgba(0,0,0,0.1);
+	}
+
+	.grid h3 {
+		border-bottom: 1px solid #ddd;
+		background: #eee;
+		margin: 0;
+		padding: 10px;
+	}
+	.grid h3 .fa {
+		margin-right: 10px;
+	 }
+
+	.grid .column > p,
+	.grid .links {
+		padding: 0 20px;
+	}
+
+	.grid .links a {
+		display: block;
+		padding: 5px 0;
+		font-weight: 600;
+	}
+
+</style>

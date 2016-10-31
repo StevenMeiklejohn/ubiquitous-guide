@@ -1,0 +1,96 @@
+﻿<div class="artwork-manage-index" ng-if="artwork">
+
+	<ui-message config="message"></ui-message>
+
+	<!--<div class="flex-panels">-->
+
+		<!--<div class="panel-group column">-->
+			<!--<div class="panel">-->
+				<!--<div class="title">-->
+					<!--<h4>Image</h4>-->
+					<!--<div class="buttons">-->
+						<!--<a class="button light-blue no-text" title="Update artwork image" ng-href="/artwork/manage/{{artwork.ID}}/image"><i class="fa fa-fw fa-pencil"></i></a>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<artwork-manage-view-image class="content" artwork="artwork" ></artwork-manage-view-image>-->
+			<!--</div>-->
+		<!--</div>-->
+
+
+		<!--<div class="panel-group row items-3">-->
+
+		<!--</div>-->
+
+	<!--</div>-->
+
+
+	<div class="profile">
+
+		<div>
+			<div class="info-panel" style="width: auto; margin-right: 20px; min-width: 22vw;">
+				<div class="title">
+					<h4>Image</h4>
+					<div class="buttons">
+						<a class="button light-blue no-text" title="Update artwork image" ng-href="/artwork/manage/{{artwork.ID}}/image"><i class="fa fa-fw fa-pencil"></i></a>
+					</div>
+				</div>
+				<artwork-manage-view-image artwork="artwork" ></artwork-manage-view-image>
+			</div>
+		</div>
+
+
+		<div class="profile-data">
+
+			<div class="profile-info-wrap">
+
+				<!--<div class="info-panel">-->
+					<!--<div class="title">-->
+						<!--<h4>Image</h4>-->
+						<!--<div class="buttons">-->
+							<!--<a class="button light-blue no-text" title="Update artwork image" ng-href="/artwork/manage/{{artwork.ID}}/image"><i class="fa fa-fw fa-pencil"></i></a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<artwork-manage-view-image artwork="artwork" ></artwork-manage-view-image>-->
+				<!--</div>-->
+
+				<div class="info-panel">
+					<div class="title">
+						<h4>General</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update general artwork information" ng-href="/artwork/manage/{{artwork.ID}}/general"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<artwork-manage-view-general artwork="artwork" class="content"></artwork-manage-view-general>
+				</div>
+
+
+				<div class="info-panel">
+					<div class="title">
+						<h4>ActivCanvas</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update this artworks ActivCanvas settings" ng-href="/artwork/manage/{{artwork.ID}}/activcanvas"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<artwork-manage-view-activ-canvas artwork="artwork" class="content"></artwork-manage-view-activ-canvas>
+				</div>
+
+
+				<!--<div class="info-panel product">-->
+					<!--<div class="title">-->
+						<!--<h4>Products</h4>-->
+						<!--<div class="buttons">-->
+							<!--&lt;!&ndash;<a class="button light-blue no-text" title="Update this artworks stock information" ng-href="/artwork/manage/{{artwork.ID}}/stock"><i class="fa fa-fw fa-pencil"></i></a>&ndash;&gt;-->
+							<!--<a class="button green no-text" title="Add new stock for this artwork" ng-href="/artwork/manage/{{artwork.ID}}/product/add"><i class="fa fa-fw fa-plus"></i></a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<artwork-manage-view-product artwork="artwork" class="content"></artwork-manage-view-product>-->
+				<!--</div>-->
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>

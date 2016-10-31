@@ -1,0 +1,45 @@
+﻿<div>
+	<ui-datagrid config="grid"></ui-datagrid>
+
+	<style>
+
+		.datagrid td.content,
+		.datagrid th.content {
+			width: 90%;
+		}
+		.datagrid td.date,
+		.datagrid th.date {
+			width: 50px;
+		}
+		.datagrid td.recipient,
+		.datagrid th.recipient {
+			width: 80px;
+		}
+		.datagrid td.priority,
+		.datagrid th.priority {
+			width: 55px;
+		}
+		.datagrid td.icons,
+		.datagrid th.icons {
+			width: 30px;
+		}
+
+		.datagrid td.content .subject {
+			display: inline-block;
+			margin-right: 10px;
+		}
+		.datagrid td.content .subject::after {
+			content: '-';
+			margin-left: 10px;
+		}
+		.datagrid td .body-preview {
+			color: #999;
+		}
+
+		.datagrid td.icons > .fa {
+			font-size: 1.5em;
+			color: #999;
+		}
+
+	</style>
+</div>

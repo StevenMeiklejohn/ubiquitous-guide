@@ -1,0 +1,75 @@
+﻿<div class="social-media-details">
+
+	<form>
+
+		<ui-message config="error"></ui-message>
+
+		<div>
+			<div class="wrap" ng-repeat="service in services">
+
+				<img ng-src="{{service.ImageURI}}" />
+				<div class="details">
+					<h3>{{service.Name}}</h3>
+
+					<div class="field">
+						<label for="SocialMedia-URL-{{service.ID}}">Profile URL</label>
+						<input name="URL-{{service.ID}}" id="SocialMedia-URL-{{service.ID}}" value="{{_profiles[service.ID].URL}}" type="text" placeholder="{{service.URL + '/your.profile'}}" />
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div ng-if="ready">
+			<div class="buttons right padded" ng-show="!pendingRequest">
+				<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+				<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+			</div>
+			<div class="buttons right padded" ng-show="pendingRequest">
+				<div class="ajax-loader"></div>
+			</div>
+		</div>
+
+	</form>
+
+
+	<style>
+
+		.social-media-details .wrap {
+			padding-top: 5px;
+		}
+		.social-media-details .wrap {
+			display: flex;
+		}
+		.social-media-details .wrap:not(:last-child) {
+			padding-bottom: 15px;
+			margin-bottom: 15px;
+			border-bottom: 1px solid #eee;
+		}
+		.social-media-details .details {
+			padding-left: 15px;
+			flex-grow: 1;
+		}
+		.social-media-details .details > .field {
+			display: flex;
+		}
+		.social-media-details .details > .field > input {
+			min-width: 290px;
+			flex-grow: 1;
+		}
+		.social-media-details img {
+			height: 74px;
+			width: 74px;
+		}
+		.social-media-details h3 {
+			margin: 0;
+			padding: 4px 0 10px;
+		}
+
+
+
+
+	</style>
+
+</div>

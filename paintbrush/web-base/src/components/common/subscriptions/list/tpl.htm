@@ -1,0 +1,135 @@
+﻿
+<div class="marketplace-search">
+
+	<div class="filters">
+
+		<a class="filter" data-filter="Status">
+			<span class="label"><span data-text="Status" class="text">Status</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+			<ul class="options">
+				<li ng-click="setFilter('Status')">Any</li>
+				<li ng-repeat="s in statuses" ng-click="setFilter('Status', s.Status, '', $event)">{{s.Status}}</li>
+			</ul>
+		</a>
+
+	</div>
+	
+</div>
+
+
+<div class="subscription-list" ng-show="subscriptions && subscriptions.length">
+
+	<table>
+		<thead>
+			<tr class="row">
+				<th class="status-icon"></th>
+				<th class="package">Package Details</th>
+				<th class="status">Status</th>
+				<th class="start-date">Start Date</th>
+				<th class="end-date">End Date</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="s in subscriptions" data-id="{{s.ID}}" class="row {{s.Status}}" ng-click="viewDetails(s, $event)">
+				<td class="status-icon">
+					<span class="bullet" style="background: #{{s.StatusID === 1 ? 'f1c13d' : s.StatusID === 2 ? '68b981' : s.StatusID === 4 ? 'e22d2d' : 'ddd' }};"></span>
+				</td>
+				<td class="package">{{s.Package}}</td>
+				<td class="status">{{s.Status}}</td>
+				<td class="start-date" title="{{s._StartDateFull}}">{{s._StartDate}}</td>
+				<td class="end-date" title="{{s._EndDateFull}}">{{s._EndDate}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+<div class="message" ng-show="subscriptions && !subscriptionsBase.length">No subscriptions found</div>
+<div class="message" ng-show="subscriptions && !subscriptions.length && subscriptionsBase.length">No subscriptions matching the current filter settings found</div>
+
+
+
+<style>
+	.subscription-list table {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	.subscription-list .row > td,
+	.subscription-list .row > th {
+		padding: 8px 12px;
+		border-bottom: 1px solid #ddd;
+		text-align: left;
+		white-space: nowrap;
+		width: auto;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.subscription-list .row > tr {
+		cursor: pointer;
+	}
+	.subscription-list tbody tr.row:hover {
+		background: #e5eef3;
+	}
+	.subscription-list tbody tr.row.Active.highlight {
+		background: #e0f5e6;
+	}
+	.subscription-list tbody tr.row.Expired.highlight {
+		background: #eaeaea;
+	}
+	.subscription-list tbody tr.row.Cancelled.highlight {
+		background: #f6cdcd;
+	}
+
+	.subscription-list .row .status-icon {
+		width: 20px;
+	}
+	
+	.subscription-list .row .start-date,
+	.subscription-list .row .end-date {
+		width: 100px;
+	}
+	.subscription-list .row .status {
+		width: 70px;
+	}
+
+	
+	
+
+
+
+	.subscription-list .drawer .content {
+		max-height: 0;
+		overflow: hidden;
+		/*transition: ease-in-out max-height 0.5s;*/
+		transition: linear max-height 0.3s;
+		border-left: 25px solid #eee;
+		position: relative;
+	}
+	.subscription-list .drawer .content table {
+		margin: 10px 15px;
+	}
+	.subscription-list .drawer .content td {
+		padding: 4px 0;
+	}
+	.subscription-list .drawer.closed .content {
+		max-height: 0 !important;
+	}
+	.subscription-list .drawer.open .content {
+		max-height: 200px;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.subscription-list .drawer td[colspan] {
+		padding: 0;
+	}
+
+	
+	.subscription-list .controls {
+		position: absolute;
+		top: 5px;
+		right: 10px;
+	}
+	.subscription-list .controls i {
+		cursor: pointer;
+	}
+
+</style>

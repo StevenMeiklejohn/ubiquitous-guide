@@ -1,0 +1,46 @@
+﻿
+<div style="display: inline-block;">
+
+	<form class="login">
+		<div class="messages"></div>
+		<div class="field">
+			<label for="email">Email</label>
+			<input type="email" id="email" placeholder="Email" required />
+		</div>
+		<div class="field">
+			<label for="password">Password</label>
+			<input type="password" id="password" placeholder="Password" required />
+		</div>
+		<div class="buttons">
+			<a class="forgot button" ng-href="/login?v=forgot"><i class="fa fa-question"></i> Forgot</a>
+			<a class="submit button"><i class="fa fa-lock"></i> Login</a>
+		</div>
+	</form>
+
+	<div class="social-signin">
+
+		<a ng-click="go('/api/auth/facebook')" title="Log in with your Facebook account"><img ng-src="/img/auth/facebook-128.png" /></a>
+
+		<a ng-click="go('/api/auth/google')" title="Log in with your Google account"><img ng-src="/img/auth/google-128.png" /></a>
+
+	</div>
+
+</div>
+
+
+<style>
+	.social-signin {
+		margin-top: 20px;
+		padding-top: 20px;
+		border-top: 1px solid #ddd;
+	}
+
+	.social-signin a {
+		display: inline-block;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+	.social-signin img {
+		max-width: 72px;
+	 }
+</style>

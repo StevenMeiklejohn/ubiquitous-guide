@@ -1,0 +1,78 @@
+Inheritance.
+
+Imagine 2 classes which both have a method which does the same thing. This is not desirable.
+
+We get around this by using a superclass from which each attached subclass inherit things
+
+(see duck, sparrow, bird files.)
+
+class Duck < Bird
+Duck class inherits attributes from bird class.
+
+When using a Duck initialize, 
+
+def initialize
+  @attitude="off the scale"
+  super(2)
+end
+
+# "super(2) calls the Bird initialize as well as runnning the Duck initialize."
+
+
+
+
+
+Modules
+============
+
+< MiniTest::Test 
+=>=> an example of a module.
+
+Modules are ruby files with containing information, def methods etc, whch can be called by name with the use of a 'require relative'
+
+Additional methods can be added to existing classes. Do this by creating a ruby file with (for example) 'class Array'. Then add (def) any required methods. You will now be able to call them on class Array.
+
+
+
+
+Blocks.
+==========
+-Understand what blocks are.
+
+Imagine if we could......
+
+def my_method(another)
+----
+end
+
+
+def another
+----
+end
+
+i.e. use a method as a string to pass in to another method. we can't do this in Ruby, but......
+
+
+
+
+
+Enumerables
+============
+Traveres an array and executes a code which you put in the block.
+
+[1,2,3,4,5].find_all { |i| i % 3 == 0 }
+
+|i| represents the currently returned array item (for loop).
+=> return all the entries in the array which give a remainder of 0 when divided by 3.
+
+
+=> [1, 2, 3, 4, 5]
+irb(main):006:0> array.inject { |sum, n| sum + n }
+=> 15
+
+
+
+
+
+
+

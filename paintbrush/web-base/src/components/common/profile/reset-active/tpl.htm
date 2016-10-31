@@ -1,0 +1,6 @@
+﻿<div class="reset-active-profile" ng-show="authenticated && activeProfile.ID && userProfile.ID !== activeProfile.ID">
+	<a class="profile-link" ng-click="resetActiveProfile()" title="Reset the active profile back to your own profile">
+		<span class="profile-name">{{userProfile.Name}}</span>
+		<span class="profile-image" style="background-image:url('{{userProfile.ImageURI_90}}')" ng-if="userProfile"></span>
+	</a>
+</div>

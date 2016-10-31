@@ -1,0 +1,196 @@
+﻿
+<div class="notification-settings">
+
+	<div class="message">Below are your current notification settings</div>
+
+	<form>
+
+		<div class="panel-wrap">
+
+			<div class="panel {{settings.email.enabled? 'green' : 'gold'}}">
+
+				<h3 ng-click="settings.email.enabled=!settings.email.enabled" title="Enable email notifications">Email: <input type="checkbox" name="EmailEnabled" id="EmailEnabled" ng-checked="settings.email.enabled" /></h3>
+
+				<div class="section" ng-show="settings.email.enabled">
+
+					<!--<div class="message" style="margin: 0 0 10px 0">Please specify the email address you want to receive notifications at:</div>-->
+
+					<!--<div class="field">-->
+						<!--<label for="Email">Email</label>-->
+						<!--<input type="email" name="Email" id="Email" ng-blur="updateEmail($event)" ng-value="settings.email.address" placeholder="{{userProfile.Email}}" required maxlength="256" />-->
+					<!--</div>-->
+
+					<!--<hr/>-->
+
+					<div class="field">
+						<label for="EmailShowAdvanced" style="font-weight: bold;">Advanced Settings</label><input id="EmailShowAdvanced" name="EmailShowAdvanced" type="checkbox" ng-model="settings.email.showAdvanced" />
+					</div>
+
+					<div ng-show="settings.email.showAdvanced">
+						<hr/>
+						<div class="field" ng-repeat="type in notificationTypes">
+							<label for="EmailType-{{type.ID}}">{{type.Type}}</label>
+							<input type="checkbox" ng-model="settings.email[type.Type.toLowerCase()].enabled" name="EmailType-{{type.ID}}" id="EmailType-{{type.ID}}" />
+							<div >
+								<select ng-disabled="!settings.email[type.Type.toLowerCase()].enabled" ng-model="settings.email[type.Type.toLowerCase()].threshold">
+									<option value="1">All Notifications</option>
+									<option value="3" selected>Normal &amp; Important</option>
+									<option value="5">Important Only</option>
+								</select>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="panel {{settings.desktop.enabled? 'green' : 'gold'}}">
+
+			<h3 ng-click="settings.desktop.enabled=!settings.desktop.enabled">Desktop: <input type="checkbox" name="DesktopEnabled" id="DesktopEnabled" ng-checked="settings.desktop.enabled" /></h3>
+
+			<div class="section" ng-show="settings.desktop.enabled">
+
+				<!--<div class="field">-->
+					<!--<label for="DesktopPlaySound">Play Sound</label>-->
+					<!--<input type="checkbox" name="DesktopPlaySound" id="DesktopPlaySound" ng-model="settings.desktop.sound" />-->
+				<!--</div>-->
+
+				<!--<hr/>-->
+
+
+				<div class="field">
+					<label for="DesktopShowAdvanced" style="font-weight: bold;">Advanced Settings</label><input id="DesktopShowAdvanced" name="DesktopShowAdvanced" type="checkbox" ng-model="settings.desktop.showAdvanced" />
+				</div>
+
+				<div ng-show="settings.desktop.showAdvanced">
+					<hr/>
+					<div class="field" ng-repeat="type in notificationTypes">
+						<label for="DesktopType-{{type.ID}}">{{type.Type}}</label>
+						<input type="checkbox" ng-model="settings.desktop[type.Type.toLowerCase()].enabled" name="DesktopType-{{type.ID}}" id="DesktopType-{{type.ID}}" />
+						<div>
+							<select ng-disabled="!settings.desktop[type.Type.toLowerCase()].enabled" ng-model="settings.desktop[type.Type.toLowerCase()].threshold" >
+								<option value="1">All Notifications</option>
+								<option value="3" selected>Standard &amp; Important</option>
+								<option value="5">Important Only</option>
+								<!--<option ng-repeat="p in notificationPriorities" value="p.ID">{{p.ID}} - {{p.Description}}</option>-->
+							</select>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		</div>
+
+		<div class="buttons right">
+			<a class="button" ng-click="cancel()"><i class="fa fa-reply"></i><span class="text">Cancel</span></a>
+			<a class="button blue" ng-click="save()"><i class="fa fa-save"></i><span class="text">Update</span></a>
+		</div>
+
+	</form>
+
+
+
+
+</div>
+
+
+<style>
+
+	.notification-settings {
+		display: inline-block;
+	}
+
+	.notification-settings form {
+		display: block;
+	}
+
+	.notification-settings form .section {
+		border-top: 1px solid #ddd;
+		padding: 15px;
+		border-radius: 0 0 3px 3px;
+		background: #fff;
+		color: #465159;
+		/*margin-top: 5px;*/
+		/*flex-grow: 1;*/
+	}
+
+	.notification-settings form .field input[type=checkbox] {
+		margin-right: 10px;
+	}
+
+	.notification-settings h3 {
+		margin: 0;
+		cursor: pointer;
+		padding: 10px 5px 10px 15px
+	}
+
+	.notification-settings h3 > input {
+		vertical-align: bottom;
+		float: right;
+	}
+
+	.notification-settings .panel {
+		background: #666;
+		border: 1px solid #666;
+		border-radius: 5px;
+		/*color: #fff;*/
+		padding: 0;
+		min-width: 550px;
+		margin: 20px 0;
+
+		background: #eee;
+		border: 1px solid #ddd;
+
+
+
+		box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+		transition: all 0.4s ease-in-out 0s;
+
+	}
+
+	.notification-settings .panel.gold {
+		/*background: #f1c13d;*/
+		/*border-color: #f1c13d;*/
+	}
+	.notification-settings .panel.green {
+		/*background: #67ad4b;*/
+		/*border-color: #67ad4b;*/
+	}
+
+	.notification-settings hr {
+		border: 1px solid #ddd;
+		border-width: 1px 0 0 0;
+	}
+
+	/*.notification-settings .panel-wrap {*/
+		/*display: flex;*/
+		/*flex-wrap: wrap;*/
+	/*}*/
+	/*.notification-settings .panel-wrap > .panel {*/
+		/*!*flex-grow: 1;*!*/
+		/*width: 33%;*/
+		/*display: flex;*/
+		/*flex-direction: column;*/
+	/*}*/
+	/*.notification-settings .panel-wrap > .panel:not(:last-child) {*/
+		/*margin-right: 10px;*/
+		/*width: calc(33%-10px);*/
+	/*}*/
+
+	/** MOBILE **/
+	@media (max-width: 650px) {
+		.notification-settings .panel {
+			min-width: 0;
+		}
+		.notification-settings {
+			display: block;
+		}
+	}
+
+</style>

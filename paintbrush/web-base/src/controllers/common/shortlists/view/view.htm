@@ -1,0 +1,30 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/shortlists">Shortlists</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{shortlist.Name}} {{shortlist.Archived ? '(Archived)': ''}}</h1>
+	<div class="button-group" ng-show="ready && (!error || error.empty)">
+		<a ng-show="!shortlist.Archived" class="button light-blue" ng-click="archiveShortlist()"><i class="fa fa-folder-open"></i><span>Archive</span></a>
+		<a ng-show="!shortlist.Archived" class="button blue" ng-click="editShortlist()"><i class="fa fa-pencil"></i><span>Edit</span></a>
+		<a ng-show="shortlist.Archived" class="button orange" ng-click="deleteShortlist()"><i class="fa fa-trash"></i><span>Delete</span></a>
+		<!--<a class="button light-blue"><i class="fa fa-plus"></i><span>New</span></a>-->
+	</div>
+</header>
+
+<div ng-show="!error">
+	<div ng-show="!ready" class="ajax-loader"></div>
+	<!--<div ng-show="ready && errorMessage" class="message error">{{errorMessage}}</div>-->
+	<div ng-show="ready">
+
+		<div class="target">
+			<div>{{shortlist.Items.length || 0}} / {{shortlist.Target}} Target Items</div>
+			<div class="progress-bar">
+				<div class="value" style="width: {{((shortlist.Items.length / shortlist.Target) * 100) || 0}}%" ></div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div ng-show="ready && shortlist.Items.length > 0" class="artwork-grid" artwork-grid config="artworkGridConfig"></div>
+
+</div>
+
+<ui-message config="error"></ui-message>

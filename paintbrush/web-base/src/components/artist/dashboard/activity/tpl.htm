@@ -1,0 +1,40 @@
+﻿<div class="tabs">
+	<ul>
+		<li>Views</li>
+		<li>Scans</li>
+		<li>Likes</li>
+		<li>Artworks</li>
+		<li>Shortlisted</li>
+		<!--<li>Connections</li>-->
+	</ul>
+	<div>
+		<div ng-show="!error.views" id="graph-views"></div>
+		<ui-message config="error.views"></ui-message>
+	</div>
+
+	<div>
+		<div ng-show="!error.scans" id="graph-scans"></div>
+		<ui-message config="error.scans"></ui-message>
+	</div>
+
+	<div>
+		<div ng-show="!error.likes" id="graph-likes"></div>
+		<ui-message config="error.likes"></ui-message>
+	</div>
+
+	<div>
+		<div ng-show="!error.total" id="graph-total-artworks"></div>
+		<ui-message config="error.total"></ui-message>
+	</div>
+
+	<div>
+		<div ng-show="!error.shortlisted" id="graph-shortlisted"></div>
+		<ui-message config="error.shortlisted"></ui-message>
+	</div>
+
+	<!--<div>-->
+		<!--<div id="graph-connections"></div>-->
+	<!--</div>-->
+	
+
+</div>

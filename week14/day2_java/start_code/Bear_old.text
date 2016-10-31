@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class Bear {
+  private String name;
+  // private Salmon[] belly;
+  private ArrayList<Salmon> bellySalmon;
+  private ArrayList<Human> bellyHuman;
+  private int foodCounter;
+
+  public Bear(String name){
+    // this.belly = new Salmon[5];
+    this.bellySalmon = new ArrayList<Salmon>();
+    this.bellyHuman = new ArrayList<Human>();
+    this.name = name;
+    this.foodCounter = 0;
+  }
+
+  public String getName(){
+    return name;
+  }
+
+  public int foodCount(){
+    // int count = 0;
+    // for(Salmon salmon : belly){
+    //   if(salmon != null){
+    //     count++;
+    //   }
+    // }
+    // return count;
+    return bellySalmon.size() + bellyHuman.size();
+  }
+
+  public void eat(Salmon salmon){
+    // if(bellyFull()) return;
+    // belly[foodCounter] = salmon;
+    // foodCounter++;
+    bellySalmon.add(salmon);
+  }
+
+  public void eat(Human human) {
+    bellyHuman.add(human);
+  }
+
+
+  // public boolean bellyFull(){
+  //   return foodCounter >= belly.length;
+  // }
+
+  public void sleep(){
+    // for(int i = 0; i < belly.length; i++){
+    //   belly[i] = null;
+    // }
+    // foodCounter = 0;
+    bellySalmon.clear();
+    bellyHuman.clear();
+  }
+
+
+}

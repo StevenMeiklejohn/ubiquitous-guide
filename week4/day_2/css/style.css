@@ -1,0 +1,18 @@
+h1 {
+  color: blue;
+}
+
+
+p {
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+b {
+  background-color: pink;
+}
+
+b {
+  background-image: url('');
+  background-size: cover;
+}

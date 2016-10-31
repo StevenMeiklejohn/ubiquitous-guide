@@ -1,0 +1,146 @@
+﻿
+<div class="demo-test">
+
+	<div class="instructions">
+
+		<div ng-show="TrackingRating!==undefined" style="margin-bottom: 15px;text-align: center; font-size: 1.3em;">
+			<div class="message success" ng-show="TrackingRating > 2">Image is ready to scan <i class="fa fa-check"></i></div>
+			<div class="message warn" ng-show="TrackingRating < 3 && TrackingRating > 0">Image is ready to scan <i class="fa fa-check"></i></div>
+			<div class="message error" ng-show="TrackingRating < 1">Image has a poor tracking rating  <i class="fa fa-times"></i></div>
+		</div>
+
+		<div ng-show="TrackingRating === undefined || TrackingRating > 0">
+
+			<div class="message" style="margin-bottom: 15px;">Download the ActivCanvas app while you're waiting, so you can test your artwork when it's ready.</div>
+
+			<h4>How to Download ActivCanvas:</h4>
+			<ol>
+				<li>Visit either the <strong>App Store</strong> or <strong>Google Play</strong> Store on your smartphone</li>
+				<li>Search for <strong>ActivCanvas</strong> and download</li>
+				<li>Open the app on your device</li>
+				<li>Once your image has been processed scan it with the app</li>
+				<li>Watch the hidden video content</li>
+			</ol>
+
+		</div>
+
+		<div ng-show="TrackingRating < 1">
+			<h4>How To Improve The Rating</h4>
+
+			<div class="content">
+				<p>It appears that the image you selected is not able to be activated. This can happen for a few reasons. ActivCanvas works by using image recognition software which picks up unique points of contrast in an image and then ties this to audiovisual content. Sometimes if an image does not have enough points of contrast (ie. corners, strong lines, shapes) it is considered a ‘weak’ image for activation.</p>
+				<p>If your image has come back as unusable you can try uploading either another image of the same work, which may be higher resolution or of a better quality, or you can try ActivCanvas on another artwork entirely.</p>
+				<p>If you artwork consistently does not work, or you consistently see this message please contact us directly by emailing: <a href="mailto:hello@artretailnetwork.com">hello@artretailnetwork.com</a></p>
+			</div>
+
+			<div class="buttons">
+				<a class="button blue" ng-show="totalArtworks > 1" ng-click="selectArtwork()"><i class="fa fa-th-large"></i><span class="text">Select Another Image</span></a>
+				<a class="button blue" ng-click="uploadArtwork()"><i class="fa fa-upload"></i><span class="text">Upload A Different Artwork</span></a>
+
+			</div>
+		</div>
+
+		<div ng-show="TrackingRating > 0">
+			<div class="buttons">
+				<a class="button blue icon-right" ng-href="/account/subscriptions"><span class="text">Select Package</span><i class="fa fa-arrow-right"></i></a>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="test-area">
+
+		<div class="artwork-panel loaded">
+			<div class="image-preview"><img ng-src="{{previewImageURI}}" /><div class="overlay {{TrackingRating!==undefined ? 'hidden' : ''}}"></div></div>
+			<div class="tracking" ng-show="TrackingRating!==undefined">
+				<div class="uppercase">ActivCanvas Rating</div>
+				<div class="rating"><i class="fa fa-star{{i <= TrackingRating ? '' : '-o'}}" ng-repeat="i in [1,2,3,4,5]"></i></div>
+			</div>
+			<div class="tracking" ng-show="TrackingRating===undefined">
+				<div class="uppercase" style="flex-grow: 1;">Processing</div>
+				<div class="ajax-loader"></div>
+			</div>
+		</div>
+
+		
+		
+	</div>
+
+</div>
+
+<style>
+	.image-preview {
+		font-size: 0px;
+		position: relative;
+	}
+
+	.image-preview .overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: #fff;
+		opacity: 0.6;
+		transition: ease-in-out opacity 0.5s;
+	}
+
+	.image-preview .overlay.hidden {
+		opacity: 0;
+	}
+
+	.image-preview img {
+		max-width: 100%;
+	}
+
+	.instructions ol {
+		line-height: 2em;
+	}
+
+	.instructions .content {
+		line-height: 1.75em;
+	}
+
+	.demo-test {
+		display: flex;
+	}
+	.demo-test > div {
+		flex-grow: 1;
+	}
+	.demo-test > .instructions {
+		order: 2;
+		margin: 0 0 0 15px;
+	}
+	.demo-test > .test-area {
+		order: 1;
+		max-width: 500px;
+		min-width: 500px;
+	}
+
+	.demo-test .buttons {
+		margin-top: 25px;
+		text-align: center;
+	}
+
+	.demo-test .button {
+		margin: 0 10px 5px 0;
+	}
+
+	/*.demo-test .message.success {
+		display: inline-block;
+	}*/
+
+	@media (max-width: 1090px) {
+		.demo-test {
+			flex-direction: column;
+		}
+		.demo-test > .instructions {
+			order: 0;
+			margin: 0 0 15px 0;
+		}
+		.demo-test > .test-area {
+			min-width: 0;
+		}
+	}
+
+</style>

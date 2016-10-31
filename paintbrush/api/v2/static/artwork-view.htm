@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>[ARTWORK_NAME] by [ARTWORK_ARTISTNAME]</title>
+	<meta name="author" content="[ARTWORK_ARTISTNAME]">
+	<meta name="description" content="[ARTWORK_DESCRIPTION]">
+
+	<meta property="og:title" content="[ARTWORK_NAME] by [ARTWORK_ARTISTNAME]" />
+	<meta property="og:type" content="webpage" />
+	<meta property="og:url" content="[CURRENT_URL]" />
+	<meta property="og:image" content="[HOST_URL]/api/proxy/image/[ARTWORK_IMAGEURI_ENC]/500/500" />
+	<meta property="og:description" content="[ARTWORK_DESCRIPTION]" />
+	<meta property="og:site_name" content="Art Retail Network" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:author" content="[ARTWORK_ARTISTNAME]" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ArtRetailNet">
+	<meta name="twitter:title" content="[ARTWORK_NAME] by [ARTWORK_ARTISTNAME]">
+	<meta name="twitter:description" content="[ARTWORK_DESCRIPTION]">
+	<meta name="twitter:creator" content="@ArtRetailNet">
+	<meta name="twitter:image:src" content="[HOST_URL]/api/proxy/image/[ARTWORK_IMAGEURI_ENC]/500/500">
+	<meta name="twitter:image:alt" content="[ARTWORK_NAME] by [ARTWORK_ARTISTNAME]" />
+	<meta name="twitter:domain" content="www.artretailnetwork.com">
+
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<link rel="icon" type="image/png" href="/img/favicon.png" />
+
+	<!-- FONTS -->
+	<!--<link href="/css/font-awesome.min.css?[CDV]" type="text/css" rel="stylesheet" />-->
+	<link href="/fonts/opensans/opensans.css?[CDV]" rel="stylesheet" type="text/css" />
+
+	<!-- STYLES -->
+	<link href="/templates/arn/css/main.css?[CDV]" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="flex-outer">
+		<div class="flex-inner">
+			<div>
+				<h1>[ARTWORK_NAME] by [ARTWORK_ARTISTNAME]</h1>
+				<div>
+					<img class="image" src="/api/proxy/image/[ARTWORK_IMAGEURI_ENC]/500/500"/>
+				</div>
+				<div class="description">[ARTWORK_DESCRIPTION]</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<style>
+		body {
+			padding: 0 10px 10px;
+		}
+
+		.flex-outer {
+			display:flex;
+			align-content:center;
+			justify-content: center;
+			flex-direction:column;
+			height:90vh;
+		}
+		.flex-inner {
+			display:flex;
+			align-content:center;
+			justify-content: center;
+		}
+
+
+		.artwork-details > div {
+			max-width: 500px;
+		}
+
+		.image {
+			max-width: 100%;
+		}
+		.description {
+			font-size: 1.25em;
+		}
+		.label span {
+			margin-right: 10px;
+			display: inline-block;
+		}
+
+
+	</style>
+
+
+	<script>
+		var token = localStorage.accessToken;
+
+		var request = function(uri, opts) {
+			opts = opts || {};
+
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 1) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+					xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+					if (opts.data) {
+						xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+					}
+				}
+			};
+			xhr.addEventListener('load', function(res) {
+				if (res.target.status === 200) {
+					opts.success && opts.success(JSON.parse(this.responseText));
+				}
+				else {
+					opts.error && opts.error();
+				}
+				opts.finally && opts.finally();
+			});
+			xhr.addEventListener('error', function(e) {
+				opts.error && opts.error(e);
+				opts.finally && opts.finally();
+			});
+			var data;
+			if (opts.data) {
+				data = JSON.stringify(opts.data);
+			}
+			xhr.open(opts.type || (opts.data ? 'POST' : 'GET'), uri);
+			xhr.send(data);
+		};
+
+
+		request('/api/analytics/event', {
+			data: { EventID: 7, ArtworkID: [ARTWORKID] }
+		})
+
+	</script>
+
+</body>
+</html>

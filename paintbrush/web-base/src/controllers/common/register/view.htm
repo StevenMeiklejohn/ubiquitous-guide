@@ -1,0 +1,41 @@
+﻿
+<header class="main">
+	<h1>Register <span class="sub"><span ng-show="type==='artist'">As Artist</span><span ng-show="type==='gallery'">As Gallery</span></span></h1>
+</header>
+
+<div class="progress-bar" ng-if="step > -1">
+	<div class="value" style="width: {{Math.ceil(completedSteps/totalSteps*100)}}%"></div>
+</div>
+
+<div ng-if="reAuthenticate" register-reauth></div>
+<div ng-if="!reAuthenticate">
+	<div ng-if="step === 0" register-email></div>
+	<div ng-if="step === 1" register-password></div>
+	<div ng-if="step === 2" register-type></div>
+	<div ng-if="step === 3" register-terms></div>
+	<div ng-if="step === 4" register-profile></div>
+	<div ng-if="step === 5" register-artwork-bulk></div>
+	<!--<div ng-if="step === 6" register-artwork></div>-->
+
+</div>
+
+<div ng-if="step === 25">
+	<h2>Gallery Registration Options</h2>
+	<p>Currently our ActivCanvas Platform only facilitates self-service set up for individual artist accounts.</p>
+	<p>However we do work with galleries regularly on custom and ongoing projects.</p>
+	<p>If you are interested in using ActivCanvas at your gallery please contact us directly.</p>
+	<p><a href="mailto:hello@artretailnetwork.com">hello@artretailnetwork.com</a></p>
+	<p>&nbsp;</p>
+	<p><a class="button blue" ng-click="reset()"><i class="fa fa-reset"></i><span class="text">Reset Registration</span></a></p>
+</div>
+
+
+<div ng-if="step === 100" class="message">Registration complete, please wait.</div>
+
+
+<style>
+	h2 {
+		border-bottom: 1px solid #ddd;
+		padding-bottom: 10px;
+	}
+</style>

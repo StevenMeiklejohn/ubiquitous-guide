@@ -1,0 +1,12 @@
+{
+  "apps":[
+    {
+      "name":"www",
+      "script":"bin/www",
+      "watch":"false",
+      "ignore_watch" :"api/img-cache",
+      "log_date_format":"YYYY-MM-DD HH:mm Z",
+
+    }
+  ]
+}

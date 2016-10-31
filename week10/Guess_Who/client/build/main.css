@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Evil';
+  src: url('EVILDEAD.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Villain';
+  src: url('villain.ttf') format('truetype');
+}
+
+body {
+    background-image:    url(background.jpg);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+
+.CharactersBox{
+  text-align: center;
+}
+
+#ResultImage{
+  display: float;
+  text-align: center;
+}
+
+#Result{
+  display: float;
+  text-align: center;
+}
+
+#title{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 50px;
+}
+
+#DoesVillainHave{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 30px;
+}
+
+#Nationalities{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 30px;
+}
+
+#VillainGuess{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 30px;
+}
+
+#Guess{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 30px;
+}
+
+#GuessVillain{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 30px;
+}
+
+#Nationality{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 30px;
+}
+
+#VillainForm1{
+  text-align: center;
+}
+
+#VillainForm2{
+  text-align: center;
+  font-family: "Evil";
+  font-size: 15px;
+}
+
+#GuessForm{
+  text-align: center;
+}
+
+#CharactersHeader{
+  font-family: "Evil";
+  font-size: 50px;
+  color: red;
+}
+
+#Vader{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Ming{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Skeletor{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Hitler{
+  display: inline-block;
+  margin: 10px;
+
+}
+
+#Stalin{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Trump{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Joffrey{
+  display: inline-block;
+  margin: 10px;
+}
+
+#DrDoom{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Beiber{
+  display: inline-block;
+  margin: 10px;
+}
+
+#MummRa{
+  display: inline-block;
+  margin: 10px;
+}
+
+#Result{
+  display:block;
+  text-align: center;
+}

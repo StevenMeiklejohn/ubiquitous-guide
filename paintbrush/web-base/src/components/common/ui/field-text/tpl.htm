@@ -1,0 +1,14 @@
+<div class="field text" ng-show="{{config.show}}" data-uid="{{config.uid}}">
+	<label ng-if="config.label!==false" for="{{config.uid}}">{{config.label || config.name}}</label>
+	<input
+			 type="text"
+		     name="{{config.name}}"
+		     id="{{config.uid}}"
+			 value="{{config.value}}"
+			 ng-disabled="{{config.disabled}}"
+			 ng-change="config.change()"
+			 ng-model="config.model[config.name]"
+			 ng-model-options="config.modelOptions||{debounce:500}"
+			 ng-required="{{config.required}}"
+	/>
+</div>

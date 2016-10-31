@@ -1,0 +1,36 @@
+﻿<div class="general-info">
+
+	<table class="datalist vertical">
+		<tr>
+			<td>Name</td>
+			<td>{{artwork.Name}}</td>
+		</tr>
+		<tr>
+			<td>Description</td>
+			<td><div class="description" title="{{artwork.Description}}">{{descriptionShort || '-'}}</div></td>
+		</tr>
+		<tr>
+			<td>Type</td>
+			<td>{{artwork.Type}}</td>
+		</tr>
+		<tr>
+			<td>Tags</td>
+			<td><span ng-if="!artwork.Tags.length">-</span><span ng-repeat="tag in artwork.Tags">{{tag}}<span ng-if="!$last">, </span></span></td>
+		</tr>
+		<tr>
+			<td>Styles</td>
+			<td><span ng-if="!artwork.Styles.length">-</span><span ng-repeat="s in artwork.Styles">{{s.Name}}<span ng-if="!$last">, </span></span></td>
+		</tr>
+		<tr ng-if="artwork.LimitedEdition && artwork.LimitedEditionDetails">
+			<td>Limited Edition</td>
+			<td>{{artwork.LimitedEditionDetails}}</td>
+		</tr>
+	</table>
+
+	<style>
+		.general-info .description {
+			white-space: pre-wrap;
+		}
+	</style>
+</div>
+

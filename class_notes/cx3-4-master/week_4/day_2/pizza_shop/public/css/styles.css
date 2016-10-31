@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Sarina);
+
+html, body {
+  background: url(http://static9.depositphotos.com/1005738/1181/v/950/depositphotos_11810038-Italian-pizza-flavors-pattern.jpg) no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+header {
+  -webkit-clip-path: polygon(100% 0, 91% 100%, 10% 99%, 0 0);
+  clip-path: polygon(100% 0, 91% 100%, 10% 99%, 0 0);
+  background-color: white;
+  width: 600px;
+  height: 120px;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+}
+
+.brand {
+  font-family: 'Sarina', cursive;
+  text-align: center;
+  font-size: 52px;
+  text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+  transform: rotate(-6deg);
+  margin: 8px 0px;
+}
+
+.button {
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.button__yellow {
+  padding: 8px 22px;
+  background-color: yellow;
+  -webkit-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+}
+
+.button__blue {
+  padding: 5px 18px;
+  background-color: blue;
+  -webkit-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.75);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.content {
+  margin: 20px auto;
+  width: 400px;
+  background-color: white;
+  padding: 20px;
+}

@@ -1,0 +1,75 @@
+﻿
+<div class="social-media-details">
+	<div>
+		<div ng-if="socialMediaServices" class="wrap {{service.ProfileURL ? 'active': '' }}" ng-repeat="service in socialMediaServices" title="{{service.ProfileURL ? 'Open your ' + service.Name + ' profile in a new tab' : ''}}" ng-click="go(service.ProfileURL, $event)">
+
+			<img ng-src="{{service.ProfileURL ? service.ImageURI : service.ImageURI}}" />
+			<div class="details">
+				<h3>{{service.Name}}</h3>
+
+				<!--<div class="buttons">
+					<a class="button light-blue" ng-if="_socialMedia[service.ID].URL" ng-href="{{_socialMedia[service.ID].URL}}" target="_blank"><i class="fa fa-arrow-right"></i><span>View</span></a>
+					<a class="button light-blue" ng-if="!_socialMedia[service.ID].URL"><i class="fa fa-plus"></i><span>Add</span></a>
+				</div>-->
+
+				<div class="links">
+					<a ng-if="service.ProfileURL" ng-href="{{service.ProfileURL}}" target="_blank">{{service.ProfileName}}</a>
+					<span ng-if="!service.ProfileURL">Not set</span>
+				</div>
+			</div>
+
+			<div class="icon">
+				<i class="fa fa-2x fa-{{service.ProfileURL ? 'arrow-right' : 'times'}}"></i>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<style>
+
+		.social-media-details .wrap {
+			padding: 10px;
+			display: flex;
+		}
+		.social-media-details .wrap:not(:last-child) {
+			border-bottom: 1px solid #eee;
+		}
+		.social-media-details .wrap.active {
+			cursor: pointer;
+			background: #fff;
+			transition: background ease-in-out 0.3s;
+		}
+		.social-media-details .wrap.active:hover {
+			background: #eee;
+		}
+		.social-media-details .details {
+			padding-left: 15px;
+			flex-grow: 1;
+		}
+		.social-media-details img {
+			height: 40px;
+			width: 40px;
+		}
+		.social-media-details h3 {
+			margin: 0;
+			padding: 0 0 4px;
+		}
+
+
+		.social-media-details .icon {
+			display: flex;
+			flex-direction:column;
+			justify-content: center;
+			color: #ccc;
+			transition: color ease-in-out 0.3s;
+		}
+		.social-media-details .wrap.active:hover .icon {
+			color: #aaa;
+		}
+
+	</style>
+
+</div>
+

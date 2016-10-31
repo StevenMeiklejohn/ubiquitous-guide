@@ -1,0 +1,65 @@
+﻿
+<div ng-show="view==='subscription-list'">
+	<header class="main">
+		<h1><a ng-href="/profile">{{userProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/account">Account Settings</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Manage Subscriptions</h1>
+	</header>
+
+	<div class="message success" ng-show="successMessage" ng-bind-html="successMessage"></div>
+
+	<div subscription-list></div>
+</div>
+
+
+<div ng-show="view==='activcanvas-packages'">
+
+	<header class="main">
+		<h1>Select Package</h1>
+	</header>
+
+	<div activcanvas-packages></div>
+
+</div>
+
+
+
+<div ng-show="view==='payment-details'">
+
+	<header class="main">
+		<h1>Payment Details</h1>
+	</header>
+
+	<div style="margin-bottom: 15px;" class="message error" ng-show="errorMessage">{{errorMessage}}</div>
+
+	<div payment-details config="paymentDetailsConfig"></div>
+
+</div>
+
+
+
+<div ng-show="view==='processing-payment'">
+
+		<h1>Processing Payment...</h1>
+
+
+</div>
+
+
+<div ng-show="view==='success'">
+
+	<h1>Success</h1>
+
+
+</div>
+
+
+
+
+<style>
+
+	.message.success {
+		margin-bottom: 20px;
+		font-size: 1.3em;
+		text-align: center;
+	}
+
+</style>

@@ -1,0 +1,46 @@
+﻿<div ng-show="!ready" class="ajax-loader"></div>
+
+<div ng-cloak>
+
+	<ui-message config="error"></ui-message>
+
+	<div ng-show="ready && videos.length" class="profile-videos">
+
+		<div class="grid streched col-{{columns.length}}">
+
+			<div ng-repeat="col in columns" class="column column-{{col}}" >
+
+				<div ng-repeat="video in videos" class="artwork-panel loaded" ng-if="($index % columns.length) === col">
+
+					<div class="image" ng-click="playVideo(video)">
+						<img ng-if="video.Thumbnail" style="max-height:240px;max-width: 100%;" ng-src="{{video.Thumbnail}}" />
+						<!--<video ng-if="!video.Thumbnail" style="max-height:240px;max-width: 100%;" ng-src="{{video._VideoURI}}"></video>-->
+						<i class="fa fa-play-circle-o" ng-if="!video.Thumbnail" style="font-size: 5em;min-height:2em;padding-top:1em;max-width: 100%;"></i>
+					</div>
+					<div class="artist">
+						<div class="profile-image" style="background-image:url('{{video._ProfileImageURI}}')"></div>
+						<div class="profile-details {{video.ActivCanvasEnabled ? 'narrow' : ''}}">
+							<div class="artist-name">{{video.ProfileName}}</div>
+							<div class="artwork-name">{{video.Name}}</div>
+						</div>
+						<img ng-if="video.ActivCanvasProfile" title="This video is your default ActivCanvas video" ng-src="/img/activcanvas-40-y.png" class="activ-canvas" />
+						<img ng-if="video.ActivCanvasArtwork && !video.ActivCanvasProfile" title="This video is ActivCanvas enabled for {{video.ActivCanvasArtwork}} artwork(s)" ng-src="/img/activcanvas-40.png" class="activ-canvas" />
+					</div>
+					<div class="stats">
+						<div title=""><span>{{video._Duration}}</span><i class="fa fa-play"></i></div>
+						<div title="This artwork has been viewed {{video.Views}} times"><span>{{video.Views}}</span><i class="fa fa-eye"></i></div>
+						<div title="This artwork has been like by {{video.Likes}} people"><span>{{video.Likes}}</span><i class="fa fa-heart"></i></div>
+					</div>
+
+					<div class="controls">
+						<a title="Edit Video" ng-click="edit(video.ID)"><i class="fa fa-pencil"></i></a>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>

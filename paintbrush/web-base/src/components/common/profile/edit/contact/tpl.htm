@@ -1,0 +1,65 @@
+﻿<div class="contact-info">
+
+	<form>
+
+		<ui-message ng-if="profile.Artist" config="{ message: '<strong>NOTE:</strong> As an artist your contact information <strong>is not shared with other users</strong>, only the website field below will be visible to other users.' }"></ui-message>
+
+		<ui-message config="error"></ui-message>
+
+		<div class="field">
+			<label for="Landline">Phone</label>
+			<input type="text" maxlength="255" name="Landline" id="Landline" value="{{profile.Contact.Landline}}" />
+		</div>
+		<div class="field">
+			<label for="Mobile">Mobile</label>
+			<input type="text" maxlength="255" name="Mobile" id="Mobile" value="{{profile.Contact.Mobile}}" />
+		</div>
+		<div class="field">
+			<label for="Website">Website</label>
+			<input type="url" maxlength="255" name="Website" id="Website" placeholder="https://yourwebsite.com" value="{{profile.Contact.Website}}" />
+		</div>
+
+		<div class="field">
+			<label for="Address1">Address 1</label>
+			<input type="text" maxlength="255" name="Address1" id="Address1" value="{{profile.Contact.Address1}}" ng-required="profile.Gallery" />
+		</div>
+		<div class="field">
+			<label for="Address2">Address 2</label>
+			<input type="text" maxlength="255" name="Address2" id="Address2" value="{{profile.Contact.Address2}}" ng-required="profile.Gallery" />
+		</div>
+		<div class="field">
+			<label for="Address3">Address 3</label>
+			<input type="text" maxlength="255" name="Address3" id="Address3" value="{{profile.Contact.Address3}}" />
+		</div>
+		<div class="field">
+			<label for="Town">City</label>
+			<input type="text" maxlength="255" name="Town" id="Town" value="{{profile.Contact.Town}}" ng-required="profile.Gallery" />
+		</div>
+		<div class="field">
+			<label for="Postcode">Postcode</label>
+			<input type="text" maxlength="255" name="Postcode" id="Postcode" value="{{profile.Contact.Postcode}}" ng-required="profile.Gallery" />
+		</div>
+		<div class="field">
+			<label for="Country">Country</label>
+			<input type="text" maxlength="100" name="Country" id="Country" value="{{profile.Contact.Country}}" />
+		</div>
+
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+		</div>
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+
+	</form>
+
+	<style>
+		form > .message {
+			max-width: 500px;
+		}
+	</style>
+
+</div>

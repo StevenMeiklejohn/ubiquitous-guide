@@ -1,0 +1,13 @@
+<div class="field checkbox" ng-show="{{config.show}}">
+	<label for="{{config.uid}}"><span class="text">{{config.label || config.name}}</span></label>
+	<input
+		 id="{{config.uid}}"
+		 name="{{config.name}}"
+		 type="checkbox"
+		 ng-change="config.change()"
+		 ng-checked="config.value"
+		 ng-disabled="{{config.disabled}}"
+		 ng-model="config.model[config.name]"
+		 ng-required="{{config.required}}"
+	/>
+</div>

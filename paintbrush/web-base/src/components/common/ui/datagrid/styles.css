@@ -1,0 +1,295 @@
+/* General: Sort */
+.datagrid .sortable {
+	cursor: pointer;
+	overflow: visible !important;
+}
+.datagrid .sortable i {
+	color: #ccc;
+}
+
+
+
+/* General: Filters */
+.datagrid .filters {
+	background: #d1dce0;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	padding: 5px 7px 0 7px;
+	margin-bottom: 15px;
+	display: -webkit-flex;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.datagrid .filters > .spacer {
+	-webkit-flex-grow: 1;
+	flex-grow: 1;
+}
+
+.datagrid .filters .filter {
+	padding: 5px 10px;
+	background: #fafafa;
+	border-radius: 30px;
+	cursor: pointer;
+	margin-right: 8px;
+	margin-bottom: 5px;
+	position: relative;
+	display: inline-block;
+}
+.datagrid .filters .filter.last {
+	margin-right: 0;
+}
+.datagrid .filters input.filter {
+	cursor: text;
+	border: 0;
+}
+.datagrid .filters a.filter > .label {
+	z-index: 50;
+	position: relative;
+}
+.datagrid .filters a.filter > ul {
+	position: absolute;
+	top: -1em;
+	left: 0;
+	z-index: 49;
+	background: #465159;
+	border-radius: 10px;
+	opacity: 0;
+	display: none;
+	padding: 28px 3px 3px;
+}
+.datagrid .filters a.filter:hover > .label {
+	z-index: 60;
+}
+.datagrid .filters a.filter:hover > ul {
+	z-index: 59;
+}
+.datagrid .filters a.filter > ul > li {
+	color: #fff;
+	list-style: none;
+	margin: 0;
+	padding: 3px 8px;
+	white-space: pre;
+	min-width: 150px;
+}
+.datagrid .filters a.filter > ul > li:last-child {
+	border-radius: 0 0 6px 6px;
+}
+.datagrid .filters a.filter > ul > li:hover {
+	color: #465159;
+	background: #fafafa;
+}
+.datagrid .filters .filter:hover,
+.datagrid .filters > .text .filter:focus {
+	color: #fff;
+	background: #465159;
+}
+.datagrid .filters a.filter:hover > ul {
+	opacity: 1;
+	display: block;
+}
+.datagrid .filters a.filter .label .fa  {
+	margin-left: 8px;
+	min-width: 12px;
+}
+
+.datagrid .filters a.filter .fa-chevron-down,
+.datagrid .filters a.filter:hover .fa-chevron-right {
+	display: none;
+}
+.datagrid .filters a.filter:hover .fa-chevron-down,
+.datagrid .filters a.filter .fa-chevron-right {
+	display: inline-block;
+}
+
+.datagrid .filters > .sort,
+.datagrid .filters > .text {
+	position: relative;
+}
+.datagrid .filters > .sort:before {
+	content: 'Sort By:';
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.datagrid .filters > .pagesize:before {
+	content: 'Show:';
+	margin-right: 10px;
+}
+.datagrid .filters > .sort a.filter {
+	margin-right: 0;
+	/*min-width: 80px;*/
+	text-align: right;
+}
+.datagrid .filters > .sort ul {
+	right: 0;
+	left: initial !important;
+	min-width: 80px;
+	text-align: right;
+}
+.datagrid .filters > .sort a.filter > ul > li {
+	min-width: 0;
+}
+
+.datagrid .filters > .text i,
+.datagrid .filters > .subject i {
+	position: absolute;
+	top: 5px;
+	right: 20px;
+}
+.datagrid .filters > .subject.left i {
+	right: 5px;
+}
+
+.datagrid .filters > .text input {
+	padding-right: 30px;
+	width: 120px;
+	line-height: 16px;
+}
+.datagrid .filters > .text .filter:hover + i,
+.datagrid .filters > .text .filter:focus + i {
+	color: #fff;
+}
+
+
+
+/* General: Pagination */
+.datagrid .pagination {
+	margin-top: 15px;
+	text-align: center;
+}
+
+
+
+
+/* Ajax Loader */
+.datagrid {
+	position: relative;
+	min-height: 50px;
+}
+.datagrid .ajax-loader-overlay {
+	background: rgba(255,255,255,0.4);
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+}
+.datagrid .ajax-loader-overlay > div {
+	text-align: center;
+	flex-grow: 1;
+}
+
+
+
+
+/* Template: Flex */
+.tpl-flex .body.row:hover {
+	background: #eceff8;
+	cursor: pointer;
+}
+.tpl-flex .sortable.sorted {
+	background: #1c98e0;
+	border-radius: 5px 5px 0 0;
+	color: #fff;
+	margin-bottom: -1px;
+}
+.tpl-flex .sortable i {
+	color: #fff;
+	float: right;
+	margin-top: 2px;
+}
+.tpl-flex .results > .row {
+	display: flex;
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+}
+.tpl-flex .results > .row.header {
+	padding: 0;
+}
+.tpl-flex .results > .row.header > div {
+	padding: 10px 0;
+}
+.tpl-flex .results > .row:last-child {
+	border-bottom: none;
+}
+.tpl-flex .results > .row.header > div,
+.tpl-flex .results > .row.body > div {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+
+
+/* Template: Table */
+.datagrid.tpl-table table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.datagrid.tpl-table td,
+.datagrid.tpl-table th {
+	padding: 10px 12px;
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+	white-space: nowrap;
+	width: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/*background: #fff;*/
+}
+.datagrid.tpl-table th.no-pad {
+	padding: 0;
+}
+
+.datagrid.tpl-table th {
+	font-weight: 500;
+}
+/*.datagrid.tpl-table th.sortable > span {*/
+	/*font-weight: 600;*/
+/*}*/
+
+.datagrid.tpl-table th.no-pad .sortable {
+	padding: 10px 12px;
+	display: inline-block;
+}
+.datagrid.tpl-table .sortable.sorted {
+	background: #1c98e0;
+	border-radius: 5px 5px 0 0;
+	color: #fff;
+	margin-bottom: -1px;
+	white-space: normal;
+}
+.datagrid.tpl-table .sortable i {
+	color: #fff;
+	float: right;
+	margin-top: 2px;
+}
+
+.datagrid.tpl-table .read {
+	background: #eceff8;
+}
+.datagrid.tpl-table .unread  {
+	font-weight: 600;
+}
+.datagrid.tpl-table tbody tr {
+	cursor: pointer;
+}
+.datagrid.tpl-table tbody tr:hover {
+	background: #dae9ee;
+}
+
+.datagrid.tpl-table .pagination .button {
+	padding-right: 15px;
+	margin-right: 6px;
+	border: none;
+	min-width: 18px;
+	text-align: center;
+	transition: none;
+}
+.datagrid.tpl-table .pagination .button.selected {
+	transition: background 0.2s ease-in-out 0s;
+}

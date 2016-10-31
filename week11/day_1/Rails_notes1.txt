@@ -1,0 +1,714 @@
+Runtime (Interpreter) - Allow us to execute programming languages.
+
+Browser - Runs client side JS
+Node - Runs server side JS
+
+Sinatra -
+Express - Are web frameworks. They handle requests and responses to and from the server.
+
+HTTP - Not a language. A protocol, shared language so that different things can talk to each other.
+
+Response - Can be JSON or HTML.
+
+=>
+
+Sinatra -
+Model
+View
+Controller
+
+e.g.
+
+/planets is a (route)
+It will be handled either by the controller or it will return a 404.
+The controller is effectively the middleman.
+Controller -
+view
+HTML
+erb
+
+&
+
+Find relevent model.
+
+
+RAILS is instead of Sinatra, but has more functionality.
+Instead of using Sinatra, we use ActiveRecord (Object Relational Mapper).
+
+
+gem install rails -v=4.2.4
+rbenv rehash
+
+
+USING RAILS
+=============
+
+rails new intro
+cd intro
+rails server
+
+
+project/config/routes.rb
+
+get 'animals' => 'animals#index'
+or
+get({ 'animals' => 'animals#index'})
+
+=> given the route animals use action index on animals controller.
+=> Make controller
+
+touch app/controllers/animals_controller.rb
+
+class AnimalsController < ApplicationController
+  def index
+    @animals = [ {name: "Tiger"}, {name: "Snow Leopard"} ]
+    respond_to do |format| 
+      format.html
+      format.json { render({ :json => @animals}) }
+    end
+  end
+end
+
+=>Applications Controller inherits from Animals Controller.
+
+create views/animals/index.html.erb.
+Add content.
+
+<h1>Animals</h1>
+
+<ul>
+<% @animals.each do |animal| %>
+<li> <%= animal[:name] %></li>
+<% end %>
+</ul>
+
+
+Change application controller;
+
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :null_session
+end
+
+
+
+Rails app with a database (SQL).
+===========================
+===========================
+
+Ensure post gres is running (elephant icon on top menu bar)
+
+(Active records is a way to communicate with the dayabase witjout writing sql.)
+
+rails new fruits -d postgresql
+
+rails generate model Fruit name:text
+
+in /fruits;
+rake db:create
+
+(*rake is a ruby function that does repetetive tasks. Like a macro or a short script. These can be predefined)
+
+app/models/fruit now looks like this;
+
+class Fruit < ActiveRecord::Base
+end
+
+Notice there is no name: text.
+Database changes are held as a record in db/migrate/
+to run the migration;
+
+rake db:migrate
+
+(fruits/db/schema.rb is a representation of the current database. Never change anything from here)
+
+type;
+rails console 
+This creates an irb type thing but is in context of the app and contains active record for database communication/manipulation
+
+e.g. We can create a ruby class/model;
+my_fruit = Fruit.new
+my_fruit.name = "Kiwi"
+my_fruit
+my_fruit.save
+Fruit.all (Returns all in database)
+1Fruit.find(1) (Return 1st item in db)
+
+or
+
+ruit.create({ name: "pear" })
+Fruit.find(2)
+
+Create an api to send fruits down;
+==================================
+create/setup a route
+
+in config/
+
+Rails.application.routes.draw do
+get 'fruits' => ({'fruits#index'})
+
+
+In console;
+rails generate controller Fruits index
+
+class FruitsController < ApplicationController
+  def index
+    fruits = Fruit.all
+
+    render( json: fruits )
+  end
+end
+
+
+run server;
+
+rails server.
+
+localhost3000/fruits
+
+
+
+
+REST in a RAILS application
+===========================
+===========================
+
+REST
+====
+
+index-----/fruits(get)
+show------/fruits/:id(get)
+create----/fruits(post)
+
+in the console/terminal check routes in use by typing;
+rake routes
+
+Set up routes manually:
+
+in routes.rb;
+
+get 'fruits/:id' => 'fruits#show'
+=====================
+
+Set up routes using rails:
+
+in routes.rb;
+
+resources :fruits
+
+setup json reponses;
+
+resources :fruits, defaults: { format: :json }
+
+In the console, type rake routes to show the restful routes that have been set up.
+
+
+Use a route to show one fruit.
+===============================
+
+localhost3000/fruits/1
+
+To check the params of a request, insert "raise" into the line of code where you would like the browser to stop. e.g in fruits_controller.rb
+class FruitsController < ApplicationController
+  def index
+    fruits = Fruit.all
+
+    render( json: fruits )
+  end
+
+  def show
+    raise
+  end
+end
+
+then in the browser conole type params to see the request.
+
+Set up fruits_controller.
+
+class FruitsController < ApplicationController
+  def index
+    fruits = Fruit.all
+
+    render( json: fruits )
+  end
+
+  def show
+    fruit = Fruit.find( params[:id] )
+
+    render( json: fruit )
+  end
+end
+
+
+
+Use a route to create a fruit.
+===============================
+create----/fruits(post)
+
+Use Insomnia to test routes
+
+Create request
+Fruits
+Create
+
+
+In fruits contoller;
+def create
+  render( json: "hello" )
+
+end
+
+Run insomnia. You should recieve "hello"
+
+
+Change to 'Post'
+click params, then add param.
+Fill in name and fruit
+
+
+in Fruits_contoller;
+def create
+  fruit = Fruit.new
+  fruit.name = params[:name]
+  fruit.save
+  render( json: "hello" )
+end
+
+Use insomnia to post a new entry.
+Check its working.
+
+
+
+
+Homework. Do the update and delete functions.
+setup a new rails json api.
+
+
+
+
+
+
+==================================
+==================================
+DAY 2
+==================================
+=========
+
+rails new tickemaster
+(without -d postgresql the project uses sql lite out of the box)
+rake db:create
+(create database)
+
+#create artist model.
+rails generate model Artist name:string
+#check db/migrate file
+#run migrate
+rake db:migrate
+
+#go into rails console.
+rails console.
+
+#create artist.
+================
+Artist.create( { name: 'Justin Bieber' } )
+#see db
+Artist.all
+
+#seeds.rb file. Put new db data in here then use it to uplaod to the db.
+Artist.delete_all
+
+a1 = Artist.create( { name: 'Oasis' } )
+a2 = Artist.create( { name: 'Blur' } )
+
+#leave rails console.
+#run file.
+rake db:seed
+#check this has run by going back into console
+rails 
+Artist.all
+
+
+#create album model and albums method.
+(One to many)
+======================================
+#album model needs foreign key
+rails g model Album name:string artist:references
+#generate model Album using artist as foreign key.
+#look at app/models
+class Album < ActiveRecord::Base
+  belongs_to :artist (This can be added at any time to create a relation).
+end
+
+#go back to see file and add albums.
+Artist.delete_all
+
+a1 = Artist.create( { name: 'Oasis' } )
+a2 = Artist.create( { name: 'Blur' } )
+
+Album.create( { name: 'Greatest hits', artist_id: a1.id})
+Album.create( { name: 'Great Escape', artist_id: a2.id})
+
+'artist_id: a1.id' translates to 'this album references artist with id a1.'
+
+#send updates to db
+rake db:migrate
+rake db:seed
+
+
+#In console
+
+album = Album.last (select last album)
+album.Artist (select artist associated with album.)
+
+#create albums method.
+#models/artist
+class Artist < ActiveRecord::Base
+  has_many :albums
+end
+
+#now we can run artist.albums
+#refresh console
+artist = Artist.last
+Artist.albums
+
+
+#Create Venue model and gig (has many through/join) table
+which in turn joins to Artist.
+==========================================================
+Artist
+-name
+|
+|
+Gig
+-venue_id
+-artist_id
+-price
+-date
+|
+|
+Venue
+-capacity
+-location
+-name
+
+rails g model Venue name:string location:string
+#check migration (db/migration file) then migrate.
+rake db:migrate
+
+#create Gig 'has many through' table.
+rails g model Gig price:integer date:datetime artist:references venue:references
+#check migrate file and migrate
+rake db:migrate
+
+#set up venue methods
+#models/venue.rb
+
+class Venue < ActiveRecord::Base
+  has_many( :gigs )
+  has_many( :artists, { through: :gigs } )
+end
+
+#In seed file create data for db
+#
+Artist.delete_all
+Gig.delete_all
+Album.delete_all
+Venue.delete_all
+
+a1 = Artist.create( { name: 'Oasis' } )
+a2 = Artist.create( { name: 'Blur' } )
+
+Album.create( { name: 'Greatest hits', artist_id: a1.id})
+Album.create( { name: 'Great Escape', artist_id: a2.id})
+
+v1 = Venue.create( { name: 'o2', location: 'London' } )
+v2 = Venue.create( { name: 'Corn Exchange', location: 'Edinburgh' } )
+
+Gig.create( { price: 15, date: DateTime.now() + 30, artist_id: a1.id, venue_id: v1.id } )
+Gig.create( { price: 18, date: DateTime.now() + 30, artist_id: a2.id, venue_id: v2.id } )
+#
+
+#in console
+rake db:seed.
+
+#inner join venues and artists
+venue = Venue.last
+venue.artists
+
+
+Using RAILS as an API
+=====================
+=====================
+
+#Create a controller to send data to the browser.
+
+#In Models/
+#create file artists_controller.rb
+#
+class ArtistsController < ApplicationController
+  def index
+      artists = Artist.all
+      render( json: artists )
+  end
+
+end
+#
+
+# set up routes.
+#/routes.rb
+#
+Rails.application.routes.draw do
+
+  resources( :artists )
+ 
+end
+#
+#
+
+rails server
+localhost:3000/artists
+
+
+
+#create a show route
+=====================
+#see routes
+rake routes.
+#
+def show
+  artist = Artist.find( params[:id] )
+  render( json: artist)
+end
+#
+
+#create an edit route
+======================
+
+
+
+
+#create a delete route
+======================
+
+
+
+
+#create an add route
+====================
+
+
+
+
+
+#nested resources
+=================
+e.g./artists/6/gigs.
+#create gigs_controller.rb
+#in routes.rb, next gigs within artists.
+#
+Rails.application.routes.draw do
+
+  resources( :artists ) do
+    resources( :gigs )
+  end
+ 
+end
+#
+
+#make a GET for /artists/6/gigs
+#in gig controller.
+#
+class GigsController < ApplivationController
+
+  def index
+      gigs = Gig.where( { artists: params[artist.id] } )
+      render( json: gigs )
+  end
+end
+#
+#add the venue to the gigs listing
+#
+class GigsController < ApplicationController
+
+  def index
+      gigs = Gig.where( { artist: params[:artist_id] } )
+      render( json: gigs.as_json( { include: :venue } ) )
+  end
+end
+#
+
+#
+#create a new gig
+#in gigs_controller
+#
+def create
+gig = Gig.create(
+{
+price: params[:price],
+date: params[:date],
+artist_id: params[:artist_id],
+venue_id: params[:venue_id]
+#Calling the index function ( index() )will redirect to index after create completes.
+}
+)
+render(json: gig)
+end
+#
+
+
+============================================
+Changing an incorrect model in the database
+============================================
+You need to drop that table from the sql lite console (You will lost all the data contained in it)
+
+Access the sql lite console, type in terminal
+sqlite3 db/development.sqlite3
+Drop table (dont forget the last ; (semicolon))
+drop table table_name;
+Exit sql lite console
+.quit
+run db:migrate again
+bin/rake db:migrate
+rake db:seed
+============================================
+============================================
+
+Migration
+============
+============
+
+
+
+
+==============================
+==============================
+Day 3
+===============================
+===============================
+
+===================
+Authentication.
+===================
+
+
+#create accounts controller.
+#
+class AccountsCOntroller < ApplicationController
+  def index
+    accounts = [ 
+      { name: 'offshore', amount:1000000.00 },
+      { name: 'local', amount: 0.01 }
+    ]
+    render json: accounts
+  end
+end
+###
+#set up app controller
+#
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :null_session
+  # respond_to :html, :json
+end
+#
+#set up routes
+#
+Rails.application.routes.draw do
+  resources :accounts, defaults: {format: :json}
+  #
+
+
+#set up basic authentication.
+#in accounts_controller add this line
+#
+http_basic_authenticate_with( { name: 'me', password: 'pass' } )
+#
+#
+However, once the user has authenticated once, Chrome sends the uder name and password with every request so its not very secure or practical. (Stateless)
+The solution to this is to issue a 'passcard' after logging in.
+##
+Passcard is often refferred to as 'session based'. We can ask the user to sign inn, then we give them a cookie. The user uses the cookie as their passcard. The cookie has an experiation daye/time.
+##
+signing up for an app;
+Form on user terminal -> server -> database -> table.
+#
+signing in to an app;
+Create and pass cookie (keycard), sometimes known as 'creating a session'.
+#
+signing out;
+Destroy the cookie.
+#
+#
+#passwords
+#We never want to store a plain text password on a databse. we store an encrypted password.
+text password is put through a hashing algorythm.
+###
+###
+In rails we will be using a rub gem called 'Devise'
+###
+in Gemfile;
+gem 'devise'
+in console;
+bundle install
+rails generate devise:install
+in routes.rb;
+#
+Rails.application.routes.draw do
+  root "accounts#index"
+  resources :accounts, defaults: {format: :json}
+#
+in console;
+rails generate devise User 
+rake migrate:db
+in accounts_controller;
+remove basic authentication.
+in accounts_controller;
+#
+class AccountsController < ApplicationController
+  def index
+    authenticate_user!()
+    accounts = [ 
+      { name: 'offshore', amount:1000000.00 },
+      { name: 'local', amount: 0.01 }
+    ]
+    render json: accounts
+  end
+end
+#
+#check the app in the browser. Going to the route should display a form.
+#signing up and logging in creates our session cookie (visible in resources/cookies/local_host)
+in console;
+#
+rails c
+user = User.first
+user.encrypted_password
+
+
+
+current_user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

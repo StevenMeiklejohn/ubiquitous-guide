@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Verifying Login</title>
+
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<link rel="icon" type="image/png" href="/img/favicon.png" />
+
+	<!-- FONTS -->
+	<link href="/fonts/fa/font-awesome.min.css?[CDV]" type="text/css" rel="stylesheet" />
+	<link href="/fonts/opensans/opensans.css?[CDV]" rel="stylesheet" type="text/css" />
+
+	<!-- STYLES -->
+	<link href="/templates/arn/css/main.css?[CDV]" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+	<div class="flex-outer">
+		<div class="flex-inner">
+			<div class="panel gold">
+				<div class="panel-inner loading">
+					<div class="ajax-loader"></div>
+					<span>Verifying Login</span>
+				</div>
+				<div class="panel-inner complete">
+					<i class="fa fa-check fa-2x"></i>
+					<span>Authorised</span>
+				</div>
+				<div class="panel-inner failed">
+					<i class="fa fa-times fa-2x"></i>
+					<span>Login Failed</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.flex-outer {
+			display:flex;
+			align-content:center;
+			justify-content: center;
+			flex-direction:column;
+			height:90vh;
+		}
+		.flex-inner {
+			display:flex;
+			align-content:center;
+			justify-content: center;
+		}
+		.ajax-loader {
+			width: 25px;
+			height: 25px;
+			border-color: #fff transparent #fff #fff;
+		}
+		.fa, .ajax-loader {
+			margin-right: 15px;
+		}
+
+		.panel {
+			background: #666;
+			border: 1px solid #666;
+			border-radius: 5px;
+			color: #fff;
+			padding: 5px;
+
+			transition: all ease-in-out 0.3s;
+		}
+		.panel.gold {
+			background: #f1c13d;
+			border-color: #f1c13d;
+		}
+		.panel.green {
+			background: #67ad4b;
+			border-color: #67ad4b;
+		}
+		.panel.red {
+			background: #be0000;
+			border-color: #be0000;
+		}
+		.panel-inner {
+			/*background: #fff;*/
+			/*color: #666;*/
+			padding: 10px;
+			border-radius: 3px;
+			display: flex;
+			align-items: center;
+			font-size: 1.5em;
+			background: rgba(255, 255, 255, 0.2);
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+		}
+
+		.panel-inner > span {
+			vertical-align: super;
+		}
+
+		.complete, .failed {
+			display: none;
+		}
+
+	</style>
+
+
+	<script>
+
+		var request = function(uri, opts) {
+			opts = opts || {};
+
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 1) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage['accessToken']);
+					xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+					if (opts.data) {
+						xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+					}
+				}
+			};
+			xhr.addEventListener('load', function(res) {
+				if (res.target.status === 200) {
+					opts.success && opts.success(JSON.parse(this.responseText));
+				}
+				else {
+					opts.error && opts.error();
+				}
+				opts.finally && opts.finally();
+			});
+			xhr.addEventListener('error', function(e) {
+				opts.error && opts.error(e);
+				opts.finally && opts.finally();
+			});
+			var data;
+			if (opts.data) {
+				data = JSON.stringify(opts.data);
+			}
+			xhr.open(opts.type || 'GET', uri);
+			xhr.send(data);
+		};
+
+
+
+		var pending = 2,
+			ready = function() {
+				pending -= 1;
+				if (!pending) {
+
+					var panel = document.querySelectorAll('.panel')[0],
+						loading = document.querySelectorAll('.loading')[0],
+						failed = document.querySelectorAll('.failed')[0],
+						complete = document.querySelectorAll('.complete')[0];
+
+					var providerID = '[PROVIDER_ID]';
+
+					loading.style.display = 'none';
+
+					if (existingUser && authData.profile) {
+						panel.className = 'panel green';
+						complete.style.display = 'block';
+
+						var data = {
+							Name: authData.profile.displayName || authData.profile.name,
+							OAuthToken: authData.oauthToken
+						};
+						data[providerID] = authData.profile.id;
+
+						if (authData.profile.imageURI) {
+							data.ProfileImageURI = authData.profile.imageURI;
+						}
+
+						request('/api/auth/provider/link', {
+							type: 'POST',
+							data: data,
+							success: function() {
+								window.location.pathname = '/account/authentication?linked=1';
+							},
+							error: function(err) {
+								console.warn(err);
+							}
+						});
+					}
+					else if (authData.access_token && !authData.RegistrationID) {
+						panel.className = 'panel green';
+						complete.style.display = 'block';
+
+						localStorage['accessToken'] = authData.access_token;
+						localStorage['refreshToken'] = authData.refresh_token;
+						localStorage['tokenType'] = authData.token_type;
+						localStorage['profileID'] = authData.ProfileID || -1;
+
+						window.location.pathname = '/dashboard';
+					}
+					else if (!existingUser && authData.profile) {
+						panel.className = 'panel green';
+						complete.style.display = 'block';
+
+						authData.profile.oauthToken = authData.oauthToken;
+
+						sessionStorage['registrationEmail'] = authData.RegistrationEmail;
+						localStorage['registrationProfile'] = JSON.stringify(authData.profile);
+						localStorage['accessToken'] = authData.access_token;
+						localStorage['refreshToken'] = authData.refresh_token;
+						localStorage['tokenType'] = authData.token_type;
+						localStorage['profileID'] = authData.ProfileID || -1;
+
+						window.location.href = '/register';
+					}
+					else {
+						panel.className = 'panel red';
+						failed.style.display = 'block';
+
+						console.warn('ERROR...');
+						// login failed/rejected by third party?
+					}
+
+				}
+			};
+
+
+		var existingUser, authData;
+
+
+		//
+		// Check if an existing platform user is logged in
+		//
+		request('/api/auth/current-user', {
+			success: function(data) {
+				existingUser = data;
+				ready();
+			},
+			error: ready
+		});
+
+
+		//
+		// Retrieve authentication data from callback url
+		//
+		var frame = document.createElement('iframe');
+		frame.style.border = 'none';
+		frame.style.width = '0px';
+		frame.style.height = '0px';
+		frame.style.overflow = 'hidden';
+
+		frame.onload = function () {
+			authData = JSON.parse(this.contentWindow.document.body.textContent);
+			ready();
+		};
+
+		document.body.appendChild(frame);
+		frame.src = '[CALLBACK_URL]' + location.search;
+
+	</script>
+
+</body>
+</html>

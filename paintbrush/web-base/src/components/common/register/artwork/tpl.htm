@@ -1,0 +1,18 @@
+﻿<h2>{{step+1}}. Initial Artwork</h2>
+
+<div style="display:inline-block">
+
+
+	<div class="message" style="margin-bottom: 15px;">Please upload one piece of art to complete your registration</div>
+
+	<div artwork-edit></div>
+
+
+
+	<div class="buttons right">
+		<a ng-show="!pendingRequest" class="button orange icon-right" ng-click="skip()" style="float: left;"><span class="text">Skip</span><i class="fa fa-arrow-right"></i></a>
+		<a ng-show="!pendingRequest" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+		<div ng-show="pendingRequest" class="ajax-loader"></div>
+	</div>
+
+</div>

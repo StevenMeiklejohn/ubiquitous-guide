@@ -1,0 +1,28 @@
+this week.
+
+Git - Version control system
+
+Github - Remote
+
+Objects & Types - strings, fixnum, true, false, date
+
+functions - Do Not Repeat Yourslf
+
+Conditionals - if, else, elsif, until, ternerey (condition ? true:false)
+case (when)
+guard (puts "hello world if" condition      )
+
+Data structures - Arrays, Hashes.
+
+Loops - while, until, loop, for
+
+
+Ruby-gems
+require ('Rubygem_name_from local_computer')
+require_relative('..../specs/'')
+
+
+
+
+
+

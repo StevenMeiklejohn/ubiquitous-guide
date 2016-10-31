@@ -1,0 +1,87 @@
+
+git init
+
+git add .
+
+git commit -m "message"
+
+#Use to edit commit message or remove files #from staging.
+git gui
+
+
+#create branch to mess about in.
+#branch inherits master's history
+git checkout -b branchName
+
+
+##return to master
+git checkout master
+
+
+git merge 'filesInBranch/branchName'
+
+
+# show branches
+git branch
+
+
+#delete branch
+git branch -D branchName
+
+
+#Update with latest from 'develop'
+git pull origin develop
+
+
+
+
+#branch etiquette.
+MASTER.
+Must be stable.
+Able to be deployed and working at all times.
+(NEVER DELETE)
+
+
+DEVELOP(DEV)
+Reasonably stable.
+Testable.
+(NEVER DELETE)
+
+
+
+FEATURE BRANCH
+For undertaking major changes. Breaking code.
+Always merges to develop branch.
+(DELETABLE)
+
+
+Creating Branch Etiquette.
+===========================
+from master;
+git checkout -b develop
+git checkout -b feature/zaks-lovely-flower
+touch a_lovely_flower.txt
+git add .
+git commit -m "oooh a lovely flower"
+git checkout develop
+git merge feature/zaks-lovely-flower
+git checkout feature/zaks-lovely-flower 
+git checkout develop
+git checkout master
+git merge develop
+
+
+
+*git stash save stashName
+stashes latest changes and reverts back to last commit.
+
+*git stash pop
+Brings back last stash
+
+*git stash apply stashName
+brings back stash with stashName.
+
+
+
+
+

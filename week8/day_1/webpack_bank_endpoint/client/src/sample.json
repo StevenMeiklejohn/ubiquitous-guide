@@ -1,0 +1,22 @@
+module.exports = [
+  { "owner": "jay",
+    "amount": 125.50,
+    "type": "personal"
+  },
+  { "owner": "val",
+    "amount": 55125.10,
+    "type": "personal"
+  },
+  { "owner": "marc",
+    "amount": 400.00,
+    "type": "personal"
+  },
+  { "owner": "keith",
+    "amount": 220.25,
+    "type": "business"
+  },
+  { "owner": "rick",
+    "amount": 1.00,
+    "type": "business"
+  }
+]

@@ -1,0 +1,94 @@
+Set up API database.
+
+in top_level/client
+npm init npm install
+npm start (command set in server.js)
+
+in top level:
+mongod
+
+In top level:
+
+npm install --save mongodb body parser
+
+
+
+
+server.js
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/comment_application';
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended:true}));
+
+
+(restful route INDEX)
+app.get('/api/comments', function(req, res){
+  MongoClient.connect(url, function(err, db){
+    var collection = db.collection('comments');
+    collection.find({}).toArray(function(err, docs){
+      res.json( docs );
+      db.close();
+    })
+  });
+})
+
+(restful route CREATE)
+app.post('/api/comments', function(req, res){
+  MongoClient.connect(url, function(err, db){
+    var collection = db.collection('comments');
+    collection.insert({
+      "author": req.body.author,
+      "text": req.body.text
+    })
+    res.status(200).end()
+    db.close();
+  })
+})
+
+
+in app.js
+<CommentBox url="/api/comments" />,
+
+
+(restful route POST)
+use insomnia (Checks our ability to post and get to database.)
+(Chrome Apps/insomnia)
+create request.
+name = list Comments
+
+get= localhost:3000/api/comments
+
+
+
+Get from api
+=============
+
+
+in comment/Box (i.e. top view.)
+Do an ajax request.
+
+// This function will be called/invoked for us. We do not need to call it.
+  componentDidMount:function(){
+    console.log('CDM was called');
+    var url = this.props.url
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.onload = function(){
+      var data = JSON.parse( request.responseText );
+      this.setState( { comments: data } );
+    }.bind(this)
+    request.send();
+  },
+
+
+  getInitialState: function() {
+    return {comments: []};
+    },
+
+
+
+
+
+

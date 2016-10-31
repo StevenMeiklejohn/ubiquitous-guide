@@ -1,0 +1,32 @@
+﻿
+
+.ui-widget-overlay {
+	background: #000;
+	opacity: 0.65;
+}
+
+.ui-dialog {
+	background: #fff;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+	display: none;
+}
+
+.ui-dialog .ui-dialog-title h1,
+.ui-dialog .ui-dialog-title h2,
+.ui-dialog .ui-dialog-title h3,
+.ui-dialog .ui-dialog-title h4 {
+	margin: 0;
+}
+
+
+.ui-dialog .buttons {
+	padding: 1em 0 0.1em;
+	text-align: right;
+}
+
+
+
+.ui-dialog.no-overflow .ui-dialog-content {
+	overflow: visible;
+}

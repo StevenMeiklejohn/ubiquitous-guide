@@ -1,0 +1,18 @@
+﻿<div class="social-media" >
+	<span ng-repeat="p in profile.SocialMedia" ng-if="profile.SocialMedia && services">
+		<a href="{{p.URL}}" target="_blank" title="View {{profile.Name}}'s {{services[p.ServiceID + ''].Name}} page"><img ng-src="{{services[p.ServiceID + ''].ImageURI}}" /></a>
+	</span>
+
+	<style>
+		.social-media {
+			white-space: nowrap;
+		}
+		.social-media img {
+			width: 32px;
+			height: 32px;
+		}
+		.social-media span:not(:last-child) a {
+			margin-right: 5px;
+		}
+	</style>
+</div>

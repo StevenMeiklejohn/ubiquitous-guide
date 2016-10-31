@@ -1,0 +1,24 @@
+<div class="s3-bulk-upload">
+
+	<div class="buttons top" ng-show="config.buttonsTop && totalFiles">
+		<div  class="s3-upload button blue top" title="Upload Image">
+			<i class="fa fa-upload"></i><span class="text">{{buttonText}}</span>
+			<input type="file" class="upload" multiple />
+		</div>
+	</div>
+
+	<div class="files"></div>
+
+	<div class="buttons bottom">
+		<div class="s3-upload button blue" title="Upload Image">
+			<i class="fa fa-upload"></i><span class="text">{{buttonText}}</span>
+			<input type="file" class="upload" multiple />
+		</div>
+	</div>
+
+	<div class="drop-target" ng-if="config.dropTarget && !totalFiles">
+		<div><i class="fa fa-file-image-o"></i></div>
+		<div><h2>Drop files here</h2><p>or use the <strong>{{buttonText}}</strong> button above</p></div>
+	</div>
+
+</div>

@@ -1,0 +1,29 @@
+﻿<div class="artwork-wizard index">
+
+	<ui-message config="message"></ui-message>
+
+	<div ng-if="currentStep==='instructions'">
+		<artwork-wizard-step-instructions></artwork-wizard-step-instructions>
+	</div>
+
+	<div ng-if="currentStep==='images'">
+		<artwork-wizard-step-image config="config.images" profile="profile"></artwork-wizard-step-image>
+	</div>
+
+	<div ng-if="currentStep==='general'">
+		<artwork-wizard-step-artwork-info config="config.general" profile="profile"></artwork-wizard-step-artwork-info>
+	</div>
+
+	<div ng-if="currentStep==='activcanvas'">
+		<artwork-wizard-step-activ-canvas config="config.activcanvas" profile="profile"></artwork-wizard-step-activ-canvas>
+	</div>
+
+	<div ng-if="currentStep==='product'">
+		<artwork-wizard-step-product config="config.product" profile="profile"></artwork-wizard-step-product>
+	</div>
+
+	<div class="buttons right">
+		<div ng-if="loadingStep" class="ajax-loader"></div>
+		<a ng-if="!loadingStep" class="button {{stepComplete ? 'green' : 'disabled'}} icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-fw fa-arrow-right"></i></a>
+	</div>
+</div>

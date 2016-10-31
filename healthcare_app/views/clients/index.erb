@@ -1,0 +1,9 @@
+<img src="http://www.birminghamcarershub.org.uk/content/uploads/2015/04/carer-holding-new.jpg">
+
+<ul>
+<% @clients.each do |client| %> 
+  <li>
+    <a href="/clients/<%= client.id %>"><%= client.name %></a>
+  </li>
+<% end %>
+</ul>

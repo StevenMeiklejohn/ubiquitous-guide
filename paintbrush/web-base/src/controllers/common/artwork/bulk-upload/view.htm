@@ -1,0 +1,82 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/artwork">Artwork</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Bulk Upload</h1>
+</header>
+
+<div class="artwork-bulk-edit">
+
+	<div class="message">This feature allows you to quickly upload multiple artwork images in one go. <a style="float: right; text-decoration: none; font-weight: 600" ng-click="toggleDetails()">{{detailsVisible ? 'Hide' : 'Show' }} Instructions <i class="fa fa-chevron-{{detailsVisible ? 'down' : 'right'}}"></i></a></div>
+
+	<div class="details help" ng-show="detailsVisible">
+		<div class="content">
+			<h3>Adding Images</h3>
+			<section>
+				<p>There are two methods of adding new images:<p>
+
+				<h4>Drag &amp; Drop</h4>
+				<p>You can drag and drop multiple image files from a folder on your computer on to this page.</p>
+
+				<h4>File Selection Dialog</h4>
+				<p>Alternatively click on the <strong>Add Images(s)</strong> button, this will launch a file selection dialog which allows you to select one or more image files to upload.</p>
+
+				<h4>Tips</h4>
+				<p>When selecting files to upload via either method holding the <strong>Ctrl</strong> key then clicking on the files you want to upload will select just those files.</p>
+				<p>Holding the <strong>Shift</strong> key then clicking on two files will select both files and any files in between.</p>
+
+			</section>
+
+			<h3>Minimum Required Data</h3>
+			<section>
+				<p>In order to speed up the process of adding lots of images most artwork related data cannot be entered on this screen.<p>
+				<p>Apart from the images themselves only a title and type per artwork is required.</p>
+				<p>If your account is ActivCanvas enabled an optional Video field will be visible.</p>
+			</section>
+
+			<h3>Removing Images</h3>
+			<section>
+				<p>Click on the remove image button located at the top right of each image panel.<p>
+			</section>
+
+		</div>
+
+	</div>
+
+
+	<div style="display:inline-block">
+		<!--<h3>Uploaded Images</h3>-->
+
+		<div class="message error" ng-if="error">Unable to bulk upload artwork for this profile: <strong>{{error}}</strong></div>
+
+		<artwork-bulk-upload config="artworkBulkUpload" ng-if="!error"></artwork-bulk-upload>
+
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="button" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+			<a class="sky-blue button" ng-click="save();"><i class="fa fa-save"></i> Save</a>
+		</div>
+
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<style>
+	.artwork-bulk-edit > .message {
+		max-width: 660px;
+		margin-bottom:10px;
+	}
+	.artwork-bulk-edit .help.details {
+		max-width:680px;
+		border-bottom: 1px solid #eee;
+		margin-bottom: 15px;
+	}
+	.artwork-bulk-edit .help > .content {
+		padding-right: 0;
+	}
+</style>
+
+

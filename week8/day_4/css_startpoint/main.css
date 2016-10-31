@@ -1,0 +1,117 @@
+body{
+  margin: 0px;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+
+/* DISPLAY TYPES */
+
+#display-types {
+  font: 22px Helvetica;
+  border: 3px solid grey;
+  padding: 10px;
+  width: 50%;
+}
+
+#display-types span {
+  color: white;
+  background-color: #981ba2;
+  padding: 30px;
+}
+
+
+#display-types button {
+  height: 60px;
+  font-size: 20px;
+  width: 120px;
+}
+
+/* MOVING BLOCKS */
+
+#blocks{
+  width: 70%;
+  margin: 0 auto;
+}
+
+#blocks div {
+  text-align: center;
+  font: 30px Helvetica;
+  color: white;
+  padding: 10px;
+  margin-right: -4px;
+}
+
+.red {
+  background-color: #d9534f;
+  display: inline-block;
+}
+
+.blue {
+  background-color: #428bca;
+  display: inline-block;
+  visibility: hidden;
+
+}
+
+.green {
+  background-color: #5cb85c;
+  display: inline-block;
+
+}
+
+.grid-1 {
+  width:8.333333%;
+}
+
+.grid-3 {
+  width: 33.3%;
+}
+
+.grid-6 {
+  width: 50%;
+}
+
+.grid-9 {
+  width: 75%;
+}
+
+.grid-12 {
+  width: 100%;
+}
+
+/*form*/
+#form {
+  text-align: center;
+  color: black;
+}
+
+
+
+/*images*/
+
+.grumpy-cat {
+  width: 100%;
+}
+
+/* PIN THE TAIL ON THE DONKEY */
+
+#donkey {
+  background-image: url('http://www.sightwordsgame.com/wp-content/uploads/2012/03/Donkey-300x206.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 500px;
+  height: 500px;
+  margin: 0;
+  border: 5px solid #3b6;
+}
+
+.tail-img {
+  width: 120px;
+}
+
+
+
+

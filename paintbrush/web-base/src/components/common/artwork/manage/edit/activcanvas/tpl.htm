@@ -1,0 +1,116 @@
+﻿<div class="general-info">
+
+	<div class="ajax-loader" ng-if="!ready"></div>
+
+	<form ng-show="ready">
+
+		<ui-message config="error"></ui-message>
+
+		<ui-message class="static top" config="{message:'Making this image shareable will allow ActivCanvas users to share this image with their friends on social media.'}"></ui-message>
+
+
+		<div class="field" title="Allow this image to be shared on social media by ActivCanvas users">
+			<label for="Shareable">Shareable</label>
+			<input id="Shareable" name="Shareable" ng-checked="artwork.Shareable" ng-model="artwork.Shareable" type="checkbox" />
+		</div>
+
+
+		<div ng-show="artwork.Shareable">
+
+			<ui-message class="static" config="{message:'<strong>Optional:</strong> specify a custom web page to direct user to when this image is shared on social media.'}"></ui-message>
+
+			<div class="field" title="Specify a custom web page to direct user to when this image is shared on social media by ActivCanvas users">
+				<label for="CustomShareURL">Custom Share URL</label>
+				<input id="CustomShareURL" placeholder="{{customSharePlaceholder}}" ng-model="artwork.CustomShareURL" name="CustomShareURL" value="{{artwork.CustomShareURL}}" type="url" />
+			</div>
+
+			<ui-message class="static" config="messageMetaTags" ng-if="artwork.CustomShareURL"></ui-message>
+
+		</div>
+
+		<div ng-if="profile.ActivCanvas.StatusID !== 3 && !artwork.VideoID">
+			<ui-message class="static" config="{type:'warn', message:'<strong>Note:</strong> Some settings are only available to ActivCanvas premium members and are therefore hidden.'}"></ui-message>
+		</div>
+
+		<div ng-if="profile.ActivCanvas.StatusID === 3 || artwork.VideoID">
+
+			<ui-message class="static" config="{message:'<strong>Optional:</strong> select a video to play after a user has scanned this artwork.'}"></ui-message>
+
+			<div class="field">
+				<label for="VideoID">Video</label>
+				<select id="VideoID" name="VideoID">
+					<option value="">No Video</option>
+					<option value="0" ng-selected="artwork.DefaultVideo">{{defaultVideoName ? defaultVideoName : 'Default Profile Video'}}</option>
+					<option ng-repeat="video in videos" ng-selected="!artwork.DefaultVideo && !artwork.NoVideo && artwork.VideoID === video.ID" value="{{video.ID}}" title="{{video.Description}}">{{video.Name}}</option>
+				</select>
+			</div>
+
+			<div class="field" ng-if="thumbURI">
+				<div class="video-preview"><img class="thumbnail" ng-src="{{thumbURI}}" /></div>
+			</div>
+
+		</div>
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			<a class="green button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+		</div>
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+
+	</form>
+
+
+	<style>
+		.video-preview {
+			margin-top: 10px;
+		}
+		.video-preview img {
+			max-width: 357px;
+		}
+		.message {
+			max-width: 328px;
+		}
+		.message.static {
+			margin-top:15px;
+			margin-bottom:20px;
+		}
+		.message.static.top {
+			margin-top:0;
+		}
+
+
+
+
+
+
+		form .field input, form .field select, form .field textarea, .multi-select {
+			padding: 8px;
+		}
+		form .field input:not([type="checkbox"]), form .field textarea, .multi-select {
+			min-width: 280px;
+		}
+		form .field label {
+			min-width: 200px;
+			width: 200px;
+		}
+		form .field select {
+			height: auto;
+			max-width: 298px;
+			min-width: 298px;
+			padding: 4px 8px;
+		}
+		.message {
+			max-width: 468px;
+		}
+		.video-preview img {
+			max-width: 497px;
+		}
+
+
+
+	</style>
+
+</div>

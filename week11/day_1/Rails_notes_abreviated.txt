@@ -1,0 +1,252 @@
+ 
+rails new intro
+cd intro
+rails server
+
+
+project/config/routes.rb
+
+get 'animals' => 'animals#index'
+or
+get({ 'animals' => 'animals#index'})
+
+=> given the route animals use action index on animals controller.
+=> Make controller
+
+touch app/controllers/animals_controller.rb
+
+class AnimalsController < ApplicationController
+  def index
+    @animals = [ {name: "Tiger"}, {name: "Snow Leopard"} ]
+    respond_to do |format| 
+      format.html
+      format.json { render({ :json => @animals}) }
+    end
+  end
+end
+
+=>Applications Controller inherits from Animals Controller.
+
+create views/animals/index.html.erb.
+Add content.
+
+<h1>Animals</h1>
+
+<ul>
+<% @animals.each do |animal| %>
+<li> <%= animal[:name] %></li>
+<% end %>
+</ul>
+
+
+Change application controller;
+
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :null_session
+end
+
+
+
+Rails app with a database (SQL).
+===========================
+===========================
+
+Ensure post gres is running (elephant icon on top menu bar)
+
+(Active records is a way to communicate with the dayabase witjout writing sql.)
+
+rails new fruits -d postgresql
+
+rails generate model Fruit name:text
+
+in /fruits;
+rake db:create
+
+(*rake is a ruby function that does repetetive tasks. Like a macro or a short script. These can be predefined)
+
+app/models/fruit now looks like this;
+
+class Fruit < ActiveRecord::Base
+end
+
+Notice there is no name: text.
+Database changes are held as a record in db/migrate/
+to run the migration;
+
+rake db:migrate
+
+(fruits/db/schema.rb is a representation of the current database. Never change anything from here)
+
+type;
+rails console 
+This creates an irb type thing but is in context of the app and contains active record for database communication/manipulation
+
+e.g. We can create a ruby class/model;
+my_fruit = Fruit.new
+my_fruit.name = "Kiwi"
+my_fruit
+my_fruit.save
+Fruit.all (Returns all in database)
+Fruit.find(1) (Return 1st item in db)
+
+or
+
+ruit.create({ name: "pear" })
+Fruit.find(2)
+
+Create an api to send fruits down;
+==================================
+create/setup a route
+
+in config/
+
+Rails.application.routes.draw do
+get 'fruits' => ({'fruits#index'})
+
+
+In console;
+rails generate controller Fruits index
+
+class FruitsController < ApplicationController
+  def index
+    fruits = Fruit.all
+
+    render( json: fruits )
+  end
+end
+
+
+run server;
+
+rails server.
+
+localhost3000/fruits
+
+
+
+
+REST in a RAILS application
+===========================
+===========================
+
+REST
+====
+
+index-----/fruits(get)
+show------/fruits/:id(get)
+create----/fruits(post)
+
+in the console/terminal check routes in use by typing;
+rake routes
+
+Set up routes manually:
+
+in routes.rb;
+
+get 'fruits/:id' => 'fruits#show'
+=====================
+
+Set up routes using rails:
+
+in routes.rb;
+
+resources :fruits
+
+setup json reponses;
+
+resources :fruits, defaults: { format: :json }
+
+In the console, type rake routes to show the restful routes that have been set up.
+
+
+Use a route to show one fruit.
+===============================
+
+localhost3000/fruits/1
+
+To check the params of a request, insert "raise" into the line of code where you would like the browser to stop. e.g in fruits_controller.rb
+class FruitsController < ApplicationController
+  def index
+    fruits = Fruit.all
+
+    render( json: fruits )
+  end
+
+  def show
+    raise
+  end
+end
+
+then in the browser conole type params to see the request.
+
+Set up fruits_controller.
+
+class FruitsController < ApplicationController
+  def index
+    fruits = Fruit.all
+
+    render( json: fruits )
+  end
+
+  def show
+    fruit = Fruit.find( params[:id] )
+
+    render( json: fruit )
+  end
+end
+
+
+
+Use a route to create a fruit.
+===============================
+create----/fruits(post)
+
+Use Insomnia to test routes
+
+Create request
+Fruits
+Create
+
+
+In fruits contoller;
+def create
+  render( json: "hello" )
+
+end
+
+Run insomnia. You should recieve "hello"
+
+
+Change to 'Post'
+click params, then add param.
+Fill in name and fruit
+
+
+in Fruits_contoller;
+def create
+  fruit = Fruit.new
+  fruit.name = params[:name]
+  fruit.save
+  render( json: "hello" )
+end
+
+Use insomnia to post a new entry.
+Check its working.
+
+
+
+
+Homework. Do the update and delete functions.
+setup a new rails json api.
+
+
+
+
+
+
+
+
+
+

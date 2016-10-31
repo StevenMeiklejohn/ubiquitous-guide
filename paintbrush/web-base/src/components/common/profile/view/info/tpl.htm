@@ -1,0 +1,48 @@
+﻿<table class="datalist vertical">
+	<tr ng-if="profile.Contact && profile.Contact.WebsiteURI">
+		<td>Website</td>
+		<td><a target="_blank" href="{{profile.Contact.WebsiteURI}}">{{profile.Contact.Website}}</a></td>
+	</tr>
+	<tr ng-if="!profile.Artist && profile.Contact && profile.Contact.Landline">
+		<td>Phone</td>
+		<td>{{profile.Contact.Landline}}</td>
+	</tr>
+	<tr ng-if="!profile.Artist && profile.Contact && profile.Contact.Mobile">
+		<td>Mobile</td>
+		<td>{{profile.Contact.Mobile}}</td>
+	</tr>
+	<tr ng-if="profile.Artist && profile.Artist.Nationality">
+		<td>Nationality</td>
+		<td>{{profile.Artist.Nationality}}</td>
+	</tr>
+	<tr ng-if="profile.Artist && profile.Artist.Location">
+		<td>Location</td>
+		<td>{{profile.Artist.Location}}</td>
+	</tr>
+	<tr ng-if="profile.Artist && profile.Artist.Types && profile.Artist.Types.length">
+		<td>Type</td>
+		<td><span ng-repeat="type in profile.Artist.Types">{{type.Type}}<span ng-if="!$last">, </span></span></td>
+	</tr>
+	<tr ng-if="profile.Artist && profile.Artist.ArtworkMaterials && profile.Artist.ArtworkMaterials.length">
+		<td>Top Materials</td>
+		<td><span ng-if="$index < 2" ng-repeat="m in profile.Artist.ArtworkMaterials" title="Used for {{m.Count}} artworks">{{m.Name}}<span ng-if="$index < 1 && !$last">, </span></span></td>
+	</tr>
+	<tr ng-if="profile.Artist && profile.Artist.ArtworkSubjects && profile.Artist.ArtworkSubjects.length">
+		<td>Favourite Subjects</td>
+		<td><span ng-if="$index < 2" ng-repeat="s in profile.Artist.ArtworkSubjects" title="{{s.Count}} artworks involve this subject">{{s.Subject}}<span ng-if="$index < 1 && !$last">, </span></span></td>
+	</tr>
+	<tr ng-if="profile.Artist && profile.Artist.ArtworkStyles && profile.Artist.ArtworkStyles.length">
+		<td>Preferred Styles</td>
+		<td><span ng-if="$index < 2" ng-repeat="s in profile.Artist.ArtworkStyles" title="{{s.Count}} artworks are in this style">{{s.Style}}<span ng-if="$index < 1 && !$last">, </span></span></td>
+	</tr>
+	<tr ng-if="profile.Contact && !profile.Artist && profile.Contact.Address1">
+		<td>Address</td>
+		<td>
+			<div ng-if="profile.Contact.Address1">{{profile.Contact.Address1}}</div>
+			<div ng-if="profile.Contact.Address2">{{profile.Contact.Address2}}</div>
+			<div ng-if="profile.Contact.Address3">{{profile.Contact.Address3}}</div>
+			<div ng-if="profile.Contact.Town">{{profile.Contact.Town}}</div>
+			<div ng-if="profile.Contact.Postcode">{{profile.Contact.Postcode}}</div>
+		</td>
+	</tr>
+</table>

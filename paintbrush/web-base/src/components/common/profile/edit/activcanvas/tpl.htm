@@ -1,0 +1,93 @@
+﻿<div class="artist-info">
+
+	<form>
+
+		<div ng-if="profile.ActivCanvas.StatusID!==3">
+			<ui-message config="{ message: 'This is only available to ActivCanvas Premium accounts' }"></ui-message>
+
+			<div class="buttons right padded">
+				<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			</div>
+		</div>
+
+		<div ng-if="profile.ActivCanvas.StatusID===3">
+
+			<ui-message config="error"></ui-message>
+
+			<ui-message class="static top" config="{message:'This video will be used for all artwork you have not chosen a specific video for.'}"></ui-message>
+
+			<div class="field">
+				<label for="VideoID">Default Video</label>
+				<div>
+					<select name="VideoID" id="VideoID" >
+						<option value="">No Video</option>
+						<option ng-repeat="video in videos" ng-selected="profile.ActivCanvas.VideoID === video.ID" value="{{video.ID}}" title="{{video.Description}}">{{video.Name}}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="field">
+				<div class="video-preview"><img class="thumbnail" ng-src="{{thumbURI}}" /></div>
+			</div>
+
+			<div class="field" title="Enabled: your videos will play automatically as soon as your artwork is scanned\nDisabled: the artwork information screen will be shown first">
+				<label for="AutoPlay">Auto Play Videos</label>
+				<input id="AutoPlay" name="AutoPlay" ng-checked="profile.ActivCanvas.AutoPlay" type="checkbox" />
+			</div>
+
+
+			<ui-message class="static" config="{message:'This link will appear as a button within the ActivCanvas app whenever any of your artworks are scanned and can be used to direct people to your website/social media page.'}"></ui-message>
+
+
+			<div class="field">
+				<label for="Link">Web Link</label>
+				<input type="url" name="Link" id="Link" value="{{profile.ActivCanvas.Link}}" maxlength="255" placeholder="https://www.facebook.com/artretailnetwork"  />
+			</div>
+
+			<div class="field">
+				<label for="LinkText">Link Text</label>
+				<input type="text" name="LinkText" id="LinkText" value="{{profile.ActivCanvas.LinkText}}" maxlength="20" placeholder="Facebook"  />
+			</div>
+
+
+
+
+
+
+			<div ng-if="ready">
+				<div class="buttons right padded" ng-show="!pendingRequest">
+					<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+					<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+				</div>
+				<div class="buttons right padded" ng-show="pendingRequest">
+					<div class="ajax-loader"></div>
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+
+	
+	<style>
+		.message {
+			max-width: 338px;
+		}
+		.message.static {
+			margin-top:15px;
+			margin-bottom:20px;
+		}
+		.message.static.top {
+			margin-top:0;
+		}
+		.video-preview {
+			margin-top: 10px;
+		}
+		.video-preview img {
+			max-width: 357px;
+		}
+	</style>
+	
+	
+	
+</div>

@@ -1,0 +1,5 @@
+<a href="/books/new">Add new book</a><br>
+
+<% @books.each do |book| %>
+  <%= book.title %> - By: <%= book.author%> <br>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  objective: MyString
+  user_id: 
+  admin_id: 1
+  status: MyString
+
+two:
+  name: MyString
+  objective: MyString
+  user_id: 
+  admin_id: 1
+  status: MyString

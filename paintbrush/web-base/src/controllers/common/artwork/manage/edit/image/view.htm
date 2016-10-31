@@ -1,0 +1,11 @@
+﻿<div>
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/artwork/manage">Artwork</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/artwork/manage/{{artwork.ID}}">{{artwork.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Image</h1>
+	</header>
+
+	<ui-message config="error"></ui-message>
+
+	<artwork-manage-edit-image ng-if="!error" artwork="artwork" class="content"></artwork-manage-edit-image>
+
+</div>

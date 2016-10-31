@@ -1,0 +1,84 @@
+Intro to web programming
+========================
+The internet is simply computers connected together.
+web:
+The web is a collection of web servers connected together.
+HTML - Hyper Text Mark Up Language
+HTTP - HYper Text Transfer Protocol
+URL - Uniform resource locator
+
+
+HTTP sends stuff through a browser over an HTTP protocol.
+But first, a client (web browser) must request stuff.
+The client makes a request(www.bbc.co.uk), then the web server makes a response (HTML, video, JSON)
+
+=> http request, html response.
+
+Ruby and connected databases are used to generate the html which will be sent to the client.
+
+Alternative methods include
+SMTP = simple transer for email.
+FTP = File transfer proptocol.
+
+
+=>
+URL
+=====
+
+http:// = protocol
+wwww.bbc.co.uk = domain_name
+/sport/tennis= path
+^ IN this example, 'sport' is a resource.
+Models are also resources (match, team, etc)
+
+The 5 main HHTP methodsand. delete
+
+
+safemethods
+only read and don't have side effects
+
+HTTP methods:
+==============
+(C) POST - creates a resource
+response = 201 (Created), 'Location' header with link to /customers/{id} containing new ID. 404 (Not Found), 409 (Conflict) if resource already exists..
+
+(R) GET - retrieves a resource
+200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists. 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
+
+=> http request consistes of;
+=> Get/imges/logo.png HTTP1.1
+   Headers: Accept Language en
+   Body: HTML body.
+
+(D) DELETE - deletes a resourse
+404 (Not Found), unless you want to delete the whole collection—not often desirable.  200 (OK). 404 (Not Found), if ID not found or invalid.
+
+(Cu) PUT - upadates a resource
+404 (Not Found), unless you want to update/replace every resource in the entire collection. 200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.
+
+(U) PATCH - modift a resource
+safe method
+404 (Not Found), unless you want to modify the collection itself. 200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.
+
+=>
+100 - Informational
+200 - success
+300 - redirects
+400 - client errors
+500 - server_errors
+=============================
+==============================
+
+in chrome. cmd, alt, j.
+
+
+
+
+
+
+
+
+
+
+
+

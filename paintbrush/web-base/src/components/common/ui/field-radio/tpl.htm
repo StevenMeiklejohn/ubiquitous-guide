@@ -1,0 +1,34 @@
+<div class="field radio" ng-show="{{config.show}}" data-uid="{{config.uid}}">
+	<label ng-if="config.label!==false" for="{{config.uid}}"><span class="text">{{config.label || config.name}}</span></label>
+
+	<div class="options" ng-if="config.options">
+		<div class="option" ng-repeat="option in config.options">
+			<input
+					 id="{{option.uid}}"
+					 name="{{config.name}}"
+					 type="radio"
+					 value="{{option.value}}"
+					 ng-change="config.change()"
+					 ng-checked="option.value===config.value"
+					 ng-disabled="{{config.disabled}}"
+					 ng-model="config.model[config.name]"
+					 ng-required="{{config.required}}"
+			/>
+			<label for="{{option.uid}}">{{option.label || option.value}}</label>
+		</div>
+	</div>
+
+
+	<!--<input-->
+			 <!--id="{{config.uid}}"-->
+			 <!--name="{{config.groupName || config.name}}"-->
+			 <!--type="radio"-->
+			 <!--value="{{option.value}}"-->
+			 <!--ng-checked="option.value===config.value"-->
+			 <!--ng-disabled="{{config.disabled}}"-->
+			 <!--ng-if="!config.options"-->
+			 <!--ng-model="config.model[config.name]"-->
+			 <!--ng-required="{{config.required}}"-->
+	<!--/>-->
+
+</div>

@@ -1,0 +1,20 @@
+@font-face {
+    font-family: arcade;
+    src: url('ARCADECLASSIC.ttf') format('truetype');
+}
+
+body {
+    background-image:    url("http://chosensorhp.com/chosensorhp/Hyperspin_Space_files/cpo%20background%20mfg_1.jpg");
+    background-size:     cover; 
+    background-repeat:   repeat-y;
+    background-position: center center; 
+}
+
+
+h1 {
+  font-family: arcade;
+  font-size: 100px;
+  color: white;
+  text-align: center;
+}
+

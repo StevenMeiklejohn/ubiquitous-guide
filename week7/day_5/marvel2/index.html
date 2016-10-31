@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Homework</title>
+    <link rel='stylesheet' type='text/css' href='main.css'>
+    <script type="text/javascript" src="bower_components/crypto-js/crypto-js.js"></script>
+    <script src='app.js'></script>
+
+    <style type="text/css">
+      ul {list-style: none;padding: 0px;margin: 0px;}
+      ul li {display: block;position: relative;float: left;border:1px solid #000}
+      li ul {display: none;}
+      ul li a {display: block;background: #000;padding: 5px 10px 5px 10px;text-decoration: none;
+               white-space: nowrap;color: #fff;}
+      ul li a:hover {background: #f00;}
+      li:hover ul {display: block; position: absolute;}
+      li:hover li {float: none;}
+      li:hover a {background: #f00;}
+      li:hover li a:hover {background: #000;}
+      #drop-nav li ul li {border-top: 0px;}
+    </style>
+</head>
+
+<body>
+    <h2 id="heading">Welcome To My</h2>
+    <div id="logo">
+    <img src="http://www.twoshotstothehead.com/core/wp-content/uploads/2014/04/marvel-logo-750x250.png" height="200" width="400"></div><br>
+    <h2 id="heading">Page!</h2>
+    <h2 id="heading">Please Select A Character To Find Out More.</h2><br>
+    <div id="info" type="redstyle">
+    <select id="character_menu">
+    </select>
+    <ul id="info" type="redstyle">
+        <p id='p_name'></p>
+        <p id='p_desc'></p>
+        <p id='p_comics'></p>
+    </ul>
+
+
+<!--     <ul id="drop-nav">
+      <li><a href="#">Web Design</a>
+        <ul>
+          <li id='p_name'><a href="#"></a></li>
+          <li id='p_desc'><a href="#"></a></li>
+          <li id='p_comics'><a href="#"></a></li>
+        </ul>
+      </li>
+   </ul> -->
+
+
+    <div id='image'></div>
+</body>
+
+</html>

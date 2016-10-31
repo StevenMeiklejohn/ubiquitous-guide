@@ -1,0 +1,68 @@
+﻿<nav class="primary">
+
+	<div class="active-profile {{activeProfile.Gallery ? 'gallery': ''}}" ng-show="authenticated">
+		<a ng-class="{selected:tab==='ProfileOwn'}" ng-href="/profile" class="profile-link" title="{{activeProfile.Name}}">
+			<span class="profile-image" style="background-image:url('{{activeProfile.ImageURI_90}}');" ng-if="activeProfile.ImageURI_90"></span>
+			<span class="profile-name">{{activeProfile.Name}}</span>
+		</a>
+	</div>
+
+	<div ng-show="authenticated && activeProfile.Artist">
+
+		<a ng-class="{selected:tab==='Dashboard'}" ng-href="/dashboard"><i class="fa fa-fw fa-th-large"></i><span>Dashboard</span></a>
+		<a ng-class="{selected:tab==='Analytics'}" ng-href="/analytics"><i class="fa fa-fw fa-bar-chart"></i><span>Analytics</span></a>
+		<!--<a ng-class="{selected:tab==='Profile'||tab==='ProfileOwn'}" ng-show="userProfile.ID === activeProfile.ID" ng-href="/profile"><i class="fa fa-fw fa-user"></i>Profile</a>-->
+		<a ng-class="{selected:tab==='Artwork'}" ng-href="/artwork/manage"><i class="fa fa-fw fa-paint-brush"></i>Artwork</a>
+		<a ng-class="{selected:tab==='Videos'}" ng-href="/videos"><i class="fa fa-fw fa-play"></i>Videos</a>
+		<!--<a ng-class="{selected:route.current.controller==='Connections'}" ng-href="/connections"><i class="fa fa-fw fa-link fa-flip-horizontal"></i>Connections</a>-->
+		<a ng-class="{selected:tab==='Shortlists'}" ng-show="!userProfile.Gallery" ng-href="/shortlists"><i class="fa fa-fw fa-bookmark"></i>Shortlists</a>
+		<a ng-class="{selected:tab==='Notifications'}" ng-href="/inbox"><i class="fa fa-fw fa-envelope"></i>Notifications</a>
+		<a ng-class="{selected:tab==='ArtistSearch'||tab==='ProfilePublic'}" ng-show="!userProfile.Gallery" ng-href="/artist-search"><i class="fa fa-fw fa-group"></i>Artist Search</a>
+		<a ng-class="{selected:tab==='Enquiry'}" ng-show="!userProfile.Gallery" ng-href="/enquiry"><i class="fa fa-fw fa-pencil"></i>Enquiry</a>
+
+	</div>
+
+	<div ng-show="authenticated && activeProfile.Artist">
+		<a ng-if="!userProfile.Gallery" ng-class="{selected:tab==='Help'}" ng-href="/help"><i class="fa fa-fw fa-question"></i>Help</a>
+		<a ng-if="activeProfile.ActivCanvas.StatusID<3" class="activcanvas {{tab==='ActivCanvas'?'selected':''}}" ng-href="/activcanvas"><i class="fa fa-fw fa-plus"></i><span>ActivCanvas</span></a>
+	</div>
+
+	<div ng-show="authenticated && activeProfile.Gallery">
+
+		<a ng-class="{selected:tab==='Dashboard'}" ng-href="/dashboard"><i class="fa fa-fw fa-th-large"></i><span>Dashboard</span></a>
+		<a ng-class="{selected:tab==='Analytics'}" ng-href="/analytics"><i class="fa fa-fw fa-bar-chart"></i><span>Analytics</span></a>
+		<a ng-class="{selected:tab==='Artwork'}" ng-href="/artwork/manage"><i class="fa fa-fw fa-paint-brush"></i>Artwork</a>
+		<a ng-class="{selected:tab==='Notifications'}" ng-href="/inbox"><i class="fa fa-fw fa-envelope"></i>Notifications</a>
+
+		<a ng-class="{selected:tab==='MyArtists'}" ng-href="/my-artists"><i class="fa fa-fw fa-group"></i>My Artists</a>
+
+		<!--<a ng-class="{selected:tab==='Enquiry'}" ng-href="/enquiry"><i class="fa fa-fw fa-pencil"></i>Enquiry</a>-->
+		<a ng-class="{selected:tab==='Help'}" ng-href="/help"><i class="fa fa-fw fa-question"></i>Help</a>
+	</div>
+
+	<div ng-show="authenticated && activeProfile.Consumer">
+		<a ng-class="{selected:tab==='Shortlists'}" ng-show="!userProfile.Gallery" ng-href="/shortlists"><i class="fa fa-fw fa-bookmark"></i>Shortlists</a>
+		<a ng-class="{selected:tab==='Notifications'}" ng-href="/inbox"><i class="fa fa-fw fa-envelope"></i>Notifications</a>
+		<a ng-class="{selected:tab==='ArtistSearch'||tab==='ProfilePublic'}" ng-show="!userProfile.Gallery" ng-href="/artist-search"><i class="fa fa-fw fa-group"></i>Artist Search</a>
+	</div>
+
+	<div class="user-profile {{userProfile.IsAdmin ? 'admin' : userProfile.Gallery ? 'gallery' : ''}}" ng-show="authenticated && activeProfile.ID && userProfile.ID !== activeProfile.ID">
+		<a class="profile-link" title="{{userProfile.Name}}" ng-click="resetActiveProfile()">
+			<span class="profile-image" style="background-image:url('{{userProfile.ImageURI_90}}');" ng-if="userProfile.ImageURI_90"></span>
+			<span class="profile-name">{{userProfile.Name}}</span>
+		</a>
+
+		<div ng-show="userProfile.Gallery">
+			<a ng-class="{selected:tab==='MyArtists'}" ng-href="/my-artists"><i class="fa fa-fw fa-group"></i>My Artists</a>
+			<a ng-class="{selected:tab==='Help'}" ng-href="/help"><i class="fa fa-fw fa-question"></i>Help</a>
+		</div>
+
+	</div>
+
+	<div ng-show="userProfile.IsAdmin && !userProfile.Gallery">
+		<a ng-class="{selected:tab==='MyArtists'}" ng-href="/my-artists"><i class="fa fa-fw fa-group"></i>Manage Artists</a>
+	</div>
+
+	[STYLES]
+
+</nav>

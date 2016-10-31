@@ -1,0 +1,17 @@
+<div class="field number" ng-show="{{config.show}}" data-uid="{{config.uid}}">
+	<label ng-if="config.label!==false" for="{{config.uid}}"><span class="text">{{config.label || config.name}}</span></label>
+	<input
+			 id="{{config.uid}}"
+			 name="{{config.name}}"
+			 min="{{config.min}}"
+			 max="{{config.max}}"
+			 placeholder="{{config.placeholder}}"
+			 step="{{config.step || 1}}"
+			 type="number"
+			 value="{{config.value}}"
+			 ng-change="config.change()"
+			 ng-disabled="{{config.disabled}}"
+			 ng-model="config.model[config.name]"
+			 ng-required="{{config.required}}"
+	/>
+</div>

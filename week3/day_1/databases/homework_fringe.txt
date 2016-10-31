@@ -1,0 +1,117 @@
+1. Select the names of all users.
+SELECT name FROM users;
+
+2. Select the names of all shows that cost less than £15.
+SELECT name FROM shows WHERE price < 15;
+
+3. Insert a user with the name "Val Gibson" into the users table.
+INSERT INTO users(name) VALUES ('Val Gibson');
+
+
+4. Select the id of the user with your name.
+SELECT id FROM users WHERE name = 'Steven Meiklejohn';
+
+5. Insert a record that Val Gibson wants to attend the show "Two girls, one cup of comedy".
+INSERT INTO shows_users (show_id, user_id) VALUES (12,23);
+
+INSERT INTO shows_users (show_id, user_id)
+VALUES (
+(SELECT id FROM shows WHERE name = 'Two girls, one cup of comedy'),
+(SELECT id FROM users WHERE name = 'Val Gibson')
+);
+
+6. Updates the name of the "Val Gibson" user to be "Valerie Gibson".
+UPDATE users SET name = 'Valerie Gibson' WHERE name = 'Val Gibson';
+
+
+7. Deletes the user with the name 'Valerie Gibson'.
+DELETE FROM users WHERE name = 'Valerie Gibson';
+
+
+8.Deletes the shows for the user you just deleted.
+DELETE FROM shows_users WHERE show_id = 4 AND user_id = 1;
+
+SECTION 2
+================
+
+1. Select the names and prices of all shows, ordered by price in ascending order.
+
+SELECT name, price FROM shows ORDER BY (price.asc);
+
+
+
+2. Select the average price of all shows.
+
+SELECT avg(price) FROM shows;
+
+
+
+3. Select the price of the least expensive show.
+
+SELECT min(price) FROM shows;
+
+
+
+
+4. Select the sum of the price of all shows.
+
+SELECT sum(price) FROM shows;
+
+
+
+5. Select the sum of the price of all shows whose prices is less than £20.
+
+SELECT sum(price) FROM shows WHERE price < 20;
+
+
+
+6. Select the name and price of the most expensive show.
+
+SELECT name, price FROM shows
+WHERE Price=(SELECT max(price) FROM shows);
+
+
+
+7. Select the name and price of the second from cheapest show.
+
+SELECT max(price) from shows where price < (select max(price) from shows); 
+
+
+
+
+8. Select the names of all users whose names start with the letter "A".
+
+SELECT name FROM users WHERE name LIKE 'A%';
+
+
+
+9. Select the names of users whose names contain "el".
+
+SELECT name FROM users WHERE name LIKE '%el%';
+
+
+
+section 3
+==============
+
+1. Select the time for the Edinburgh Royal Tattoo.
+
+SELECT times.time
+FROM times
+
+
+2. Select the number of users who want to see "Le Haggis".
+
+SELECT COUNT(shows.id) FROM shows_users INNER JOIN shows ON show_users.show_id WHERE shows.name = 'Le Haggis';
+
+
+3. Select all of the user names and the count of shows they're going to see.
+
+SELECT users.name, COUNT(shows_users.show_id) FROM users INNER JOIN shows_users ON users.id = shows_users.user_id GROUP BY users.name;
+
+
+
+4. SELECT all users who are going to a show at 13:30.
+
+SELECT users.name FROM users INNER JOIN shows_users ON users.id = shows_users.user_id INNER JOIN times ON times.show_id = shows_users.show_id WHERE time = '13:30';
+

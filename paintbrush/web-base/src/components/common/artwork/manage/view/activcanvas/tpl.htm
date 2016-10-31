@@ -1,0 +1,59 @@
+﻿<div class="activcanvas-info" ng-show="artwork">
+
+	<!--<div ng-if="$root.ActiveProfile.ActivCanvas.StatusID!==3">-->
+		<!--<ui-message config="{ message: 'This is only available to ActivCanvas Premium accounts' }"></ui-message>-->
+	<!--</div>-->
+
+	<!--<div ng-if="$root.ActiveProfile.ActivCanvas.StatusID===3">-->
+	<div>
+		<table class="datalist vertical">
+			<tr>
+				<td>Activated</td>
+				<td>
+					<div ng-if="artwork.SyncRequired" class="ajax-loader" title="{{processingTitle}}"></div>
+					<i ng-if="!artwork.SyncRequired" class="fa fa-lg fa-fw fa-{{activatedClass}}" title="{{activatedTitle}}"></i>
+				</td>
+			</tr>
+			<tr ng-if="artwork.Activated || artwork.TrackingRating">
+				<td>Tracking Rating</td>
+				<td class="rating"><i class="fa fa-star{{i <= artwork.TrackingRating ? '' : '-o'}}" ng-repeat="i in [1,2,3,4,5]"></i></td>
+			</tr>
+			<tr>
+				<td>Shareable</td>
+				<td><i class="fa fa-lg fa-fw fa-{{shareableClass}}" title="{{shareableTitle}}"></i></td>
+			</tr>
+			<tr ng-if="artwork.Shareable">
+				<td>Share URL</td>
+				<td ng-if="artwork.CustomShareURL"><a href="{{artwork.CustomShareURL}}" target="_blank">{{customShareURL}}</a></td>
+				<td ng-if="!artwork.CustomShareURL"><a target="_blank" ng-href="/api/v2/artwork/{{artwork.ID}}/view">view</a></td>
+			</tr>
+			<tr>
+				<td>Video</td>
+				<td>{{artwork.VideoName || 'No Video'}}</td>
+			</tr>
+			<tr ng-if="thumbURI">
+				<td></td>
+				<td>
+					<img class="thumbnail" ng-src="{{thumbURI}}" />
+				</td>
+			</tr>
+		</table>
+
+
+	</div>
+
+	<style>
+		.activcanvas-info .datalist td:first-child {
+			white-space: nowrap;
+		}
+		.activcanvas-info .datalist {
+			width: 100%;
+		}
+		.activcanvas-info .thumbnail {
+			width: 100%;
+			max-width: 500px;
+		}
+	</style>
+
+</div>
+

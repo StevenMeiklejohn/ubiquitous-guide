@@ -1,0 +1,15 @@
+﻿
+<form class="password">
+	
+	<div class="message">Please enter your password to resume your registration.</div>
+
+	<div class="field inline">
+		<label for="Password">Password</label>
+		<input type="password" name="Password" required />
+	</div>
+
+	<div class="buttons">
+		<a ng-show="!pendingRequest" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+		<div ng-show="pendingRequest" class="ajax-loader"></div>
+	</div>
+</form>

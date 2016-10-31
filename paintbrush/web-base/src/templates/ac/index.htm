@@ -1,0 +1,14 @@
+<header class="page">
+	<span class="logo"><a ng-href="{{userProfile.ID > 0 ? '/dashboard' : '/login'}}"><img class="full" src="img/logo-new-40-t.png" alt="Art Retail Network" /><img class="small" src="img/arn-t-white-40.png" alt="Art Retail Network" /></a></span>
+	<profile-reset-active></profile-reset-active>
+	<menu-header></menu-header>
+</header>
+<!--<header class="active-profile" >-->
+	<!--<span style="flex-grow:1"></span>-->
+	<!---->
+<!--</header>-->
+<div id="page-wrap">
+	<a class="primary-toggle" ng-show="authenticated"><i class=" fa fa-bars fa-2x"></i></a>
+	<menu-primary></menu-primary>
+	<main ng-view ng-show="authenticated || ['Login', 'Register', 'Terms', 'ActivCanvasLanding'].indexOf(route.current.controller) > -1"></main>
+</div>

@@ -1,0 +1,13 @@
+<div class="content">
+
+<h2>Pizza Orders</h2>
+
+<% @pizzas.each do |pizza| %>
+  <b>Name:</b>
+  <p><%= pizza.pretty_name() %></p>
+  <b>Order:</b>
+  <p><%= pizza.quantity %> x <%= pizza.topping %></p>
+  <hr>
+<% end %>
+
+</div>

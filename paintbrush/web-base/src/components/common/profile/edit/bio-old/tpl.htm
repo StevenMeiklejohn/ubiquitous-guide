@@ -1,0 +1,48 @@
+﻿<!--<header class="sub">
+	<h3>Biography</h3>
+	<div class="button-group" ng-if="profile.IsOwn">
+		<a class="button orange" ng-click="bio.edit()" ng-if="!bio.editing"><i class="fa fa-pencil"></i><span>Edit</span></a>
+		<a class="button orange" ng-click="bio.save()" ng-if="bio.editing"><i class="fa fa-floppy-o"></i><span>Save</span></a>
+	</div>
+</header>
+
+<div class="biography">
+
+	<div ng-if="!bio.editing">
+		<article ng-bind-html="profile.Biography.Description"></article>
+		<div ng-bind-html="profile.Biography.Error"></div>
+	</div>
+
+	<form ng-if="profile.IsOwn && bio.editing">
+		<textarea style="visibility:hidden" id="profile-bio-description">{{profile.Biography.Description}}</textarea>
+	</form>
+
+</div>-->
+
+
+<header class="sub">
+	<h3>Biography</h3>
+</header>
+
+<div class="ajax-loader" ng-show="!ready"></div>
+<div class="biography" ng-show="ready">
+
+	<form>
+		<div ng-repeat="type in questionTypes">
+			<h4>{{type.Type}}</h4>
+
+			<div class="questions">
+				<div class="question" ng-repeat="question in questions[type.ID]">
+					<div class="text">{{question.Text}}</div>
+					<div class="answer"><textarea name="question-{{question.ID}}">{{answers[question.ID]}}</textarea></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="buttons">
+			<a class="cancel button" ng-click="loadDirective('profile-bio')"><i class="fa fa-reply"></i> Cancel</a>
+			<a class="submit button" ng-click="save()"><i class="fa fa-save"></i> Save</a>
+		</div>
+
+	</form>
+</div>

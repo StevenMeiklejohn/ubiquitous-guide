@@ -1,0 +1,90 @@
+<div>
+
+	<div class="field inline affiliate {{codeStatus===4?'green':codeStatus===3?'gold':codeStatus===2?'red':''}}">
+		<h4>ActivCanvas Premium Referral Code<span style="text-transform:uppercase" ng-if="codeStatus > 1">: {{codeStatus===4?'Valid':codeStatus===3?'Expired':codeStatus===2?'Invalid':''}}</span></h4>
+		<label for="AffiliateCode">If you have been provided with a referral code please enter it here</label>
+		<div class="status">
+			<div ng-show="codeStatus===1" class="ajax-loader"></div>
+			<i ng-show="codeStatus===2" class="fa fa-lg red fa-times" title="Code not found"></i>
+			<i ng-show="codeStatus===3" class="fa fa-lg gold fa-exclamation-triangle" title="Code has expired"></i>
+			<i ng-show="codeStatus===4" class="fa fa-lg green fa-check" title="Code is valid"></i>
+		</div>
+		<input name="AffiliateCode" type="text" ng-model="affiliateCode.Code" maxlength="20" spellcheck="false" />
+		<input name="AffiliateCodeID" type="hidden" />
+	</div>
+
+
+	<style>
+		.fa.red {
+			color: #d00000;
+		}
+
+		.fa.gold {
+			color: #f1c13d;
+		}
+
+		.fa.green {
+			color: #67ad4b;
+		}
+
+		.field.inline .ajax-loader {
+			height: 0.85em;
+			width: 0.85em;
+			background: #fff;
+		}
+
+		.field.inline .status {
+			position: absolute;
+			margin-left: 216px;
+			margin-top: 7px;
+			z-index: 999;
+
+			margin-left: calc(100% - 46px);
+		}
+
+
+		form .field input[name=AffiliateCode] {
+			text-transform: uppercase;
+			border-color: #fff !important;
+			min-width: calc(100% - 18px);
+		}
+
+		.field.affiliate {
+			margin-top: 10px;
+			background: #666;
+			color: #fff;
+			border: 1px solid #666;
+			padding: 10px;
+			border-radius: 5px;
+			transition: ease-in-out background 0.3s, ease-in-out border-color 0.3s, ease-in-out color 0.3s;
+		}
+
+		.field.affiliate.red {
+			color: #fff;
+			background: #d00000;
+			border-color: #d00000;
+		}
+
+		.field.affiliate.gold {
+			color: #fff;
+			background: #f1c13d;
+			border-color: #f1c13d;
+		}
+
+		.field.affiliate.green {
+			color: #fff;
+			background: #67ad4b;
+			border-color: #67ad4b;
+		}
+
+		.field.affiliate label {
+			/*max-width: 240px;*/
+		}
+
+		.field.affiliate .fa {
+			cursor: help;
+			background: #fff;
+		}
+	</style>
+
+</div>

@@ -1,0 +1,123 @@
+﻿
+<!--<header class="main">-->
+	<!--<h1 ng-show="view==='reset'"></h1>-->
+	<!--<h1 ng-show="view==='forgot'"></h1>-->
+<!--</header>-->
+
+<div ng-if="view==='login'" class="grid">
+	<div>
+		<header class="main">
+			<h1>Login</h1>
+		</header>
+		<login-form></login-form>
+	</div>
+	<div>
+		<header class="main">
+			<h1>Register</h1>
+		</header>
+		<!--<div>-->
+			<!--<div>-->
+				<!--<div class="message">Create a Free Basic ActivCanvas Account to access your ActivCanvas Platform and start activating your art</div>-->
+				<!--<div class="buttons">-->
+					<!--<a class="button sky-blue icon-right" ng-href="/register"><span>Register</span><i class="fa fa-arrow-right"></i></a>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<div class="message">
+			<div>Create a Free Basic ActivCanvas Account to access your ActivCanvas Platform and start activating your art</div>
+			<div class="buttons">
+				<a class="button white icon-right" ng-href="/register"><span>Register</span><i class="fa fa-arrow-right"></i></a>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div ng-show="view==='reset'">
+	<header class="main">
+		<h1>Reset Password</h1>
+	</header>
+	<login-reset-password></login-reset-password>
+</div>
+
+<div ng-show="view==='forgot'">
+	<header class="main">
+		<h1>Forgot Password</h1>
+	</header>
+	<login-forgot-password></login-forgot-password>
+</div>
+
+
+
+<style>
+	/*.grid > div:first-child h1 {*/
+		/*padding-right: 150px;*/
+	/*}*/
+	.grid > div:last-child {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.grid > div:last-child h1 {
+		margin-left: 21px;
+	}
+	.grid > div:last-child > div {
+		margin-left: 20px;
+		/*padding-left: 20px;*/
+		/*border-left: 1px solid #eee;*/
+		flex-grow: 1;
+	}
+	.grid > div:last-child > div > div {
+		display: inline-block;
+	}
+
+	.grid > div:last-child .message {
+		max-width: 310px;
+		min-height: 60px;
+	}
+	.grid > div:last-child .buttons {
+		margin-top: 10px;
+		text-align: right;
+	}
+
+	.grid .social-signin {
+		border-color: #eee;
+		text-align: right;
+	}
+	.grid .social-signin a:last-child {
+		margin-right: 0;
+	}
+
+
+
+
+	.grid > div:last-child .message {
+		display: flex;
+		flex-direction: column;
+	}
+	.grid > div:last-child .message > div:not(.buttons) {
+		flex-grow: 1;
+	}
+	.grid .buttons .white {
+		color: #666;
+		text-decoration: none;
+	}
+
+
+
+
+	@media (max-width: 550px) {
+		.grid {
+			flex-direction: column;
+		}
+		.grid > div:last-child h1 {
+			margin-left: 0px;
+		}
+		.grid > div:last-child > div {
+			margin-left: 0px;
+			flex-grow: 1;
+		}
+	}
+
+</style>

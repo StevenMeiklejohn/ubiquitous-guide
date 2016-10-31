@@ -1,0 +1,21 @@
+﻿
+<h2>{{step+1}}. Terms &amp; Conditions</h2>
+
+<div class="terms">
+	<div class="content" terms-and-conditions></div>
+</div>
+
+
+<form class="registration-terms">
+
+	<div class="field-accept">
+		<input id="Accept" name="Accept" type="checkbox" ng-model="termsAccepted" required />
+		<label for="Accept">I have read and agree to these terms</label>
+	</div>
+
+	<div class="buttons">
+		<a ng-show="!pendingRequest && termsAccepted" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+		<div ng-show="pendingRequest" class="ajax-loader"></div>
+	</div>
+
+</form>

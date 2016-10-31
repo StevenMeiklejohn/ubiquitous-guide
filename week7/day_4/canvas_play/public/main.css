@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+canvas {
+  border: 2px solid orange;
+  background-color: black;
+  position:absolute;
+  left:0px;
+  top:0px;
+}
+
+context {
+  border: 1px solid orange;
+  background-color: black;
+  position:absolute;
+  left:0px;
+  top:0px;
+}
+

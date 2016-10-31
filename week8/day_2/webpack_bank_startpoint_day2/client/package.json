@@ -1,0 +1,48 @@
+module.exports = [
+  { "owner": "jay",
+    "amount": 125.50,
+    "type": "personal"
+  },
+  { "owner": "val",
+    "amount": 55125.10,
+    "type": "personal"
+  },
+  { "owner": "marc",
+    "amount": 400.00,
+    "type": "personal"
+  },
+  { "owner": "keith",
+    "amount": 220.25,
+    "type": "business"
+  },
+  { "owner": "rick",
+    "amount": 100000.00,
+    "type": "business"
+  }
+]
+
+
+
+
+
+
+// {
+//   "name": "client",
+//   "version": "1.0.0",
+//   "description": "",
+//   "main": "webpack.config.js",
+//   "scripts": {
+//     "test": "mocha src/bank/specs",
+//     "start": "webpack -w"
+//   },
+//   "author": "",
+//   "license": "ISC",
+//   "devDependencies": {
+//     "chai": "^3.5.0",
+//     "mocha": "^2.4.5",
+//     "webpack": "^1.12.14"
+//   },
+//   "dependencies": {
+//     "lodash": "^4.13.1"
+//   }
+// }

@@ -1,0 +1,11 @@
+findBorderingCountries: function(country){
+  var borders = country.borders
+  var countries = this.state.countries.filter(function(country, index){
+    for (var border of borders){
+      if (border === country.alpha3Code){
+        return country
+      }
+    }
+  })
+  this.setState({ borderingCountries: countries });
+},

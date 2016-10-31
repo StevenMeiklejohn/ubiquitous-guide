@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Magic 8 Ball</string>
+    <string name="question">Ask a question?</string>
+    <string name="shake">Shake the ball</string>
+    <string name="answer">Computer says ...</string>
+    <string name="say_hello">Hello!</string>
+    <string name="menu_toast_hello">Hello</string>
+    <string name="say_goodbye">Goodbye</string>
+    <string name="menu_toast_goodbye">Goodbye</string>
+</resources>

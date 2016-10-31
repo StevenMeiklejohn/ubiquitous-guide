@@ -1,0 +1,35 @@
+Many to many notes.
+===================
+
+Build a library.
+
+BOOKS           MEMBERS
+id              id
+title           name
+author          address
+
+
+        RENTALS
+        id
+        book_id (foreign key)
+        member_id(foreign key)
+
+- Get Library Codebase. week4/day_4/CClibrary_start_point.
+
+Multiple controllers so main controller.rb references the others which are contained in 'controllers' folder.
+
+- Create seed file which clears and reinstates data on the app.
+  Run using: ruby db/seeds
+  check suuccess by going ito psql and doimg;
+  SELECT * from books;
+  SELECT* from mambersl
+
+
+===================
+
+createdb cclibrary
+sql -d cclibrary -f db/cclibrary.sql
+
+Create rentals controller and add functions (index, new, create) Doing so may require new functions being added to the model page (.save, .all etc)
+
+

@@ -1,0 +1,9 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Videos</h1>
+	<div class="button-group">
+		<a ng-if="activeProfile.ActivCanvas.StatusID===3" class="button blue" ng-click="add()" title="upload a new video"><i class="fa fa-upload"></i><span>Add</span></a>
+	</div>
+</header>
+
+
+<video-manage></video-manage>

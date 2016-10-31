@@ -1,0 +1,50 @@
+body {
+  font-family: "Trebuchet MS";
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  background-color: navy;
+  color: white;
+  margin: 0 10px;
+  padding: 5px 15px;
+}
+
+nav a:hover {
+  background-color: grey;
+}
+
+nav {
+  padding: 10px;
+  background-color: lightblue;
+}
+
+form {
+  margin: 20px;
+}
+
+input {
+  margin: 5px;
+  font-size: 1em;
+}
+
+input[type=submit] {
+  background-color: lightblue;
+  border: none;
+  color: navy;
+}
+
+main ul li {
+  margin-bottom: 10px;
+}
+
+main {
+  margin: 10px;
+}
+

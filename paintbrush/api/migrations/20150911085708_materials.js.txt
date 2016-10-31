@@ -1,0 +1,21 @@
+
+exports.up = function(knex, Promise) {
+
+	var materials = [
+		'Acrylic paint',
+		'Oil paint',
+		'Etching',
+		'Appropriation',
+		'Water colours', 
+		'Gouache', 
+		'Ink', 
+		'Gel', 'Concrete', 'Glass', 'Cosmetics', 'Digital printing', 'Screen printing', '3D printing', 'Analogue film', 'Digital film', 'Acetate', 'Plastic', 'Transfer', 'Pastels', 'Chalk', 'Water', 'Paper', 'Canvas', 'Canvas board', 'Wood', 'Flora/Fauna', 'Perspex', 'Wire', 'Newspaper/print material', 'Found objects', 'Sand and/or soil', 'Plastic', 'Salts', 'Metal', 'Fibre', 'Artificial materials', 'Glue', 'Cardboard', 'Card', 'Fabric', 'Online content', 'Games console/material', 'Airbrush', 'Charcoal', 'Wax', 'Ceramics', 'Clay', 'Pencil', 'Pen', 'Crayon', 'Conté', 'Sound recording', 'Tape', 'Gold leaf', 'Mixed media', 'Bodily fluids', 'Chemicals', 'Video', 'Plaster', 'Glaze'];
+
+
+
+
+};
+
+exports.down = function(knex, Promise) {
+  
+};

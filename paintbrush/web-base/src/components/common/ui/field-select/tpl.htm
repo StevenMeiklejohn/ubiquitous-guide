@@ -1,0 +1,20 @@
+<div class="field select" ng-show="{{config.show}}" data-uid="{{config.uid}}">
+	<label ng-if="config.label!==false" for="{{config.uid}}"><span class="text">{{config.label || config.name}}</span></label>
+	<select
+			 id="{{config.uid}}"
+			 name="{{config.name}}"
+			 ng-model="config.model[config.name]"
+			 ng-required="{{config.required}}"
+			 ng-change="config.change()"
+			 ng-disabled="{{config.disabled}}"
+			 <!--ng-options="o.label for o in config.options track by o.value"-->
+			 <!--ng-options="option.label for option in config.options track by option.value"-->
+
+	<!--ng-options="option.label for option in config.options track by option.value"-->
+
+
+	>
+		<option ng-if="config.empty!==false" value="">{{config.emptyLabel}}</option>
+		<option ng-repeat="o in config.options" value="{{o.value}}" ng-selected="{{o.value===config.value}}">{{o.label}}</option>
+	</select>
+</div>

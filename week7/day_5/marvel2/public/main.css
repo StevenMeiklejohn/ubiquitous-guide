@@ -1,0 +1,58 @@
+#image {
+  position:relative;
+  height:1000px;
+  width:500px;
+  text-align:center;
+}
+
+#character_menu{
+  text-align: center;
+  margin: 0 auto;
+}
+
+#info{
+  position:relative;
+  margin: 0 auto;
+  width: 500px;
+
+}
+
+@font-face {
+  font-family: 'Marvel';
+  src: url('my_fonts/the-fontry_avengeance/AVENGEANCE HEROIC AVENGER BD.ttf') format('truetype');
+}
+
+h2{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+}
+
+body{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: :40px;
+  background-color: #e23636;
+}
+
+ul {
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: :40px;
+  background-color: #e23636;
+  text-align: center;
+}
+
+p{
+  font-family: "Marvel", Times, serif;
+  color: white;
+  font-size: :40px;
+  background-color: #e23636;
+  text-align: center;
+}
+
+#logo{
+  text-align: center;
+}
+

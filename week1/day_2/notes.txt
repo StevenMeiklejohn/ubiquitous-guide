@@ -1,0 +1,32 @@
+Functions and Methods
+
+A method (.to_i) is attached to an object.
+A function is free standing. Though they are technically methods. Like a self contained sub-routine.
+
++ Transferrable between scripts
++ Easier to test.
+
+Anatomy of a function:
+
+def get_score ( )
+- define function name (Can't start with a number or lower case letter) - (parameters)
+"so something"
+- logic, task or code.
+end
+-end function
+
+
+Call/Invoke function by typing the function name followed by parameters brackets. call = invoke
+
+get_score (parameters)
+
+parameter and arguement:
+
+def game_of_thrones_rocks?(name) 
+"do something"
+  end
+  # name is parameter
+
+  game_of_thrones_rocks?("Val")
+  # val is arguement.
+

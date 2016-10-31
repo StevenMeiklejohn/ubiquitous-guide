@@ -1,0 +1,214 @@
+﻿
+<div class="payment-details">
+
+	<div class="wrap">
+
+		<div class="package-details">
+			<div ng-if="config.message" ng-bind-html="config.message" class="package"></div>
+
+			<div ng-if="config.package" class="package">
+				<h4>Package: {{config.package.Name}}</h4>
+
+				<table>
+					<tr ng-if="config.package.Price && codeStatus!==4"><td>Price:</td><td class="value">&pound;{{config.package.Price}} / month</td></tr>
+					<tr ng-if="config.package.Price && codeStatus===4"><td>Price:</td><td class="value">&pound;{{Math.ceil((config.package.Price - (config.package.Price*(affiliateCode.Discount/100))) * 100)/100}} / month <span ng-if="affiliateCode.Discount">({{affiliateCode.Discount}}% OFF)</span></td></tr>
+					<tr ng-if="affiliateCode.InitialFee && codeStatus===4"><td>One Time Fee:</td><td class="value">&pound;{{affiliateCode.InitialFee/100}}</td></tr>
+					<tr ng-if="affiliateCode.DiscountDuration && codeStatus===4"><td>Discount Period:</td><td class="value">{{affiliateCode.DiscountDuration}} month{{affiliateCode.DiscountDuration > 1 ? 's': ''}}</td></tr>
+					<tr ng-if="affiliateCode.TrialPeriod && codeStatus===4"><td>Free Trial Period:</td><td class="value">{{affiliateCode.TrialPeriod}} months</td></tr>
+					<tr><td>Activated Artworks:</td><td class="value">{{config.package.MaxActivatedArtworks === null ? 'Unlimited' : config.package.MaxActivatedArtworks}}</td></tr>
+					<tr><td>Activated Videos:</td><td class="value">{{config.package.MaxActivatedVideos === null ? 'Unlimited' : config.package.MaxActivatedVideos}}</td></tr>
+				</table>
+
+			</div>
+
+
+		</div>
+
+		<div class="payment-method">
+
+
+			<form>
+
+
+
+				<!--<p>Please select a method to pay:</p>-->
+
+				<div class="tabs">
+
+					<ul>
+						<li data-providerid="1">Direct</li>
+						<li data-providerid="2">PayPal</li>
+					</ul>
+
+					<!-- DIRECT PAYMENT -->
+					<div>
+
+						<h4>Payment Method</h4>
+
+
+						<div class="field card-number">
+							<label for="Number-0">Card Number</label>
+							<input type="text" name="Number-0" data-cardpart="1" required maxlength="4" />
+							<input type="text" name="Number-1" data-cardpart="2" required maxlength="4" />
+							<input type="text" name="Number-2" data-cardpart="3" required maxlength="4" />
+							<input type="text" name="Number-3" data-cardpart="4" required maxlength="4" />
+							<i class="fa fa-lock" style="margin-top:6px; font-size: 1.5em;"></i>
+						</div>
+
+						<div class="field cvc">
+							<label for="CVC">CVC</label>
+							<input type="text" name="CVC" required maxlength="3" />
+							<!--<span style="flex-grow:1"></span>-->
+							<i class="fa fa-question" style="font-size:1.5em;color: #ccc;margin: 6px 0 0 10px;cursor:help;" title="This is the 3 digit code on the back of your card"></i>
+						</div>
+
+						<div class="field">
+							<label for="ExpMonth">Expiry Month</label>
+							<select name="ExpMonth" required>
+								<option></option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
+							</select>
+						</div>
+
+						<div class="field">
+							<label for="ExpYear">Expiry Year</label>
+							<select name="ExpYear" required>
+								<option></option>
+								<option ng-repeat="y in expYears">{{y}}</option>
+							</select>
+						</div>
+
+
+
+					</div>
+
+
+					<!-- PayPal -->
+					<div>
+					</div>
+
+				</div>
+
+				<affiliate-code-checker></affiliate-code-checker>
+
+			</form>
+			
+
+		</div>
+
+	</div>
+
+	<div class="buttons right">
+		<div ng-show="$parent.pendingRequest" class="ajax-loader"></div>
+		<a ng-show="!$parent.pendingRequest && back" class="button left" ng-click="back()"><i class="fa fa-arrow-left"></i><span class="text">Back</span></a>
+		<a ng-show="!$parent.pendingRequest && submit" class="button blue icon-right" ng-click="submit()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+	</div>
+
+</div>
+
+
+
+
+<style>
+	.payment-details  {
+		display: inline-block;
+	}
+	.payment-details .wrap {
+		display: flex;
+	}
+	.package-details {
+		margin-right: 20px;
+		display: flex;
+		flex-direction: column;
+	}
+	.package-details .package {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.package-details .package > table {
+		flex-grow: 1;
+	}
+
+	form .field.card-number {
+		padding-top: 10px;
+	}
+
+	form .field.card-number input {
+		max-width: 34px;
+		min-width: 34px;
+		margin-right: 10px;
+	}
+	form .field.cvc input {
+		max-width: 34px;
+		min-width: 34px;
+	}
+	.payment-details form .field select {
+		min-width: 115px;
+		width: 115px;
+	}
+
+	/*.payment-details .message {
+		background: #fff;
+		border: 1px solid #ddd;
+		color: #465159;
+	}*/
+
+	/*.payment-details .tabs .tab-panel,*/
+	.payment-details .tabs .tab-nav-item.selected {
+		border: 0;
+	}
+
+	.payment-details td {
+		padding: 10px 0;
+	}
+	.payment-details td:not(:last-child) {
+		padding-right: 15px;
+	}
+	.payment-details td.value {
+		font-weight: 600;
+	}
+
+	.payment-details .package {
+		background: #394a5c ;
+		color: #fff;
+		padding: 10px;
+		display: block;
+		border: 1px solid #394a5c ;
+		border-radius: 5px;
+		min-width: 220px;
+	}
+
+	.payment-details .tab-panel {
+		border: 1px solid #eee;
+		border-radius: 5px;
+		/*margin-top: 5px;*/
+	}
+
+	.payment-details .tab-nav {
+		display: none;
+	}
+
+	
+
+	.payment-details .buttons {
+		padding-top: 15px;
+	}
+
+	.button.left {
+		float: left;
+	}
+
+
+</style>

@@ -1,0 +1,85 @@
+﻿<div class="product-edit-index">
+
+	<ui-message config="error"></ui-message>
+
+	<div ng-show="!error && form">
+
+		<div class="flex-wrap">
+			<div>
+				<h2>Product Information</h2>
+				<ui-form class="form-panel" config="form"></ui-form>
+			</div>
+
+			<div class="artwork-image" ng-if="artworkImageURI">
+				<h2>Artwork</h2>
+				<div>
+					<img ng-src="{{artworkImageURI}}"/>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="advanced" ng-show="form.model.ShowAdvanced">
+
+			<!--<h2>Variation Settings:</h2>-->
+			<ui-message config="{message:'Please select how you would like to manage variations for this product.'}"></ui-message>
+			<ui-form class="form-panel variant-prefs" config="formVariantPrefs"></ui-form>
+
+			<div class="buttons right variant-details">
+				<a class="button green" ng-click="editVariantGroup()"><i class="fa fa-fw fa-plus"></i><span>Group</span></a>
+			</div>
+			<h2>{{formVariantPrefs.model.Method==='profile' ? 'Default Variations for ' + productType + 's' : 'Product Specific Variations'}}:</h2>
+			<ui-message class="inline" ng-if="formVariantPrefs.model.Method==='profile'" config="{message:'Below are your default variations for the current product type, any modifications will be applied to all products using these variations.'}"></ui-message>
+			<div class="variant-groups">
+
+				<div class="group" ng-class="{deleted:group.Deleted}" data-id="{{group.ID}}" ng-repeat="group in variantGroups">
+					<div class="title">
+						<div class="name">Group: <strong>{{group.Name}}</strong></div>
+						<div class="buttons">
+							<a ng-if="group.Deleted" class="button gold no-text" ng-click="deleteVariantGroup(group)" title="Restore group {{group.Name}}"><i class="fa fa-fw fa-reply"></i></a>
+							<a ng-if="!group.Deleted" class="button orange no-text" ng-click="deleteVariantGroup(group)" title="Delete group {{group.Name}}"><i class="fa fa-fw fa-trash"></i></a>
+							<a ng-if="!group.Deleted" class="button blue no-text" ng-click="editVariantGroup(group)" title="Rename group {{group.Name}}"><i class="fa fa-fw fa-pencil"></i></a>
+							<a ng-if="!group.Deleted" class="button green no-text" ng-click="addVariant(group.ID, formVariantPrefs.model.Method==='profile')" title="Add a new variant to group {{group.Name}}"><i class="fa fa-fw fa-plus"></i></a>
+						</div>
+					</div>
+					<div class="variants type-product" ng-if="formVariantPrefs.model.Method==='product' && !group.Deleted">
+						<ui-message ng-if="!group.Variants.length" config="group.NoVariantsMessage"></ui-message>
+						<div class="variants-wrap">
+							<div class="variant" ng-class="{deleted:variantForms[variant.ID].model.Deleted}" ng-repeat="variant in group.Variants" data-id="{{variant.ID}}" class="{{variant.GroupDefault ? 'default' : ''}}">
+								<div class="form-wrap">{{createVariantForm(variant)}}</div>
+								<div class="buttons">
+									<a ng-if="variantForms[variant.ID].model.Deleted" ng-click="deleteVariant(variant.ID)" title="Restore"><i class="fa fa-fw fa-lg fa-reply gold"></i></a>
+									<a ng-if="!variantForms[variant.ID].model.Deleted" ng-click="deleteVariant(variant.ID)" title="Delete"><i class="fa fa-fw fa-lg fa-trash orange"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="variants type-profile" ng-if="formVariantPrefs.model.Method==='profile' && !group.Deleted">
+						<ui-message ng-if="!group.ProfileVariants.length" config="group.NoVariantsMessage"></ui-message>
+						<div class="variants-wrap">
+							<div class="variant" ng-class="{deleted:variantForms[variant.ID].model.Deleted}" ng-repeat="variant in group.ProfileVariants" data-id="{{variant.ID}}" class="{{variant.GroupDefault ? 'default' : ''}}">
+								<div class="form-wrap">{{createVariantForm(variant)}}</div>
+								<div class="buttons">
+									<a ng-if="variantForms[variant.ID].model.Deleted" ng-click="deleteVariant(variant.ID)" title="Restore"><i class="fa fa-fw fa-lg fa-reply gold"></i></a>
+									<a ng-if="!variantForms[variant.ID].model.Deleted" ng-click="deleteVariant(variant.ID)" title="Delete"><i class="fa fa-fw fa-lg fa-trash orange"></i></a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+		<div class="buttons right bottom">
+			<div ng-if="pendingRequest" class="ajax-loader"></div>
+			<a ng-if="!pendingRequest" class="button" ng-click="cancel()"><i class="fa fa-fw fa-reply"></i><span>Cancel</span></a>
+			<a ng-if="!pendingRequest" class="button sky-blue" ng-click="save()"><i class="fa fa-fw fa-save"></i><span>Save</span></a>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,62 @@
+﻿<div class="bio-edit">
+
+	<form>
+
+		<ui-message config="migrateWarning"></ui-message>
+
+		<ui-message config="error"></ui-message>
+
+		<div class="field">
+			<textarea name="Description">{{biography}}</textarea>
+		</div>
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+		</div>
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+		<div ng-if="migrateWarning" style="max-width: 600px;">
+			<h4>Your Existing Biography:</h4>
+			<profile-view-bio profile="profile"></profile-view-bio>
+		</div>
+
+
+		<!--<div ng-repeat="type in questionTypes">-->
+			<!--<h4>{{type.Type}}</h4>-->
+
+			<!--<div class="questions">-->
+				<!--<div class="question" ng-repeat="question in questions[type.ID]">-->
+					<!--<div class="text">{{question.Text}}</div>-->
+					<!--<div class="answer"><textarea name="question-{{question.ID}}">{{answers[question.ID]}}</textarea></div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+
+
+	</form>
+
+
+	<style>
+
+		.bio-edit  form .field textarea {
+			min-height: 400px;
+			margin-right: 0;
+			min-width: 600px;
+			max-width: 600px;
+			border-color: #ddd;
+		}
+		.bio-edit  form .field  textarea:focus {
+			border-color: #ccc;
+		}
+
+		.bio-edit form > .message {
+			max-width: 598px;
+		}
+
+	</style>
+
+</div>

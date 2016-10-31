@@ -1,0 +1,19 @@
+﻿<h2>{{step+1}}. Start Uploading Artwork</h2>
+
+<div style="display:inline-block">
+
+
+	<div class="message" style="margin-bottom: 15px;">Please upload some artwork to complete your registration</div>
+
+	<artwork-bulk-upload config="artworkBulkUpload"></artwork-bulk-upload>
+
+	<div class="buttons right" ng-show="!pendingRequest">
+		<!--<a class="button orange icon-right" ng-click="skip()" style="float: left;"><span class="text">Skip</span><i class="fa fa-arrow-right"></i></a>-->
+		<a class="button blue icon-right" ng-click="next()"><span class="text">Complete Registration</span><i class="fa fa-arrow-right"></i></a>
+	</div>
+
+	<div class="buttons right" ng-show="pendingRequest">
+		<div class="ajax-loader"></div>
+	</div>
+
+</div>

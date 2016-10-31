@@ -1,0 +1,274 @@
+﻿
+<div class="notifications-search">
+
+<div class="ajax-loader"  ng-show="!ready"></div>
+
+<div class="marketplace-search" ng-cloak ng-show="ready">
+
+	<ui-message config="error"></ui-message>
+
+	<div ng-show="!error">
+
+		<div class="filters">
+
+			<a class="filter" data-filter="Read">
+				<span class="label"><span data-text="Read" class="text">Read</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+				<ul class="options">
+					<li ng-click="setFilter('Read')">Any</li>
+					<li data-value="true" ng-click="setFilter('Read', true, '', $event)">Yes</li>
+					<li data-value="false" ng-click="setFilter('Read', false, '', $event)">No</li>
+				</ul>
+			</a>
+
+			<a class="filter" data-filter="TypeID">
+				<span class="label"><span data-text="Type" class="text">Type</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+				<ul class="options">
+					<li ng-click="setFilter('TypeID')">Any</li>
+					<li ng-repeat="t in notificationTypes" ng-click="setFilter('TypeID', t.ID, '', $event)">{{t.Type}}</li>
+				</ul>
+			</a>
+
+			<a class="filter" data-filter="RecipientID" ng-if="$root.userProfile.Gallery.Artists.length">
+				<span class="label"><span data-text="Type" class="text">Recipient</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+				<ul class="options">
+					<li ng-click="setFilter('RecipientID')">Any</li>
+					<li ng-repeat="r in recipients" ng-click="setFilter('RecipientID', r.ID, '', $event)">{{r.Name}}</li>
+				</ul>
+			</a>
+
+			<a class="filter" data-filter="Importance">
+				<span class="label"><span data-text="Importance" class="text">Importance</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+				<ul class="options">
+					<li ng-click="setFilter('Importance')">Any</li>
+					<li ng-repeat="p in notificationPriorities" ng-if="p.ID!==1&&p.ID!==5" ng-click="setFilter('Importance', p.ID, p.Description, $event)">{{p.Description}}</li>
+				</ul>
+			</a>
+
+
+			<div class="subject left" data-filter="Search">
+				<input class="filter" title="Search" name="search" placeholder="Search" />
+				<i class="fa fa-search"></i>
+			</div>
+
+			<div class="spacer"></div>
+
+			<div class="pagesize">
+				<a class="filter">
+					<span class="label"><span class="text">{{pagination.PageSize}} Results</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+					<ul class="options">
+						<li ng-click="setPageSize(10)">10 Results</li>
+						<li ng-click="setPageSize(15)">15 Results</li>
+						<li ng-click="setPageSize(20)">20 Results</li>
+						<li ng-click="setPageSize(30)">30 Results</li>
+						<li ng-click="setPageSize(50)">50 Results</li>
+						<li ng-click="setPageSize(100)">100 Results</li>
+					</ul>
+				</a>
+			</div>
+
+			<div class="sort">
+
+				<a class="filter">
+					<span class="label"><span class="text">Date</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+					<ul class="options">
+						<li ng-click="setSort('SentDate', 'Date')">Date</li>
+						<li ng-click="setSort('Priority', 'Importance')">Importance</li>
+					</ul>
+				</a>
+
+			</div>
+
+
+		</div>
+
+
+		<ui-message ng-if="!pagination.TotalResults" config="{ message: 'No notifications found.'}"></ui-message>
+
+
+		<table>
+			<!--<thead>
+				<tr>
+					<th class="icons"></th>
+					<th class="subject">Subject</th>
+					<th class="preview-text">Body</th>
+					<th class="date">Date</th>
+			</thead>-->
+			<tbody>
+				<tr ng-repeat="n in notifications" data-id="{{n.ID}}" class="{{n.ReadDate ? '' : 'un'}}read" ng-click="openMessage(n)">
+					<!--<td>{{n.From}}</td>-->
+					<td class="icons">
+						<!--<span class="priority p-{{n.Priority}}" title="{{n.PriorityDescription}}"></span>-->
+						<i class="fa fa-fw fa-tasks p-{{n.Priority}}" ng-show="n.TypeID === 1" title="Task"></i>
+						<i class="fa fa-fw fa-info p-{{n.Priority}}" ng-show="n.TypeID === 2" title="Information"></i>
+						<i class="fa fa-fw fa-envelope p-{{n.Priority}}" ng-show="n.TypeID === 3" title="Message"></i>
+						<i class="fa fa-fw fa-link fa-flip-horizontal p-{{n.Priority}}" ng-show="n.TypeID === 4" title="Connection"></i>
+						<i class="fa fa-fw fa-plus-circle p-{{n.Priority}}" ng-show="n.TypeID === 5" title="ActivCanvas"></i>
+					</td>
+					<td class="content"><span class="subject">{{n.Subject}}</span><span class="preview-text">{{n.BodyPreview}}</span></td>
+					<td class="recipient" ng-if="$root.userProfile.Gallery.Artists.length">{{n.Recipient}}</td>
+					<td class="importance" title="Notification Importance: {{n.PriorityDescription}}">{{n.PriorityDescription}}</td>
+					<!--<td class="subject">{{n.Subject}}</td>-->
+					<!--<td class="preview-text">{{n.BodyPreview}}</td>-->
+					<!--<td class="full-text" ng-bind-html="n.Body"></td>-->
+					<td class="date" title="{{n.DateTitle}}">{{n.Date}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<div class="pagination">
+			<a ng-click="setPage(0)" title="Start of results" class="button"><<</a>
+			<a ng-click="setPage(pagination.PageNumber - 1)" title="Previous page" class="button"><</a>
+			<a ng-click="setPage(i)" ng-repeat="i in paginationButtons" class="button {{pagination.PageNumber === i && !pendingRequest ? 'blue' : ''}}">{{i + 1}}</a>
+			<a ng-click="setPage(pagination.PageNumber + 1)" title="Next page" class="button">></a>
+			<a ng-click="setPage(pagination.TotalPages - 1)" title="End of results" class="button">>></a>
+		</div>
+	</div>
+</div>
+
+
+<style>
+
+.notifications-search table {
+	width: 100%;
+	table-layout: fixed;
+}
+
+.notifications-search td,
+.notifications-search th {
+	padding: 10px 12px;
+	border-bottom: 1px solid #ddd;
+	text-align: left;
+	white-space: nowrap;
+	width: auto;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.notifications-search .preview-text {
+	color: #999;
+}
+
+.notifications-search .full-text {
+	display: none;
+}
+
+
+.notifications-search td.content {
+	width: 100%;
+}
+.notifications-search .date {
+	 width: 50px;
+}
+.notifications-search .recipient {
+	width: 150px;
+}
+.notifications-search .importance {
+	width: 50px;
+}
+
+.notifications-search .filters .subject {
+	width: 150px;
+}
+.notifications-search td.content .subject {
+	display: inline-block;
+	margin-right: 10px;
+}
+.notifications-search td.content .subject::after {
+	content: '-';
+	margin-left: 10px;
+}
+
+.notifications-search .icons {
+	width: 30px;
+}
+.notifications-search .icons > .fa {
+	font-size: 1.5em;
+	color: #999;
+}
+
+
+.notifications-search .read {
+	background: #f2f6f8;
+	background: #eceff8;
+}
+.notifications-search .unread {
+	background: #fff;
+}
+.notifications-search .unread  {
+	font-weight: 600;
+}
+.notifications-search tbody tr {
+	cursor: pointer;
+}
+.notifications-search tbody tr:hover {
+	background: #e5eef3;
+	background: #dae9ee;
+}
+
+
+.notifications-search .pagination {
+	margin-top: 15px;
+	text-align: center;
+}
+
+.notifications-search .pagination .button {
+	padding-right: 15px;
+	margin-right: 6px;
+	border: none;
+	min-width: 18px;
+	text-align: center;
+	transition: none;
+}
+.notifications-search .pagination .button.selected {
+	transition: background 0.2s ease-in-out 0s;
+}
+
+
+
+.notifications-search .priority {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	border-radius: 1em;
+}
+
+.priority.p-5 {
+	background: #ff0000;
+}
+.priority.p-4 {
+	background: #ffd800;
+}
+.priority.p-3 {
+	background: #58de1f;
+}
+.priority.p-2 {
+	background: #0094ff;
+}
+.priority.p-1 {
+	background: #ccc;
+}
+
+
+/*.p-5 {
+	color: #ff0000;
+}
+.p-4 {
+	color: #ffd800;
+}
+.p-3 {
+	color: #58de1f;
+}
+.p-2 {
+	color: #0094ff;
+}
+.p-1 {
+	color: #ccc;
+}*/
+
+
+
+</style>
+
+</div>

@@ -1,0 +1,71 @@
+﻿<h2>{{step+1}}. Account Type</h2>
+
+<form class="registration-type">
+
+	<div class="message">Are you an artist or gallery?</div>
+
+	<div style="display:flex;flex-wrap:nowrap;">
+
+		<div class="type {{type==='artist'?'selected':''}}" ng-click="_setType('artist');">
+			<h3>
+				<i class="fa fa-paint-brush fa-2x"></i>
+				<span>Artist</span>
+			</h3>
+			<input id="type-artist" name="Type" type="radio" value="artist" ng-model="type" required />
+		</div>
+
+
+		<div class="type {{type==='gallery'?'selected':''}}" ng-click="_setType('gallery');">
+			<h3>
+				<i class="fa fa-picture-o fa-2x"></i>
+				<span>Gallery</span>
+			</h3>
+			<input id="type-gallery" name="Type" type="radio" value="gallery" ng-model="type" required />
+		</div>
+
+	</div>
+
+	<div class="buttons">
+		<!--<a ng-show="!pendingRequest && type" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>-->
+		<div ng-show="pendingRequest" class="ajax-loader"></div>
+	</div>
+
+</form>
+
+
+
+<style>
+	.type {
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+		cursor: pointer;
+		margin: 0 10px 20px 0;
+		max-width: 550px;
+		width: 150px;
+		padding: 5px 15px;
+		transition: all 0.4s ease-in-out 0s;
+	}
+	.type:hover {
+		background: #394a5c;
+		border-color: #394a5c;
+		color: #fff;
+	}
+	.type:last-child {
+		margin-right: 0;
+	}
+	.type input {
+		display: none;
+	}
+	.type > h3 > * {
+		vertical-align: middle;
+	}
+	.type > h3 > i {
+		margin-right: 10px;
+	}
+
+
+	.registration-type .message {
+		margin-bottom: 10px;
+	}
+</style>

@@ -1,0 +1,29 @@
+﻿<header class="main">
+	<h1><a ng-href="/help">Help</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Enquiry Form</h1>
+</header>
+
+<div class="enquiry-form">
+
+	<ui-message config="{ message: 'Please enter your enquiry into the text box below.' }"></ui-message>
+
+	<div style="padding-top: 10px;" enquiry-form></div>
+
+</div>
+
+<style>
+	.enquiry-form {
+		max-width: 600px;
+		width: 100%;
+	}
+	.enquiry-form form {
+		width: 100%;
+	}
+	.enquiry-form form label {
+		display: none;
+	}
+	.enquiry-form form .field textarea {
+		min-height: 150px;
+	}
+
+
+</style>

@@ -1,0 +1,25 @@
+{
+  "name": "day_5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha specs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "lodash": "^4.13.1",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenMeiklejohn/Week_6_Music_Store_Homework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/StevenMeiklejohn/Week_6_Music_Store_Homework/issues"
+  },
+  "homepage": "https://github.com/StevenMeiklejohn/Week_6_Music_Store_Homework#readme",
+  "description": ""
+}

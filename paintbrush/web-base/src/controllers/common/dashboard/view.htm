@@ -1,0 +1,42 @@
+﻿<div ng-show="$root.authenticated">
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Dashboard</h1>
+	</header>
+
+
+	<dashboard-messages></dashboard-messages>
+
+
+	<h3>Stats <span ng-if="$root.activeProfile.Gallery" class="sub-text"> - My Artists</span></h3>
+	<artist-dashboard-stats config="config"></artist-dashboard-stats>
+
+
+	<div class="dashboard-activity-wrap">
+
+		<div class="dashboard-activity {{true ? 'restricted' : ''}}">
+			<h3>Activity <span ng-if="$root.activeProfile.Gallery" class="sub-text"> - My Artists</span></h3>
+			<div artist-dashboard-activity config="config"></div>
+		</div>
+
+
+		<dashboard-viewed-profile ng-if="true || $root.activeProfile.Artist"></dashboard-viewed-profile>
+
+	</div>
+
+	<div>
+		<h3>Most Active Consumers <span class="sub-text"> - Last 14 Days</span></h3>
+		<dashboard-customers-most-active></dashboard-customers-most-active>
+
+	</div>
+	<!--<div class="dashboard-popular-art" dashboard-popular-art></div>-->
+
+	<style>
+
+		h3 > span.sub-text {
+			color: #7792ac;
+		}
+
+	</style>
+
+</div>

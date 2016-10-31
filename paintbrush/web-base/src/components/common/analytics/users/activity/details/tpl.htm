@@ -1,0 +1,125 @@
+﻿<div class="analytics user-activity-details">
+
+	<!--<div class="message" ng-show="profiles && !profiles.length">Nobody has viewed your profile yet.</div>-->
+
+	<ui-message config="error"></ui-message>
+
+	<div  class="dataset group" ng-repeat="key in keys">
+		<h4>{{key}}</h4>
+		<table>
+			<tr ng-repeat="event in groupedEvents[key]">
+				<td class="event-time">
+					<strong>{{event.Time}}</strong><span>:{{event.TimeS}}</span>
+				</td>
+				<td class="type">
+					{{event.Type}}
+				</td>
+				<td class="artwork-image">
+					<img ng-if="event.ArtworkImageURI" ng-src="{{event.ArtworkImageURI}}" />
+					<span ng-if="!event.ArtworkImageURI && event.ProfileImageURI"  class="profile-image" style="background-image:url('{{event.ProfileImageURI}}');"></span>
+				</td>
+				<td class="artwork-name">
+					<span ng-if="event.ArtworkName">{{event.ArtworkName}}</span>
+					<span ng-if="!event.ArtworkName && event.ProfileName" >{{event.ProfileName}}</span>
+					<span ng-if="!event.ArtworkName && event.ShortlistName" >{{event.ShortlistName}}</span>
+				</td>
+				<td class="artist-image" ng-if="!event.OwnProfile">
+					<span class="profile-image" style="background-image:url('{{event.ArtistImageURI}}');"></span>
+				</td>
+				<td class="artist-name" ng-if="!event.OwnProfile">
+					<span>{{event.ArtistName}}</span>
+				</td>
+				<td class="browser-image" ng-if="event.DeviceOS">
+					<img ng-if="event.BrowserIcon" ng-src="/img/browsers/{{event.BrowserIcon}}" />
+				</td>
+				<td class="browser-version" ng-if="event.DeviceOS">
+					<span>{{event.BrowserName}} {{event.BrowserVersionShort}}</span>
+				</td>
+				<td class="device-type {{event.DeviceOS.toLowerCase()}}" ng-if="event.DeviceOS">
+					<i ng-if="event.DeviceTypeIcon" class="fa fa-fw fa-3x fa-{{event.DeviceTypeIcon}}"></i>
+				</td>
+				<td class="device-os" ng-if="event.DeviceOS">
+					<span>{{event.DeviceOSVersion}}</span>
+				</td>
+				<td class="spacer"></td>
+			</tr>
+		</table>
+
+	</div>
+
+	<style>
+
+		.analytics .dataset h4 {
+			background: #eee;
+			padding: 10px 9px;
+			border: 1px solid #ddd;
+			margin: 20px 0;
+		}
+		.analytics .dataset table {
+			width: 100%;
+		}
+		.analytics .dataset table td.spacer {
+			width: 100%;
+		}
+		.analytics .dataset table tr:not(:last-child) {
+			border-bottom: 1px solid #eee;
+		}
+		.analytics .dataset table td {
+			padding: 6px 10px;
+			/*vertical-align: top;*/
+		}
+		/*.analytics table.dataset td:first-child {*/
+			/*padding-left: 0;*/
+		/*}*/
+		/*.analytics table.dataset td:last-child {*/
+			/*padding-right: 0;*/
+		/*}*/
+		.analytics .dataset .artwork-image {
+			min-width: 90px;
+			max-width: 90px;
+			text-align: center;
+		}
+		.analytics .dataset .artwork-image > img {
+			max-width: 90px;
+			max-height: 50px;
+		}
+		.analytics .dataset .profile-image {
+			max-width: 50px;
+			max-height: 50px;
+		}
+		.analytics .dataset .artist-name,
+		.analytics .dataset .artwork-name {
+			min-width: 170px;
+			max-width: 170px;
+		}
+		.analytics .dataset .type {
+			min-width: 100px;
+			max-width: 100px;
+		}
+		.analytics .dataset .device-os,
+		.analytics .dataset .browser-version {
+			min-width: 100px;
+			max-width: 100px;
+		}
+		.analytics .dataset .event-time > span {
+			color: #aaa;
+		}
+
+		.device-type.linux i {
+			color: #e87d0d;
+		}
+		.device-type.windows i {
+			color: #00adef;
+		}
+		.device-type.apple i {
+			color: #a8b1b8;
+		}
+		.device-type.android i {
+			color: #a4c639;
+		}
+
+
+
+	</style>
+
+</div>

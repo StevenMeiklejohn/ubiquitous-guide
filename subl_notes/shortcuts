@@ -1,0 +1,16 @@
+To add a console.log shortcut to Sublime:
+
+Go to ‘Tools’ => ‘Developer’ => ‘New snippet’ and copypaste the code below, saving it as "console-log.sublime-snippet”.
+
+<snippet>
+ <content><![CDATA[
+console.log($0);$1]]></content>
+ <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+ <tabTrigger>cl</tabTrigger>
+ <!-- Optional: Set a scope to limit where the snippet will trigger -->
+ <scope>text.html,source.js</scope>
+ <description>console.log()</description>
+</snippet>
+
+[11:04] 
+Then type cl + TAB to use the shortcut.

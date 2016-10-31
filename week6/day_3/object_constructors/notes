@@ -1,0 +1,35 @@
+The easiest way to create an object in js:
+
+var myObject = {};
+
+myObject.shape = 'circle';
+myObject.radius - 10;
+
+console.log( myObject);
+
+However, this is time consuming to do for each instance.
+so, in JS we do.....
+
+var House = function( sqFeet, bathrooms, bedrooms ) {
+  this.sqFeet = sqFeet;
+  this.bathrooms = bathrooms;
+  this.bedrooms = bedrooms;
+}
+
+Note the capitalized House.
+this.sqFeet
+
+There are lots of ways to create an object in js, constructor, factory, 
+
+*See object_constructors examples.
+
+Java does not have 'inheritance'.
+But every object has a prototype, which is the object which every object gets created from.
+Prototpinh
+
+for example, if we tried to call a method on an object and the object had such a method, it will run that. If the object does not have that method, js will check the object prototype to see if it has the method for joininghings or peolr
+
+
+
+
+

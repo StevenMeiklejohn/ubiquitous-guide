@@ -1,0 +1,59 @@
+1. in /client do;
+npm init
+npm install
+npm start
+
+2. In top level do;
+npm init
+npm install
+npm start
+
+3. Create components
+(Using example of a bank);
+BankBox.jsx (Main contoller)
+AccountList.jsx (Account filtering)
+AccountBox.jsx (Display account settings)
+TotalDisplay (Display total setting)
+
+4. In app.jsx
+Require the BankBox.jsx and change ReactDom.render()
+<BankBox/>,
+document.getElementById('app')
+
+Start server and check Bank Box appears.
+
+===============
+
+* type rcc to make comeponent template.
+
+
+In BankBox:
+
+5. Create requires for the other files.
+
+6. Add data as an API using;
+componentDidMount:function(){
+  console.log('CDM was called');
+  var url = "https://restcountries.eu/rest/v1/all";
+  var request = new XMLHttpRequest();
+  request.open("GET", url);
+  request.onload = function(){
+    var data = JSON.parse( request.responseText );
+    this.setState( { countries: data } );
+  }.bind(this)
+  request.send();
+},
+
+or
+
+var accounts = require('./sample_accounts.js')
+
+7. setup getInitial Status.
+i.e. assign sample array to variable/function.
+Pass this variable function to AccountsList.jsx  
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+body {
+    background-image:    url(http://media.coindesk.com/2015/08/bank-building.jpg);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    font-family: Century Gothic;
+}
+
+
+.personal {
+  display: inline-block;
+  float:left;
+
+}
+
+
+.business {
+  display: inline-block;
+  float:right;
+}
+
+.form {
+  display: block;
+  text-align: center;
+}
+
+
+@font-face {
+  font-family: 'Marvel';
+  src: url('my_fonts/the-fontry_avengeance/AVENGEANCE HEROIC AVENGER BD.ttf') format('truetype');
+}
+
+

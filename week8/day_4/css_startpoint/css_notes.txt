@@ -1,0 +1,84 @@
+Brown, blue, black, white
+
+Blocks
+======
+
+Block, divs etc default to 'block' which fill the entire width of the container.
+in-line block can be given a position and width.
+
+
+Clear gap from inline blocks:
+=============================
+
+#blocks div {
+  text-align: center;
+  font: 30px Helvetica;
+  color: white;
+  padding: 10px;
+  >>>margin-right: -4px;<<<
+}
+
+
+
+Removing Page margin:
+=====================
+Items will butt up to the edge of the screen.
+
+body{
+  margin: 0px;
+}
+
+
+Positioning (Grid system)
+=========================
+
+Divide the page into columns and rows (percentages)
+
+.grid-1 {
+  width:8.333333%;
+}
+.grid-3 {
+  width: 25%;
+}
+.grid-6 {
+  width: 50%;
+}
+.grid-9 {
+  width: 75%;
+}
+.grid-12 {
+  width: 100%;
+}
+In HTML:
+<section id="blocks">
+  <div class="red grid-6">
+   Red
+  </div>
+  <div class="blue grid-6">
+    Blue
+  </div>
+  <div class="green grid-3">
+    Green
+  </div>
+ </section>
+ 
+
+
+ Rmove block, but keep space.
+ ===========================
+
+
+ .blue {
+   background-color: #428bca;
+   display: inline-block;
+   visibility: hidden;
+
+ }
+
+
+
+ Images & Positions
+ ==================
+
+ put images inside a div new div or inside a pre-existing div and apply the styling to the div.
+

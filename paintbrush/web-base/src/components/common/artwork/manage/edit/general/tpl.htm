@@ -1,0 +1,138 @@
+﻿<div class="general-info">
+
+	<div class="ajax-loader" ng-if="!ready"></div>
+
+	<form ng-show="ready">
+
+		<ui-message config="error"></ui-message>
+
+		<ui-message config="instructions"></ui-message>
+
+		<div class="field">
+			<label for="Name">Name</label>
+			<input type="text" name="Name" value="{{artwork.Name}}" required autofocus maxlength="90" />
+		</div>
+
+
+		<div class="field">
+			<label for="ArtworkTypeID">Artwork Type</label>
+			<select id="ArtworkTypeID" name="ArtworkTypeID" required>
+				<option></option>
+				<option ng-repeat="type in artworkTypes" ng-selected="artwork.ArtworkTypeID === type.ID" value="{{type.ID}}" title="{{type.Description}}">{{type.Type}}</option>
+			</select>
+		</div>
+
+		<div class="field">
+			<label for="Description">Description</label>
+			<textarea name="Description" required maxlength="4000">{{artwork.Description}}</textarea>
+		</div>
+
+
+		<div class="field">
+			<label for="Price">Price (GBP)</label>
+			<input id="Price" name="Price" required value="{{artwork.Price}}" type="number" step="0.01" min="0" max="100000000" />
+		</div>
+
+
+		<div class="field tags">
+			<label for="Tags">Tags</label>
+			<div widget="tags" data-name="Tags" data-min="1" data-max="8">
+				<div class="values"><input type="text" name="Tags" value="{{tag}}" ng-repeat="tag in artwork.Tags" /></div>
+			</div>
+		</div>
+
+
+		<div class="field">
+			<label for="Styles">Style(s)</label>
+			<div widget="multi-select" class="styles" data-name="Styles" data-max="3" data-min="1">
+				<div class="values">
+					<div ng-repeat="m in styles" title="{{m.Description}}"><input ng-checked="artworkStyles.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Styles" />{{m.Style}}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="field">
+			<label for="LimitedEdition">Limited Edition</label>
+			<input id="LimitedEdition" name="LimitedEdition" ng-checked="artwork.LimitedEdition" ng-model="artwork.LimitedEdition" type="checkbox" />
+		</div>
+
+		<div class="field" ng-if="artwork.LimitedEdition">
+			<label for="LimitedEditionDetails">Edition Details</label>
+			<input id="LimitedEditionDetails" name="LimitedEditionDetails" value="{{artwork.LimitedEditionDetails}}" placeholder="e.g. 2/40" max="45" type="text" />
+		</div>
+
+
+
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			<a class="green button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+		</div>
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+
+	</form>
+
+
+	<style>
+
+		/*.flex {*/
+			/*display: flex;*/
+		/*}*/
+
+		/*.flex > .left {*/
+			/*border-right: 1px solid #ddd;*/
+			/*margin-right: 20px;*/
+			/*padding-right: 20px;*/
+		/*}*/
+
+		/*.flex > .left .field {*/
+			/*min-width: 500px;*/
+		/*}*/
+		/*.flex > .left label {*/
+			/*display: none;*/
+		/*}*/
+
+
+
+		form textarea {
+			width: 500px;
+			height: 150px;
+		}
+
+		.field .image-upload,
+		.field.tags .button-wrap {
+			text-align: right;
+		}
+		.field .image-upload {
+			margin-top: 5px;
+		}
+
+
+
+		/*@media (max-width: 1380px) {*/
+			/*.flex {*/
+				/*flex-flow: wrap;*/
+			/*}*/
+			/*.flex > .left {*/
+				/*border-right: 0;*/
+			/*}*/
+
+			/*.flex > .left label {*/
+				/*display: inline-block;*/
+			/*}*/
+		/*}*/
+		/*@media (max-width: 1340px) {*/
+			/*.flex > .left {*/
+				/*margin-right: 0;*/
+				/*padding-right: 0;*/
+			/*}*/
+		/*}*/
+
+
+	</style>
+
+</div>

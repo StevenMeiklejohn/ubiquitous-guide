@@ -1,0 +1,1 @@
+﻿angular.module('ARN').controller('404', [function ($scope) {}]);

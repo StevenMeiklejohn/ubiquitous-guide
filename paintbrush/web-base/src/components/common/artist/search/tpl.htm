@@ -1,0 +1,74 @@
+﻿<!--<div class="search-panel" style="position:absolute;right:0;top:-5px;">
+	<form style="float: right;">
+		<label for="mp-search">Search:</label>
+		<input id="mp-search" name="mp-search" type="search" />
+		<a><i class="fa fa-search"></i><span>Search</span></a>
+	</form>
+</div>-->
+
+
+<!--<div>-->
+	<!--<h3>Find Artists</h3>-->
+<!--</div>-->
+
+
+
+<div class="filters">
+
+	<a class="filter" data-filter="Style">
+		<span class="label"><span data-text="Style" class="text">Style</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+		<ul class="options">
+			<li ng-click="setFilter('Style')">Any</li>
+			<li ng-repeat="style in styles" ng-click="setFilter('Style', style.ID, style.Style)">{{style.Style}}</li>
+		</ul>
+	</a>
+	<!--<a class="filter">
+		<span class="label">Colour <i class="fa fa-chevron-down"></i></span>
+		<ul class="options">
+			<li ng-repeat="style in styles" ng-click="setFilter('colour', style.ID)">{{style.Styles}}</li>
+		</ul>
+	</a>-->
+
+	<a class="filter" data-filter="Price">
+		<span class="label"><span data-text="Price" class="text">Price</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+		<ul class="options">
+			<li ng-click="setFilter('Price')">Any</li>
+			<li ng-repeat="band in pricebands" ng-click="setFilter('Price', band.ID, '', $event)">&pound;{{band.Min}}<span ng-if="band.Max < 0">+</span><span ng-if="band.Max > 0"> - &pound;{{band.Max}}</span></li>
+		</ul>
+	</a>
+	<a class="filter" data-filter="Type">
+		<span class="label"><span data-text="Type" class="text">Type</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+		<ul class="options">
+			<li ng-click="setFilter('Type')">Any</li>
+			<li ng-repeat="type in types" ng-click="setFilter('Type', type.ID, type.Type)">{{type.Type}}</li>
+		</ul>
+	</a>
+
+	<a class="filter">
+		<span class="label"><span class="text">Colour</span><span class="selected-colour"></span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+		<span class="colour-picker"></span>
+	</a>
+
+	<div class="text left" data-filter="Text">
+		<input class="filter" title="Search" name="search" placeholder="Search" />
+		<i class="fa fa-search"></i>
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="sort">
+		<a class="filter">
+			<span class="label"><span class="text">Latest</span><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-down"></i></span>
+			<ul class="options">
+				<li ng-click="setSort('Popular')">Popular</li>
+				<li ng-click="setSort('Latest')">Latest</li>
+				<li ng-click="setSort('Artworks')">Artworks</li>
+				<li ng-click="setSort('Views')">Views</li>
+				<li ng-click="setSort('Likes')">Likes</li>
+			</ul>
+		</a>
+	</div>
+
+</div>
+
+<div artwork-grid config="artworkGridConfig"></div>

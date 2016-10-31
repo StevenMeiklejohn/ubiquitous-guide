@@ -1,0 +1,15 @@
+---
+  - name: Restart node via pm2
+    command: pm2 start processes.json
+    args:
+      chdir: /home/{{ app_user }}/paintbrush/
+    remote_user: "{{ app_user }}"
+    sudo: false
+
+  - name: Run any new knex migrations
+    shell: . ~/.profile && knex migrate:latest
+    args:
+      chdir: paintbrush/api/
+    remote_user: "{{ app_user }}"
+    sudo: false
+    run_once: true

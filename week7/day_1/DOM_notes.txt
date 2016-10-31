@@ -1,0 +1,82 @@
+INTRO
+======
+======
+
+
+node server.js to run in browser (start server)
+right click, then 'inpect' on web page.
+
+The Document Object Model (DOM) is a cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML, and XML documents. The nodes of every document are organized in a tree structure, called the DOM tree.
+
+We can use 'methods' to access DOM elements.
+
+e.g. (In console(browser)) document. -> lists methods for document
+
+When the window onload event is triggered, we know that the document has loaded. This means we can now access elements in the DOM and start manipulating them with JavaScript.
+The reason for this is that it enables the user to interact with the page without making requests to the server. The interactivity is handled 'in browser'.
+
+
+=>
+
+We can assign ids to individual elements of the html file (p, div, etc)
+//index.html
+
+<p id="main-text">Let's write some JavaScript</p>
+
+which we can then access using browser console.
+//console
+var element = document.getElementById('main-text');
+console.log('element', element);
+
+In order to avoid writing js directly into the html file, we link it to an app file which will contain all our js logic.
+//index.html
+
+<script src="app.js"></script>
+(The line is inserted at the top of the <body> section)
+
+in the console, typing 'window' allows us to see the global DOM object and all the methods associated with it.
+
+look for 'onload'
+'Window' sits there waiting for the onload event (until the DOM is loaded) to be triggered and looks for a function to run when the event occurs/DOM is loaded.
+e.g.
+
+console.log("This is JavaScript calling!");
+
+window.onload = function(){
+  console.log("The DOM has loaded successfully.");
+  var element = document.getElementById('main-text');
+  console.log('element', element);
+}
+
+console.log(window.onload);
+
+Now, when the onload is triggered we write out a 'successfully loaded' message and assign an id to an element.
+
+Since we need to wait till the DOM is loaded before doing anything its best to use call backs to invoke functions/logic based on when onload is triggered. So, when call back is activated (DOM loaded) it runs our function (main) which in turn calls everything else we need to use.
+
+console.log(window.onload);
+
+window.onload = function(){
+  console.log('onload triggered')
+  main();
+}
+
+function main(){
+  console.log("main function invoked. main-text element id assigned");
+  var element = document.getElementById('main-text');
+  logElement(element);
+}
+
+function logElement(str){
+  console.log("logElement invoked")
+  console.log(str);
+}
+
+
+
+
+
+EVENTS/CALLBACKS
+================
+================
+

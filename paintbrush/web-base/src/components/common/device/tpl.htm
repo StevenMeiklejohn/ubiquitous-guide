@@ -1,0 +1,204 @@
+﻿
+<div class="device-settings">
+
+
+	<div class="device" ng-repeat="device in devices" ng-click="toggleDevice($event)">
+		<div class="last-login">{{device.LastAccessFull}}</div>
+		<h3 class="type {{device.OS.toLowerCase()}}">
+			<i class="fa fa-fw fa-3x fa-{{device.Icon}}"></i>
+			<span>{{device.OSVersion}}{{device.OS === 'iOS' && device.Model ? ' (' + device.Model + ')' : ''}}</span>
+			<span class="current" ng-if="currentDevice.ID === device.ID">Current Device</span>
+		</h3>
+		<div class="settings">
+			<div class="authorised {{device.Enabled ? '' : 'no'}}">{{device.Enabled ? 'Yes' : 'No'}}</div>
+			<div class="total-logins">{{device.TotalLogins}}</div>
+		</div>
+		<div class="browsers">
+
+			<div class="browser" ng-repeat="browser in device.Browsers" ng-click="toggleHistory($event)">
+				<div class="last-login">{{browser.LastAccessFull}}</div>
+				<div class="name"><div class="icon" style="background-image: url('/img/browsers/{{browser.Icon}}');"></div><span>{{browser.Name}} {{browser.VersionShort}}</span></div>
+				<div class="history">
+					<div class="authorised {{!device.Enabled ? 'no' : browser.Enabled ? '' : 'no'}}">{{!device.Enabled ? 'No' : browser.Enabled ? 'Yes' : 'No'}}</div>
+					<div class="total-logins">{{browser.History.length}}</div>
+
+					<div class="entry" ng-repeat="entry in browser.History">
+						<div class="login-date">{{entry.LoginDateFull}}</div>
+						<div class="location">{{entry.Location ? entry.Location + ', ' : ''}}{{entry.Country || 'Unkown'}}</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+</div>
+
+
+
+<style>
+	.device {
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		box-shadow: 0 0 6px rgba(0,0,0,0.05);
+		margin: 0 10px 20px 0;
+		padding: 0 0 0;
+		transition: all ease-in-out 0.4s;
+		max-width: 550px;
+
+		cursor: pointer;
+	}
+	.device:hover {
+		box-shadow: 0 0 6px rgba(0,0,0,0.1);
+	}
+
+	.device h3 {
+		background: #eee;
+		border-bottom: 1px solid #ddd;
+		padding: 14px 0 10px 10px;
+		margin: 0;
+	}
+	.device h3 i {
+		margin-right: 10px;
+	}
+	.device h3 > * {
+		vertical-align: middle;
+	}
+
+	.device h3.linux i {
+		color: #e87d0d;
+	}
+	.device h3.windows i {
+		color: #00adef;
+	}
+	.device h3.apple i {
+		color: #a8b1b8;
+	}
+	.device h3.android i {
+		color: #a4c639;
+	}
+	
+	.device .current {
+		color: #67ad4b;
+		display: inline-block;
+		padding: 0 0 0 8px;
+	}
+
+
+
+	.device .last-login {
+		float: right;
+		padding: 24px 20px 0 0;
+		color: #aaa;
+	}
+
+	.device .last-login::before {
+		content: 'Last Access:';
+		margin-right: 10px;
+	}
+
+
+	.device .settings {
+		display: none;
+		padding: 15px 20px;
+		border-bottom: 1px solid #eee;
+		cursor: default;
+		background: #fff;
+	}
+	.device.open .settings {
+		display: block;
+	}
+
+
+	.browser {
+		border-bottom: 1px solid #eee;
+		cursor: pointer;
+		transition: background ease-in-out 0.3s;
+		border-radius: 0 0 2px 2px;
+	}
+	.browser .name {
+		padding: 15px 20px 15px;
+	}
+	.browser:last-child {
+		border-bottom: 0;
+	}
+	.browser:hover,
+	.browser.open {
+		background: #f1f1f1;
+	}
+
+	.browser .last-login {
+		padding: 21px 20px 0 0;
+	}
+
+	.browser .name .icon {
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		margin-right: 15px;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.browser .name > * {
+		vertical-align: middle;
+	}
+
+
+	.history {
+		display: none;
+		padding: 15px 20px;
+		margin-top: 0px;
+		border-top: 1px solid #eee;
+		cursor: default;
+		background: #fff;
+		border-radius: 0 0 5px 5px;
+	}
+	.browser.open .history {
+		display: block;
+	}
+	.history .login-date,
+	.settings .authorised,
+	.history .authorised {
+		float: right;
+	}
+	.settings .authorised,
+	.history .authorised {
+		color: #67ad4b;
+		font-weight: 600;
+	}
+	.settings .authorised.no,
+	.history .authorised.no {
+		color: #be0000;
+	}
+	.settings .authorised::before,
+	.history .authorised::before {
+		color: #465159;
+		content: 'Enabled:';
+		margin-right: 10px;
+		font-weight: normal;
+	}
+	.total-logins {
+		font-weight: 600;
+	}
+	.total-logins::before {
+		content: 'Total Logins:';
+		margin-right: 10px;
+		font-weight: normal;
+	}
+	.history .login-date::before {
+		content: 'Login Date:';
+		margin-right: 10px;
+	}
+	.history .location::before {
+		content: 'Location:';
+		margin-right: 10px;
+	}
+
+	.history .entry {
+		padding: 16px 0 0 0;
+	}
+
+
+</style>

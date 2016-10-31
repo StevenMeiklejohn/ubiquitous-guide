@@ -1,0 +1,158 @@
+﻿<div ng-show="$root.authenticated" class="inbox-view">
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/inbox">Message</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Compose</h1>
+	</header>
+
+	<ui-message config="error"></ui-message>
+
+
+	<div ng-show="ready && !error">
+
+		<div class="profile">
+			<div ng-if="profileImageStyle" class="profile-image" ng-style="profileImageStyle"></div>
+			<div class="profile-info">
+				<table class="datalist vertical">
+					<tr><td>Recipient</td><td>{{recipient.Name}}</td></tr>
+					<tr><td>User Type</td><td>{{recipient.Artist ? 'Artist' : recipient.Gallery ? 'Gallery': recipient.Consumer? 'Consumer': ''}}</td></tr>
+				</table>
+			</div>
+		</div>
+
+
+
+		<div class="message-thread">
+
+			<div class="compose" ng-if="recipient">
+				<div class="message success" ng-show="message.sent">Message successfully sent.</div>
+				<div ng-show="!message.sent">
+					<ui-message config="errorCompose"></ui-message>
+					<div class="subject">
+						<input name="subject" ng-model="message.subject" placeholder="Subject"/>
+					</div>
+					<div class="body">
+						<textarea ng-readonly="message.sending" ng-model="message.body" placeholder="Your message{{recipient.Name? ' to ' + recipient.Name:''}}..."></textarea>
+					</div>
+
+					<div class="contact-methods">
+						<div class="label">This user will receive your message via the following methods:</div>
+						<div class="inner-wrap">
+							<div ng-repeat="method in contactMethods">
+								<!--<input type="checkbox" id="cm-{{$index}}" name="cm-{{$index}}" ng-checked="method.Enabled" disabled />-->
+								<!--<label for="cm-{{$index}}">{{method.Name}}</label>-->
+
+								<i class="fa fa-fw fa-lg fa-check"></i><span>{{method.Name}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="buttons right">
+						<a class="button sky-blue" ng-show="!message.sending" ng-click="sendMessage()"><i class="fa fa-send"></i><span class="text">Send</span></a>
+						<div class="ajax-loader" ng-show="message.sending"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+
+<style>
+	.profile-image {
+		width: 70px;
+		height: 70px;
+		margin-top: 0;
+	}
+
+	.compose .subject input {
+		padding: 10px 15px;
+		flex-grow: 1;
+		border: 1px solid #ddd;
+	}
+
+	.compose .subject {
+		display: flex;
+		padding-bottom: 10px;
+	}
+
+	.compose {
+		max-width: 800px;
+	}
+
+	.contact-methods {
+		margin-top: 10px;
+		flex-wrap: wrap;
+		display: flex;
+	}
+	.contact-methods .inner-wrap {
+		display: flex;
+	}
+	.contact-methods > .label {
+		margin: 2px 10px 10px 0;
+		font-weight:600;
+	}
+	.contact-methods .inner-wrap > div {
+		margin-right: 10px;
+	}
+	.contact-methods .inner-wrap > div > * {
+		vertical-align: middle;
+	}
+	.contact-methods .inner-wrap i {
+		color: #67ad4b;
+		margin-right: 2px;
+	}
+
+	.message-thread {
+		margin-top: 20px;
+	}
+
+
+	.message-thread .messages > .item:not(:last-child) {
+		border-bottom: 0;
+	}
+	.message-thread .messages > .item.collapsed {
+		background: #f1f1f1;
+	}
+	.message-thread .messages > .item > .details {
+		cursor: pointer;
+	}
+	.message-thread .messages > .item > .details:hover {
+		background: #eee;
+	}
+	.message-thread .messages > .item.collapsed > .body {
+		overflow: hidden;
+		height: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.message-thread .messages > .item.collapsed > .details {
+		border-bottom: 0;
+	}
+
+	.message-thread .compose {
+		border-bottom: 1px dashed #ddd;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+	}
+
+	.message-thread .compose textarea {
+		width: calc(100% - 32px);
+		min-width: calc(100% - 32px);
+		min-height: 80px;
+		padding: 15px;
+		resize: vertical;
+		border: 1px solid #ddd;
+		border-radius: 0;
+	}
+
+	.message-thread .compose .buttons {
+		padding-top: 10px;
+	}
+
+	.message-thread .compose .message {
+		margin-bottom: 10px;
+	}
+
+</style>

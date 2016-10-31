@@ -1,0 +1,14 @@
+﻿
+<header class="main">
+	<h1>ActivCanvas Demo</h1>
+</header>
+
+<div ng-if="step === -2" class="message">Your account has already been enabled for ActivCanvas, please check the Resource Center for instructions and tutorials on activating your work.</div>
+<div ng-if="step === -1" class="message">This demo is only available to artists at this time.<br/><br/>If you are a gallery and are interested in using ActivCanvas please contact us at <a href="mailto:hello@artretailnetwork.com">hello@artretailnetwork.com</a> to discuss getting set up.</div>
+
+
+
+<div ng-if="step === 1" demo-artwork-edit></div>
+<div ng-if="step === 2" demo-artwork-select></div>
+<div ng-if="step === 3" demo-test></div>
+

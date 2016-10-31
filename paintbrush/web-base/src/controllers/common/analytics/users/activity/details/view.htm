@@ -1,0 +1,32 @@
+﻿<div class="analytics">
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/analytics">Analytics</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/analytics/users">Users</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/analytics/users/activity">Activity</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{profile.Name}}</h1>
+
+		<div class="button-group" ng-if="!profile.GuestAccount">
+			<a class="button green" ng-href="/inbox/compose/{{profile.ID}}"><i class="fa fa-envelope"></i><span>Contact</span></a>
+		</div>
+
+	</header>
+
+	<div class="profile">
+		<div ng-if="profile" class="profile-image" ng-style="profileImageStyle"></div>
+		<div class="profile-info">
+			<table class="datalist vertical">
+				<tr><td>Name</td><td>{{profile.Name}}</td></tr>
+				<tr><td>User Type</td><td>{{profile.Artist ? 'Artist' : profile.Gallery ? 'Gallery': profile.Consumer? 'Consumer': ''}}</td></tr>
+			</table>
+		</div>
+		<social-profile-links profile="profile"></social-profile-links>
+	</div>
+
+	<analytics-users-activity-details profile="activeProfile"></analytics-users-activity-details>
+
+	<style>
+		.profile-image {
+			width: 70px;
+			height: 70px;
+			margin-top: 0;
+		}
+	</style>
+</div>

@@ -1,0 +1,112 @@
+Web app process
+===============
+create database
+createdb ________
+create project.sql. Describe table and parameters (row and columns). Do a drop table then create table to clear db every new run.
+mk dirs:
+db
+models
+public/css
+specs
+views
+ and project_controller.rb
+
+ In the controller require the following:
+
+ require('sinatra')
+ require('sinatra/contrib/all') if development?
+ require('pry-byebug')
+ require_relative('./models/shoe.rb')
+
+ =====
+ then add methods for the server:
+ =====
+ get '/shoos/new' do
+   erb(:new)
+ end
+ => get from the server at route /shoos/new/ the new.erb file. This will feature the html layout of the home page.
+
+ add the post method:
+ post '/shoos' do
+ @shoe = Shoe.new( params )
+ @shoe.save()
+ erb( :create )
+ end
+
+ add any other pages;
+ get '/shoos/index' do
+   @shoes = Shoe.all()
+   # binding.pry
+   erb( :index )
+ end
+
+ create the html on each new .erb
+
+=======
+
+setup a spec file and test all the functions in the controller as well as checking the creation of the database using a def setup
+
+def setup
+  options ={
+    "name" => "Steve",
+    "address" => "27 Meikle Rd",
+    "quantity" => 2,
+    "size" => 7
+  }
+  @shoe = Shoe.new(options)
+end
+
+=========
+create a public/css/style.css file and change looks of page.
+
+=============================================================
+
+REST
+====
+Representational
+State
+Transfer
+(Kind of like social norms, conventions)
+Restful API
+====
+====
+
+- How to use REST in webapps
+- Know the HTTP verbs for REST
+- What a resource is
+- 7 REST actions
+- Which verbs apply to which actions.
+
+
+HTTP verb.     Action                            URL.
+=========      =======                           ====
+ GET           index (gives us all of our stuff)
+ GETpplicationindex/movies
+ POST          create (create a new form)
+ GET           show (display on screen)
+ GET           edit
+ PUT           update
+ DELETE        delete
+
+HTTP verbs are natched to actions
+Actions are what goes between the get ---- do end
+
+
+Verbs GET, POST, DELETE, PUT (DRUD app)
+Resources (shoes, pizzas, playlist ect)
+(e.g.www,mymovieapp.con/movies (movies is the resource ))
+Actions
+URLs
+CRUD
+
+API = Application Programming Interface
+(Spoyiy etc is .restfull)
+
+For examples of each action see week4, day2, pizza_shop, pizza_controller.rb
+
+
+
+
+
+
+

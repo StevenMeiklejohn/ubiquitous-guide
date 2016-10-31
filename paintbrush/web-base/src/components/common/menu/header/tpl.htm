@@ -1,0 +1,24 @@
+﻿<nav class="header button-group">
+	<div ng-show="!authenticated">
+		<a class="profile-link" ng-href="/register" title="Register a new account" ng-show="route.current.controller !== 'Register'">
+			<span class="profile-name">Register for ActivCanvas</span><i class="fa fa-chevron-right" style="padding-top: 3px;vertical-align: top;"></i>
+		</a>
+	</div>
+	<div ng-show="authenticated">
+		<a ng-if="activeProfile.ActivCanvas.StatusID<3" class="button activcanvas" ng-href="/activcanvas" title="About ActivCanvas"><i class="fa fa-fw fa-plus"></i></a>
+
+		<!--<a class="button blue" ng-href="/shortlists" title="Shortlists"><i class="fa fa-fw fa-bookmark"></i></a>-->
+		<!--<a class="button blue" title="Following"><i class="fa fa-heart"></i></a>-->
+		<a class="button blue" ng-href="/inbox" title="Notifications"><i class="fa fa-fw fa-envelope"></i><span class="alert" ng-show="unreadNotifications" title="You have {{unreadNotifications}} unread notifications">{{unreadNotifications}}</span></a>
+		<!--<a class="button blue" ng-href="/connections{{pendingConnections ? '?pending=1' : ''}}" title="Connections"><i class="fa fa-fw fa-link fa-flip-horizontal"></i><span class="alert" ng-show="pendingConnections" title="You have {{pendingConnections}} pending request{{pendingConnections > 1 ? 's' : ''}}">{{pendingConnections}}</span></a>-->
+		<a class="profile-link" ng-href="/profile">
+			<span class="profile-name">{{activeProfile.Name}}</span>
+			<i class="fa fa-chevron-down"></i>
+			<span class="profile-image" style="background-image:url('{{activeProfile.ImageURI_90}}')" ng-if="activeProfile"></span>
+		</a>
+		<div class="drawer">
+			<a ng-href="/account"><i class="fa fa-fw fa-lg fa-cogs"></i><span>Account Settings</span></a>
+			<a ng-click="logout()"><i class="fa fa-fw fa-lg fa-share-square-o"></i><span>Logout</span></a>
+		</div>
+	</div>
+</nav>

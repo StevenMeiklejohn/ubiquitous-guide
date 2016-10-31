@@ -1,0 +1,10 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/artwork/manage">Artwork</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{artwork.Name}}</h1>
+	<div class="button-group" ng-show="artwork && !error">
+		<a ng-show="permission.delete" class="button orange" ng-click="delete()"><i class="fa fa-trash"></i><span>Delete</span></a>
+	</div>
+</header>
+
+<ui-message config="error"></ui-message>
+
+<artwork-manage-index artwork="artwork"></artwork-manage-index>

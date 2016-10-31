@@ -1,0 +1,103 @@
+﻿<div class="artwork-details">
+
+	<ui-message config="error"></ui-message>
+
+	<div ng-if="artwork && !error" class="grid">
+
+		<div class="col-left">
+			<div ng-if="!imageLoaded" class="ajax-loader"></div>
+			<div ng-if="imageLoaded" class="image-wrap">
+				<img class="artwork-image" ng-src="{{artwork.ImageURI_500}}" ng-click="viewImage()" />
+				<i class="fa fa-search fa-fw fa-2x" ng-click="viewImage()"></i>
+				<div class="video-overlay" ng-if="playVideo">
+					<video controls autoplay>
+						<source ng-repeat="transcode in artwork.VideoTranscodes" src="{{transcode._VideoURI}}" type="{{getVideoType(transcode.VideoURI)}}" />
+						<source ng-if="artwork._VideoURI" src="{{artwork._VideoURI}}" type="{{getVideoType(artwork.VideoURI)}}"/>
+					</video>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-right">
+
+			<div ng-show="artwork.Description" style="margin-bottom: 20px;">
+				<h2>About this artwork</h2>
+				<div class="description">{{artwork.Description}}</div>
+			</div>
+
+			<div>
+				<h4>Artwork Details</h4>
+				<div>
+					<table class="datalist vertical">
+
+					<tr ng-if="artwork.Type">
+						<td>Type</td>
+						<td>{{artwork.Type}}</td>
+					</tr>
+
+					<tr ng-if="artwork.Status">
+						<td>Status</td>
+						<td>{{artwork.Status}}</td>
+					</tr>
+
+					<tr ng-if="artwork.Subjects.length > 0">
+						<td>Subject</td>
+						<td><span ng-repeat="subject in artwork.Subjects">{{subject.Name}}<span ng-if="!$last">, </span></span></td>
+					</tr>
+
+					<tr ng-if="artwork.Tags.length > 0">
+						<td>Tags</td>
+						<td><span ng-repeat="tag in artwork.Tags">{{tag}}<span ng-if="!$last">, </span></span></td>
+					</tr>
+
+					<tr ng-if="artwork.LimitedEditionDetails">
+						<td>Limited Edition</td>
+						<td>{{artwork.LimitedEditionDetails}}</td>
+					</tr>
+
+					<tr ng-if="artwork.Styles.length > 0">
+						<td>Style</td>
+						<td><span ng-repeat="style in artwork.Styles">{{style.Name}}<span ng-if="!$last">, </span></span></td>
+					</tr>
+
+					<tr ng-if="artwork.MaterialNames.length > 0">
+						<td>Materials Used</td>
+						<td><div ng-repeat="material in artwork.MaterialNames">{{material.Name}}<span ng-if="!$last">, </span></div></td>
+					</tr>
+
+					<tr ng-if="artwork.WidthMM > 0">
+						<td>Dimensions</td>
+						<td>{{artwork.WidthMM/10}} x {{artwork.HeightMM/10}} cm</td>
+					</tr>
+
+					<tr ng-if="artwork.Price > 0">
+						<td>Price</td>
+						<td>£{{artwork.Price}}</td>
+					</tr>
+
+				</table>
+				</div>
+			</div>
+
+			<div class="ac-content" ng-if="artwork.VideoURI || (artwork.TrackingRating && artwork.ArtistProfileID === $root.activeProfile.ID)" >
+				<h4>ActivCanvas Content</h4>
+				<div>
+					<table class="datalist vertical" ng-if="artwork.ArtistProfileID === $root.activeProfile.ID">
+						<tr ng-if="artwork.VideoName">
+							<td>Video</td>
+							<td>{{artwork.VideoName}}</td>
+						</tr>
+						<tr>
+							<td ng-if="artwork.TrackingRating">Tracking Rating</td>
+							<td><div class="rating"><i class="fa fa-star{{i <= artwork.TrackingRating ? '' : '-o'}}" ng-repeat="i in [1,2,3,4,5]"></i></div></td>
+						</tr>
+					</table>
+					<a ng-if="artwork.VideoURI " class="button {{playVideo ? 'blue' : 'green'}}" ng-click="showVideo(!playVideo)"><i class="fa fa-{{playVideo ? 'stop' : 'play'}}"></i><span>{{playVideo ? 'Stop' : 'Play'}} Video</span></a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

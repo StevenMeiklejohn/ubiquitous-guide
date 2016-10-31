@@ -1,0 +1,30 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/artwork">Artwork</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{artworkID ? 'Edit' : 'Add'}} Artwork</h1>
+</header>
+
+<div ng-if="error">
+	<div class="message error">Unable to upload artwork for this profile: <strong>{{error}}</strong></div>
+	<div class="buttons" style="margin-top: 20px;">
+		<a class="button" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+	</div>
+</div>
+
+<div ng-show="activeProfile">
+
+	<div ng-if="!error">
+
+		<artwork-edit config="artworkEditConfig"></artwork-edit>
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="orange button" style="float: left;" ng-if="artworkID" ng-click="deleteArtwork();"><i class="fa fa-trash"></i> Delete</a>
+			<a class="button" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+			<a class="sky-blue button" ng-click="saveArtwork();"><i class="fa fa-save"></i> Save</a>
+		</div>
+
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+	</div>
+
+</div>

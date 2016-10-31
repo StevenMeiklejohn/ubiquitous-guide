@@ -1,0 +1,132 @@
+﻿<div ng-show="$root.authenticated" class="inbox-view">
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/inbox">Notifications</a><span ng-show="notification.Subject" class="divide"><i class="fa fa-chevron-right"></i></span><span>{{notification.Subject}}</span></h1>
+		<div class="button-group" ng-show="ready && !error">
+			<a class="button orange" ng-show="notification.Type !== 'Task'" title="Delete this notification" ng-click="deleteNotification(notification)"><i class="fa fa-trash"></i><span class="text">Delete</span></a>
+			<a class="button blue" ng-show="notification.Type === 'Message' && !message.sent" title="Reply to this message" ng-click="toggleCompose()"><i class="fa fa-reply"></i><span class="text">Reply</span></a>
+		</div>
+	</header>
+
+
+
+	<div class="message-thread" ng-show="ready && !error">
+
+
+		<div class="compose" ng-show="showCompose">
+			<ui-message config="messageSent"></ui-message>
+			<div ng-show="!message.sent">
+				<ui-message config="errorCompose"></ui-message>
+				<textarea ng-readonly="message.sending" ng-model="message.body" placeholder="Your message{{notification.Messages[0].SenderProfileName? ' to ' + notification.Messages[0].SenderProfileName:''}}..."></textarea>
+				<div class="buttons right">
+					<a class="button sky-blue" ng-show="!message.sending" ng-click="sendMessage()"><i class="fa fa-send"></i><span class="text">Send</span></a>
+					<div class="ajax-loader" ng-show="message.sending"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item type-{{notification.Type.toLowerCase()}}" ng-show="notification && !notification.Messages">
+
+			<div class="details">
+				<div class="from">
+					<div class="profile-image" style=""></div>
+					<div>
+						<div class="profile-name"><span>From:</span><strong>Art Retail Network</strong></div>
+						<div class="profile-name"><span>To:</span><strong>{{notification.ToProfile}}</strong></div>
+					</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="date">{{notification.Date}}</div>
+			</div>
+
+			<div class="body" ng-bind-html="notification._Body"></div>
+
+			<div ng-if="notification.Tasks" class="bullet-list">
+				<h4>Tasks:</h4>
+				<div ng-repeat="task in notification.Tasks" class="list-item">
+					<span><span class="bullet" style="background:#{{task.Complete ? '68b981' : 'ddd'}}"></span></span>
+					<span style="flex-grow:1;">{{task.Description}}</span>
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<div ng-if="notification.Messages" class="messages">
+			<div ng-repeat="message in notification.Messages" class="item {{$first?'':'collapsed'}}">
+
+				<div class="details" ng-click="toggleCollapse($event)">
+					<div class="from">
+						<div class="profile-image" style="background-image: url('{{message._SenderProfileImageURI}}')"></div>
+						<div class="profile-name">{{message.SenderProfileName}}</div>
+					</div>
+					<div class="spacer"></div>
+					<div class="date" title="{{message.DateFull}}">{{message.DateFriendly}}</div>
+				</div>
+
+				<div class="body" ng-bind-html="message._Body"></div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<ui-message config="error"></ui-message>
+
+</div>
+
+
+
+
+<style>
+
+	.message-thread .messages > .item:not(:last-child) {
+		border-bottom: 0;
+	}
+	.message-thread .messages > .item.collapsed {
+		background: #f1f1f1;
+	}
+	.message-thread .messages > .item > .details {
+		cursor: pointer;
+	}
+	.message-thread .messages > .item > .details:hover {
+		background: #eee;
+	}
+	.message-thread .messages > .item.collapsed > .body {
+		overflow: hidden;
+		height: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.message-thread .messages > .item.collapsed > .details {
+		border-bottom: 0;
+	}
+
+	.message-thread .compose {
+		border-bottom: 1px dashed #ddd;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+	}
+
+	.message-thread .compose textarea {
+		width: calc(100% - 32px);
+		min-width: calc(100% - 32px);
+		min-height: 80px;
+		padding: 15px;
+		resize: vertical;
+		border: 1px solid #ddd;
+		border-radius: 0;
+	}
+
+	.message-thread .compose .buttons {
+		padding-top: 10px;
+	}
+
+	.message-thread .compose .message {
+		margin-bottom: 10px;
+	}
+
+</style>

@@ -1,0 +1,125 @@
+﻿
+<div class="authentication-settings">
+
+	<div class="message">
+		To link your Art Retail Network account to your social media accounts just click on the logo below.
+	</div>
+
+
+	<div class="network">
+		<div class="enabled {{Auth.Facebook ? '' : 'no'}}">{{Auth.Facebook ? 'Yes' : 'No'}}</div>
+		<div class="wrap">
+			<a ng-click="go('/api/auth/facebook')" title="Link my Facebook account"><img ng-src="/img/auth/facebook-128{{Auth.Facebook ? '' : '-gs'}}.png" /></a>
+			<div class="details">
+				<h3 class="network-name"><span>Facebook</span></h3>
+				<div class="profile-data" ng-if="Auth.Facebook">
+					<div class="user-name">{{Auth.Facebook.Name}}</div>
+					<!--<div class="user-image">-->
+						<!--<div class="profile-image" ng-if="Auth.Facebook.ProfileImageURI" ng-style="Auth.Facebook.ProfileImageStyle"></div>-->
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="network">
+		<div class="enabled {{Auth.Google ? '' : 'no'}}">{{Auth.Google ? 'Yes' : 'No'}}</div>
+		<div class="wrap">
+			<a ng-click="go('/api/auth/google')" title="Link my Google account"><img ng-src="/img/auth/google-128{{Auth.Google ? '' : '-gs'}}.png" /></a>
+			<div class="details">
+				<h3 class="network-name"><span>Google</span></h3>
+				<div class="profile" ng-if="Auth.Google">
+					<div class="user-name">{{Auth.Google.Name}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+<style>
+
+	.authentication-settings {
+		display: inline-block;
+		max-width: 550px;
+	}
+
+	.authentication-settings > .message {
+		margin-bottom: 20px;
+	}
+	
+	.authentication-settings a {
+		cursor: pointer;
+	}
+
+	.network {
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		box-shadow: 0 0 6px rgba(0,0,0,0.05);
+		margin: 0 0 20px 0;
+		transition: all ease-in-out 0.4s;
+		max-width: 530px;
+		padding: 10px;
+		/*cursor: pointer;*/
+		position: relative;
+	}
+	.network:hover {
+		box-shadow: 0 0 6px rgba(0,0,0,0.1);
+		background: #eee;
+	}
+	
+	.network .wrap {
+		display: flex;
+	}
+	.network .wrap > .details {
+		flex-grow: 1;
+		padding-left: 15px;
+	}
+
+	.network h3 {
+		padding: 4px 0 10px 0;
+		margin: 0;
+	}
+
+	.network img {
+		width:  72px;
+		height: 72px;
+	}
+
+
+	.network .enabled {
+		padding: 6px 10px 0 0;
+		color: #67ad4b;
+		font-weight: 600;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+	.network .enabled.no {
+		color: #be0000;
+	}
+	.network .enabled::before {
+		content: 'Enabled:';
+		margin-right: 10px;
+		color: #aaa;
+		font-weight: normal;
+	}
+
+
+	.network .user-name::before {
+		content: 'User:';
+		padding-right: 10px;
+	}
+	/*.network .user-image::before {*/
+		/*content: '';*/
+		/*padding-right: 10px;*/
+		/*vertical-align: top;*/
+	/*}*/
+	/*.network .profile-image {*/
+		/*height: 60px;*/
+		/*width: 60px;*/
+	/*}*/
+
+</style>

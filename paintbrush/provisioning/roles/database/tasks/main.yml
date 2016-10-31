@@ -1,0 +1,36 @@
+---
+  #
+  # Playbook based on: https://serversforhackers.com/an-ansible-tutorial
+  #
+  # Best Practices are here: http://docs.ansible.com/ansible/playbooks_best_practices.html
+  #
+  - name: Ensure Ubuntu Distro is Supported
+    get_url:
+      url='https://deb.nodesource.com/node/dists/{{ ansible_distribution_release }}/Release'
+      dest=/dev/null
+    register: distrosupported
+
+  - name: install MySQL
+    apt: name=mysql-server-5.6 state=latest
+    environment:
+      LC_ALL: en_US.UTF-8
+    when: distrosupported|success
+
+  - name: Confirm MySQL conf.dir exits
+    file: path=/etc/mysql/conf.d state=directory
+
+  - name: Set MySQL number of connections
+    copy: src=../files/paintbrush_dev.cnf dest=/etc/mysql/conf.d/paintbrush_dev.cnf
+
+  - name: install python-mysqldb
+    apt: name=python-mysqldb state=latest
+
+  - name: create database
+    mysql_db: name=paintbrush_dev state=present
+
+  - name: Load database schema
+    shell: . ~/.profile && node utils/createSchema.js
+    args:
+      chdir: paintbrush/api/
+    remote_user: "{{ app_user }}"
+    run_once: true

@@ -1,0 +1,12 @@
+﻿<div style="display:inline-block">
+
+	<div class="message" style="margin-bottom: 15px;">Please upload one piece of art to activate with ActivCanvas</div>
+
+	<artwork-edit></artwork-edit>
+
+	<div class="buttons right">
+		<a ng-show="!pendingRequest" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+		<div ng-show="pendingRequest" class="ajax-loader"></div>
+	</div>
+
+</div>

@@ -1,0 +1,84 @@
+﻿<header class="sub">
+	<h3>Video Edit</h3>
+</header>
+
+<div class="ajax-loader" ng-show="!ready"></div>
+<div class="video-edit" ng-show="ready">
+
+	<form>
+
+		<div class="field">
+			<label for="Name">Name</label>
+			<input type="text" name="Name" value="{{video.Name}}" required autofocus maxlength="90" />
+		</div>
+
+
+		<div class="field">
+			<label for="Description">Description</label>
+			<textarea name="Description" required maxlength="4000">{{video.Description}}</textarea>
+		</div>
+
+
+		<!--<div class=" field">
+			<label for="Source">Video Source</label>
+			<div>
+				<div class="input-row">
+					<input id="source-local" name="Source" type="radio" value="local" required />
+					<label for="source-local">Own Computer</label>
+
+				</div>
+				<div class="input-row">
+					<input id="source-youtube" name="Source" type="radio" value="youtube" required />
+					<label for="source-youtube">YouTube</label>
+
+				</div>
+			</div>
+		</div>-->
+
+
+		<!--<div class="field">
+			<label for="VideoURI">Video</label>
+			<input type="text" name="VideoURI" placeholder="https://youtu.be/DDmouYP6NzE" value="{{video.VideoURI}}" required />
+		</div>-->
+
+
+		<!--<div class="message">Please enter a YouTube share url into the video field.</div>-->
+
+
+		<div class="field">
+			<label for="VideoURI">Video</label>
+			<div>
+				<div class="video-preview"></div>
+				<div class="source-local">
+					<s3-upload config="videoUploadConfig"></s3-upload>
+				</div>
+				<div class="source-youtube" style="display:none;">
+					<input type="text" name="YouTubeURI" placeholder="https://youtu.be/DDmouYP6NzE" value="" />
+				</div>
+			</div>
+			<input type="text" name="VideoURI" value="{{video.VideoURI}}" required maxlength="256" style="display:none;" />
+			<div style="display:none;">
+				<input type="text" name="FileName" value="{{video.FileName}}" required maxlength="256" />
+				<input type="number" name="FileSize" step="0" value="{{video.FileSize}}" required />
+				<input type="number" name="Duration" step="0.01" value="{{video.Duration}}" required />
+				<input type="number" name="Width" step="0" value="{{video.Width}}" />
+				<input type="number" name="Height" step="0" value="{{video.Height}}" />
+			</div>
+
+		</div>
+
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="orange button" style="float: left;" ng-if="video.ID" ng-click="deleteVideo();"><i class="fa fa-trash"></i> Delete</a>
+			<a class="cancel button" ng-click="loadDirective('profile-videos')"><i class="fa fa-reply"></i> Cancel</a>
+			<a class="submit button" ng-click="save()"><i class="fa fa-save"></i> Save</a>
+		</div>
+
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+	</form>
+
+
+</div>

@@ -1,0 +1,145 @@
+Notes:
+
+Client (Chrome)
+======
+-HTTP request from client to server.
+-requests--
+--get
+--post
+--put
+--delete
+--patch
+Server
+======
+-Houses erb files for processing
+-Server sends back http response.
+-JSON
+-HTTP
+Database
+=========
+
+
+
+New Sinatra app.
+=================
+
+#Check pizza shop db still exists
+/d = list databases
+psql pizza_shop
+
+
+To make a post in HTML we need a form
+so wee need a GET request for a form so that we can post back
+
+
+mkdir models public specs views
+touch pizza_controller.rb
+fill in controller
+
+touch views/new.erb
+touch views/layout.erb
+
+open layout.erb
+type html tab
+fill in.
+create erb tag 'yield'
+
+go back to new.erb
+create form
+<form action="pizzas" method="post">
+=> when this form gets submitted make it a post request on /pizzas
+once you have the forem appearing,
+, make a post method in the controller.erb featuring only a binding.pry.
+Fill in the form and press submit. the page will hang.
+in the terminal you should see a params hash that has been returned by the user
+
+
+Write pizza spec then model(initialize)
+
+create views/create.erb
+thsi will be getting sent back to the browser. We have a pizza object available to us. so, (in create.erb) make an erb tag with @pizza.firt_name to show first name
+type <br> at end of line then
+erb tag @pizza.last_name
+<%= @pizza.first_name %>
+<%= @pizza.last_name %>
+
+Now, since our post pizzas method:
+
+post '/pizzas' do
+  @pizza = Pizza.new( params[:first_name], params[:last_name])
+ # @pizza.save
+  erb( :create )
+
+  references the erb file create,
+  the 'yield' in the layout.erb will now use create.erb.
+
+
+  Next, we changed the create.erb to 
+  <%= @pizza.pretty_name %>
+  since we want to use a different method to return our name. This time a single method concantenates the name.
+  def pretty_name
+    p_n = "#{@first_name} #{@last_name}"
+    return @pretty_name
+  end
+
+  so, the method .pretty_name(whih is in the pizza.erb) is being called by the @pizzas object (which is defined by the post method in pizza_contoller.rb), which sends its output to the create.erb,,,,,  and the result is being returned to the page by virtue of being in the create.erb
+
+
+
+
+save to database
+==================
+
+Add to pizza.rb
+
+def save
+  db = PG.connect( {dbname: 'pizza_shop', host: 'localhost'})
+  sql = "INSERT INTO pizzas(
+    first_name,
+    last_name,
+    topping,
+    quantity
+    )
+    VALUES (
+    '#{ @first_name }'
+    '#{ @last_name }'
+    #{ @topping },
+    #{ @quantity }
+    )"
+    db.exec( sql )
+    db.close
+end
+
+
+
+Chck pizza in dbs and return data to screen.
+==========================
+in pizza controler;
+
+get '/pizzas' do
+  @pizzas = Pizza.all()
+  erb( :index )
+end
+
+so, we need to make a .all method on the pizza class
+
+def self.all
+  db = PG.connect( {dbname: 'pizza_shop', host: 'localhost'})
+  sql = "SELECT * FROM pizzas"
+  #pizzas = results of executing the sql command
+  pizzas = db.exec( sql )
+  #this will return a postgres array. so we must....
+  result = pizzas.map {|pizza| Pizza.new( pizza )}
+  db.close
+  return result
+end
+
+
+then create an index.erb
+
+
+
+
+
+
+

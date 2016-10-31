@@ -1,0 +1,49 @@
+
+.datagrid.tpl-table td {
+	vertical-align: top;
+}
+.datagrid .results .image {
+	width: 90px;
+	max-width: 90px;
+}
+.datagrid .results .body .image {
+	height: 50px;
+	line-height: 0;
+}
+.results .image img {
+	max-width: 90px;
+	max-height: 50px;
+}
+
+.datagrid .results .body .profile-image {
+	height: 36px;
+	width: 36px;
+	margin: 0;
+}
+.datagrid .results .artist-image {
+	width: 36px;
+	max-width: 36px;
+}
+.results .name {
+	width: 240px;
+	min-width: 240px;
+}
+.results .activated .ajax-loader {
+	height: 1em;
+	width: 1em;
+}
+.datagrid .results .actions {
+	width: 25px;
+	overflow: visible;
+}
+
+
+.results i.good {
+	color: #45ad35;
+}
+.results i.bad {
+	color: #d14021;
+}
+.results i.warn {
+	color: #d1ac00;
+}

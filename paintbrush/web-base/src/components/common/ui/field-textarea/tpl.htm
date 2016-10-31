@@ -1,0 +1,14 @@
+<div class="field textarea" ng-show="{{config.show}}" data-uid="{{config.uid}}">
+	<label ng-if="config.label!==false" for="{{config.uid}}"><span class="text">{{config.label || config.name}}</span></label>
+	<textarea
+			 name="{{config.name}}"
+			 id="{{config.uid}}"
+			 ng-model="config.model[config.name]"
+			 ng-model-options="{debounce:500}"
+			 ng-change="config.change()"
+			 ng-disabled="{{config.disabled}}"
+			 ng-required="{{config.required}}"
+	>
+		{{config.value}}
+	</textarea>
+</div>

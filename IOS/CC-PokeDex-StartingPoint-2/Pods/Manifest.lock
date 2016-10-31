@@ -1,0 +1,22 @@
+PODS:
+  - Alamofire (3.4.0)
+  - Argo (3.0.1)
+  - BrightFutures (4.0.1):
+    - Result (~> 2.0)
+  - Curry (2.2.0)
+  - Result (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Argo
+  - BrightFutures
+  - Curry
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Argo: 22c5d62b7967020a641468c91dc9488bea9523b8
+  BrightFutures: 786ff7d16e620eb777cf802e545ef7d6237d77f6
+  Curry: c22d80fff7f5a4b1bbd531455c3e2dbb099658a3
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+
+COCOAPODS: 0.39.0

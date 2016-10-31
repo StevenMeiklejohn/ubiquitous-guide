@@ -1,0 +1,28 @@
+﻿
+
+<header class="sub">
+	<h3>Biography</h3>
+	<div class="button-group" ng-if="profile.IsOwn" ng-show="ready">
+		<a class="button orange" ng-click="loadDirective('profile-bio-edit')"><i class="fa fa-pencil"></i><span>Edit</span></a>
+	</div>
+</header>
+
+<div class="ajax-loader" ng-show="!ready"></div>
+
+<div class="message" ng-show="ready && !hasAnswers && profile.IsOwn">Click the edit button to begin filling out your biography.</div>
+<div class="message" ng-show="ready && !hasAnswers && !profile.IsOwn">This user has not created a biography yet.</div>
+
+<div class="biography" ng-show="ready && hasAnswers">
+
+	<div class="section" ng-repeat="type in questionTypes" ng-if="type.hasAnswers">
+		<h4>{{type.Type}}</h4>
+
+		<div class="questions">
+			<div class="question" ng-repeat="question in questions[type.ID]" ng-if="answers[question.ID]">
+				<div class="text"><div class="image"><div class="profile-image square" style="background-image: url('/img/arn-t.png')"></div></div><div class="content">{{question.Text}}</div></div>
+				<div class="answer"><div class="image"><div class="profile-image" style="background-image: url('{{profile.ImageURI}}')"></div></div><div class="content">{{answers[question.ID]}}</div></div>
+			</div>
+		</div>
+	</div>
+
+</div>

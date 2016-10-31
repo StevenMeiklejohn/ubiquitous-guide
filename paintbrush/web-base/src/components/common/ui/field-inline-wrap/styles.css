@@ -1,0 +1,33 @@
+
+.field.inline-wrap .wrap-element label {
+	display: none;
+}
+.field.inline-wrap .wrap-element {
+	display: flex;
+}
+.field.inline-wrap .wrap-element > div {
+	margin-right: 10px;
+}
+.field.inline-wrap .wrap-element > div:last-child {
+	margin-right: 0;
+}
+
+
+.wrap-element .divider,
+.wrap-element .suffix {
+	display: flex;
+	flex-direction: column;
+	align-content:center;
+	justify-content: center;
+}
+
+.wrap-element .v-align {
+	/*vertical-align: middle;*/
+}
+
+
+form .field.inline-wrap .wrap-element.fields-2 input,
+form .field.inline-wrap .wrap-element.fields-2 select {
+	min-width: 88px;
+	width: 88px;
+}

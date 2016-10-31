@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Checkout</title>
+
+	<meta content="width=400; user-scalable=0;" name="viewport">
+
+	<link rel="icon" type="image/png" href="/img/favicon.png" />
+
+	<!-- FONTS -->
+	<link href="/fonts/fa/font-awesome.min.css?[CDV]" type="text/css" rel="stylesheet" />
+	<link href="/fonts/opensans/opensans.css?[CDV]" rel="stylesheet" type="text/css" />
+
+	<!-- STYLES -->
+	<link href="/templates/arn/css/main.css?[CDV]" type="text/css" rel="stylesheet" />
+
+	<script>
+		if (!(/ios|mac os|ipad|iphone/gi).test(navigator.userAgent)) {
+			var nodes = document.getElementsByTagName('meta');
+			for (var i = 0; i < nodes.length; ++i) {
+				var node = nodes[i];
+				if (node.attributes['name'].value === 'viewport') {
+					node.setAttribute('content', 'width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;');
+				}
+			}
+		}
+	</script>
+
+</head>
+<body>
+
+<style>
+body {
+	background-color: #708090;
+}
+</style>
+
+	<div class="flex-outer">
+		<div class="flex-inner">
+			<div class="panel green">
+				<div class="panel-inner loading">
+					<div class="ajax-loader"></div>
+					<span>Loading</span>
+				</div>
+				<div class="panel-inner processing">
+					<div class="ajax-loader"></div>
+					<span>Processing Payment</span>
+				</div>
+				<div class="panel-inner complete">
+					<i class="fa fa-check fa-2x"></i>
+					<span>Success</span>
+				</div>
+				<div class="panel-inner error">
+					<i class="fa fa-times fa-2x"></i>
+					<span>Error</span>
+				</div>
+			</div>
+
+
+			<div class="artwork-details"></div>
+			<div class="delivery-details"></div>
+			<div class="payment-details"></div>
+			<div class="close"><a href="javascript:window.closeWindow();">close</a></div>
+		</div>
+	</div>
+
+
+	<div class="close-top"><a href="javascript:window.closeWindow();">x</a></div>
+
+	<style>
+		body {
+			padding: 0 10px 10px;
+
+		}
+
+		img {
+			width: 400px;
+		}
+
+		.close-top {
+			position: absolute;
+			color: #fff;
+			background: #000;
+			background: rgba(0,0,0,0.6);
+			border: 2px solid #fff;
+			box-shadow: 0 0 3px rgba(0,0,0,0.2);
+			top: 5px;
+			right: 5px;
+			border-radius: 20px;
+			font-weight: 600;
+		}
+		.close-top a {
+			color: #fff;
+			text-decoration: none;
+			padding: 4px 8px;
+			display: inline-block;
+		}
+
+		.flex-outer {
+			display:flex;
+			align-content:center;
+			justify-content: center;
+			flex-direction:row;
+			height:90vh;
+		}
+		.flex-inner {
+			display:flex;
+			flex-flow: column wrap;
+			align-content:center;
+			justify-content: center;
+		}
+		.ajax-loader {
+			width: 25px;
+			height: 25px;
+			border-color: #fff transparent #fff #fff;
+		}
+		.fa, .ajax-loader {
+			margin-right: 15px;
+		}
+
+		.panel {
+			background: #666;
+			border: 1px solid #666;
+			border-radius: 5px;
+			color: #fff;
+			padding: 5px;
+
+			transition: all ease-in-out 0.3s;
+		}
+		.panel.gold {
+			background: #f1c13d;
+			border-color: #f1c13d;
+		}
+		.panel.green {
+			background: #67ad4b;
+			border-color: #67ad4b;
+		}
+		.panel.red {
+			background: #be0000;
+			border-color: #be0000;
+		}
+		.panel-inner {
+			/*background: #fff;*/
+			/*color: #666;*/
+			padding: 10px;
+			border-radius: 3px;
+			display: none;
+			align-items: center;
+			font-size: 1.5em;
+			background: rgba(255, 255, 255, 0.2);
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+		}
+
+		.panel-inner > span {
+			vertical-align: super;
+		}
+
+		.artwork-details,
+		.delivery-details,
+		.payment-details,
+		.close {
+			display: none;
+		}
+
+		.artwork-details > div {
+			max-width: 500px;
+			max-width: 100vw;
+		}
+
+		.image {
+			max-width: 100%;
+			max-width: 100vw;
+		}
+		.label {
+			font-size: 1.25em;
+		}
+		.label span {
+			margin-right: 10px;
+			display: inline-block;
+		}
+
+		.buttons {
+			text-align: right;
+			padding-top: 15px;
+		}
+
+
+
+
+
+
+		textarea, input {
+			border: 1px solid #ddd;
+			width: 100%;
+			max-width: calc(100vw - 12px);
+			margin-top: 10px;
+			padding: 5px;
+		}
+
+		textarea {
+			height: 200px;
+		}
+
+		#ExpMonth {
+			width: calc(100vw - 12px);
+		}
+
+		#ExpMonth option {
+			width: calc(100vw - 12px);
+		}
+
+
+		.message {
+			margin: 5px 0;
+			padding: 5px;
+			border: 1px solid #7792ac;
+			background: #7792ac;
+			color: #fff;
+			border-radius: 3px;
+		}
+		.message.error {
+			background: #e16148;
+			border-color: #e16148;
+		}
+
+
+		.close {
+			font-size: 1.5em;
+			padding: 20px;
+			text-align: center;
+		}
+
+
+
+	</style>
+
+
+	<script>
+		var $ = function(s) {
+			return document.querySelectorAll(s);
+		};
+
+		var token = '[ACCESS_TOKEN]' || (location.search || '').replace('?', '').split('=')[1] || localStorage.accessToken;
+
+		var request = function(uri, opts) {
+			opts = opts || {};
+
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 1) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+					xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+					if (opts.data) {
+						xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+					}
+				}
+			};
+			xhr.addEventListener('load', function(res) {
+				if (res.target.status === 200) {
+					opts.success && opts.success(JSON.parse(this.responseText));
+				}
+				else {
+					opts.error && opts.error(JSON.parse(this.responseText));
+				}
+				opts.finally && opts.finally();
+			});
+			xhr.addEventListener('error', function(e) {
+				opts.error && opts.error(e);
+				opts.finally && opts.finally();
+			});
+			var data;
+			if (opts.data) {
+				data = JSON.stringify(opts.data);
+			}
+			xhr.open(opts.type || (opts.data ? 'POST' : 'GET'), uri);
+			xhr.send(data);
+		};
+
+		var artwork = {}, profile = {}, materials = {};
+
+		var pending = 3,
+			ready = function() {
+				pending -= 1;
+				if (!pending) {
+
+					$('.panel-inner.loading')[0].style.display = 'none';
+					$('.panel')[0].style.display = 'none';
+					$('.panel')[0].className = 'panel gold';
+
+
+					if (artwork.StatusID === 3) {
+						document.title = artwork.Name;
+
+						$('.artwork-details')[0].style.display = 'block';
+						$('.artwork-details')[0].innerHTML =
+								'<h2>' + artwork.Name + '</h2>' +
+								'<img class="image" src="/api/v2/proxy/image/' + encodeURIComponent(artwork.ImageURI) + '/500/500"/>' +
+								'<div class="label"><span>Artist:</span><strong>' + artwork.ArtistName + '</strong></div>' +
+								'<div class="message">This item has already been sold and is no longer available to buy.</div>'
+								;
+					}
+
+					//
+					// Enquire to buy
+					//
+					else if (!(artwork.Price && artwork.Purchasable)) {
+						document.title = 'Enquiry To Buy';
+
+						var _materials = [];
+						artwork.Materials.forEach(function(m) {
+							if (materials[m]) {
+								_materials.push(materials[m]);
+							}
+						});
+
+						$('.artwork-details')[0].style.display = 'block';
+						$('.artwork-details')[0].innerHTML =
+								'<h2>Enquire To Buy</h2>' +
+								'<img class="image" src="/api/v2/proxy/image/' + encodeURIComponent(artwork.ImageURI) + '/500/500"/>' +
+								'<div class="label"><span>Title:</span><strong>' + artwork.Name + '</strong></div>' +
+								'<div class="label"><span>Artist:</span><strong>' + artwork.ArtistName + '</strong></div>' +
+								(artwork.WidthMM ? '<div class="label"><span>Dimensions:</span><strong>' + (artwork.WidthMM/10) +' x ' + (artwork.HeightMM/10) + ' cm </strong></div>' : '') +
+								(_materials.length ? '<div class="label"><span>Material' + (_materials.length > 1 ? '(s)' : '') + ':</span><strong>' + _materials.join(', ') + '</strong></div>' : '' )+
+								(artwork.Type ? '<div class="label"><span>Artwork Type:</span><strong>' + artwork.Type + '</strong></div>' : '') +
+								'<div class="message error" style="display:none;">Please fill out the enquiry and phone number field to continue.</div>' +
+								'<div class="label"><span>Phone Number:</span></div>' +
+								'<div><input name="phone" /></div>' +
+								'<div class="label"><span>Enquiry:</span></div>' +
+								'<textarea required>' +
+									'I\'m interested in purchasing the artwork ' + artwork.Name + ' by ' + artwork.ArtistName + '.\n\n' +
+									'Kind regards,\n' + profile.Name +
+								'</textarea>' +
+								'<div class="buttons"><i class="button blue icon-right"><span>Send</span><i class="fa fa-fw fa-lg fa-send"></i></a></div>'
+						;
+
+
+						$('.artwork-details .button')[0].onclick = function () {
+							var enquiry = $('.artwork-details textarea')[0].value;
+							var phone = $('.artwork-details [name=phone]')[0].value;
+
+							if (!enquiry.replace(/\s/g, '') || !phone.replace(/\s/g, '')) {
+								$('.artwork-details .message')[0].style.display = 'block';
+							}
+							else {
+
+								$('.artwork-details')[0].style.display = 'none';
+								$('.panel-inner.processing span')[0].innerHTML = 'Sending';
+								$('.panel')[0].style.display = 'block';
+								$('.panel-inner.processing')[0].style.display = 'flex';
+
+								request('/api/v2/enquiry/buy', {
+									data: {
+										Enquiry: enquiry + '\n\n<strong>Phone Number:</strong> ' + phone,
+										ArtworkID: artwork.ID
+									},
+									success: function() {
+										$('.panel')[0].className = 'panel green';
+										$('.panel-inner.processing')[0].style.display = 'none';
+										$('.panel-inner.complete')[0].style.display = 'flex';
+									},
+									error: function() {
+										$('.panel')[0].className = 'panel red';
+										$('.panel-inner.processing')[0].style.display = 'none';
+										$('.panel-inner.error')[0].style.display = 'flex';
+									}
+								});
+
+							}
+
+						};
+
+					}
+
+					//
+					// Dirty buy
+					//
+					else {
+
+						var address1,
+							address2,
+							address3,
+							city,
+							postcode,
+							cardName,
+							cardNumber,
+							cardCVC,
+							expMonth,
+							expYear;
+
+
+
+						$('.artwork-details')[0].style.display = 'block';
+						$('.artwork-details')[0].innerHTML =
+								'<h2>Checkout</h2>' +
+								'<img class="image" src="/api/v2/proxy/image/' + encodeURIComponent(artwork.ImageURI) + '/500/500"/>' +
+								'<div class="label"><span>Title:</span><strong>' + artwork.Name + '</strong></div>' +
+								'<div class="label"><span>Artist:</span><strong>' + artwork.ArtistName + '</strong></div>' +
+								'<div class="label"><span>Total:</span><strong>&pound;' + artwork.Price + '</strong></div>' +
+								'<div class="buttons"><i class="button blue icon-right"><span>Delivery Details</span><i class="fa fa-fw fa-lg fa-truck fa-flip-horizontal"></i></a></div>'
+						;
+
+						$('.delivery-details')[0].innerHTML =
+								'<h2>Delivery Details</h2>' +
+								'<form>' +
+								'<div class="message error" style="display:none;">Please fill out the required fields to continue.</div>' +
+								'<div class="field"><label>Address1</label><input name="Address1" required value="' + profile.Contact.Address1 + '" /></div>' +
+								'<div class="field"><label>Address2</label><input name="Address2" value="' + profile.Contact.Address2 + '" /></div>' +
+								'<div class="field"><label>Address3</label><input name="Address3" value="' + profile.Contact.Address3 + '" /></div>' +
+								'<div class="field"><label>City</label><input name="City" required value="' + profile.Contact.Town + '" /></div>' +
+								'<div class="field"><label>Postcode</label><input name="Postcode" required value="' + profile.Contact.Postcode + '" /></div>' +
+								'</form>' +
+								'<div class="buttons"><i class="button blue icon-right"><span>Payment Details</span><i class="fa fa-fw fa-lg fa-credit-card"></i></a></div>'
+						;
+
+						var expMonthOptions = '';
+						for (var i = 1; i < 13; i++)
+						{
+							expMonthOptions += '<option value="' + i + '">' + i + '</option>';
+						}
+						var expYearOptions = '', year = (new Date()).getFullYear();
+						for (var i = 0; i < 10; i++)
+						{
+							expYearOptions += '<option value="' + (year + i) + '">' + (year + i) + '</option>';
+						}
+
+						$('.payment-details')[0].innerHTML =
+								'<h2>Payment Details</h2>' +
+								'<form>' +
+								'<div class="message error" style="display:none;"></div>' +
+								//'<div class="field"><label>Name on Card</label><input required name="CardName" maxlength="40" value="" /></div>' +
+								'<div class="field"><label>Card Number</label><input required name="CardNumber" maxlength="16" value="" /></div>' +
+								'<div class="field"><label>Expiry Date</label><select name="ExpMonth">' + expMonthOptions + '</select></div>' +
+								'<div class="field"><label>Expiry Year</label><select name="ExpYear">' + expYearOptions + '</select></div>' +
+								'<div class="field"><label>CVC</label><input required name="CVC" maxlength="3" value="" /></div>' +
+								'</form>' +
+								'<div class="buttons"><i class="button blue icon-right"><span>Complete Order</span><i class="fa fa-fw fa-lg fa-arrow-circle-o-right"></i></a></div>'
+						;
+
+
+						$('.artwork-details .button')[0].onclick = function () {
+							$('.artwork-details')[0].style.display = 'none';
+							$('.delivery-details')[0].style.display = 'block';
+						};
+
+
+						$('.delivery-details .button')[0].onclick = function () {
+
+							address1 = $('.delivery-details [name=Address1]')[0].value;
+							address2 = $('.delivery-details [name=Address2]')[0].value;
+							address3 = $('.delivery-details [name=Address3]')[0].value;
+							city = $('.delivery-details [name=City]')[0].value;
+							postcode = $('.delivery-details [name=Postcode]')[0].value;
+							
+
+							if (!address1 || !city || !postcode) {
+								$('.delivery-details form')[0].className = 'validated';
+								$('.delivery-details .message')[0].style.display = 'block'
+							}
+							else {
+								$('.delivery-details')[0].style.display = 'none';
+								$('.payment-details')[0].style.display = 'block';
+							}
+
+						};
+
+
+						$('.payment-details .button')[0].onclick = function () {
+
+							$('.payment-details form')[0].className = 'validated';
+
+							var _message = $('.payment-details .message')[0];
+
+							//cardName = $('.payment-details [name=CardName]')[0].value;
+							cardNumber = $('.payment-details [name=CardNumber]')[0].value.replace(/[^\d]/g, '');
+							cardCVC = $('.payment-details [name=CVC]')[0].value.replace(/[^\d]/g, '');
+							expMonth = $('.payment-details [name=ExpMonth]')[0].value.replace(/[^\d]/g, '');
+							expYear = $('.payment-details [name=ExpYear]')[0].value.replace(/[^\d]/g, '');
+
+							if ((cardNumber || '').length !== 16) {
+								_message.innerHTML = 'The card number entered does not appear to be valid';
+								_message.style.display = 'block';
+							}
+							else if ((cardCVC || '').length !== 3) {
+								_message.innerHTML = 'The CVC number entered does not appear to be valid';
+								_message.style.display = 'block';
+							}
+							else if (!expMonth || !expYear || !cardNumber || !cardCVC) {
+								_message.innerHTML = 'Please fill out all fields';
+								_message.style.display = 'block';
+							}
+							else {
+
+								$('.panel')[0].style.display = 'block';
+								$('.payment-details')[0].style.display = 'none';
+								$('.panel-inner.processing')[0].style.display = 'flex';
+
+
+								request('/api/v2/subscriptions/create-charge', {
+									data: {
+										ArtworkID: [ARTWORKID],
+										Number: cardNumber,
+										ExpMonth: expMonth,
+										ExpYear: expYear,
+										CVC: cardCVC,
+
+										Address1: address1,
+										Address2: address2,
+										Address3: address3,
+										City: city,
+										Postcode: postcode
+									},
+									success: function() {
+										$('.panel-inner.processing')[0].style.display = 'none';
+										$('.panel-inner.complete')[0].style.display = 'flex';
+										$('.close')[0].style.display = 'block';
+										$('.panel')[0].className = 'panel green';
+										setTimeout(window.closeWindow, 10000);
+									},
+									error: function (err) {
+										$('.panel-inner.processing')[0].style.display = 'none';
+										$('.payment-details')[0].style.display = 'block';
+										$('.panel')[0].style.display = 'none';
+										_message.innerHTML = err.Message;
+										_message.style.display = 'block';
+									}
+								});
+
+
+							}
+						};
+
+					}
+				}
+			};
+
+
+		$('.panel-inner.loading')[0].style.display = 'flex';
+
+
+
+		request('/api/v2/artwork/[ARTWORKID]', {
+			success: function(data) {
+				artwork = data;
+				ready();
+			},
+			error: ready
+		});
+
+
+		request('/api/v2/materials', {
+			success: function(data) {
+				for (var i in data) {
+					materials[data[i].ID] = data[i].Name;
+				}
+				ready();
+			},
+			error: ready
+		});
+
+		//
+		// Check if an existing platform user is logged in
+		//
+		request('/api/v2/auth/current-user', {
+			success: function(currentUser) {
+				request('/api/v2/profile/' + currentUser.ProfileID, {
+					success: function(data) {
+						profile = data;
+
+						if (!profile.Contact) {
+							profile.Contact = {	};
+						}
+
+						profile.Contact = {
+							Address1: profile.Contact.Address1 || '',
+							Address2: profile.Contact.Address2 ||  '',
+							Address3: profile.Contact.Address3 ||  '',
+							Town: profile.Contact.Town ||  '',
+							Postcode: profile.Contact.Postcode ||  ''
+						};
+
+						ready();
+					},
+					error: ready
+				});
+			}
+		});
+
+
+		window.closeWindow = function() {
+			if (window.Unity) {
+				window.Unity.call('CLOSE');
+			}
+			else {
+				window.close();
+			}
+		}
+
+
+	</script>
+
+</body>
+</html>

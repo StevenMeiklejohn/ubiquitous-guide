@@ -1,0 +1,10 @@
+<div ng-show="config" class="message {{ config.type || 'info' }}">
+	<span style="display: flex;">
+		<span style="{{config.type==='warn'?'padding-top:4px;':''}}">
+			<i class="fa fa-{{iconClass}} fa-2x"></i>
+		</span>
+		<span ng-bind-html="config._message" style="flex-grow: 1;padding-left:10px;line-height: 1.65em;">
+
+		</span>
+	</span>
+</div>

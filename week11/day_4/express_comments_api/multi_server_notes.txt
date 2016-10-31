@@ -1,0 +1,23 @@
+Week 11 day 4.
+
+Comments app using react api and rails api.
+
+
+Running:
+========
+
+react_comments_api_start_point/client
+webpack -w
+
+react_comments_api_start_point
+node server.js (3000)
+
+#express_comment_api
+#node server.js (5000)   (When using express api)
+
+express_comment_api
+mongod
+
+rails_comments_api
+rails s -p 5000 (5000) (when using rails api)
+

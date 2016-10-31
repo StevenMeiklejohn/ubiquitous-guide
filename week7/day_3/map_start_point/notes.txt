@@ -1,0 +1,47 @@
+app
+====
+window.onload calls init
+window.onload = init;
+
+HTML
+=====
+grab the google maps java script by referenecing it in the html file.
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+link html to .js files.
+<script type="text/javascript" src="map.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+create dropdown.
+<body>
+    <select style="display:none" id="countries">
+
+create map item.
+</select>
+<div id="info" style="display:none">
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
+<div id="map"></div>
+
+Define the map size in css (else it will default to 0 pixels)
+#map {
+  width:500px;
+  height:500px;
+}
+
+
+
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+
+console
+navigator.getBattery( function( res) { console.log(res) }
+
+
+in console. Get current geo location.
+navigator.geolocation.getCurrentPosition( function(response) { console.log(response) } )

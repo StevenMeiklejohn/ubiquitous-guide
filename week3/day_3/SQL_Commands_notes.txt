@@ -1,0 +1,106 @@
+ PostGres is the Relation Database Management System we will be using.
+Structured Query Language (SQL) is how we talk to the database.
+
+Create
+Read
+Update
+Delete
+CRUD
+
+SQL Commands (usually upper case)
+
+psql = Start conversation with database. (which psql)
+\q = quit
+create database people;
+psql -d people -f create_people.sql
+# -d = database. -f = script#
+\c = connect to a db.
+\d+ show all tables in database
+SELECT * FROM (table_name);
+SELECT name FROM people = (column 'name' from db 'people')
+SELECT name, age FROM people = (column 'name' and 'age' from db 'people')
+SELECT COUNT(*) FROM people; = (number of)
+SELECT COUNT(name) FROM people; = (number of)
+
+UPDATE (table name) SET (column) = 'x';
+UPDATE people SET sex = 'm';
+UPDATE people SET sex = 'f' WHERE name = 'Valerie';
+(update with qualifications)
+UPDATE people SET sex = 'm' WHERE name = 'Valerie' AND age = 32;
+(Update with 2 qualifications)
+UPDATE people SET sex = 'm', nationality ='Scottish'  WHERE name = 'Valerie' AND age = 32;
+(Update with 3 qualifications)
+
+DELETE FROM people WHERE name = 'Rick';
+DELETE FROM (table) WHERE (row) = 'Rick';
+
+
+CREATE table pets(
+  id SERIAL8,
+  name VARCHAR(255),
+  owner VARCHAR(225),
+  date_of_birth DATE,
+  expiry_date DATE);
+  (id SERIAL8 assigns a new 8 digit id number)
+
+
+
+SELECT name FROM victims WHERE id IN(1,2);
+
+SELECT name FROM victims WHERE id IN (SELECT victim_id FROM bitings WHERE zombie_id=1);
+(nested select
+
+SELECT victims.name, bitings.infected_on FROM victims INNER JOIN bitings on bitings.victim_id = victims.id;
+(return name of victims and infected_on)
+
+SELECT avg(run_speed) FROM victims;
+
+SELECT * FROM victims WHERE name LIKE '%t%';
+(name includes the letter t)
+
+
+
+Cheat Sheet
+==================
+
+
+
+
+
+
+
+Aggregate functions
+======================
+avg (age)
+sum (age)
+min (age)
+
+Order by
+====================
+ORDER BY (age asc)
+ORDER BY (age dec)
+
+Like
+=====================
+LIKE '%A'
+
+
+
+beckykelly [9:22 AM] 
+-- How to do joins:
+-- 1. Identify what you want back
+-- 2. From which tables i.e. join two tables
+-- 3. On what basis do you want to match them i.e. match two ids
+-- 4. optional: repeat steps 2 and 3 if joining to a 3rd table
+-- 5. optional: specify a condition
+-- 6. optional: add GROUP BY if selecting anything along with an aggregated function
+-- 7. Add semi-colon!
+
+
+
+
+
+
+
+
+

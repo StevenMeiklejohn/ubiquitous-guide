@@ -1,0 +1,41 @@
+<%= @employee.name %><br>
+
+<li>
+<p>Employee image:</p>
+<img src="<%= @employee.image %>" height="300" width=300><br>
+</li>
+
+
+<li>
+<p>Employee id:</p>
+<%=@employee.id %><br>
+</li><br>
+
+<li>
+<p>Employee bio:</p>
+<%= @employee.bio %><br>
+</li><br>
+
+<li>
+<p>Employee Start Date:</p>
+<%= @employee.start_date %><br>
+</li>
+
+<li>
+<p>Upcoming shifts:</p>
+<%= @employee.employee_shifts %><br>
+</li>
+
+
+
+
+<a href="<%= @employee.id %>/edit">Edit employee</a>
+
+
+<form action="/employees/<%= @employee.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete employee">
+</form>
+
+
+

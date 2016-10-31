@@ -1,0 +1,9 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Artwork</h1>
+	<div class="button-group" ng-if="activeProfile.Artist && (userProfile.IsAdmin || activeProfile.ID === userProfile.ID || userProfile.managesArtist(activeProfile.ID))">
+		<a class="button green" ng-href="/artwork/import" title="Upload lots of new artwork"><i class="fa fa-upload"></i><span>Import</span></a>
+	</div>
+</header>
+
+
+<artwork-manage-search profile="activeProfile"></artwork-manage-search>

@@ -1,0 +1,170 @@
+﻿<div class="artwork-edit">
+
+	<div ng-show="!ready" class="ajax-loader"></div>
+	<form ng-show="ready">
+		<div class="messages"></div>
+
+		<div class="field">
+			<label for="Name">Name</label>
+			<input type="text" name="Name" value="{{artwork.Name}}" required autofocus maxlength="90" />
+		</div>
+		<div class="field">
+			<label for="Description">Description</label>
+			<textarea name="Description" required maxlength="4000">{{artwork.Description}}</textarea>
+		</div>
+
+
+		<div class="field">
+			<label for="ImageURI">Image</label>
+			<div>
+				<div class="image-preview"><img style="max-width:500px;" ng-src="{{previewImageURI}}" /></div>
+				<div class="image-colours">
+					<div class="colour" ng-repeat="colour in previewImageColours" style="background:rgb({{colour.join(',')}})"></div>
+				</div>
+				<s3-upload config="artworkUploadConfig"></s3-upload>
+			</div>
+			<input type="text" name="ImageURI" value="{{artwork.ImageURI}}" required maxlength="256" style="display:none;" />
+			<input type="hidden" name="Filename" required />
+			<input type="hidden" name="ImageColours" required value="{{artwork.ImageColours}}" />
+		</div>
+
+		<div class="field">
+			<label>Dimensions</label>
+			<div class="input-row">
+				<input type="number" name="Width" min="1" max="2147483647" placeholder="Width" value="{{artwork.Width}}" required />
+				<input type="number" name="Height" min="1" max="2147483647" placeholder="Height" value="{{artwork.Height}}" required />
+				<input type="number" name="Depth" min="0" max="2147483647" placeholder="Depth" value="{{artwork.Depth}}" required />
+				<select name="DimensionUnitID" data-last-val="{{artwork.DimensionUnitID}}" required>
+					<option ng-repeat="unit in dimensionUnits" ng-selected="artwork.DimensionUnitID === unit.ID" value="{{unit.ID}}">{{unit.Name}} ({{unit.Symbol}})</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="field">
+			<label for="Price">Price (GBP)</label>
+			<input id="Price" name="Price" required value="{{artwork.Price}}" type="number" step="1" min="0" max="100000000" />
+		</div>
+
+		<div class="field">
+			<label for="ArtworkTypeID">Artwork Type</label>
+			<select id="ArtworkTypeID" name="ArtworkTypeID" required>
+				<option></option>
+				<option ng-repeat="type in artworkTypes" ng-selected="artwork.ArtworkTypeID === type.ID" value="{{type.ID}}" title="{{type.Description}}">{{type.Type}}</option>
+			</select>
+		</div>
+
+		<div class="field" ng-if="$root.activeProfile.ActivCanvas.StatusID===3">
+			<label for="VideoID">ActivCanvas Video</label>
+			<select id="VideoID" name="VideoID">
+				<option value="">No Video</option>
+				<option value="0" ng-selected="artwork.DefaultVideo">Default Profile Video</option>
+				<option ng-repeat="video in videos" ng-selected="!artwork.DefaultVideo && !artwork.NoVideo && artwork.VideoID === video.ID" value="{{video.ID}}" title="{{video.Description}}">{{video.Name}}</option>
+			</select>
+		</div>
+
+		<div class="field">
+			<label for="TimeSpentID">Time Spent</label>
+			<select id="TimeSpentID" name="TimeSpentID">
+				<option></option>
+				<option ng-repeat="time in artworkTimeSpent" ng-selected="artwork.TimeSpentID === time.ID" value="{{time.ID}}">{{time.Description}}</option>
+			</select>
+		</div>
+
+		<div class="field">
+			<label for="StatusID">Status</label>
+			<select id="StatusID" name="StatusID" required>
+				<option ng-repeat="status in statuses" ng-selected="artwork.StatusID === status.ID" value="{{status.ID}}">{{status.Status}}</option>
+			</select>
+		</div>
+
+		<div class="field">
+			<label for="Tags">Tags</label>
+			<div widget="tags" data-name="Tags" data-min="1" data-max="8">
+				<div class="values"><input type="text" name="Tags" value="{{tag}}" ng-repeat="tag in artwork.Tags" /></div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label for="Styles">Style(s)</label>
+			<div widget="multi-select" class="styles" data-name="Styles" data-max="3" data-min="1">
+				<div class="values">
+					<div ng-repeat="m in styles" title="{{m.Description}}"><input ng-checked="artwork._Styles.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Styles" />{{m.Style}}</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<label for="Subjects">Subject(s)</label>
+			<div widget="multi-select" class="subjects" data-name="Subjects" data-max="3" data-min="1">
+				<div class="values">
+					<div ng-repeat="m in subjects" title="{{m.Description}}"><input ng-checked="artwork._Subjects.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Subjects" />{{m.Subject}}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="field">
+			<label for="Materials">Material(s)</label>
+			<div widget="multi-select" class="materials" data-name="Materials" data-min="1" data-max="5">
+				<div class="values">
+					<div ng-repeat="m in materials" title="{{m.Description}}"><input ng-checked="artwork._Materials.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Materials" />{{m.Name}}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!--<div class="field">-->
+			<!--<label for="PricebandID">Suggested Price</label>-->
+			<!--<select name="PricebandID" required>-->
+				<!--<option></option>-->
+				<!--<option ng-repeat="band in pricebands" ng-selected="artwork.PricebandID === band.ID" value="{{band.ID}}">{{band.Band}}</option>-->
+			<!--</select>-->
+		<!--</div>-->
+
+
+		<div class="field" title="Allow this image to be shared on social media by ActivCanvas users">
+			<label for="Shareable">Shareable</label>
+			<input id="Shareable" name="Shareable" ng-checked="artwork.Shareable" ng-model="artwork.Shareable" type="checkbox" />
+		</div>
+
+
+		<div class="field" title="Specify a custom web page to direct user to when this image is shared on social media by ActivCanvas users" ng-show="artwork.Shareable">
+			<label for="CustomShareURL">Custom Share URL</label>
+			<input id="CustomShareURL" name="CustomShareURL" value="{{artwork.CustomShareURL}}" type="url" />
+		</div>
+
+		<!--<div class="field">
+			<label for="Featured">Featured</label>
+			<input name="Featured" ng-checked="artwork.Featured" type="checkbox" />
+		</div>-->
+
+		<div class="field">
+			<label for="LimitedEdition">Limited Edition</label>
+			<input id="LimitedEdition" name="LimitedEdition" ng-checked="artwork.LimitedEdition" type="checkbox" />
+		</div>
+
+		<div class="field">
+			<label for="LimitedEditionDetails">Edition Details</label>
+			<input id="LimitedEditionDetails" name="LimitedEditionDetails" value="{{artwork.LimitedEditionDetails}}" placeholder="e.g. 2/40" max="45" type="text" />
+		</div>
+
+
+		<!--<div class="field">
+			<label for="AddtionalImageURI">Additional Images</label>
+			<div class="images">
+				<div ng-repeat="image in additonalImages">
+					<img style="max-width:240px;" src="{{image.PreviewURI}}" />
+					<input type="text" name="AddtionalImageURI" value="{{image.ImageURI}}" required style="display:none;" />
+					<input type="hidden" name="AddtionalImageFilename" required />
+				</div>
+
+				<div id="imageupload2"></div>
+			</div>
+		</div>-->
+
+	</form>
+
+
+
+
+</div>

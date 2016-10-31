@@ -1,0 +1,144 @@
+﻿
+<div class="view-body">
+
+	<header class="main">
+		<h1 ng-if="profile.Artist"><a ng-href="/artist-search">Artist Search</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{profile.Name}}</h1>
+		<h1 ng-if="profile.Gallery">{{profile.Name}}<span class="divide"> | Gallery</span></h1>
+		<h1 ng-if="profile.Consumer">{{profile.Name}}<span class="divide">| Consumer</span></h1>
+
+		<div class="button-group" ng-if="profile.IsOwn === false">
+			<!--<a class="button orange" ng-if="!profile.Following" ng-click="follow()"><i class="fa fa-heart"></i><span>Follow</span></a>
+			<a class="button orange" ng-if="profile.Following" ng-click="unfollow()"><i class="fa fa-heart"></i><span>Unfollow</span></a>-->
+			<!--<a class="button orange" ng-if="!profile.Connected" ng-click="connect()"><i class="fa fa-link fa-flip-horizontal"></i><span>Connect</span></a>-->
+			<!--<a class="button orange" ng-if="profile.Connected" ng-click="sendMessage()"><i class="fa fa-envelope"></i><span>Message</span></a>-->
+		</div>
+	</header>
+
+	<ui-message config="error"></ui-message>
+
+	<div class="profile">
+		<div ng-if="profile" class="profile-image" ng-style="profileImageStyle"></div>
+		<div class="inner-wrap">
+			<profile-info class="profile-info"></profile-info>
+			<profile-view-awards profile="profile"></profile-view-awards>
+		</div>
+		<social-profile-links profile="profile"></social-profile-links>
+	</div>
+
+
+	<!--<h3 ng-if="profile.Artist">Artist Info</h3>-->
+	<!--<h3 ng-if="profile.Gallery">Gallery Info</h3>-->
+
+
+	<!--<div class="directives" ng-show="!profile.Consumer"></div>-->
+
+
+
+	<div class="tabs" ng-if="profile.Artist" ng-show="tabs">
+
+		<ul>
+			<li>Work by this artist</li>
+			<li>About this artist</li>
+		</ul>
+
+		<div>
+			<profile-artwork profile="profile"></profile-artwork>
+		</div>
+
+		<div>
+			<profile-view-bio profile="profile"></profile-view-bio>
+		</div>
+
+	</div>
+
+
+
+</div>
+
+<!--</div>-->
+
+
+<style>
+	/*.view-body header.sub {*/
+		/*border-bottom: 1px solid #ddd;*/
+		/*margin-bottom: 20px;*/
+		/*margin-top: 20px;*/
+	/*}*/
+
+	.tabs {
+		margin-top: 25px;
+	}
+	.tabs .tab-panel {
+		background: none;
+		border: 0;
+		margin-top: 15px;
+		padding: 0;
+	}
+	.tabs .tab-nav {
+		border-bottom: 1px solid #ddd;
+	}
+
+	.tabs .tab-nav-item.selected {
+		background: #394a5c;
+		border-color: #394a5c;
+		color: #fff;
+	}
+
+	.bio-text {
+		max-width: 800px;
+	}
+
+	.profile > .profile-image {
+		margin-top: 0;
+		min-width: 170px;
+	}
+	
+	.profile .inner-wrap {
+		display: flex;
+	}
+
+	.award-info {
+		max-width: 350px;
+	}
+
+	.award-info .award, 
+	.award-info .qualification {
+		display: flex;
+		padding: 3px 5px;
+	}
+	.award-info.empty,
+	.award-info .datalist tr.empty,
+	.award-info .datalist tr > td:first-child {
+		display: none;
+	}
+
+
+
+
+	/** TABLET LANDSCAPE **/
+	@media (max-width: 1160px) {
+		.profile .inner-wrap {
+			flex-flow: wrap;
+		}
+		.profile .profile-info {
+			margin-bottom: 15px;
+		}
+		.award-info {
+			max-width: none;
+		}
+	}
+
+
+
+	@media (max-width: 480px) {
+		.profile {
+			flex-flow: row wrap;
+		}
+		.profile .profile-info {
+			width: 100%;
+			margin-top: 15px;
+		}
+
+	}
+
+</style>

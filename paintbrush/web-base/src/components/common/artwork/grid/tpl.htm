@@ -1,0 +1,55 @@
+﻿<div class="grid streched col-{{artworkGrid.columns.length}}">
+
+	<div ng-repeat="col in artworkGrid.columns" class="column column-{{col}}">
+
+		<div class="artwork-panel" ng-repeat="artwork in artworkGrid.artworks" ng-if="($index % artworkGrid.columns.length) === col" data-image-height="{{artwork.ImageHeightRendered}}">
+			<div class="image" ng-mouseup="artworkGrid.event.mouseup($event, artwork, 'image')" ng-click="artworkGrid.event.click($event, artwork, 'image')"><img style="min-height:{{artwork.ImageHeightRendered}}px" ng-src="{{artwork._ImageURI}}" /></div>
+			<div class="artist" ng-if="artworkGrid.artistDetails">
+				<div class="profile-image" style="{{artwork.ProfileImageStyle}}"></div>
+				<div class="profile-details {{artwork.ActivCanvasEnabled ? 'narrow' : ''}}">
+					<div class="artist-name">{{artwork.ArtistName}}</div>
+					<div class="artwork-name">{{artwork.TypesStr || artwork.Name || ''}}</div>
+				</div>
+				<img ng-if="artwork.ActivCanvasEnabled || (artwork.TrackingRating && artwork.TrackingRating !== null)" title="This artwork is ActivCanvas enabled{{ artwork.TrackingRating === null ? ' (Currently Processing...)' : '' }}" ng-src="/img/activcanvas-40{{  artwork.TrackingRating === null ? '-g' : '' }}.png" class="activ-canvas" />
+			</div>
+			<div class="stats" ng-if="artworkGrid.artworkStats">
+				<div title="This artwork has been shortlisted {{artwork.Shortlisted}} times"><span>{{artwork.Shortlisted}}</span><i class="fa fa-bookmark"></i></div>
+				<div title="This artwork has been viewed {{artwork.Views}} times"><span>{{artwork.Views}}</span><i class="fa fa-eye"></i></div>
+				<div title="This artwork has been like by {{artwork.Likes}} people"><span>{{artwork.Likes}}</span><i class="fa fa-heart"></i></div>
+			</div>
+			<div class="stats" ng-if="artworkGrid.artistStats">
+				<div title="This artist has {{artwork.TotalArtworks}} artworks, {{artwork.Artworks}} match your current search filters"><span>{{artwork.TotalArtworks}}</span><i class="fa fa-image"></i></div>
+				<div title="This artist has been viewed {{artwork.Views}} times"><span>{{artwork.Views}}</span><i class="fa fa-eye"></i></div>
+				<div title="This artist has been like by {{artwork.Likes}} people"><span>{{artwork.Likes}}</span><i class="fa fa-heart"></i></div>
+			</div>
+			<div class="colour-match" ng-if="artworkGrid.colours">
+				<div class="uppercase">Colour Match</div>
+				<div class="colours"><div class="colour" ng-click="artworkGrid.event.click($event, artwork, 'colour', colour)" ng-repeat="colour in artwork.Colours" style="background:rgb({{colour.R}}, {{colour.G}}, {{colour.B}})"></div></div>
+			</div>
+			<div class="tracking" ng-if="artworkGrid.trackingRating">
+				<div class="uppercase">ActivCanvas Rating</div>
+				<div class="rating"><i class="fa fa-star{{i <= artwork.TrackingRating ? '' : '-o'}}" ng-repeat="i in [1,2,3,4,5]"></i></div>
+			</div>
+			<div class="controls" ng-if="artworkGrid.controls">
+				<a title="{{artworkGrid.controls.edit.title}}" ng-if="artworkGrid.controls.edit" ng-click="artworkGrid.controls.edit.action(artwork.ID)"><i class="fa fa-pencil"></i></a>
+				<a title="{{artworkGrid.controls.remove.title}}" ng-if="artworkGrid.controls.remove" ng-click="artworkGrid.controls.remove.action(artwork.ID)"><i class="fa fa-times"></i></a>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<div ng-if="artworkGrid.endOfResults && artworkGrid.currentPage > 2 && artworkGrid.artworks.length > 0" style="text-align:center;display:block;padding: 25px 0;">
+	<div class="message warn" style="display:inline-block;cursor: pointer;" ng-click="artworkGrid.scrollToTop()">
+		<span>{{artworkGrid.artworks.length}} Results - Back to Top</span><a style="font-size:1.5em;line-height: 0.5em;margin-left:10px;"><i class="fa fa-arrow-up"></i></a>
+	</div>
+</div>
+
+
+<ui-message ng-if="artworkGrid.endOfResults && artworkGrid.artworks.length === 0 && !artworkGrid.pendingRequest" config="artworkGrid.message.noResults"></ui-message>
+
+<div ng-if="!artworkGrid.endOfResults && artworkGrid.artworks.length === 0 && artworkGrid.pendingRequest" class="ajax-loader"></div>
+
+<div ng-if="artworkGrid.errorMessage" class="message error">{{artworkGrid.errorMessage}}</div>

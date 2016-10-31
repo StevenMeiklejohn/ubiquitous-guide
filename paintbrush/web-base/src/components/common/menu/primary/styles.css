@@ -1,0 +1,47 @@
+nav.primary .profile-image {
+	height: 30px;
+	margin: 0 10px 0 0;
+	width: 30px;
+	min-width: 30px;
+}
+nav.primary .profile-link {
+	/*background: rgba(255, 255, 255, 0.075);*/
+	background: #465159;
+	/*background: #d1ac00;*/
+	display:flex;
+	position: relative;
+	padding: 5px 10px 5px 3px;
+}
+nav.primary .profile-link .profile-name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-top: 5px;
+}
+nav.primary .active-profile .profile-link {
+	background: #d1ac00;
+	border-top-color: #d1ac00;
+}
+nav.primary .gallery .profile-link {
+	background: #45ad35;
+	border-top-color: #45ad35;
+}
+nav.primary .admin .profile-link {
+	background: #d14021;
+	border-top-color: #d14021;
+}
+
+
+
+
+nav.primary .active-profile .profile-link::after {
+	background: #fff;
+	content: " ";
+	display: inline-block;
+	height: 12px;
+	position: absolute;
+	right: -6px;
+	top: calc(50% - 7px);
+	transform: rotate(45deg);
+	width: 12px;
+}

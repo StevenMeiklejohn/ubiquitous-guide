@@ -1,0 +1,35 @@
+<h2><u>Staffed Shifts</u></h2>
+
+<ul>
+<% @shifts.each do |shift| %> 
+  <li>
+    <a class="non-available-link" href="/shifts/<%= shift.id %>"><%= shift.id %></a>
+    <p style="color:green;"><u>Employee:</u></p>
+    <%=shift.employee.name %>
+    <p style="color:green;"><u>Client:</u></p>
+    <%=shift.client.name %>
+    <p style="color:green;"><u>Shift Date:</u></p>
+    <%=shift.shift_date %>
+    <p style="color:green;"><u>Shift Time:</u></p>
+    <%=shift.shift_time%>
+    <p style="color:green;"><u>Status:</u></p>
+    <%=shift.shift_status%>
+  </li>
+<% end %>
+</ul>
+<img src="http://www.birminghamcarershub.org.uk/content/uploads/2015/04/carer-holding-new.jpg">
+
+<h2><u>Available Shifts</u></h2>
+<p>Please click on the shift ID number to volunteer</p>
+
+<ul>
+<% Shift.available.each do |shift| %> 
+  <li><div class="shift_index">
+    <a class="available-link" href ="/shifts/<%= shift.id %>"><%= shift.id %></a>
+    <p style="color:black;"><u>Client:</u></p><%=shift.client.name %>
+    <p><u>Shift Date:</u></p><%=shift.shift_date%>
+    <p><u>Shift Time:</u></p><%=shift.shift_time%>
+    <p><u>Status:</u></p><%=shift.shift_status%>
+  </div></li>
+<% end %>
+</ul>

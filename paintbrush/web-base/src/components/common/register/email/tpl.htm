@@ -1,0 +1,77 @@
+﻿<h2>{{step+1}}. Your Email</h2>
+
+<div class="grid">
+
+	<div>
+		<form class="email">
+			<div class="field inline">
+				<label for="Email">Please enter the email you would like to use for your ActivCanvas account</label>
+				<input name="Email" id="Email" type="email" ng-model="email" required />
+			</div>
+
+			<affiliate-code-checker></affiliate-code-checker>
+
+			<div class="buttons">
+				<a ng-show="!pendingRequest && email" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+				<div ng-show="pendingRequest" class="ajax-loader"></div>
+			</div>
+		</form>
+	</div>
+
+	<div ng-if="registrationProfile.id">
+		<div class="message">
+			<span>Currently there is no Art Retail Network account linked your <span style="text-transform: capitalize;">{{registrationProfile.provider}}</span> account.</span><br/><br/>
+			<span>It is possible quickly register a new account using information pulled from your <span style="text-transform: capitalize;">{{registrationProfile.provider}}</span> account, most required fields will already be populated.</span>
+		</div>
+	</div>
+
+</div>
+
+<style>
+
+	form .field input[name=Email] {
+		min-width: 244px;
+	}
+
+	.field.affiliate {
+		max-width: 240px;
+	}
+
+	.grid > div:last-child {
+		margin-left: 20px;
+		padding-left: 20px;
+		border-left: 1px solid #ddd;
+	}
+	.grid > div:first-child {
+		margin-left: 0;
+		padding-left: 0;
+		border-left: none;
+	}
+
+	.grid > div:last-child .message {
+		max-width: 350px;
+	}
+
+	/** TABLET **/
+	@media (max-width: 755px) {
+		.grid {
+			flex-direction: column;
+		}
+		.grid > div {
+			order: 2;
+		}
+		.grid > div:last-child,
+		.grid > div:first-child {
+			order: 1;
+			margin-left: 0;
+			padding-left: 0;
+			border-left: none;
+		}
+		.grid > div:last-child .message {
+			max-width: 242px;
+		}
+	}
+
+
+
+</style>

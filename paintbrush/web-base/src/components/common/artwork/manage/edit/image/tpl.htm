@@ -1,0 +1,58 @@
+﻿<div class="general-info">
+
+	<div class="ajax-loader" ng-if="!ready"></div>
+
+	<form ng-show="ready">
+
+		<ui-message config="error"></ui-message>
+
+		<ui-message class="static top" config="imageInstructions"></ui-message>
+
+		<div class="field">
+			<label for="ImageURI">Image</label>
+			<div>
+				<div class="image-preview"><img style="max-width:500px;" ng-src="{{previewImageURI}}" /></div>
+				<div class="image-colours">
+					<div class="colour" ng-repeat="colour in previewImageColours" style="background:rgb({{colour.join(',')}})"></div>
+				</div>
+				<s3-upload class="image-upload" config="artworkUploadConfig"></s3-upload>
+			</div>
+			<input type="text" name="ImageURI" value="{{artwork.ImageURI}}" required maxlength="256" style="display:none;" />
+			<input type="hidden" name="Filename" required />
+			<input type="hidden" name="ImageColours" required value="{{artwork.ImageColours}}" />
+		</div>
+
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			<a class="green button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+		</div>
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+
+	</form>
+
+
+	<style>
+
+
+
+		.field .image-upload,
+		.field.tags .button-wrap {
+			text-align: right;
+		}
+		.field .image-upload {
+			margin-top: 5px;
+		}
+
+		.message {
+			max-width: 590px;
+		}
+
+
+
+	</style>
+
+</div>

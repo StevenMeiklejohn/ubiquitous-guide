@@ -1,0 +1,115 @@
+---
+  #
+  # Playbook based on: https://serversforhackers.com/an-ansible-tutorial
+  #
+  # Best Practices are here: http://docs.ansible.com/ansible/playbooks_best_practices.html
+  #
+  - name: Ensure Ubuntu Distro is Supported
+    get_url:
+      url='https://deb.nodesource.com/node/dists/{{ ansible_distribution_release }}/Release'
+      dest=/dev/null
+    register: distrosupported
+
+  - name: Add Nodesource Keys
+    apt_key:
+      url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state=present
+    sudo: true
+
+  - name: Add Nodesource Apt Sources List Deb
+    apt_repository:
+      repo='deb https://deb.nodesource.com/node {{ ansible_distribution_release }} main'
+      state=present
+    when: distrosupported|success
+    sudo: true
+
+  - name: Add Nodesource Apt Sources List Deb Src
+    apt_repository:
+      repo='deb-src https://deb.nodesource.com/node {{ ansible_distribution_release }} main'
+      state=present
+    when: distrosupported|success
+    sudo: true
+
+  - name: Install ImageMagick
+    apt: pkg=imagemagick state=latest update_cache=true
+    sudo: true
+
+  - name: Install Git
+    apt: pkg=git state=latest update_cache=true
+    when: distrosupported|success
+    sudo: true
+
+  - name: Install G++
+    apt: pkg=g++ state=latest update_cache=true
+    when: distrosupported|success
+    sudo: true
+
+  - name: Install NodeJS
+    apt: pkg=nodejs state=latest update_cache=true
+    when: distrosupported|success
+    sudo: true
+
+  - name: express-generator
+    npm: name=express-generator global=yes state=present
+    sudo: true
+
+  - name: express
+    npm: path=/home/{{ ansible_ssh_user }}/paintbrush/web name=express state=present
+
+  - name: coffee-script
+    npm: name=coffee-script global=yes state=present
+    sudo: true
+
+  - name: bower
+    npm: name=bower global=yes state=present
+    sudo: true
+
+  - name: node-gyp
+    npm: name=node-gyp global=yes state=present
+    sudo: true
+
+  - name: aglio
+    npm: name=aglio global=yes state=present
+    sudo: true
+
+  - name: knex
+    npm: name=knex global=yes state=present
+    sudo: true
+
+  - name: node-inspector
+    npm: name=node-inspector global=yes state=present
+    sudo: true
+
+  - name: mocha
+    npm: name=mocha global=yes state=present
+    sudo: true
+
+  - name: pm2
+    npm: name=pm2 global=yes state=present
+    sudo: true
+
+  - name: gulp
+    npm: name=gulp global=yes state=present
+    sudo: true
+
+  - name: maxmind-geolite-mirror
+    npm: name=maxmind-geolite-mirror global=yes state=present
+    sudo: true
+    environment:
+      MAXMIND_DB_DIR: "/home/{{ app_user }}/paintbrush/api/geo-db/"
+
+  - name: Run npm installer to load package.json dependencies
+    npm: path=/home/{{ app_user }}/paintbrush state=latest
+    remote_user: "{{ app_user }}"
+
+  - name: Run gulp clean
+    command: gulp clean
+    remote_user: "{{ app_user }}"
+    args:
+      chdir:  /home/{{ app_user }}/paintbrush
+
+  - name: Run gulp web-arn-build
+    command: gulp web-arn-build
+    remote_user: "{{ app_user }}"
+    args:
+      chdir:  /home/{{ app_user }}/paintbrush

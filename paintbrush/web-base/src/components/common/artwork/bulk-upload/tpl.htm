@@ -1,0 +1,50 @@
+﻿
+<div class="artwork-bulk-edit">
+
+	<form>
+
+		<s3-bulk-upload config="uploadConfig"></s3-bulk-upload>
+
+		<!--<div class="buttons right padded" ng-show="!pendingRequest">-->
+			<!--<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>-->
+			<!--<a class="submit button" ng-click="save()" style="margin-left: 10px;"><i class="fa fa-save"></i> Save</a>-->
+		<!--</div>-->
+
+		<!--<div class="ajax-loader" ng-show="pendingRequest"></div>-->
+
+	</form>
+
+
+	<style>
+		.artwork-bulk-edit .buttons.top {
+			margin-bottom: 5px;
+		}
+		.artwork-bulk-edit .files > .file {
+			border: 1px solid #ddd;
+			border-bottom: none;
+			min-height: 41px;
+			padding: 10px;
+		}
+		.artwork-bulk-edit .files > .file:last-child {
+			border-bottom: 1px solid #ddd;
+			margin-bottom: 10px;
+		}
+		.artwork-bulk-edit .files > .file .col-image {
+			line-height: 0;
+			min-width: 250px;
+		}
+		.artwork-bulk-edit .files > .file .col-controls {
+			padding-left: 17px;
+		}
+		.artwork-bulk-edit .files > .file .col-controls > a {
+			cursor: pointer;
+		}
+		.artwork-bulk-edit form {
+			min-width: 680px;
+		}
+		.artwork-bulk-edit form .message.inline {
+			right: -325px !important;
+		}
+	</style>
+
+</div>

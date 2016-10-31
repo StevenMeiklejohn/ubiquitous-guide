@@ -1,0 +1,25 @@
+﻿
+<div ng-show="!ready" class="ajax-loader"></div>
+<form ng-show="ready">
+
+	<div class="field">
+		<label for="Name">Name</label>
+		<input type="text" name="Name" value="{{shortlist.Name}}" required autofocus maxlength="90" />
+	</div>
+
+	<div class="field">
+		<label for="Description">Description</label>
+		<textarea name="Description">{{shortlist.Description}}</textarea>
+	</div>
+
+	<div class="field">
+		<label for="Target">Target Items</label>
+		<input type="number" name="Target" value="{{shortlist.Target || 10}}" required min="1" />
+	</div>
+
+	<div class="buttons">
+		<a class="cancel button" ng-click="dialog.tidy()"><i class="fa fa-reply"></i> Cancel</a>
+		<a class="submit button" ng-click="save();"><i class="fa fa-save"></i> Save</a>
+	</div>
+
+</form>

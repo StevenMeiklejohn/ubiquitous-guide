@@ -1,0 +1,35 @@
+﻿<div class="contact-info">
+
+	<form>
+
+		<ui-message config="error"></ui-message>
+
+		<div class="field">
+			<label for="Name">Name</label>
+			<input type="text" name="Name" value="{{profile.Name}}" required autofocus />
+		</div>
+
+
+		<div class="field">
+			<label for="ImageURI">Profile Image</label>
+			<div>
+				<div ng-if="previewImageURI" class="profile-image" style="background-image: url({{previewImageURI}})"></div>
+				<s3-upload config="imageUploadConfig"></s3-upload>
+			</div>
+			<input type="text" name="ImageURI" value="{{profile.ImageURI}}" required style="display:none;" />
+			<input type="hidden" name="Filename" required />
+		</div>
+
+
+		<div class="buttons right padded" ng-show="!pendingRequest">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+			<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+		</div>
+		<div class="buttons right padded" ng-show="pendingRequest">
+			<div class="ajax-loader"></div>
+		</div>
+
+
+	</form>
+
+</div>

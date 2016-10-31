@@ -1,0 +1,66 @@
+﻿<h2>2. Sign-In Method</h2>
+
+<div ng-show="skippingStep" class="ajax-loader"></div>
+
+<div ng-show="!skippingStep" class="grid">
+
+	<form class="password">
+
+		<div class="message">Please set your password</div>
+
+		<div class="field inline">
+			<label for="Password">Password</label>
+			<input type="password" name="Password" ng-model="_password" required />
+		</div>
+
+		<div class="field inline">
+			<label for="ConfirmPassword">Confirm Password</label>
+			<input type="password" name="ConfirmPassword" ng-model="_passwordConfirm" required />
+		</div>
+
+		<div class="buttons">
+			<a ng-show="!pendingRequest && _password && _passwordConfirm" class="button blue icon-right" ng-click="next()"><span class="text">Next</span><i class="fa fa-arrow-right"></i></a>
+			<div ng-show="pendingRequest" class="ajax-loader"></div>
+		</div>
+	</form>
+
+	<div>
+		<div class="message">Alternatively use one of your social network accounts to log in</div>
+
+		<a ng-click="go('/api/auth/facebook')" title="Link my Facebook account"><img ng-src="/img/auth/facebook-128.png" /></a>
+
+		<a ng-click="go('/api/auth/google')" title="Link my Google account"><img ng-src="/img/auth/google-128.png" /></a>
+
+	</div>
+
+</div>
+
+<style>
+	.grid > div {
+		margin-left: 20px;
+		padding-left: 20px;
+		border-left: 1px solid #ddd;
+	}
+	.grid > div > a {
+		margin-top: 10px;
+		margin-right: 10px;
+		display: inline-block;
+		cursor: pointer;
+	}
+	.grid > div > a img {
+		max-width: 96px;
+	}
+
+
+	/** TABLET **/
+	@media (max-width: 755px) {
+		.grid {
+			flex-direction: column;
+		}
+		.grid > div {
+			margin-left: 0;
+		}
+	}
+
+
+</style>

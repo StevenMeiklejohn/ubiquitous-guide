@@ -1,0 +1,136 @@
+Java Array Lists.
+==================
+
+Add this to top of java file to access Array lists (adds methods etc)
+import java.util.*
+Always tell an array list what type it will contain.
+
+// private Salmon[] belly;
+private ArrayList<Salmon> belly;
+
+// this.belly = new Salmon[5];
+this.belly = new ArrayList<Salmon>();
+
+
+#Array list can return thr length of an array.
+public int foodCount(){
+  // int count = 0;
+  // for(Salmon salmon : belly){
+  //   if(salmon != null){
+  //     count++;
+  //   }
+  // }
+  // return count;
+    return belly.size();
+}
+
+#Array list can add an item (dynamic length)
+public void eat(Salmon salmon){
+  // if(bellyFull()) return;
+  // belly[foodCounter] = salmon;
+  // foodCounter++;
+  belly.add(salmon);
+}
+
+#Array list can clear an array
+public void sleep(){
+  // for(int i = 0; i < belly.length; i++){
+  //   belly[i] = null;
+  // }
+  // foodCounter = 0;
+  belly.clear;
+}
+
+
+
+
+
+
+
+Overloading a method/Polymorphism.
+=================================
+Imagine we wanted to change the scenario so that the bear could eat a human as well as salmon. We would need to create a 'human' class.
+How then could we make our bear add humans as well as salmon to the belly?
+We need to use 'method overloading' i.e. use the same function but pass it a different type of arguement.
+=> we could create two bellys. One for humans, one for salmon, then change all the functions and tests to accomodate this;
+
+private ArrayList<Salmon> bellySalmon;
+private ArrayList<Human> bellyHuman;
+
+this.bellySalmon = new ArrayList<Salmon>();
+this.bellyHuman = new ArrayList<Human>();
+
+public int foodCount(){
+  return bellySalmon.size() + bellyHuman.size();
+}
+
+The more clean dynamic method of doing this is to use polymorphism.
+in this example, we would create an interface called 'edible'.
+
+#create Edible.java.
+public interface Edible {
+}
+
+#update class files
+=>
+public class Salmon implements Edible{
+  public String swim(){
+    return "swimming";
+  }
+}
+=>
+public class Human implements Edible {
+  public String speak() {
+    return "speaking";
+  }
+}
+
+=> Salmon is both, salmon AND Edible
+=> Human is both, human AND edible.
+
+so, in bear.java=>
+private ArrayList<Edible> belly;
+
+this.belly = new ArrayList<Edible>();
+
+public void eat(Edible food) {
+  belly.add(food);
+}
+
+
+Functions and Interfaces
+=========================
+
+Method is only declared in the interface. It is defined in the Edible item class.
+
+
+Casting
+========
+Safe Casting;
+@Test
+public void canThrowUp() {
+  bear.eat(salmon);
+  Edible food = bear.throwUp();
+  // assertNotNull(food);
+
+  // Casting. Function returns an Edible. To specify that the returned edible is a salmon, we type;
+  Salmon original = (Salmon)food;
+  assertEquals("swimming", original.swim());
+}
+
+
+
+
+Integration Separation Principle.
+=================================
+
+No client should be forced to depend on methods it does not use.
+
+
+
+
+
+
+
+
+

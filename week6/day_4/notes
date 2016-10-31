@@ -1,0 +1,23 @@
+Callbacks are functions passed in to other functions.
+In js, they are known are 'first class objects' as they can be passed around.
+
+
+A higher order function is a function which takes or returns a function.
+A first class object is a function which can be treated like an object (string, array etc)
+Functions can be passed as arguements.
+===============================================
+
+Async = Non-blocking language
+Sync = Blocking languauge
+
+Asynv basically means that is step 2 in a programme take a while to run, step 3 can be running in the meantime.
+E.g. A coffee shop. A sync of blocking coffee shop, would take a customers order then make the order before taking another.
+An Async shop would take an order then hand it off to a barista and take another order,
+
+* see js_async.js
+
+==================================================
+In Ruby, when we want to (for example), loop through an array, we use a block. In js we use anonymous functions.
+
+
+

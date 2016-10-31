@@ -1,0 +1,3 @@
+remote_user: ubuntu
+app_user: arn
+git_branch: master

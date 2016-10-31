@@ -1,0 +1,36 @@
+﻿<div class="award-info" class="{{profile.Artist.Awards.length || profile.Artist.Qualifications.length ? '' : 'empty'}}">
+
+	<table class="datalist vertical">
+		<tr class="{{profile.Artist.Awards.length ? '' : 'empty'}}">
+			<td>Awards</td>
+			<td ng-if="!profile.Artist.Awards.length">You have not added any awards</td>
+			<td>
+				<div ng-repeat="award in profile.Artist.Awards" class="award"><i class="fa fa-lg fa-fw fa-trophy"></i><span>{{award}}</span></div>
+			</td>
+		</tr>
+		<tr class="{{profile.Artist.Qualifications.length ? '' : 'empty'}}">
+			<td>Qualifications</td>
+			<td ng-if="!profile.Artist.Qualifications.length">You have not added any qualifications</td>
+			<td>
+				<div ng-repeat="qualification in profile.Artist.Qualifications" class="qualification"><i class="fa fa-lg fa-fw fa-mortar-board"></i><span>{{qualification}}</span></div>
+			</td>
+		</tr>
+
+	</table>
+
+
+	<style>
+
+		.award-info td i {
+			margin-right: 15px;
+		}
+		.award-info .award,
+		.award-info .qualification {
+			padding: 0 0 10px 0;
+		}
+		.award-info .award i {
+			color: #f1c13d;
+		}
+	</style>
+
+</div>

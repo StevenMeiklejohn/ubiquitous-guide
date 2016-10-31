@@ -1,0 +1,30 @@
+﻿<header class="main">
+	<h1 ng-if="activeProfile.ID !== artwork.ArtistProfileID"><a ng-href="/artist-search">Artist Search</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/profile/{{artwork.ArtistProfileID}}">{{artwork.ArtistName}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{artwork.Name}}</h1>
+	<h1 ng-if="activeProfile.ID === artwork.ArtistProfileID"><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span><a ng-href="/artwork">Artwork</a><span class="divide"><i class="fa fa-chevron-right"></i></span>{{artwork.Name}}</h1>
+	<div class="button-group" ng-show="artwork && !error">
+		<!--<a ng-show="permission.shortlist"  class="button orange" ng-click="shortlist()"><i class="fa fa-bookmark"></i><span>Shortlist</span></a>-->
+
+		<span ng-show="permission.shortlist && shortlists.length" class="button orange drawer">
+			<span class="button-text"><i class="fa fa-bookmark" title="Shortlist this artwork"></i><span>Shortlist</span></span>
+			<span class="items">
+				<a ng-repeat="shortlist in shortlists" ng-click="shortlistArtwork(shortlist.ID)" title="{{shortlist.Description}}">
+					<span class="name">{{shortlist.Name}}</span>
+					<span class="target">({{shortlist.Items}} / {{shortlist.Target}})</span>
+					<span class="status">
+						<i class="fa fa-plus" title="Add to shortlist" ng-show="artwork.Shortlists.indexOf(shortlist.ID) < 0"></i>
+						<i class="fa fa-minus" title="Remove from shortlist" ng-show="artwork.Shortlists.indexOf(shortlist.ID) > -1"></i>
+					</span>
+				</a>
+			</span>
+		</span>
+
+
+		<a ng-show="permission.like"  class="button blue" ng-click="toggleLike()"><i class="fa fa-heart"></i><span>{{artwork.Liked ? 'Unl' : 'L'}}ike</span></a>
+		<a ng-show="permission.delete" class="button orange" ng-click="delete()"><i class="fa fa-trash"></i><span>Delete</span></a>
+		<a ng-show="permission.update" class="button blue" ng-click="edit()"><i class="fa fa-pencil"></i><span>Edit</span></a>
+	</div>
+</header>
+
+<ui-message config="error"></ui-message>
+
+<artwork-details artwork="artwork"></artwork-details>

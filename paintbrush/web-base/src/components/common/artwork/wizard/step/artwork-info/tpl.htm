@@ -1,0 +1,32 @@
+﻿<div class="step image">
+
+	<ui-message class="static" config="instructions"></ui-message>
+
+	<div class="files">
+
+		<div class="file" ng-repeat="artwork in config.artworks">
+
+			<div ng-if="!forms[artwork.ID]" class="ajax-loader"></div>
+			<div ng-if="forms[artwork.ID]" class="grid">
+				<div class="col-image">
+					<img ng-src="{{artwork.PreviewImageURI}}" />
+				</div>
+				<div class="col-fields">
+					<ui-message config="forms[artwork.ID].error"></ui-message>
+					<ui-form config="forms[artwork.ID]"></ui-form>
+				</div>
+				<div class="col-controls">
+					<div class="status">
+						<i ng-if="forms[artwork.ID].status===1" class="fa fa-fw fa-lg fa-exclamation-triangle gold" title="There are currently validation errors/incomplete fields within this form, please correct the issues to save this artwork"></i>
+						<div ng-if="forms[artwork.ID].status===2" class="ajax-loader" title="This artwork is currently being saved."></div>
+						<i ng-if="forms[artwork.ID].status===3" class="fa fa-fw fa-lg fa-check green" title="This artwork has been successfully saved."></i>
+						<i ng-if="forms[artwork.ID].status===4" class="fa fa-fw fa-lg fa-times red" title="An error occurred while saving this data."></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

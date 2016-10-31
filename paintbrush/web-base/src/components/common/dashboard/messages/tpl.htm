@@ -1,0 +1,21 @@
+﻿<div class="dashboard-messages" ng-show="messages.length">
+
+	<h3>Messages</h3>
+
+	<!--<div class="message" ng-show="!error && messages.length === 0">You have 0 unread notifications.</div>-->
+
+	<div ng-show="!error" class="messages">
+
+		<div class="message {{message.Tasks ? 'has-chart' : ''}}" ng-repeat="message in messages" ng-if="$index < 2">
+			<div class="inner">
+				<h4>{{message.Subject}}</h4>
+				<div class="body" ng-bind-html="message.Body"></div>
+				<a ng-show="!message.Sticky" ng-click="markAsRead(message.ID)" title="Mark this message as read" class="hide-link"><i class="fa fa-times fa-lg"></i></a>
+			</div>
+			<div class="chart" ng-show="message.Tasks"></div>
+		</div>
+
+	</div>
+
+	<ui-message config="error"></ui-message>
+</div>

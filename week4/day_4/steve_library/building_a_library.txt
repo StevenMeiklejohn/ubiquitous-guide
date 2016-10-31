@@ -1,0 +1,78 @@
+1. Create directory structure.
+
+steve_library
+->  controllers
+    db
+    models
+    public
+    specs 
+    views
+
+2. Create main.rb.
+
+require Sinatra and the controller.rb files for any models we are going to build.
+
+require( 'sinatra' )
+require( 'sinatra/contrib/all' )
+require_relative('controllers/books_controller')
+require_relative('controllers/members_controller')
+require_relative('controllers/rentals_controller')
+
+
+Also, specify the home page as local_host4567/
+
+get '/' do
+  erb :home
+end
+
+3. Inside views (but not inside and sub directories), create a layout.erb and a home.erb.
+The home .erb contains the html which will make up our /home page.
+For the moment it can be very simple.
+<h1>WELCOME TO STEVES LIBRARY</h1>
+
+The layout erb will define html characteristics across all pages/views.
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeClanLibrary</title> #Defines name in browser tab
+</head>
+<body>
+<nav> #Creates navigation bar
+<a href="/">Home</a>              #links to home
+<a href="/books">Books</a>        #links to /books (which will require a new erb)
+<a href="/members">Members</a>    ±links to /members (which will require a new erb)
+<a href="/rentals">Rentals</a>    links to /rentals (which will require a new erb)
+</nav>
+<%= yield %>    
+</body>
+</html>
+
+4.create a database (steve_library) and an sql file to set up the tables.
+createdb steve_library
+psql -d steve_library -f db/steve_library.sql
+
+also in db, create a seeds.rb for clearing and setting up the database and
+an sql runner (same as always with db name change)
+
+
+
+5. Begin constructing controller.rbs, model.rb and model_spec.rb files.
+Create a new page/interaction in the controller, Any time this interaction calls for a new page, add it to the views/ directory (i.e. views/books/index.rb).
+Create a suitable method in the model, then test the method in the spec file.
+For example:
+
+get '/books' do
+  @books = Book.all
+  erb :'books/index'
+end
+
+user clicks /books.....
+create and test a .all method on model: books.
+create views/ book/index.rb
+
+
+
+
+

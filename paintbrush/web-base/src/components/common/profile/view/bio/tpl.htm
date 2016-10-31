@@ -1,0 +1,47 @@
+﻿<div class="biography">
+
+	<ui-message config="error"></ui-message>
+
+	<div ng-if="biography" class="bio-text">
+		<div class="bio-text-pre" title="{{biography}}">{{biographyShort}}</div>
+	</div>
+
+	<div ng-if="!biography && hasAnswers" class="bio-text">
+		<div class="section" ng-repeat="type in questionTypes">
+			<!--<h4>{{type.Type}}</h4>-->
+			<div class="questions">
+				<div class="question" ng-repeat="question in questions[type.ID]" ng-if="answers[question.ID]">
+
+					<div class="text">{{question.Text}}</div>
+					<div class="answer">{{answers[question.ID]}}</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<style>
+
+
+		.biography > .section .questions {
+			margin-top: 20px;
+			line-height: 1.7em;
+		}
+
+		.question .text {
+			font-weight: bold;
+			background: #eee;
+			padding: 8px 10px;
+		}
+		.question .answer {
+			padding: 15px 10px 25px;
+		}
+
+		.bio-text-pre {
+			white-space: pre-wrap;
+		}
+
+	</style>
+
+</div>

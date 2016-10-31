@@ -1,0 +1,32 @@
+﻿
+
+<div class="contact-form">
+
+	<div ng-show="sent" class="message">Your enquiry has been recieved, we will contact you via email shortly.</div>
+
+	<form ng-show="!sent">
+
+		<!--<div class="field">
+			<label for="Name">Name</label>
+			<input type="text" name="Name" value="{{userProfile.Name}}" maxlength="90" />
+		</div>
+
+		<div class="field">
+			<label for="Email">Contact Email</label>
+			<input type="text" name="Email" value="{{userProfile.Email}}" maxlength="90" />
+		</div>-->
+
+
+		<div class="field">
+			<label for="Enquiry">Enquiry</label>
+			<textarea name="Enquiry" required maxlength="4000"></textarea>
+		</div>
+
+		<div class="buttons">
+			<a class="send button blue" ng-click="send()"><i class="fa fa-envelope fa-fw"></i> Send</a>
+		</div>
+
+	</form>
+
+
+</div>

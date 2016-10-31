@@ -1,0 +1,10 @@
+<img src="http://www.birminghamcarershub.org.uk/content/uploads/2015/04/carer-holding-new.jpg">
+
+<ul>
+<% @employees.each do |employee| %> 
+  <li>
+    <a href="/employees/<%= employee.id %>"><%= employee.name %></a>
+  </li>
+<% end %>
+</ul>
+<img src="http://www.carerssupport.org.uk/library-media/images/Carers-Voice-Word-Cloud-Wid.jpg">

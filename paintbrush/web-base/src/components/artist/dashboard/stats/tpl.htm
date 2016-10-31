@@ -1,0 +1,60 @@
+﻿<div class="dashboard-stats">
+
+	<div class="stats">
+
+		<ui-message config="error.views"></ui-message>
+		<div ng-show="!error.views" class="stat green"  ng-click="config.showActivity('Views')">
+			<a><i class="fa fa-eye"></i></a>
+			<span>{{count.views}}<br /><small>views</small></span>
+		</div>
+
+
+		<ui-message config="error.scans"></ui-message>
+		<div ng-show="!error.scans" class="stat blue" ng-click="config.showActivity('Scans')">
+			<a><i class="fa fa-mobile"></i></a>
+			<span>{{count.scans}}<br /><small>scans</small></span>
+		</div>
+
+
+		<ui-message config="error.likes"></ui-message>
+		<div ng-show="!error.likes"  class="stat red" ng-click="config.showActivity('Likes')">
+			<a><i class="fa fa-heart"></i></a>
+			<span>{{count.likes}}<br /><small>likes</small></span>
+		</div>
+
+
+		<ui-message config="error.total"></ui-message>
+		<div ng-show="!error.total"  class="stat yellow" ng-click="config.showActivity('Artworks')">
+			<a><i class="fa fa-paint-brush"></i></a>
+			<span>{{count.total}}<br /><small>artworks</small></span>
+		</div>
+
+
+		<ui-message config="error.shortlisted"></ui-message>
+		<div ng-show="!error.shortlisted"  class="stat purple" ng-click="config.showActivity('Shortlisted')">
+			<a><i class="fa fa-bookmark"></i></a>
+			<span>{{count.shortlisted}}<br /><small>shortlisted</small></span>
+		</div>
+
+		<!--<div class="stat purple" ng-click="showActivity('Connections')">-->
+		<!--<a><i class=" fa fa-link"></i></a>-->
+		<!--<span>{{connections}}<br /><small>connections</small></span>-->
+		<!--</div>-->
+
+	</div>
+
+
+	<style>
+		.dashboard-stats .stats .message {
+			flex-grow: 1;
+			margin-right: 15px;
+			width: 25%;
+		}
+		.dashboard-stats .stats .message:last-child {
+			margin-right: 0;
+		}
+	</style>
+
+</div>
+
+

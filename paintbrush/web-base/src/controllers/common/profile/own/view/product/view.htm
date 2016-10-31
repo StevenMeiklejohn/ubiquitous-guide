@@ -1,0 +1,14 @@
+﻿<header class="main">
+	<h1>
+		<a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>
+		<a ng-href="/profile">Profile</a><span class="divide"><i class="fa fa-chevron-right"></i></span>
+		Product Templates
+	</h1>
+	<div class="button-group">
+		<a class="button green" ng-href="/profile/product/add" title="Create a new product"><i class="fa fa-plus"></i><span>New</span></a>
+	</div>
+</header>
+
+<ui-message style="margin-bottom: 20px;" config="{message:'This page allows you to configure the default product settings used when adding new artwork'}"></ui-message>
+
+<product-search profile="activeProfile"></product-search>

@@ -1,0 +1,124 @@
+.artwork-details .artwork-image {
+	width:500px;
+	border:1px solid #ddd;
+	max-width:90vw;
+}
+
+.artwork-details .datalist:empty {
+	display: none;
+}
+.artwork-details .ac-content .datalist {
+	margin-bottom: 15px;
+}
+.artwork-details .col-left {
+	min-width: 500px;
+}
+.artwork-details .col-left i,
+.artwork-details .col-left img {
+	cursor: pointer;
+}
+.artwork-details .col-left i {
+	position: absolute;
+	color: rgba(255,255,255,0.25);
+	bottom: 10px;
+	text-shadow: 0 0 5px rgba(0,0,0,0.4);
+	right: 5px;
+	transition: color ease-in-out 0.3s;
+}
+.artwork-details .col-left > div.image-wrap:hover i {
+	color: rgba(255,255,255,0.75);
+}
+
+
+
+.artwork-details .col-left > div {
+	position: relative;
+	line-height: 0;
+}
+.artwork-details .col-left .video-overlay {
+	position: absolute;
+	background: rgba(0,0,0,0.7);
+	opacity: 0;
+	width: 100%;
+	max-width: 500px;
+	height: 100%;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: opacity ease-in-out 0.5s;
+}
+.artwork-details .col-left .video-overlay.visible {
+	opacity: 1;
+}
+
+.artwork-details .col-left .video-overlay video {
+	vertical-align: middle;
+	width: 100%;
+	max-width: 100%;
+}
+
+
+
+.artwork-details .col-right {
+	margin-left: 20px;
+	/*border-left: 1px solid #ddd;*/
+	/*border-right: 1px solid #ddd;*/
+	/*padding-right: 20px;*/
+	border: 1px solid #ddd;
+	/*padding: 10px 20px 20px 20px;*/
+	padding: 0 0 20px;
+}
+
+.artwork-details .col-right > div h2,
+.artwork-details .col-right > div h4,
+.artwork-details .col-right > div > div {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.artwork-details .col-right h2,
+.artwork-details .col-right h4 {
+	background: #eee;
+	padding-top: 10px;
+	margin-top: 0;
+}
+
+.artwork-details .col-right h2 {
+	/*border-bottom: 1px solid #eaeaea;*/
+	border-bottom: 1px solid #ddd;
+	text-transform: capitalize;
+	padding-bottom: 10px;
+}
+.artwork-details .col-right h4 {
+	border-bottom-color: #ddd;
+	border-top: 1px solid #ddd;
+}
+
+.artwork-details table.datalist.vertical tr > td:first-child {
+	width: 95px;
+	padding-right:10px;
+}
+
+.artwork-details .col-right {
+	max-width: 550px;
+	min-width: 350px;
+	flex-grow:1;
+}
+
+
+
+
+/** TABLET LANDSCAPE **/
+@media (max-width: 1100px) {
+	.artwork-details .grid {
+		flex-flow: column nowrap;
+	}
+	.artwork-details .col-right {
+		margin: 20px 0 0 0;
+		max-width: none;
+		min-width: 0;
+		width: 500px;
+		max-width:90vw;
+	}
+}

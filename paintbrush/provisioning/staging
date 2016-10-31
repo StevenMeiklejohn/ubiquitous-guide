@@ -1,0 +1,4 @@
+# Install with: ansible-playbook -i provisioning/staging provisioning/site.yml
+
+[staging]
+arn@staging.artretailnetwork.com

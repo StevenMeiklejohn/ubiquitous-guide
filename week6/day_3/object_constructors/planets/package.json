@@ -1,0 +1,15 @@
+{
+  "name": "SolarSystem",
+  "version": "1.0.0",
+  "description": "",
+  "main": "planet.js",
+  "scripts": {
+    "test": "mocha specs"
+  },
+  "author": "Steven Meiklejohn",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}

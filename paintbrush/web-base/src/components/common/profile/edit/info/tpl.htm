@@ -1,0 +1,302 @@
+﻿<div class="ajax-loader"></div>
+
+<div style="display:none;">
+	<div class="profile-edit">
+
+		<form>
+
+			<div class="tabs">
+
+				<ul>
+					<li>General</li>
+					<li>Contact Details</li>
+					<li ng-if="profile.Artist">Artist Details</li>
+					<li ng-if="profile.Gallery">Gallery Details</li>
+					<li>Social Media</li>
+					<li ng-if="profile.ActivCanvas.StatusID===3">ActivCanvas</li>
+				</ul>
+
+				<div class="general-details">
+
+					<div class="field">
+						<label for="Name">Name</label>
+						<input type="text" name="Name" value="{{profile.Name}}" required autofocus />
+					</div>
+
+
+					<div class="field">
+						<label for="ImageURI">Profile Image</label>
+						<div>
+							<div ng-if="previewImageURI" class="profile-image" style="background-image: url({{previewImageURI}})"></div>
+							<s3-upload config="imageUploadConfig"></s3-upload>
+						</div>
+						<input type="text" name="ImageURI" value="{{profile.ImageURI}}" required style="display:none;" />
+						<input type="hidden" name="Filename" required />
+					</div>
+
+				</div>
+
+				<div class="contact-details">
+
+					<!--<h3>Contact Info</h3>-->
+
+					<div class="field">
+						<label for="Landline">Phone</label>
+						<input type="text" maxlength="255" name="Landline" value="{{profile.Contact.Landline}}" data-group="Contact" />
+					</div>
+					<div class="field">
+						<label for="Mobile">Mobile</label>
+						<input type="text" maxlength="255" name="Mobile" value="{{profile.Contact.Mobile}}" data-group="Contact" />
+					</div>
+					<div class="field">
+						<label for="Website">Website</label>
+						<input type="url" maxlength="255" name="Website" value="{{profile.Contact.Website}}" data-group="Contact" />
+					</div>
+
+					<div class="field">
+						<label for="Address1">Address 1</label>
+						<input type="text" maxlength="255" name="Address1" value="{{profile.Contact.Address1}}" data-group="Contact" required />
+					</div>
+					<div class="field">
+						<label for="Address2">Address 2</label>
+						<input type="text" maxlength="255" name="Address2" value="{{profile.Contact.Address2}}" data-group="Contact" required />
+					</div>
+					<div class="field">
+						<label for="Address3">Address 3</label>
+						<input type="text" maxlength="255" name="Address3" value="{{profile.Contact.Address3}}" data-group="Contact" />
+					</div>
+					<div class="field">
+						<label for="Town">City</label>
+						<input type="text" maxlength="255" name="Town" value="{{profile.Contact.Town}}" data-group="Contact" required />
+					</div>
+					<div class="field">
+						<label for="Postcode">Postcode</label>
+						<input type="text" maxlength="255" name="Postcode" value="{{profile.Contact.Postcode}}" data-group="Contact" required />
+					</div>
+
+
+				</div>
+
+				<div class="artist-details" ng-if="profile.Artist">
+
+					<!--<h3>Artist Details</h3>-->
+
+					<div class="field inline">
+						<label for="Nationality">Nationality</label>
+						<input type="text" name="Nationality" value="{{profile.Artist.Nationality}}" maxlength="45" data-group="Artist" />
+					</div>
+
+					<div class="field inline">
+						<label for="Location" class="question">Where are you currently based?</label>
+						<input type="text" name="Location" value="{{profile.Artist.Location}}" maxlength="100" placeholder="City, Country" data-group="Artist" />
+					</div>
+
+					<div class="field inline">
+						<label for="AgeBracketID">Age bracket</label>
+						<select name="AgeBracketID" data-group="Artist">
+							<option></option>
+							<option ng-repeat="age in ageBrackets" ng-selected="profile.Artist.AgeBracketID === age.ID" value="{{age.ID}}">{{age.Description}}</option>
+						</select>
+					</div>
+
+					<!--<div class="field inline">
+						<label for="DisciplineID">Age bracket</label>
+						<select name="AgeBracketID" data-group="Artist">
+							<option></option>
+							<option ng-repeat="age in ageBrackets" ng-selected="artist.AgeBracketID === age.ID" value="{{age.ID}}">{{age.Description}}</option>
+						</select>
+					</div>-->
+
+					<div class="field inline">
+						<label for="OpenToCommissions" class="question">Open to discuss commissions?</label>
+						<!--<input type="checkbox" name="OpenToCommissions" ng-checked="profile.Artist.OpenToCommissions" data-group="Artist" />-->
+						<select name="OpenToCommissions" data-group="Artist">
+							<option ng-selected="profile.Artist.OpenToCommissions" value="true">Yes</option>
+							<option ng-selected="profile.Artist.OpenToCommissions === false" value="false">No</option>
+						</select>
+					</div>
+
+					<!--<div class="field inline">
+						<label for="Pricebands">Average price range of your work</label>
+						<div widget="multi-select" class="price" data-name="Pricebands" data-max="2" data-min="1">
+							<div class="values">
+								<div ng-repeat="band in pricebands"><input ng-checked="artwork.PricebandID === band.ID" type="checkbox" value="{{band.ID}}" name="Pricebands" data-group="Artist" />&pound;{{band.Min}}<span ng-if="band.Max < 0">+</span><span ng-if="band.Max > 0"> - &pound;{{band.Max}}</span></div>
+							</div>
+						</div>
+					</div>-->
+
+					<div class="field inline">
+						<label for="Types" class="question">Which of the following best describes you as an artist?</label>
+						<div widget="multi-select" class="types" data-name="Types" data-max="2" data-min="1">
+							<div class="values">
+								<div ng-repeat="m in artistTypes" title="{{m.Description}}"><input ng-checked="profile.Artist.Types.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Types" data-group="Artist" />{{m.Type}}</div>
+							</div>
+						</div>
+					</div>
+
+					<!--<div class="field inline">
+						<label for="Types">Usual overarching mediums of choice</label>
+						<div widget="multi-select" class="types" data-name="Types" data-max="2" data-min="1">
+							<div class="values">
+								<div ng-repeat="m in artistTypes" title="{{m.Description}}"><input ng-checked="profile.Artist.Types.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Types" data-group="Artist" />{{m.Type}}</div>
+							</div>
+						</div>
+					</div>-->
+					<!--<div class="field inline">
+						<label for="Styles" class="question">Which of the following best describe your style(s) of work?</label>
+						<div widget="multi-select" class="styles" data-name="Styles" data-max="2" data-min="1">
+							<div class="values">
+								<div ng-repeat="m in styles" title="{{m.Description}}"><input ng-checked="profile.Artist.Styles.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="Styles" data-group="Artist" />{{m.Style}}</div>
+							</div>
+						</div>
+					</div>-->
+
+
+
+					<div class="field inline">
+						<label for="WorkingSpaces" class="question">Are there any particular spaces you are interested in working with?</label>
+						<div widget="multi-select" class="workspaces" data-name="WorkingSpaces" data-min="1">
+							<div class="values">
+								<div ng-repeat="m in workspaces" title="{{m.Description}}"><input ng-checked="profile.Artist.WorkingSpaces.indexOf(m.ID) > -1" type="checkbox" value="{{m.ID}}" name="WorkingSpaces" data-group="Artist" />{{m.Description}}</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="field inline">
+						<label for="Awards">Awards</label>
+						<div widget="tags" data-group="Artist" data-name="Awards" data-min="0" data-max="100" data-button-text="Award">
+							<div class="values"><input data-group="Artist" type="text" name="Awards" value="{{award}}" ng-repeat="award in profile.Artist.Awards" /></div>
+						</div>
+					</div>
+
+					<div class="field inline">
+						<label for="Qualifications">Qualifications</label>
+						<div widget="tags" data-group="Artist" data-name="Qualifications" data-min="0" data-max="100" data-button-text="Qualification">
+							<div class="values"><input data-group="Artist" type="text" name="Qualifications" value="{{qualification}}" ng-repeat="qualification in profile.Artist.Qualifications" /></div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div  class="gallery-details" ng-if="profile.Gallery">
+
+
+				</div>
+
+
+
+				<div class="social-media-details">
+
+					<div class="wrap" ng-repeat="service in socialMediaServices">
+
+						<img ng-src="{{service.ImageURI}}" />
+						<div class="details">
+							<h3>{{service.Name}}</h3>
+
+							<div class="field">
+								<label for="SocialMedia-URL-{{service.ID}}">Profile URL</label>
+								<input name="URL-{{service.ID}}" id="SocialMedia-URL-{{service.ID}}" value="{{_socialMedia[service.ID].URL}}" type="text" placeholder="{{service.URL + '/your.profile'}}" data-group="SocialMedia" />
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<div class="activcanvas-details" ng-if="profile.ActivCanvas.StatusID===3" class="activcanvas-tab" style="max-width: 620px;">
+
+					<div class="field">
+						<label for="VideoID">Default Video</label>
+						<div>
+							<select name="VideoID" data-group="ActivCanvas">
+								<option></option>
+								<option ng-repeat="video in videos" ng-selected="profile.ActivCanvas.VideoID === video.ID" value="{{video.ID}}" title="{{video.Description}}">{{video.Name}}</option>
+							</select>
+							<div class="video-preview"></div>
+						</div>
+					</div>
+
+					<div class="message static">This video will be used for all artwork you have not mapped a specific video to.</div>
+
+					<div class="field">
+						<label for="Link">Web Link</label>
+						<input type="url" name="Link" value="{{profile.ActivCanvas.Link}}" maxlength="255" placeholder="https://www.facebook.com/artretailnetwork" data-group="ActivCanvas" />
+					</div>
+
+					<div class="field">
+						<label for="LinkText">Link Text</label>
+						<input type="text" name="LinkText" value="{{profile.ActivCanvas.LinkText}}" maxlength="20" placeholder="Facebook" data-group="ActivCanvas" />
+					</div>
+
+					<div class="message static">This link will appear as a button within the ActivCanvas app whenever any of your artworks are scanned and can be used to direct people to your website/social media page.</div>
+
+				</div>
+
+
+			</div>
+
+		</form>
+
+
+
+		<div class="buttons">
+			<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+			<a class="submit button sky-blue" ng-click="save();"><i class="fa fa-save"></i> Save</a>
+		</div>
+
+	</div>
+
+</div>
+
+
+<style>
+	.activcanvas-tab {
+		max-width: 620px;
+	}
+	.activcanvas-tab .message {
+		margin: 5px 0 15px 120px;
+	}
+
+
+	.social-media-details .wrap {
+		padding-top: 5px;
+	}
+	.social-media-details .wrap {
+		display: flex;
+	}
+	.social-media-details .wrap:not(:last-child) {
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid #eee;
+	}
+	.social-media-details .details {
+		padding-left: 15px;
+		flex-grow: 1;
+	}
+	.social-media-details .details > .field {
+		display: flex;
+	}
+	.social-media-details .details > .field > input {
+		flex-grow: 1;
+	}
+	.social-media-details img {
+		height: 74px;
+		width: 74px;
+	}
+	.social-media-details h3 {
+		margin: 0;
+		padding: 4px 0 10px;
+	}
+
+
+	.video-preview video {
+		max-width: 500px;
+	}
+
+</style>
+

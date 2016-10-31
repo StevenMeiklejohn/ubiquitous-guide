@@ -1,0 +1,111 @@
+NPM
+=====
+
+
+NPM is the package manager for javascript.
+
+
+Creating a package:
+===================
+
+create a directory with a unique name.
+cd into directory.
+type npm init
+presse enter through the questions.
+
+
+To install a package:
+======================
+
+type. npm install --save lodash
+## --save saves relevant info to package.json, so that any subsequent users also have it.
+## lodash is a handy library of javascript functions.
+
+install a testing framework:
+=============================
+
+npm install --save-dev mocha
+##saving as dev means the user will not be required to install it when using our published package, its is only required for development.
+
+To delete:
+=============
+
+rm -rf node_modules
+
+To reinstall:
+================
+
+npm install.
+#goes and gets any parts of a package you might be missing.
+
+Create a git ignore file:
+==========================
+touch .gitignore
+then in the resulting file;
+type:
+node_modules/
+
+Testing:
+=========
+Change test settings in package .json to point to the desired spec file.
+
+npm test
+
+Publish to npm:
+================
+
+npm publish
+
+
+
+
+
+
+
+
+Creating a Java Script app
+===========================
+
+mkdir water_bottle
+cd water_bottle
+npm init
+npm install --save-dev mocha
+npm install --save-dev chai
+npm install --save-dev lodash
+
+touch specs/water_bottle_spec.js
+touch water_bottle.js
+change the package.json test: to "mocha specs"
+start water_bottle_spec.js
+
+to run spec files for test
+'npm test'
+
+to run .js files individually,
+'node xxx_spec.js'
+
+to make git ignore the node_modules:
+touch .gitignore
+Inside .gitignore
+type;
+node_modules/
+
+
+
+
+Shopping Basket
+object with name, price
+
+=============================
+
+var _= require('lodash');
+
+lo dash is effectively a library of methods that can be used on objects. JS does not have as many methods in its basic armoury as Ruby.
+
+
+
+
+
+
+
+

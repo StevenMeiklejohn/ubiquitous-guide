@@ -1,0 +1,27 @@
+{
+  "name": "js_bank",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha specs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "chai": "^3.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Don-L/js_bank.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Don-L/js_bank/issues"
+  },
+  "homepage": "https://github.com/Don-L/js_bank#readme",
+  "description": ""
+}

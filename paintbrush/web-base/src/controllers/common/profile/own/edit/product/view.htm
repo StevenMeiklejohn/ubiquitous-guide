@@ -1,0 +1,13 @@
+﻿<header class="main">
+	<h1>
+		<a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>
+		<a ng-href="/profile">Profile</a><span class="divide"><i class="fa fa-chevron-right"></i></span>
+		<a ng-href="/profile/product">Product Templates</a><span class="divide"><i class="fa fa-chevron-right"></i></span>
+		{{title}}
+	</h1>
+	<div class="button-group">
+		<a class="button orange" ng-if="!config.isNew && config.delete" ng-click="config.delete()" title="Delete this product"><i class="fa fa-trash"></i><span>Delete</span></a>
+	</div>
+</header>
+
+<product-edit-index profile="activeProfile" config="config"></product-edit-index>

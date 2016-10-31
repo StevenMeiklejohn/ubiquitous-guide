@@ -1,0 +1,364 @@
+EXPRESS
+========
+========
+
+Acts much like Sinatra.
+expressjs.com
+
+Steps
+======
+In day1
+
+npm init (create JSON package)
+npm install express --save
+touch server.js (week8/day1/server.js)
+
+var express = require('express');
+var app = express();
+
+// define index/home page
+var path = require('path');
+app.use(express.static('client/build'));
+
+// localhost3000 + /, callback(request coming in, response sending back)
+app.get('/', function(req, res){
+  res.sendFile(path.join__dirmane + '/client/build/index.html'));
+})
+app.listen('3000', function(){
+  console.log("The magic is all happening on port 3000");
+})
+
+
+
+
+express_app/
+mkdir client
+cd client
+mkdir build
+cd build
+touch index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Express App</title>
+  <script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+  <h1>Hello Express!</h1>
+
+</body>
+</html>
+
+
+
+
+
+express_app/build/
+touch app.js
+
+window.onload = function(){
+  console.log("app running");
+}
+
+
+Any time we make a change we need to restart the server which is a pain, we can get around this by installing (g = global)
+npm install nodemon -g
+
+nodemon server.js  (to start server).
+
+
+express restful routes:
+get INDEX
+get NEW
+post CREATE
+get SHOW
+get EDIT
+put UPDATE
+delete DELETE
+=========================
+
+
+
+WEBPACK
+========
+========
+
+mkdir water_bottle_app
+cd water_bottle_app
+mpm init
+mkdir client (this will contain our wensite side things)
+cd client
+npm init
+mkdir build (front end browser stuff)
+mkdir src (source code)
+A few more steps.....
+
+
+
+
+
+npm install --save -dev webpack
+
+create a confog file for webpack
+
+
+nodemon server.js (run server)
+
+In client forlder
+webpack -w (webpack listens for changes and updates live)
+
+
+
+
+Mongo set up
+============
+============
+
+
+sudo is the command for superuser.
+
+SQL                   Mongo
+===                   =====
+
+DATABASE              DATABASE
+TABLE                 COLLECTION
+ROW                   DOCUMENT
+COLUMN                FIELD
+PRIMARY KEY           _ID
+
+Mongo returns Json files. No need for join tables.
+
+install express in directories containing package.json
+npm install 
+
+brew update
+
+brew upgrade mongodb   (check if Mongo is installed)
+brew install mongodb   (install mongo)
+
+To start mongo engine:
+In project top level:
+mongod
+
+To make a js shell to talk to mongo db:
+mongo
+
+
+JS shell for Mongo Commands
+===========================
+
+help                (show commands)
+showdbs             (list databases)
+use dbname          (move to/create)
+show collections    (show all collections/tables)
+db.dbname.drop      (delete)
+db.dropDatabase     (drop)
+exit                (exit)
+
+shift + enter        (take new line)
+
+db.collectionName.insert({
+  name: "Charlie",
+  type: "horse"
+  })
+
+db.collectionName.find (return all)
+
+db.collectionName.find({type: "Pig"})                                 (find type pig)
+db.collectionName.find({dangerLevel: {$gt:9}})                        (find with danger level > 9)
+db.collectionName.updateOne({name: "Cindy"}, {$set: {type: "Pig"}})   (Add new pig/update)
+db.collectionName.remove({name: "Sebastian"})                         (remove)
+({ last_shoe_date: new Date('Jan 29, 2015')})                         (update/describe)
+
+
+Database --> Farm
+  Collection --> Animals
+                    Charlie
+                    Napoleon
+
+Items in collection do not need to have matching variables/attributes.
+
+
+
+
+
+
+SOME SET UP FOR BANK WITH MONGO
+===============================
+
+MONGO ------> EXPRESS------> AJAX
+
+To allow express to talk to mongo(like pgGen with Sinatra):
+install mongodb driver for node.js
+npm install --save mongodb
+
+
+In server.js:
+
+var mongo = require('mongodb').mongoClient
+
+app.get('/accounts', function(req, res){
+
+MongoClient.connect(url, function(err, db){
+   var collection = db.collection('accounts');
+   collection.find({}).toArray(function(err, docs){
+     res.json(docs);
+     db.close;
+   });
+})
+})
+
+
+Create app.get(    ){}
+          .post(    )
+etc.
+
+
+
+Test these routes using insomnia Rest client.
+Install as a chrome plugin.
+
+
+INSOMNIA
+========
+
+New request
+
+Twitter API = dbname
+Request = localhost
+
+POST http://localhost:3000/accounts
+
+
+now we need...
+
+BODY PARSER
+===========
+
+Back in project top level;
+
+npm install body-parser --save
+
+Add the following to server.js;
+
+var bodyParser = require('body-parser');
+
+and
+
+app.use(bodyParser.json());
+
+
+
+
+
+GENERAL APP BUILDING NOTES
+==========================
+==========================
+
+in index.html
+=============
+<form id="add-account" method="post">
+  <input type="text" placeholder="Owner" id="owner">
+  <input type="number" placeholder="Amount" id="amount">
+  <input type="text" placeholder="Type" id="type">
+  <input type="submit" id="submit">
+
+</form>
+
+
+in app
+======
+
+var form = document.getElementById('add-account');
+form.onsubmit = function(e){            => (e = event)
+    e.preventDefault();
+    var account = {
+      owner: document.querySelector("#owner").value,
+      amount: parseFloat(document.querySelector("#amount").value),
+      type: document.querySelector("#type").value
+    }
+    console.log(account);
+    bank.addAccount(new Account(account));
+    displayBank(bank);
+
+    // make new request
+    var request = new XMLHttpRequest();
+    request.open("POST", url);
+    // define data being sent.
+    request.setRequestHeader("Content-Type", "application/json");
+    request.onload = function(){
+      console.log("added a new account");
+    }
+    request.send(JSON.stringify(account));
+}
+
+
+
+
+
+
+
+WEBPACK APP (BANK) WITH MONGO DB FILE STRUCTURE:
+================================================
+================================================
+
+
+webpack_bank_refactored(top level)
+=>
+=>
+=>=>=>  package.json
+        server.js
+        webpack.config.js
+        /node_modes
+        /client
+        =>
+        =>
+        =>=>=> /build
+        =>          =>
+        =>          =>
+        =>          =>=>=> bundle.js
+        =>                 bundle.js.map
+        =>                 index.html
+        =>
+        =>
+        =>
+        =>=>=> /src
+                =>
+                =>
+                =>=>=> /bank
+                =>        =>
+                =>        =>
+                =>        =>=>=> account_spec.js
+                =>        =>=>=> bank_spec.js
+                =>        =>
+                =>        =>
+                =>        =>=>=>/bank
+                =>                =>
+                =>                =>
+                =>                =>=>=>/specs
+                =>                        =>
+                =>                        =>
+                =>                        =>=>=> account.js
+                =>                               bank_spec.js
+                =>
+                =>
+                =>
+                =>=>=>/views
+                        =>
+                        =>
+                        =>=>=> bank_view.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+

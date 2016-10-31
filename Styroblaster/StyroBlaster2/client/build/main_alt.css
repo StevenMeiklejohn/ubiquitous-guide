@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+#main {
+  width: 900px;
+  height: 500px;
+  overflow: hidden;
+}
+#canvas {
+  background: url('https://i.ytimg.com/vi/T40NSkd7Olc/maxresdefault.jpg');
+  width: 900px;
+  height: 500px;
+  animation: slide 3s linear infinite;
+}
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-150px);
+  }
+}

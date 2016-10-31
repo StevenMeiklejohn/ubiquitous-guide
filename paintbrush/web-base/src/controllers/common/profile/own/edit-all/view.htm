@@ -1,0 +1,32 @@
+﻿<!--
+<div ng-if="!Object.keys(profile).length">
+	<h1>Profile not found</h1>
+</div>
+<div ng-if="Object.keys(profile).length">
+-->
+
+
+<!--<div class="view-loading" ng-show="profile === null">
+	<div class="ajax-loader"></div>
+</div>-->
+<div class="view-body" ng-show="profile !== null">
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{profile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Edit Profile</h1>
+		<!--<h1>{{profile.Name}} <span class="sub">Edit Profile</span></h1>-->
+	</header>
+
+	<div ng-if="error">
+		<div class="message error">{{error}}</div>
+		<div class="buttons" style="margin-top: 20px;">
+			<a class="button" ng-click="cancel()"><i class="fa fa-reply"></i> Cancel</a>
+		</div>
+	</div>
+
+	<div class="editor" ng-show="!error"></div>
+
+</div>
+
+
+
+<!--</div>-->

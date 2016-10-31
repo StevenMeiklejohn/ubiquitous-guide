@@ -1,0 +1,7 @@
+---
+  - hosts: vagrant
+
+    roles:
+      - webtier
+      - database
+      - migrate

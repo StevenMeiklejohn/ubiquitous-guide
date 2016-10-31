@@ -1,0 +1,62 @@
+Example is bucket list/countries.
+
+
+1. Create structure;
+top_level/client/build
+in client/build/ create:
+bundle.js (empty file)
+style.css (can be empty or populated)
+index.html (Basic page set up, headers, drop downs script src='bundle.js')
+
+
+top_level/src/package.json
+              webpack.config.js*
+top_level/src/countries/(or accounts, or banks etc)
+              app.js (onload, handle countries, display)
+              country_view.js
+
+
+
+Installs
+========
+toplevel:
+npm init (creates package.json)
+toplevel/client/
+npm init (creates package.json)
+npm install --save -dev webpack
+npm install --save mongo
+npm install --save mongodb
+mongod (run mongo)
+npm install --save -dev express
+nom install --save -dev body-parser
+
+toplevel/client/
+webpack -w (run webpack)
+
+bucket_list/client/ webpack -w
+
+toplevel type mongo
+starts database.
+
+
+==================================
+==================================
+
+
+use app.js t console log out some stuff and ensure pafe loads etc.
+
+
+
+
+
+*webpack.config.js
+config = {
+  entry: "./src/app.js",
+  output: {
+    filename: "bundle.js",
+    path:"./build"
+},
+devtool: 'source-map'
+}
+
+module.exports = config;

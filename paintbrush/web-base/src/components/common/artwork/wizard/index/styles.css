@@ -1,0 +1,52 @@
+
+
+
+.step .buttons.top {
+	margin-bottom: 20px;
+}
+.step .files > .file {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	min-height: 41px;
+	padding: 10px;
+}
+.step .files > .file:last-child {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+}
+.step .files > .file .col-image {
+	line-height: 0;
+	min-width: 250px;
+	margin-right: 15px;
+}
+.step .files > .file .col-fields {
+	flex-grow: 1;
+}
+.step .files > .file .col-controls {
+	padding-left: 17px;
+	display: flex;
+	flex-direction: column;
+}
+.step .files > .file .col-controls .divider {
+	flex-grow: 1;
+}
+.step .files > .file .col-controls .status {
+	text-align: right;
+}
+.step .files > .file .col-controls > a {
+	cursor: pointer;
+}
+
+
+
+form.ui textarea {
+	width: 500px;
+	min-height: 85px;
+}
+
+form .field input.ng-dirty.ng-invalid,
+form .field select.ng-dirty.ng-invalid,
+form .field textarea.ng-dirty.ng-invalid {
+	border-color: #f1c13d;
+}

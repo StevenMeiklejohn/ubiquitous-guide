@@ -1,0 +1,33 @@
+<div class="datagrid {{config.template.name ? 'tpl-' + config.template.name : ''}}">
+	<div ng-show="config">
+
+		<!-- Filters & Sort -->
+		<div class="filters" ng-show="config.filters.length && config.ready && data"></div>
+
+		<!-- Messages -->
+		<ui-message config="message"></ui-message>
+		<ui-message ng-if="!data.length && !message && !pendingRequest && config.ready" config="noResults"></ui-message>
+
+		<!-- Results -->
+		<div class="results" ng-show="data.length"></div>
+
+		<!-- Pagination -->
+		<div class="pagination" ng-if="config.pagination.enabled!==false">
+			<a ng-click="setPage(0)" title="Start of results" class="button" ng-show="pagination.PageNumber>pagination.MaxButtons"><<</a>
+			<a ng-click="setPage(pagination.PageNumber - 1)" title="Previous page" ng-show="pagination.PageNumber>0" class="button"><</a>
+			<a ng-click="setPage(i)" ng-repeat="i in paginationButtons" class="button {{pagination.PageNumber === i ? 'blue' : ''}}">{{i + 1}}</a>
+			<a ng-click="setPage(pagination.PageNumber + 1)" title="Next page" ng-show="pagination.PageNumber<pagination.TotalPages-1" class="button">></a>
+			<a ng-click="setPage(pagination.TotalPages - 1)" title="End of results" class="button" ng-show="pagination.PageNumber<pagination.TotalPages-pagination.MaxButtons-1">>></a>
+		</div>
+
+		<div class="ajax-loader-overlay" ng-if="pendingRequest">
+			<div>
+				<div class="ajax-loader"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

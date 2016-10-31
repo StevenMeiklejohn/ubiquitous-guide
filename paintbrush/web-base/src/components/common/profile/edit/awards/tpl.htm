@@ -1,0 +1,40 @@
+﻿<div class="awards-qualifications">
+
+	<form>
+
+		<ui-message config="error"></ui-message>
+		
+		<div class="field inline">
+			<label for="Awards">Awards</label>
+			<div widget="tags" data-name="Awards" data-min="0" data-max="100" data-button-text="Award">
+				<div class="values"><input type="text" name="Awards" value="{{award}}" ng-repeat="award in profile.Artist.Awards" /></div>
+			</div>
+		</div>
+
+		<div class="field inline">
+			<label for="Qualifications">Qualifications</label>
+			<div widget="tags" data-name="Qualifications" data-min="0" data-max="100" data-button-text="Qualification">
+				<div class="values"><input type="text" name="Qualifications" value="{{qualification}}" ng-repeat="qualification in profile.Artist.Qualifications" /></div>
+			</div>
+		</div>
+
+
+		<div ng-if="ready">
+			<div class="buttons right padded" ng-show="!pendingRequest">
+				<a class="cancel button" ng-click="cancel()"><i class="fa fa-reply"></i><span>Cancel</span></a>
+				<a class="submit button" ng-click="save()"><i class="fa fa-save"></i><span>Save</span></a>
+			</div>
+			<div class="buttons right padded" ng-show="pendingRequest">
+				<div class="ajax-loader"></div>
+			</div>
+		</div>
+
+	</form>
+
+	<style>
+		.field .tags {
+			width: 496px;
+		}
+	</style>
+
+</div>

@@ -1,0 +1,113 @@
+﻿<div class="profile-own">
+
+	<header class="main">
+		<h1><span class="divider">{{profile.Name}}</span><span class="divide"><i class="fa fa-chevron-right"></i></span>Profile</h1>
+	</header>
+
+
+	<ui-message config="message"></ui-message>
+
+	<div class="profile">
+
+		<div class="profile-data">
+
+			<div class="profile-info-wrap">
+
+
+				<div class="info-panel">
+					<div class="title">
+						<h4>General</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update your name and profile image" ng-href="/profile/edit"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-base-info profile="profile" class="content"></profile-view-base-info>
+				</div>
+
+				<div class="info-panel">
+					<div class="title">
+						<h4>Contact Information</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update your contact information" ng-href="/profile/edit/contact"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-contact-info profile="profile" class="content"></profile-view-contact-info>
+				</div>
+
+
+				<div class="info-panel" ng-if="profile.Artist">
+					<div class="title">
+						<h4>Artist Information</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update your artist information" ng-href="/profile/edit/artist"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-artist-info profile="profile" class="content"></profile-view-artist-info>
+				</div>
+
+
+				<div class="info-panel">
+					<div class="title">
+						<h4>Social Media Accounts</h4>
+						<div class="buttons">
+							<!--<a class="button blue"><i class="fa fa-pencil"></i><span>Edit</span></a>-->
+							<a class="button light-blue no-text" title="Update your social media profiles" ng-href="/profile/edit/social-media"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-social-media profile="profile" class="content wide"></profile-view-social-media>
+				</div>
+
+
+
+				<div class="info-panel" ng-if="profile.Artist">
+					<div class="title">
+						<h4>ActivCanvas Content</h4>
+						<div class="buttons" ng-if="profile.ActivCanvas.StatusID===3">
+							<a class="button light-blue no-text" title="Update your profile's default ActivCanvas content" ng-href="/profile/edit/activcanvas"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-activ-canvas profile="profile" class="content"></profile-view-activ-canvas>
+				</div>
+
+
+				<!--<div class="info-panel" ng-if="profile.Artist">-->
+					<!--<div class="title">-->
+						<!--<h4>Product Templates</h4>-->
+						<!--<div class="buttons">-->
+							<!--<a class="button light-blue no-text" title="Update your product templates" ng-href="/profile/product"><i class="fa fa-fw fa-pencil"></i></a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<profile-view-products profile="profile" class="content"></profile-view-products>-->
+				<!--</div>-->
+
+
+				<div class="info-panel" ng-if="profile.Artist">
+					<div class="title">
+						<h4>Awards &amp; Qualifications</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update your awards and qualifications" ng-href="/profile/edit/awards"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-awards profile="profile" class="content"></profile-view-awards>
+				</div>
+
+
+				<div class="info-panel" ng-if="profile.Artist">
+					<div class="title">
+						<h4>Biography</h4>
+						<div class="buttons">
+							<a class="button light-blue no-text" title="Update your biography" ng-href="/profile/edit/bio"><i class="fa fa-fw fa-pencil"></i></a>
+						</div>
+					</div>
+					<profile-view-bio profile="profile" class="content"></profile-view-bio>
+				</div>
+
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>

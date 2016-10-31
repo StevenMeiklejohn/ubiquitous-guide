@@ -1,0 +1,108 @@
+Day2. Event application start point. 
+See app.js.
+==========================
+===========================
+
+
+Local storage.
+Resides in users browser.
+
+localStorage.setItem(key, value)
+
+sets local storage key/value pair.
+
+localStorage.setItem('films', "my_films")
+localStorage.getItem( 'films' ) ---> returns "my_films"
+
+==remove item from localStorage
+localStorage.removeItem('friends')
+
+
+
+
+
+localStorage.setItem( 'friends', f)
+
+localStorage
+Storage {films: "my_films", friends: "beth,kat,keith", length: 2}
+
+==JSON converts array to a string as it works on "everything is a string". we need to change it back.
+
+var friends = JSON.stringify( f )
+== assign variable and use stringiny.
+
+
+friends
+"["beth","kat","keith"]"
+
+== Now the array is an array within a string.
+
+
+localStorage.setItem( 'friends', friends)
+== Persist the new key value pair to localStorage
+
+
+var f = localStorage.getItem( 'friends' )
+== Get object back from localStorage
+
+var friends = JSON.parse( f );
+== Use parse to convert data back into an array
+
+
+friends
+["beth", "kat", "keith"]
+
+== friends is now an array.
+
+
+== To modify the array...
+
+friends.push('zsolt')
+4
+var newFriends = JSON.stringify( friends )
+undefined
+newFriends
+"["beth","kat","keith","zsolt"]"
+localStorage.setItem( 'friends', newFriends)
+undefined
+localStorage
+Storage {films: "my_films", friends: "["beth","kat","keith","zsolt"]", length: 2}
+
+
+
+
+
+AJAX/J
+=======
+=======
+
+
+Ajax allows us to make a srver request without having to refresh the page (a good thing for Javascript).
+This could be our own server or someone else's. There are many APIs to be used.
+
+Asynchronous
+JavaScript
+And
+XML (these days, more appropriately JSON)
+
+Going to this website shows what the API returns in JSON format.
+https://restcountries.eu/rest/v1
+
+Phillip Roberts - What the hell is an event loop anyway.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

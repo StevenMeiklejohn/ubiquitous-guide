@@ -1,0 +1,71 @@
+MVP.
+Minimal Viable Product.
+Success criteria. Minimum functionality.
+
+
+Gather and Prioritise requirements.
+Break down the brief into models, mvps and 'nice to haves'.
+
+Trello (Project planner).
+MoSCoW
+Must Should Could Would.
+
+
+UML Diagrams.
+=============
+Unified Modelling Language.
+A blueprint for the project. Parts and interactions.
+Class(ruby)/Object(js) diagram.
+
+use draw.io (free online tool).
+Good for diagrams, taking screenshots for evidence etc.
+
+Inheritance diagrams.
+=====================
+Demonstrates the flow of information.
+
+System Interaction Diagrams:
+============================
+Use case diagrams to give an overview of the useage requirements.
+Actors are the users, we show what the actors can do within the system boundary.
+
+User Journeys demonstrate each step the user has to take to do something within the system. Demonstrate how users 'could' interact with the system.
+
+
+Wire Frames.
+============
+Basically a sketch of what appears on the screen. Layout and formatting.
+
+Balsamiq: Software app for building wire frames to demonstrate how your app will look.
+
+
+Pseudo Code: Planning Your Code
+===============================
+Write out what the code you need to write needs to do. In english, in normal sentences.
+
+Acceptance Test Plan
+=====================
+The tests the app/site must pass in order to meet minimum requirements.
+Functional correctness and completeness.
+Data integrity - Does it persist?
+Usabiliy
+Performance - speed, etc.
+Scalability
+Documentation - if needed.
+
+
+
+Time Management
+================
+
+How do you separate the concerns of each part of your app?
+How do you estimate how much time each section needs?
+What should you do if your estimates are out/incorrect
+
+
+
+Agile.
+======
+======
+
+Product Backlog.

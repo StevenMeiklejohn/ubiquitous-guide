@@ -1,0 +1,106 @@
+check version of node.
+node -v
+
+JS used camel_Case.
+
+
+Javascript
++++++++++++
+
+
+This is my bear.
+var myBear = "Yogi";
+
+Is not the same as
+ myBear = "Yogi";
+
+instead of def and end we use funtion and curly brackets.
+Functions and such cannot begin with a number or special characters (excluding $ and _ which can be used.)
+function hello(name){
+Instead of saying puts, we say console.log;
+console.log(name + " you are awesome! ");
+}
+
+to call the function. Use the same method as Ruby.
+
+hello ("Steven");
+
+in the console type: node app.js 
+
+ We can also use variable such as;
+
+hello (myBear);
+
+
+Variable types.
+================
+
+ Javascript does not use 'objects', we have
+Primitive Types:
+- String
+- Number
+- Boolean
+- Null
+- Undefined
+[- Symbol]
+object
+
+*see js_types.js
+
+strings are wrapped in an object. This allows us to call methods on them.
+
+e.g.
+var myString = "a nice string we are creating";
+
+console.log(myString.length());
+console.log(myString.toUpperCase());
+
+*see js_contol_flow
+
+PM
+=====
+=====
+
+JS Arrays.
+Create Array:
+add
+delete
+access
+manipulate.
+
+*see array.js
+
+
+IN javascript "Hashes" are the equivelant of "objects"
+========================================================
+
+
+
+type node to enter java environment
+
+➜  node_app node
+> typeof([1,2,3])
+'object'
+
+
+JavaScript Scope
+==========================
+
+Ruby is 'block scoped', Ruby is 'function scoped'
+
+*see scope.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

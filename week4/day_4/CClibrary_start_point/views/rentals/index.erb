@@ -1,0 +1,5 @@
+<a href="/rentals/new">Add New Rental</a><br>
+
+<% @rentals.each do |rental| %>
+<%= rental.id %> - <%= rental.book.first.title %> - <%= rental.member.name %><br>
+<% end %>

@@ -1,0 +1,43 @@
+﻿<div class="contact-info">
+
+	<table class="datalist vertical">
+		<tr>
+			<td>Address 1</td>
+			<td>{{profile.Contact.Address1 || '-'}}</td>
+		</tr>
+		<tr ng-if="profile.Contact.Address2">
+			<td>Address 2</td>
+			<td>{{profile.Contact.Address2}}</td>
+		</tr>
+		<tr ng-if="profile.Contact.Address3">
+			<td>Address 3</td>
+			<td>{{profile.Contact.Address3}}</td>
+		</tr>
+		<tr>
+			<td>Town/City</td>
+			<td>{{profile.Contact.Town || '-'}}</td>
+		</tr>
+		<tr>
+			<td>Postcode</td>
+			<td>{{profile.Contact.Postcode || '-'}}</td>
+		</tr>
+		<tr ng-if="profile.Contact.Country">
+			<td>Country</td>
+			<td>{{profile.Contact.Country || '-'}}</td>
+		</tr>
+		<tr>
+			<td>Phone</td>
+			<td>{{profile.Contact.Landline || '-'}}</td>
+		</tr>
+		<tr ng-if="profile.Contact.Mobile">
+			<td>Mobile</td>
+			<td>{{profile.Contact.Mobile}}</td>
+		</tr>
+		<tr>
+			<td>Website</td>
+			<td ng-if="websiteURI"><a target="_blank" ng-href="{{websiteURI}}">{{website}}</a></td>
+			<td ng-if="!websiteURI">-</td>
+		</tr>
+	</table>
+
+</div>

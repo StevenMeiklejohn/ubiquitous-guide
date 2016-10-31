@@ -1,0 +1,27 @@
+.datagrid.tpl-table .date {
+	width: 80px;
+}
+.datagrid.tpl-table .importance {
+	width: 110px;
+}
+
+.datagrid.tpl-table .icons {
+	width: 75px;
+}
+
+.datagrid.tpl-table td.content .subject {
+	display: inline-block;
+	margin-right: 10px;
+}
+.datagrid.tpl-table td.content .subject::after {
+	content: '-';
+	margin-left: 10px;
+}
+.datagrid.tpl-table td .body-preview {
+	color: #999;
+}
+
+.datagrid.tpl-table td.icons > .fa {
+	font-size: 1.5em;
+	color: #999;
+}

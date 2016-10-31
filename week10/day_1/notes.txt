@@ -1,0 +1,118 @@
+View          Model
+====          =====
+Views         Models (tested)
+
+React helps us write logic for the views.
+
+*One way flow. (Change a small part of data, then redraw the entire thing using existing logic.)
+However, this is an expensive method for performance.
+
+*Virtual DOM.
+Makes one way flow possible. Creates a virtual DOM (html of page) compares it to existing and only changes what is neccessary.
+
+This we have the besy of both worlds:
+
+One way flow - Less complexity
+Virtual DOM - no loss in performance.
+
+
+JQuery (library) is used to aid with interacting and updating the DOM. In never versions of JS it becomes less neccessary due to the added functionality in JS.
+
+
+Babel.
+======
+Compiler/transpiler.
+Translates react type views into standard js the browser can read.
+
+
+
+
+
+Setup
+======
+webpack start point.
+=
+top_level/client/npm init
+top_level/client/npm install --save babel react react-dom (--save adds required installs to package.json)
+top_level/client/npm install --save-dev babel-loader babel-preset-react babel-preset-es2015
+top_level/client/npm start
+top_level npm init
+top_level npm start
+Update webpack confir.js
+change src/index.js to .jsx
+change webpack config.js
+entry: "./src/index.js",
+
+in index.jsx
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+=========================
+config = {
+  entry: "./src/index.js",
+  output: {
+    filename: "bundle.js",
+    path: "./build"
+  },
+  devtool: 'source-map',
+  resolve:{
+    extensions: ['','.js', '.jsx']
+  },
+  module:{
+    loaders: [
+    {
+      test: /\.jsx?$/,
+      exclude: /(node_modules)/,
+      loader: 'babel',
+      query: {
+        presets: ['react', 'es2015']
+      }
+    }
+    ]
+  }
+}
+
+module.exports = config;
+=================================
+In Client/src mkdir components
+touch components/Counter.jsx (Counter is component name)
+
+Component Attribute
+===================
+1. property. Given to component. Compononent cannot change property.
+In counter.jsx;
+<div> { this.props.title } </div>
+In index.jsx:
+ReactDOM.render(
+  <Counter title="Jack the Counter"/>,
+  document.getElementById('app')
+)
+
+2. State.
+var Counter = React.createClass({
+  getInitialState: function(){
+    return { count: 0 }
+  },
+
+
+
+
+MUlti-Component App
+====================
+
+(Container/smart component)
+CommentBox.state - comments
+
+(sub component)
+CommentList (property - comments)
+- Comment (property - comment)
+- Comment (property - ammend)
+
+CommentForm
+
+
+
+
+
+
+

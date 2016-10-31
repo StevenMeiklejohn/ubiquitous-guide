@@ -1,0 +1,12 @@
+To set up tablet developer mode.
+
+settings/general/about device.
+Tap 5 times.
+Enter dev mod.
+go to developer options.
+enable usb de-bugging.
+
+
+in command line;
+/Users/user/Library/Android/sdk/platform-tools/adb devices
+Checks if device is attached and authorised.

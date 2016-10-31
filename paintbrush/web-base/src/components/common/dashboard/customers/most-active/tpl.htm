@@ -1,0 +1,70 @@
+﻿<div class="dashboard-viewed dashboard-most-active">
+
+	<!--<div class="message" ng-show="profiles && !profiles.length">Nobody has viewed your profile yet.</div>-->
+
+	<ui-message config="error"></ui-message>
+
+	<div class="profiles" ng-show="profiles.length">
+		<!--<div class="control up" ng-show="profiles.length > 4">-->
+			<!--<a><i class="fa fa-chevron-up"></i></a>-->
+		<!--</div>-->
+
+		<div class="profiles-inner">
+
+			<div class="profile" ng-repeat="profile in profiles" ng-click="viewProfile(profile.ID)">
+				<div ng-if="profile.ImageURI" class="profile-image" style="background-image: url('{{profile.ImageURI}}')"></div>
+				<div class="profile-details">
+					<strong>{{profile.Name}}</strong><br />
+					<span>{{profile.Type}}</span>
+				</div>
+				<div class="event latest">
+					<span>Last Activity: </span><strong>{{profile.LatestEventStr}}</strong>
+				</div>
+				<div class="event" ng-repeat="event in profile.Events">
+					<span>{{event.Type}}: </span><strong>{{event.Total}}</strong>
+				</div>
+				<div class="spacer"></div>
+				<div class="profile-link">
+					<i class="fa fa-chevron-right"></i>
+				</div>
+			</div>
+
+		</div>
+
+		<!--<div class="view-all">
+			<a>View all</a>
+			<div class="profile-link">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>-->
+
+		<!--<div class="control down" ng-show="profiles.length > 4">-->
+			<!--<a><i class="fa fa-chevron-down"></i></a>-->
+		<!--</div>-->
+
+	</div>
+
+
+	<style>
+
+		.dashboard-most-active .profiles-inner {
+			min-height: none;
+			max-height: none;
+			overflow: visible;
+		}
+		.dashboard-most-active .profile-details {
+			flex-grow: 0;
+			min-width: 150px;
+			max-width: 150px;
+		}
+
+		.dashboard-most-active .event {
+			padding: 10px;
+			white-space: nowrap;
+		}
+		.dashboard-most-active .spacer {
+			flex-grow: 2;
+		}
+
+	</style>
+</div>

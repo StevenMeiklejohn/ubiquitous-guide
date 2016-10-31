@@ -1,0 +1,30 @@
+.results .profile-image {
+	margin-top: 0;
+	width: 36px;
+	min-width: 36px;
+	height: 36px;
+}
+.results .image {
+	min-width: 36px;
+	height: 36px;
+}
+.results .profile-image-spacer {
+	width: 36px;
+	min-width: 36px;
+}
+
+.results .name {
+	width: 140px;
+	min-width: 140px;
+}
+.results .total {
+	width: 100px;
+	min-width: 100px;
+}
+.results .details {
+	flex-grow: 1;
+}
+.results .body .details > span {
+	display: inline-block;
+	margin-right: 10px;
+}

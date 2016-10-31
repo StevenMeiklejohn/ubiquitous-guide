@@ -1,0 +1,5 @@
+<a href="/members/new">Add New Member</a><br>
+
+<% @members.each do |member| %>
+  Name: <%= member.name %> - Address: <%= member.address  %><br>
+<% end %>

@@ -1,0 +1,172 @@
+﻿<div class="analytics">
+
+	<header class="main">
+		<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Analytics</h1>
+	</header>
+
+
+
+
+	<div class="profile">
+
+
+			<div class="profile-info-wrap">
+
+
+				<div class="info-panel">
+					<div class="title">
+						<h4>Users</h4>
+					</div>
+					<div class="content">
+						<div class="links">
+							<a ng-href="/analytics/users/activity">Recent Activity</a>
+						</div>
+
+					</div>
+				</div>
+
+
+
+
+			</div>
+
+
+
+
+	</div>
+
+
+
+	<style>
+
+
+		.links a {
+			display: block;
+			padding: 5px 0;
+			font-weight: 600;
+		}
+
+		.profile .profile-info-wrap {
+			display: flex;
+			flex-wrap: wrap;
+			flex-grow:1;
+		}
+
+		.info-panel {
+			border: 1px solid #ddd;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			padding: 0;
+			width: 350px;
+		}
+		.info-panel.wide {
+			width: 720px;
+		}
+		.info-panel > .title {
+			border-bottom: 1px solid #ddd;
+			background: #eee;
+			padding: 5px 10px 5px 20px;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			min-height: 35px;
+		}
+		.info-panel > .title h4 {
+			flex-grow:1;
+			margin: 0;
+		}
+		.info-panel > .title .button {
+		}
+
+		.info-panel > .content {
+			padding: 15px 20px;
+		}
+		.info-panel > .content.wide {
+			padding: 10px;
+		}
+		.info-panel > .content a {
+			text-decoration: none;
+		}
+
+
+		.info-panel > .content .datalist td {
+			padding: 5px;
+			vertical-align: bottom;
+		}
+		.info-panel > .content .datalist td:first-child {
+			width: 90px;
+			padding-right: 10px;
+			vertical-align: top;
+		}
+		.info-panel > .content .datalist td:empty::after {
+			content: '';
+		}
+
+
+
+		.profile .info-panel {
+			width: calc(25% - 22px);
+		}
+		.profile .info-panel.wide  {
+			width: calc(50% - 22px);
+		}
+
+		@media (max-width: 1910px) {
+			.profile .info-panel {
+				width: calc(33% - 20px);
+			}
+			.profile .info-panel.wide  {
+				width: calc(66% - 18px);
+			}
+		}
+
+		@media (max-width: 1540px) {
+			.profile .info-panel {
+				width: calc(50% - 22px);
+			}
+			.profile .info-panel.wide  {
+				width: calc(100% - 22px);
+			}
+		}
+
+
+
+		/** TABLET LANDSCAPE **/
+		@media (max-width: 1160px) {
+			.profile .profile-data {
+				flex-grow: 1;
+			}
+			.profile .profile-info-wrap {
+				flex-flow: column nowrap;
+			}
+			.profile .info-panel,
+			.profile .info-panel.wide  {
+				width: auto;
+			}
+		}
+
+		/** TABLET LANDSCAPE **/
+		@media (max-width: 800px) {
+			.profile {
+				flex-flow: column nowrap;
+			}
+			.profile .profile-image-wrap {
+				padding-left: 0;
+				margin-bottom: 20px;
+				border-left: none;
+				order: 0;
+			}
+			.profile .profile-data {
+				order: 1;
+			}
+			.profile .info-panel {
+				margin-right: 0;
+			}
+		}
+
+
+
+	</style>
+
+
+</div>

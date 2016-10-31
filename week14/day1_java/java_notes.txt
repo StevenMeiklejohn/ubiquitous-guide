@@ -1,0 +1,63 @@
+dynamically typed language. - No explicit type decleration.
+
+statically typed languages. - Variable given explicit types.
+
+
+Java
+======
+
+class Runner {
+  public static void main(String[] args){
+  }
+}
+public = avaialavble to app.
+void = not does return anything.
+
+
+
+JDK
+====
+java compiler(javac) & jre(java)
+=> javac *.java
+
+compiler will check classes and methods.
+*ALWAYS RUN COMPILE AFTER ANY CHANGES BEFORE CALLING.
+
+
+run the file;
+java Runner (no need for .java)
+
+
+
+method
+=======
+class Cat {
+  public void meow() {
+    System.out.println("Meooooooow!");
+  }
+}
+
+SYstem in this case is the console.
+
+
+
+SCOPE
+========
+Everything in the same directory has scope of each other.
+
+
+TEST
+======
+javac bearTest.java (compile)
+javac *.java
+junit BearTest   (run test)
+
+
+Java Arrays
+============
+Java can only accept arrays containing one type (number, string, etc)
+
+
+
+
+

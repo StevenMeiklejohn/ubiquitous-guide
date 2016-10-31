@@ -1,0 +1,32 @@
+﻿<header class="main">
+	<h1><a ng-href="/profile">{{activeProfile.Name}}</a><span class="divide"><i class="fa fa-chevron-right"></i></span>Shortlists</h1>
+	<div class="button-group">
+		<a class="button blue" ng-click="createShortlist()"><i class="fa fa-plus"></i><span>New</span></a>
+	</div>
+</header>
+
+<div class="ajax-loader" ng-show="!ready && !error"></div>
+
+<ui-message config="error"></ui-message>
+
+<div class="shortlists" ng-show="ready">
+
+	<div class=" shortlist" ng-repeat="shortlist in shortlists" title="{{shortlist.Description}}" ng-click="viewShortlist(shortlist.ID)">
+		<div class="images">
+			<div class="preview large {{shortlist.Images[0] ? '' : 'empty'}}" style="background-image: url('{{shortlist.Images[0]}}');"></div>
+			<div class="previews">
+				<div class="preview small {{shortlist.Images[1] ? '' : 'empty'}}" style="background-image: url('{{shortlist.Images[1]}}');"></div>
+				<div class="preview small {{shortlist.Images[2] ? '' : 'empty'}}" style="background-image: url('{{shortlist.Images[2]}}');"></div>
+				<div class="preview small {{shortlist.Images[3] ? '' : 'empty'}}" style="background-image: url('{{shortlist.Images[3]}}');"></div>
+				<div class="preview small {{shortlist.Images[4] ? '' : 'empty'}}" style="background-image: url('{{shortlist.Images[4]}}');"></div>
+			</div>
+		</div>
+
+		<div class="details">
+			<a class="button light-blue"><i class="fa fa-arrow-right"></i><span>View</span></a>
+			<h4>{{shortlist.Name}}</h4>
+			<div>{{shortlist.Items}}/{{shortlist.Target}} {{shortlist.Type}}s</div>
+		</div>
+	</div>
+
+</div>

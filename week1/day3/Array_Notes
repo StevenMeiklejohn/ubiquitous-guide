@@ -1,0 +1,205 @@
+#------------------------------------------------------------------------------#
+#------- CodeClan 27/04/16 ----------------------------------------------------#
+#------------------------------------------------------------------------------#
+
+Collections & Arrays
+
+my_array = Array.new()
+=> []
+
+This is like any 'new' operation on a class
+
+String.new("Hello World!")
+=> "Hello World"
+
+fruit = []
+fruit = ["Apple", "Banana", "Orange", "Grape"]
+
+Arrays are indexed 0, 1, 2, ... n
+
+fruit[1]
+=> Banana
+
+fruit[-1]
+=> Grape
+
+fruit.first
+=> Apple
+
+fruit.first(2)
+=> ["Apple", "Banana"]
+
+fruit[0] = "watermelon"
+Replace the first indexed fruit with watermelon
+
+fruit[100] = "carrot"
+Increases the size of the array to 100 and places nil where there are no objects.
+
+fruit.push("strawberry")
+
+or we can use the shovel operator
+
+fruit << "pear"
+pear is getting shoved to the front
+you can think of this as a method with the 'dot' operator:
+
+fruit.<<("pear")
+
+fruit.pop
+
+lines.shift('apple')
+adds to the end of an array
+
+fruit.unshift('apple')
+apple added to beginning of an array
+
+fruits_and_numbers = ['apple', 1, 'grape', 2]
+
+fruit.length == fruit.count == fruit.size
+
+fruits_and_
+
+[1, 2, 3] + [3, 4, 5]
+=> [1, 2, 3, 3, 4, 5]
+
+[1, 2, 3].+([3, 4, 5])
+=> [1, 2, 3, 3, 4, 5]
+
+[1, 2, 3] - [3, 4, 5]
+=> [1, 2]
+
+fruit.pop
+removes the last element of an array and returns it (in-case we want to use it)
+
+fruit.shift
+similarly removes the first element of the array and returns it.
+
+fruit.delete_at(2)
+removes element at index 2
+
+fruit.delete('pear')
+removes all elements that equal 'pear'
+
+fruit.compact
+removes ALL nil elements in an array
+
+fruit.uniq
+removes all duplicates
+
+fruit.uniq!
+disrupts the original array
+
+fruit.reverse (does not change the original fruit array)
+
+fruit.reverse! (! exclamation mark is called bang method in Ruby and changes the original array)
+
+fruit.rotate moves the back array element to front etc
+
+fruit.shuffle just shuffles the elements around
+
+fruit.insert( 2, "strawberry")
+inserts element to specified array position
+
+fruit.empty?
+check if an array is empty or not?
+
+fruit.join( ' ' )
+this creates a string of your elements
+
+fruit.replace(['kiwi', 'lemon'])
+
+fruit.flatten
+takes out all arrays in arrays and creates one array without losing and elements
+
+fruit.include('apple')
+=> true
+Checks if an element is in an array and returns a boolean
+
+num_array.min
+num_array.max
+num_array.minmax
+
+numbers = [23, 4, 6, 9]
+num_1, num_2 = numbers.minmax
+=> [4, 23]
+
+num_1         num_2
+=> 4          => 23
+
+str_1, str_2 = [ 'hello', 'world' ]
+
+str_1           str_2
+=> "hello"      => "world"
+
+fruit.index( 'lemon')
+=> 3
+finds the position of the element 'lemon'
+
+fruit.sort
+sorts alphabetically or numerically
+
+fruit.flatten.sort
+
+Hashes:
+known as key value pairs, associative arrays, dictionaries
+
+new_hash = Hash.new()
+=> {}
+
+new_hash2 = {}
+=> {}
+
+The 'key' goes in first and the value second.
+
+toys = { 'under the bed' => 'lightsaber', 'cupboard' => 'teddy', 'drawer' => 'slinky' }
+
+toys['cupboard']
+=> "teddy"
+
+toys['garage']
+=> nil
+
+toys['garage'] = 'top trumps'
+=> 'top trumps'
+
+toys.fetch('jacket')
+=> "firetruck"
+
+If you use fetch to get a value that does not exist then ruby will return an error
+
+toys.keys
+=> ["under_the_bed", "cupboard", "drawer", "jacket"]
+
+toys.delete('jacket')
+
+Symbols
+:my_sym
+=> :my_sym
+
+toys = { :under_the_bed => 'lightsaber', :cupboard => 'teddy' }
+
+toys[:under_the_bed]
+=> "lightsaber"
+
+toys[:jacket] = 'firetruck'
+
+There is a small performance benefit to symbols over writing strings. Strings are immutable.
+
+countries = { :uk => { :capital => 'London', :population => 10000 } }
+=> {:uk=>{:capital=>"London", :population=>10000}}
+
+countries[:uk][:population]
+=> 10000
+
+countries[:France] = { :capital => 'Paris', :population => 12000 }
+=> {:capital=>"Paris", :population=>12000}
+
+countries
+=> {:uk=>{:capital=>"London", :population=>10000}, :France=>{:capital=>"Paris", :population=>12000}}
+
+Keep key names lowercase (like variable names) :france even though it may be tempting.
+
+quidditch_teams.delete( :gryffindor )
+delete the key :gryffindor and its associated values from the hash quidditch_teams
+
+while, for, until, loop

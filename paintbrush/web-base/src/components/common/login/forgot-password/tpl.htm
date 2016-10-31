@@ -1,0 +1,18 @@
+﻿
+<form class="reset-password">
+
+	<div class="messages" style="max-width:357px;">
+		<div class="message" ng-show="sent">Password reset email was successfully sent to {{email}}.</div>
+		<div class="message" ng-show="!sent">To reset your password we will send you an email containing a verification link.<br /><br />After clicking the link in the email you'll be able to enter a new password.</div>
+	</div>
+
+	<div class="field" ng-show="!sent">
+		<label for="Email">Email</label>
+		<input type="email" name="Email" placeholder="Email" value="{{email}}" required />
+	</div>
+
+	<div class="buttons">
+		<a class="cancel button" ng-href="/login"><i class="fa fa-arrow-left"></i> Cancel</a>
+		<a class="reset button sky-blue" ng-click="sendResetLink()" ng-show="!sent"><i class="fa fa-send"></i> Send</a>
+	</div>
+</form>
