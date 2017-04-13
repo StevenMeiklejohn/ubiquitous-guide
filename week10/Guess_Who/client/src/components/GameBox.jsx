@@ -10,9 +10,7 @@ var GameBox = React.createClass({
   getInitialState: function() {
     return { allBastards: bastards, gameVillain: null }
   },
-  removeImage: function(image){
-
-  },
+  
   componentDidMount: function() {
   this.selectRandomCharacter();
   },
@@ -49,43 +47,65 @@ var GameBox = React.createClass({
     console.log(villains)
     return villains;
   },
-  handleQuestion: function(e){
-    var options = this.state.allBastards
-    console.log(options);
-    e.preventDefault();
-    console.log(e.target.value);
 
-    var forDeselection = []
-    var selection = e.target.value
+  checkForGoodSelection: function(e){
+    console.log("checkForGoodSelection called");
+    var cpuPlayer=this.state.gameVillain;
+    var villains=this.state.allBastards;
+    var selection =e.target.value;
+    console.log(selection);
+    var deSelection = [];
+    console.log(cpuPlayer);
+    console.log(villains[0].Moustache);
 
-    for (var item of options){
-      if(selection ==="0"){
-        if(item.Moustache === "No"){
-        forDeselection.push(item.Name)
+
+
+    if(selection === "0"){
+      for(var villain of villains){
+        if(villain.Moustache === "Yes"){
+          window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
+
         }
-      } 
-        if(selection ==="1"){
-          if(item.Mask === "No"){
-          forDeselection.push(item.Name)
-          }
-        }
-        if(selection ==="2"){
-          if(item.Hair === "No"){
-          forDeselection.push(item.Name)
-          }
+        else{
+          deSelection.push(villain);
+          this.changeImageEnMass(deSelection);
         }
       }
-     console.log(forDeselection)
-    // var forDeselection = ["Skeletor", "Hitler", "Stalin"]
-     this.changeImageEnMass(forDeselection);
-     // return forDeselection; 
-    },
+
+    }
+
+    if(selection === "1"){
+      for(var villain of villains){
+        if(villain.Mask === "Yes"){
+          window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
+
+        }else{
+        deSelection.push(villain);
+        this.changeImageEnMass(deSelection);
+      }
+      }
+    }
+
+    if(selection === "2"){
+      for(var villain of villains){
+        if(villain.Hair === "Yes"){
+          window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
+
+        }else{
+        deSelection.push(villain);
+        this.changeImageEnMass(deSelection);
+      }
+    }
+    }
+
+},
 
     handleCountry: function(e){
       var options= this.state.allBastards
       console.log(options);
       e.preventDefault();
       console.log(e.target.value);
+      console.log(e.target.id);
       var names =[]
       for (var item of options){
         names.push(item.Name)
@@ -127,20 +147,26 @@ var GameBox = React.createClass({
 
     changeImage: function(e){
       console.log("clicked");
-      e.target.src ="http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png"
+      e.target.src = "./images/not_this_bastard.jpg"
+      console.log(e.target.src);
     },
+
+
+
+
 
     changeImageEnMass: function(array){
       var all = this.state.allBastards
       var cpuPlayer = this.state.gameVillain
       console.log(all);
       console.log(cpuPlayer);
+      console.log(array);
       // array = ["Skeletor", "Hitler", "Stalin"]
       for (var item of array){
         for (var character of all){
-          if(item === character.Name){
+          if(item === character){
             if(item != cpuPlayer){
-            character.src="http://www.clker.com/cliparts/5/9/5/4/12456868161725760927raemi_Cross_Out.svg.hi.png"
+            character.src="./images/not_this_bastard.jpg"
             }
           }
         }
@@ -153,6 +179,8 @@ var GameBox = React.createClass({
 
 
 
+
+
   
 
 
@@ -162,7 +190,7 @@ var GameBox = React.createClass({
   render: function() {
     return (
       <div className="GameBox">
-        <h1 id="title">Guess The Vilain</h1>
+        <h1 id="title">Guess The Bastard</h1>
 
         <div className="CharactersBox">
         <CharactersBox 
@@ -174,15 +202,15 @@ var GameBox = React.createClass({
         </div>
 
         <div className="QuestionsForm">
-        <h1 id="DoesVillainHave">Does Villain Have?</h1>
+        <h1 id="DoesVillainHave">Does The Bastard Have?</h1>
         <QuestionsForm 
         data={this.state.allBastards}
-        handleQuestion={this.handleQuestion}
+        handleQuestion={this.checkForGoodSelection}
         />
         </div>
 
         <div className="NationalityForm">
-        <h1 id="Nationality">Villain Nationality</h1>
+        <h1 id="Nationality">Bastard Nationality</h1>
         <NationalityForm 
         data={this.state.allBastards}
         nations={this.getNationalities()}
@@ -193,7 +221,7 @@ var GameBox = React.createClass({
 
 
         <div className="GuessForm">
-        <h1 id="VillainGuess">Guess The Villain</h1>
+        <h1 id="VillainGuess">Guess The Bastard</h1>
         <GuessForm 
         data={this.state.allBastards}
         villains={this.getVillains()}

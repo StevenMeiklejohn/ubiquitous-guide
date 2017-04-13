@@ -11,7 +11,7 @@ var CharactersBox = React.createClass({
   render: function() {
     return (
       <div className="CharactersBox">
-        <h1 id="CharactersHeader">Villains</h1>
+        <h1 id="CharactersHeader">Bastards</h1>
 
         <div id="Vader">
         <img 

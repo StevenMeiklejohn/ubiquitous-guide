@@ -1,24 +1,24 @@
 config = {
-  entry: "./src/app.jsx",
+  entry: __dirname + "/src/app.jsx",
   output: {
     filename: "bundle.js",
-    path: "./build"
+    path: __dirname + "/build"
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: [' ','.js', '.jsx']
   },
-  module:{
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel', // 'babel-loader' is also a legal name to reference
-        query: {
-          presets: ['react', 'es2015']
-        }
-      }
-    ]
-  },
+    devtool: 'source-map',
+    module:{
+        rules: [{
+          test: /\.jsx?$/,
+          exclude: /(node_modules)/,
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2015', 'react']
+          }
+        }]
+      },
+
   devtool: 'source-map'
 }
 
