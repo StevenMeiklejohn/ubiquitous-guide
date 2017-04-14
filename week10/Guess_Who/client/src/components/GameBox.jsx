@@ -53,10 +53,10 @@ var GameBox = React.createClass({
     var cpuPlayer=this.state.gameVillain;
     var villains=this.state.allBastards;
     var selection =e.target.value;
-    console.log(selection);
+    // console.log(selection);
     var deSelection = [];
-    console.log(cpuPlayer);
-    console.log(villains[0].Moustache);
+    // console.log(cpuPlayer);
+    // console.log(villains[0].Moustache);
 
 
 
@@ -141,9 +141,6 @@ var GameBox = React.createClass({
       window.alert("Close but no cigar")
     },
 
-    switchImage: function(){
-      console.log("vader Clicked");
-    },
 
     changeImage: function(e){
       console.log("clicked");
@@ -178,15 +175,6 @@ var GameBox = React.createClass({
     },
 
 
-
-
-
-  
-
-
-
-
-
   render: function() {
     return (
       <div className="GameBox">
@@ -195,7 +183,6 @@ var GameBox = React.createClass({
         <div className="CharactersBox">
         <CharactersBox 
         data={this.state.allBastards}
-        switchImage={this.switchImage}
         changeImage={this.changeImage}
         changeImageEnMass={this.changeImageEnMass}
         />

@@ -6690,117 +6690,26 @@ var CharactersBox = React.createClass({
 
 
   render: function render() {
+    var characters = this.props.data;
+    console.log(characters);
+
+    var characterList = characters.map(function (character, index) {
+      return React.createElement('img', {
+        id: character.Name,
+        key: index,
+        index: index,
+        onClick: this.props.changeImage,
+        alt: '',
+        src: character.src,
+        width: '200px',
+        length: '300px'
+      });
+    }.bind(this));
+
     return React.createElement(
       'div',
-      { className: 'CharactersBox' },
-      React.createElement(
-        'h1',
-        { id: 'CharactersHeader' },
-        'Bastards'
-      ),
-      React.createElement(
-        'div',
-        { id: 'Vader' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[0].src,
-          id: 'Vader',
-          width: '200px',
-          length: '300px'
-        })
-      ),
-      React.createElement(
-        'div',
-        { id: 'Ming' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[1].src,
-          width: '200px',
-          length: '300px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'Skeletor' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[2].src,
-          width: '200px',
-          length: '300px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'Hitler' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[3].src,
-          width: '200px',
-          height: '200px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'Stalin' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[4].src,
-          width: '200px',
-          height: '200px' })
-      ),
-      React.createElement('div', { id: 'CharacterSeparator' }),
-      React.createElement(
-        'div',
-        { id: 'Trump' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[5].src,
-          width: '200px',
-          height: '200px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'Joffrey' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[6].src,
-          width: '200px',
-          height: '200px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'DrDoom' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[7].src,
-          width: '200px',
-          height: '200px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'Beiber' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[8].src,
-          width: '200px',
-          height: '200px' })
-      ),
-      React.createElement(
-        'div',
-        { id: 'MummRa' },
-        React.createElement('img', {
-          onClick: this.props.changeImage,
-          alt: '',
-          src: this.props.data[9].src,
-          width: '200px',
-          height: '200px' })
-      )
+      null,
+      characterList
     );
   }
 });
@@ -11125,10 +11034,11 @@ var GameBox = React.createClass({
     var cpuPlayer = this.state.gameVillain;
     var villains = this.state.allBastards;
     var selection = e.target.value;
-    console.log(selection);
+    // console.log(selection);
     var deSelection = [];
-    console.log(cpuPlayer);
-    console.log(villains[0].Moustache);
+    // console.log(cpuPlayer);
+    // console.log(villains[0].Moustache);
+
 
     if (selection === "0") {
       var _iteratorNormalCompletion3 = true;
@@ -11289,10 +11199,6 @@ var GameBox = React.createClass({
     window.alert("Close but no cigar");
   },
 
-  switchImage: function switchImage() {
-    console.log("vader Clicked");
-  },
-
   changeImage: function changeImage(e) {
     console.log("clicked");
     e.target.src = "./images/not_this_bastard.jpg";
@@ -11377,7 +11283,6 @@ var GameBox = React.createClass({
         { className: 'CharactersBox' },
         React.createElement(CharactersBox, {
           data: this.state.allBastards,
-          switchImage: this.switchImage,
           changeImage: this.changeImage,
           changeImageEnMass: this.changeImageEnMass
         })
@@ -11450,6 +11355,7 @@ module.exports = __webpack_require__(66);
 var React = __webpack_require__(17);
 var ReactDOM = __webpack_require__(89);
 var GameBox = __webpack_require__(88);
+var CharactersBox = __webpack_require__(52);
 
 window.onload = function () {
   ReactDOM.render(React.createElement(
@@ -11560,111 +11466,158 @@ module.exports = NationalityForm;
 "use strict";
 
 
-module.exports = [{ Name: "Darth Vader",
+module.exports = [{ id: 1,
+  Name: "Darth Vader",
   Politician: "Yes",
   Moustache: "No",
   Mask: "Yes",
   Hair: "No",
   Nationality: "Tatooinian",
   src: "./images/DarthVader.jpg"
-}, { Name: "Ming The Merciless",
+}, { id: 2,
+  Name: "Ming The Merciless",
   Politician: "Yes",
   Moustache: "Yes",
   Mask: "No",
   Hair: "Yes",
   Nationality: "Mongolian",
   src: "./images/MingTheMerciless.jpg"
-}, { Name: "Skeletor",
+}, { id: 3,
+  Name: "Skeletor",
   Politician: "No",
   Moustache: "No",
   Mask: "No",
   Hair: "No",
   Nationality: "Eternian",
-  src: "http://www.tshirtvortex.net/wp-content/uploads/2016/04/drinkingproblems.jpg"
-}, { Name: "Hitler",
+  src: "./images/Skeletor.jpg"
+}, { id: 4,
+  Name: "Hitler",
   Politician: "Yes",
   Moustache: "Yes",
   Mask: "No",
   Hair: "Yes",
   Nationality: "German",
-  src: "http://f.tqn.com/y/history1900s/1/W/v/Q/1/Hitlerseated2.jpg"
-}, { Name: "Stalin",
+  src: "./images/Hitler.jpg"
+}, { id: 5,
+  Name: "Stalin",
   Politician: "Yes",
   Moustache: "Yes",
   Mask: "No",
   Hair: "Yes",
   Nationality: "Russian",
-  src: "http://i.dailymail.co.uk/i/pix/2015/06/18/21/29C1CD9A00000578-3130307-image-m-5_1434660552551.jpg"
-}, { Name: "Trump",
+  src: "./images/Stalin.jpg"
+}, { id: 6,
+  Name: "Trump",
   Politician: "Yes",
   Moustache: "No",
   Mask: "No",
   Hair: "Yes",
   Nationality: "American",
-  src: "https://pixel.nymag.com/imgs/daily/following/2016/01/27/27-trump-cowboy.w190.h190.2x.jpg"
-}, { Name: "Joffrey",
+  src: "./images/Trump.jpg"
+}, { id: 7,
+  Name: "Joffrey",
   Politician: "Yes",
   Moustache: "No",
   Mask: "No",
   Hair: "Yes",
   Nationality: "Westerosi",
-  src: "http://vignette2.wikia.nocookie.net/game-of-thrones-le-trone-de-fer/images/8/89/Promo_(Joffrey)_Saison_4_(3).jpg/revision/latest/top-crop/width/240/height/240?cb=20160424205916&path-prefix=fr"
-}, { Name: "Dr Doom",
+  src: "./images/Joffrey.jpg"
+}, { id: 8,
+  Name: "Dr Doom",
   Politician: "Yes",
   Moustache: "No",
   Mask: "Yes",
   Hair: "No",
   Nationality: "Latverian",
-  src: "http://images-cdn.moviepilot.com/images/c_scale,h_1200,w_1600/t_mp_quality/n3bhgbdah6afarpbehs7/could-anyone-actually-defeat-dr-doom-494013.jpg"
-}, { Name: "Justin Bieber",
+  src: "./images/DrDoom.jpg"
+}, { id: 9,
+  Name: "Justin Bieber",
   Politician: "No",
   Moustache: "No",
   Mask: "No",
   Hair: "Yes",
   Nationality: "Canada",
-  src: "http://cdn4.thr.com/sites/default/files/2014/01/justin_bieber_mugshot.jpg"
-}, { Name: "Mumm-Ra",
+  src: "./images/JustinBieber.jpg"
+}, { id: 10,
+  Name: "Mumm-Ra",
   Politician: "No",
   Moustache: "No",
   Mask: "No",
   Hair: "No",
   Nationality: "Thunderian",
-  src: "http://www.tochio.it/wp-content/uploads/2015/07/Mumm-Ra.jpg"
-}, { Name: "M Bison",
+  src: "./images/Mumm-Ra.jpg"
+}, { id: 11,
+  Name: "M Bison",
   Politician: "Yes",
   Moustache: "No",
   Mask: "No",
   Hair: "Yes",
   Nationality: "Bisonian",
   src: "./images/Mbison.jpg"
-}, { Name: "Mumm-Ra",
+}, { id: 12,
+  Name: "Katie Hopkins",
+  Politician: "No",
+  Moustache: "No",
+  Mask: "No",
+  Hair: "Yes",
+  Nationality: "British",
+  src: "./images/Hopkins.jpg"
+}, { id: 13,
+  Name: "Jon Snow",
+  Politician: "Yes",
+  Moustache: "Yes",
+  Mask: "No",
+  Hair: "Yes",
+  Nationality: "Westerosian",
+  src: "./images/JonSnow.jpg"
+}, { id: 14,
+  Name: "Maria Carey",
+  Politician: "No",
+  Moustache: "No",
+  Mask: "No",
+  Hair: "Yes",
+  Nationality: "American",
+  src: "./images/mariah-carey.jpg"
+}, { id: 15,
+  Name: "George Osborne",
+  Politician: "Yes",
+  Moustache: "No",
+  Mask: "No",
+  Hair: "Yes",
+  Nationality: "British",
+  src: "./images/osborne.jpg"
+}, { id: 16,
+  Name: "Simon Cowell",
+  Politician: "No",
+  Moustache: "No",
+  Mask: "No",
+  Hair: "Yes",
+  Nationality: "British",
+  src: "./images/Simon-Cowell.jpg"
+}, { id: 17,
+  Name: "Thanos",
   Politician: "No",
   Moustache: "No",
   Mask: "No",
   Hair: "No",
-  Nationality: "Thunderian",
-  src: "http://www.tochio.it/wp-content/uploads/2015/07/Mumm-Ra.jpg"
-}, { Name: "Mumm-Ra",
-  Politician: "No",
+  Nationality: "Titanian",
+  src: "./images/thanos.png"
+}, { id: 18,
+  Name: "Thatcher",
+  Politician: "Yes",
   Moustache: "No",
   Mask: "No",
-  Hair: "No",
-  Nationality: "Thunderian",
-  src: "http://www.tochio.it/wp-content/uploads/2015/07/Mumm-Ra.jpg"
-}, { Name: "Mumm-Ra",
-  Politician: "No",
+  Hair: "Yes",
+  Nationality: "British",
+  src: "./images/Thatcher.jpg"
+}, { id: 19,
+  Name: "Zelda",
+  Politician: "Yes",
   Moustache: "No",
   Mask: "No",
-  Hair: "No",
-  Nationality: "Thunderian",
-  src: "http://www.tochio.it/wp-content/uploads/2015/07/Mumm-Ra.jpg"
-}, { Name: "Mumm-Ra",
-  Politician: "No",
-  Moustache: "No",
-  Mask: "No",
-  Hair: "No",
-  Nationality: "Thunderian",
-  src: "http://www.tochio.it/wp-content/uploads/2015/07/Mumm-Ra.jpg"
+  Hair: "Yes",
+  Nationality: "Outer Space",
+  src: "./images/zelda.jpeg"
 }];
 
 /***/ }),
