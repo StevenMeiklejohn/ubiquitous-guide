@@ -20,6 +20,35 @@ img {
   width: 200px;
 }
 
+.Reset {
+    text-align: center;
+    font-family: "Evil";
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+#Reset {
+    text-align: center;
+    font-family: "Evil";
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.button {
+
+    top: 50%;
+    font-family: "Evil";
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+#button {
+
+    top: 50%;
+    font-family: "Evil";
+    font-size: 30px;
+    margin-top: 30px;
+}
 
 .CharactersBox{
   text-align: center;

@@ -1,5 +1,6 @@
 var React = require('react');
 var GuessForm = require('./GuessForm.jsx');
+var Reset = require('./Reset.jsx');
 var CharactersBox = require('./CharactersBox.jsx');
 var QuestionsForm = require('./QuestionsForm.jsx');
 var NationalityForm = require('./NationalityForm.jsx');
@@ -54,7 +55,6 @@ var GameBox = React.createClass({
     var cpuPlayer=this.state.gameVillain;
     var villains=this.state.allBastards;
     var selection =e.target.value;
-
 
     if(selection === "0"){
       if(cpuPlayer.Fictional === "Yes"){
@@ -160,7 +160,6 @@ var GameBox = React.createClass({
     }
   }  
 
-
   if(selection === "4"){
     if(cpuPlayer.Moustache === "Yes"){
       var villainsNew = villains.map(function(el){
@@ -187,10 +186,6 @@ var GameBox = React.createClass({
     }
   }      
   },
-
-
-
-
 
     handleVillain: function(e){
       var options=this.state.allBastards
@@ -223,14 +218,15 @@ var GameBox = React.createClass({
       console.log(e.target.src);
     },
 
-
-
-
-
     changeImageEnMass: function(){
       var all = this.state.allBastards
       this.render();
       return all;
+    },
+
+    handleReset: function(){
+      console.log("Rest function")
+         window.location.reload();
     },
 
 
@@ -262,6 +258,12 @@ var GameBox = React.createClass({
         villains={this.getVillains()}
         handleVillain={this.handleVillain}
         />
+        </div>
+
+        <div className="Reset">
+        <Reset
+         handleReset={this.handleReset}
+         />
         </div>
 
       </div>

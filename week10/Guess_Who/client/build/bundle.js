@@ -10937,6 +10937,7 @@ module.exports = isTextInputElement;
 
 var React = __webpack_require__(17);
 var GuessForm = __webpack_require__(91);
+var Reset = __webpack_require__(165);
 var CharactersBox = __webpack_require__(33);
 var QuestionsForm = __webpack_require__(53);
 var NationalityForm = __webpack_require__(92);
@@ -11171,6 +11172,11 @@ var GameBox = React.createClass({
     return all;
   },
 
+  handleReset: function handleReset() {
+    console.log("Rest function");
+    window.location.reload();
+  },
+
   render: function render() {
     return React.createElement(
       'div',
@@ -11214,6 +11220,13 @@ var GameBox = React.createClass({
           data: this.state.allBastards,
           villains: this.getVillains(),
           handleVillain: this.handleVillain
+        })
+      ),
+      React.createElement(
+        'div',
+        { className: 'Reset' },
+        React.createElement(Reset, {
+          handleReset: this.handleReset
         })
       )
     );
@@ -20556,6 +20569,39 @@ module.exports = quoteAttributeValueForBrowser;
 var ReactMount = __webpack_require__(5);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
+
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var React = __webpack_require__(17);
+
+var Reset = React.createClass({
+  displayName: "Reset",
+
+
+  render: function render() {
+
+    return React.createElement(
+      "div",
+      { className: "Reset" },
+      React.createElement(
+        "div",
+        { id: "Reset" },
+        React.createElement(
+          "button",
+          { className: "button", onClick: this.props.handleReset },
+          "New Game"
+        )
+      )
+    );
+  }
+});
+
+module.exports = Reset;
 
 /***/ })
 /******/ ]);
