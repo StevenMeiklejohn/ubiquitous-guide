@@ -213,9 +213,17 @@ var GameBox = React.createClass({
 
 
     changeImage: function(e){
-      console.log("clicked");
-      e.target.src = "./images/not_this_bastard.jpg"
-      console.log(e.target.src);
+      var cpuPlayer=this.state.gameVillain;
+      var target = e.target;
+      var index = e.target.value;
+      console.log(target.id);
+
+      if(cpuPlayer.Name === target.id){
+        this.handleWin()
+      } else {
+        this.handleLose()
+      }
+
     },
 
     changeImageEnMass: function(){
