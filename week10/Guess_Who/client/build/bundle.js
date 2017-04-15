@@ -11152,12 +11152,14 @@ var GameBox = React.createClass({
 
   handleWin: function handleWin() {
     console.log("You Win");
-    window.alert("You win! Yaaaaaas!");
+    // window.alert("You win! Yaaaaaas!")
+    swal("You win! Yaaaaaas!");
   },
 
   handleLose: function handleLose() {
     console.log("You Lose");
-    window.alert("Close but no cigar");
+    // window.alert("Close but no cigar")
+    swal("Close but no cigar");
   },
 
   changeImage: function changeImage(e) {

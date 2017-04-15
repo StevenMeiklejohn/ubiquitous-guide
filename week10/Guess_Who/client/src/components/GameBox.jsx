@@ -203,12 +203,14 @@ var GameBox = React.createClass({
 
     handleWin: function(){
       console.log("You Win")
-      window.alert("You win! Yaaaaaas!")
+      // window.alert("You win! Yaaaaaas!")
+      swal("You win! Yaaaaaas!")
     },
 
     handleLose: function(){
       console.log("You Lose")
-      window.alert("Close but no cigar")
+      // window.alert("Close but no cigar")
+      swal("Close but no cigar")
     },
 
 
