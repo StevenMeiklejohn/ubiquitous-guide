@@ -11037,82 +11037,112 @@ var GameBox = React.createClass({
         this.incorrectResponse();
       }
     }
+
+    if (selection === "1") {
+      if (cpuPlayer.Alive === "Yes") {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Alive === "No") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.correctResponse();
+      } else {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Alive === "Yes") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.incorrectResponse();
+      }
+    }
+
+    if (selection === "2") {
+      if (cpuPlayer.Politician === "Yes") {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Politician === "No") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.correctResponse();
+      } else {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Politician === "Yes") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.incorrectResponse();
+      }
+    }
+
+    if (selection === "3") {
+      if (cpuPlayer.Hair === "Yes") {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Hair === "No") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.correctResponse();
+      } else {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Hair === "Yes") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.incorrectResponse();
+      }
+    }
+
+    if (selection === "4") {
+      if (cpuPlayer.Moustache === "Yes") {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Moustache === "No") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.correctResponse();
+      } else {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Moustache === "Yes") {
+            el.src = "./images/not_this_bastard.jpg";
+          }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.incorrectResponse();
+      }
+    }
   },
-
-  // if(selection === "1"){
-  //   for(var villain of villains){
-  //     if(villain.Alive === "Yes"){
-  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard1.");
-
-  //     }else{
-  //     deSelection.push(villain);
-  //     this.changeImageEnMass(deSelection);
-  //   }
-  //   }
-  // }
-
-  // if(selection === "2"){
-  //   for(var villain of villains){
-  //     if(villain.Politician === "Yes"){
-  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard2.");
-
-  //     }else{
-  //     deSelection.push(villain);
-  //     this.changeImageEnMass(deSelection);
-  //   }
-  // }
-  // }
-
-  // if(selection === "3"){
-  //   for(var villain of villains){
-  //     if(villain.Hair === "Yes"){
-  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard3.");
-
-  //     }else{
-  //     deSelection.push(villain);
-  //     this.changeImageEnMass(deSelection);
-  //   }
-  // }
-  // }
-
-  // if(selection === "4"){
-  //   for(var villain of villains){
-  //     if(villain.Moustache === "Yes"){
-  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard4.");
-
-  //     }else{
-  //     deSelection.push(villain);
-  //     this.changeImageEnMass(deSelection);
-  //   }
-  // }
-  // }
-
-
-  // handleCountry: function(e){
-  //   var options= this.state.allBastards
-  //   console.log(options);
-  //   e.preventDefault();
-  //   console.log(e.target.value);
-  //   console.log(e.target.id);
-  //   var names =[]
-  //   for (var item of options){
-  //     names.push(item.Name)
-  //   }
-
-  //   var index = e.target.value
-  //   names.splice(index, 1);
-
-  //   console.log(options);
-  //   this.changeImageEnMass(names)
-  // },
 
   handleVillain: function handleVillain(e) {
     var options = this.state.allBastards;
     var cpuPlayer = this.state.gameVillain;
     var index = e.target.value;
+    console.log(options);
     console.log(options[index]);
 
-    if (options[index].Name === cpuPlayer) {
+    if (options[index].Name === cpuPlayer.Name) {
       this.handleWin();
     } else {
       this.handleLose();
