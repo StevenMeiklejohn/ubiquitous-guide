@@ -14,109 +14,143 @@ var GameBox = React.createClass({
   componentDidMount: function() {
   this.selectRandomCharacter();
   },
+
   selectRandomCharacter: function(){
-    var villains = this.getVillains();
-    console.log(villains);
+    var villains = this.state.allBastards;
     var rand = villains[Math.floor(Math.random() * villains.length)];
-    console.log(rand);
+    this.setState( {eliminated: villains} );
     this.setRandomCharacter(rand);
   },
+
   setRandomCharacter: function(name){
     var gVillain = name;
-    console.log(name);
     this.setState( { gameVillain: gVillain })
+    console.log(gVillain);
   },
-  getNationalities: function(){
-    var nationalities = []
-    for (var item of this.state.allBastards){
-      nationalities.push(item.Nationality)
-      }
-      console.log(nationalities)
-      return nationalities;
-  },
-  setSelectedNationality: function(selectedCountry){
-    console.log(selectedCountry);
-    console.log(this.state.gameVillain);
 
-  },
   getVillains: function(){
     var villains = []
     for (var item of this.state.allBastards){
       villains.push(item.Name)
     }
-    console.log(villains)
     return villains;
   },
+
+  correctResponse: function(){
+    var villains=this.state.allBastards;
+    this.changeImageEnMass(villains);
+    window.alert("Good guess! You are one step closer to pinning down that sneaky bastard0.");
+  },
+
+  incorrectResponse: function(){
+    var villains=this.state.allBastards;
+    this.changeImageEnMass(villains);
+    window.alert("Your selection is not true of the bastard in question");
+  },
+
 
   checkForGoodSelection: function(e){
     console.log("checkForGoodSelection called");
     var cpuPlayer=this.state.gameVillain;
     var villains=this.state.allBastards;
     var selection =e.target.value;
-    // console.log(selection);
-    var deSelection = [];
-    // console.log(cpuPlayer);
-    // console.log(villains[0].Moustache);
-
 
 
     if(selection === "0"){
-      for(var villain of villains){
-        if(villain.Moustache === "Yes"){
-          window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
-
+      if(cpuPlayer.Fictional === "Yes"){
+        var villainsNew = villains.map(function(el){
+          console.log(el);
+          if(el.Fictional === "No"){
+          el.src = "./images/not_this_bastard.jpg"
         }
-        else{
-          deSelection.push(villain);
-          this.changeImageEnMass(deSelection);
+        return el
+        })
+        this.setState( { allBastards: villainsNew });
+        this.correctResponse();
+      }
+      else{
+        var villainsNew = villains.map(function(el){
+          console.log(el);
+          if(el.Fictional === "Yes"){
+          el.src = "./images/not_this_bastard.jpg"
         }
-      }
+        return el
+        })
+        this.setState( { allBastards: villainsNew });
+        this.incorrectResponse();
 
-    }
-
-    if(selection === "1"){
-      for(var villain of villains){
-        if(villain.Mask === "Yes"){
-          window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
-
-        }else{
-        deSelection.push(villain);
-        this.changeImageEnMass(deSelection);
-      }
       }
     }
+  },
+       
 
-    if(selection === "2"){
-      for(var villain of villains){
-        if(villain.Hair === "Yes"){
-          window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
+    // if(selection === "1"){
+    //   for(var villain of villains){
+    //     if(villain.Alive === "Yes"){
+    //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard1.");
 
-        }else{
-        deSelection.push(villain);
-        this.changeImageEnMass(deSelection);
-      }
-    }
-    }
+    //     }else{
+    //     deSelection.push(villain);
+    //     this.changeImageEnMass(deSelection);
+    //   }
+    //   }
+    // }
 
-},
+    // if(selection === "2"){
+    //   for(var villain of villains){
+    //     if(villain.Politician === "Yes"){
+    //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard2.");
 
-    handleCountry: function(e){
-      var options= this.state.allBastards
-      console.log(options);
-      e.preventDefault();
-      console.log(e.target.value);
-      console.log(e.target.id);
-      var names =[]
-      for (var item of options){
-        names.push(item.Name)
-      }
+    //     }else{
+    //     deSelection.push(villain);
+    //     this.changeImageEnMass(deSelection);
+    //   }
+    // }
+    // }
 
-      var index = e.target.value
-      names.splice(index, 1);
+    // if(selection === "3"){
+    //   for(var villain of villains){
+    //     if(villain.Hair === "Yes"){
+    //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard3.");
+
+    //     }else{
+    //     deSelection.push(villain);
+    //     this.changeImageEnMass(deSelection);
+    //   }
+    // }
+    // }
+
+    // if(selection === "4"){
+    //   for(var villain of villains){
+    //     if(villain.Moustache === "Yes"){
+    //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard4.");
+
+    //     }else{
+    //     deSelection.push(villain);
+    //     this.changeImageEnMass(deSelection);
+    //   }
+    // }
+    // }
+
+
+
+    // handleCountry: function(e){
+    //   var options= this.state.allBastards
+    //   console.log(options);
+    //   e.preventDefault();
+    //   console.log(e.target.value);
+    //   console.log(e.target.id);
+    //   var names =[]
+    //   for (var item of options){
+    //     names.push(item.Name)
+    //   }
+
+    //   var index = e.target.value
+    //   names.splice(index, 1);
       
-      console.log(options);
-      this.changeImageEnMass(names)
-    },
+    //   console.log(options);
+    //   this.changeImageEnMass(names)
+    // },
 
     handleVillain: function(e){
       var options=this.state.allBastards
@@ -152,26 +186,10 @@ var GameBox = React.createClass({
 
 
 
-    changeImageEnMass: function(array){
+    changeImageEnMass: function(){
       var all = this.state.allBastards
-      var cpuPlayer = this.state.gameVillain
-      console.log(all);
-      console.log(cpuPlayer);
-      console.log(array);
-      // array = ["Skeletor", "Hitler", "Stalin"]
-      for (var item of array){
-        for (var character of all){
-          if(item === character){
-            if(item != cpuPlayer){
-            character.src="./images/not_this_bastard.jpg"
-            }
-          }
-        }
-      }
-      console.log(all);
-      this.setState( { allBastards: all } )
-      return all
       this.render();
+      return all;
     },
 
 
@@ -189,23 +207,12 @@ var GameBox = React.createClass({
         </div>
 
         <div className="QuestionsForm">
-        <h1 id="DoesVillainHave">Does The Bastard Have?</h1>
+        <h1 id="DoesVillainHave">Eliminate Some Bastards</h1>
         <QuestionsForm 
         data={this.state.allBastards}
         handleQuestion={this.checkForGoodSelection}
         />
         </div>
-
-        <div className="NationalityForm">
-        <h1 id="Nationality">Bastard Nationality</h1>
-        <NationalityForm 
-        data={this.state.allBastards}
-        nations={this.getNationalities()}
-        onSelectCountry = {this.setSelectedNationality}
-        handleCountry={this.handleCountry}
-        />
-        </div>
-
 
         <div className="GuessForm">
         <h1 id="VillainGuess">Guess The Bastard</h1>

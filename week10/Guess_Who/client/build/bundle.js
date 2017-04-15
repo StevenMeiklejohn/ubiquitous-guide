@@ -497,17 +497,17 @@ var ReactInstanceMap = __webpack_require__(22);
 var ReactMarkupChecksum = __webpack_require__(77);
 var ReactPerf = __webpack_require__(7);
 var ReactReconciler = __webpack_require__(15);
-var ReactUpdateQueue = __webpack_require__(39);
+var ReactUpdateQueue = __webpack_require__(40);
 var ReactUpdates = __webpack_require__(8);
 
 var assign = __webpack_require__(2);
 var emptyObject = __webpack_require__(19);
 var containsNode = __webpack_require__(55);
-var instantiateReactComponent = __webpack_require__(46);
+var instantiateReactComponent = __webpack_require__(47);
 var invariant = __webpack_require__(1);
 var setInnerHTML = __webpack_require__(32);
-var shouldUpdateReactComponent = __webpack_require__(49);
-var validateDOMNesting = __webpack_require__(51);
+var shouldUpdateReactComponent = __webpack_require__(50);
+var validateDOMNesting = __webpack_require__(52);
 var warning = __webpack_require__(3);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -1700,7 +1700,7 @@ module.exports = ReactPerf;
 
 
 
-var CallbackQueue = __webpack_require__(33);
+var CallbackQueue = __webpack_require__(34);
 var PooledClass = __webpack_require__(13);
 var ReactPerf = __webpack_require__(7);
 var ReactReconciler = __webpack_require__(15);
@@ -3646,7 +3646,7 @@ module.exports = ReactInstanceMap;
 
 var SyntheticEvent = __webpack_require__(16);
 
-var getEventTarget = __webpack_require__(44);
+var getEventTarget = __webpack_require__(45);
 
 /**
  * @interface UIEvent
@@ -3773,7 +3773,7 @@ var ReactPerf = __webpack_require__(7);
 var ViewportMetrics = __webpack_require__(83);
 
 var assign = __webpack_require__(2);
-var isEventSupported = __webpack_require__(47);
+var isEventSupported = __webpack_require__(48);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -4157,7 +4157,7 @@ module.exports = ReactPropTypeLocations;
 var SyntheticUIEvent = __webpack_require__(23);
 var ViewportMetrics = __webpack_require__(83);
 
-var getEventModifierState = __webpack_require__(43);
+var getEventModifierState = __webpack_require__(44);
 
 /**
  * @interface MouseEvent
@@ -4628,6 +4628,47 @@ module.exports = setInnerHTML;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+var React = __webpack_require__(17);
+var QuestionsForm = __webpack_require__(53);
+
+var CharactersBox = React.createClass({
+  displayName: 'CharactersBox',
+
+
+  render: function render() {
+    var characters = this.props.data;
+    console.log(characters);
+
+    var characterList = characters.map(function (character, index) {
+      return React.createElement('img', {
+        id: character.Name,
+        key: index,
+        index: index,
+        onClick: this.props.changeImage,
+        alt: '',
+        src: character.src,
+        width: '200px',
+        length: '300px'
+      });
+    }.bind(this));
+
+    return React.createElement(
+      'div',
+      null,
+      characterList
+    );
+  }
+});
+
+module.exports = CharactersBox;
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4724,7 +4765,7 @@ module.exports = CallbackQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4956,7 +4997,7 @@ module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5097,7 +5138,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5114,7 +5155,7 @@ module.exports = LinkedValueUtils;
 
 
 
-var ReactDOMIDOperations = __webpack_require__(38);
+var ReactDOMIDOperations = __webpack_require__(39);
 var ReactMount = __webpack_require__(5);
 
 /**
@@ -5144,7 +5185,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5202,7 +5243,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5221,7 +5262,7 @@ module.exports = ReactComponentEnvironment;
 
 
 var DOMChildrenOperations = __webpack_require__(61);
-var DOMPropertyOperations = __webpack_require__(34);
+var DOMPropertyOperations = __webpack_require__(35);
 var ReactMount = __webpack_require__(5);
 var ReactPerf = __webpack_require__(7);
 
@@ -5303,7 +5344,7 @@ module.exports = ReactDOMIDOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5567,7 +5608,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5587,7 +5628,7 @@ module.exports = ReactUpdateQueue;
 module.exports = '0.14.8';
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5643,7 +5684,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5699,7 +5740,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5749,7 +5790,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5784,7 +5825,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5830,7 +5871,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5949,7 +5990,7 @@ module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6015,7 +6056,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6061,7 +6102,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6110,7 +6151,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6131,7 +6172,7 @@ var ReactCurrentOwner = __webpack_require__(11);
 var ReactElement = __webpack_require__(6);
 var ReactInstanceHandles = __webpack_require__(18);
 
-var getIteratorFn = __webpack_require__(45);
+var getIteratorFn = __webpack_require__(46);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(3);
 
@@ -6306,7 +6347,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6676,47 +6717,6 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var React = __webpack_require__(17);
-var QuestionsForm = __webpack_require__(53);
-
-var CharactersBox = React.createClass({
-  displayName: 'CharactersBox',
-
-
-  render: function render() {
-    var characters = this.props.data;
-    console.log(characters);
-
-    var characterList = characters.map(function (character, index) {
-      return React.createElement('img', {
-        id: character.Name,
-        key: index,
-        index: index,
-        onClick: this.props.changeImage,
-        alt: '',
-        src: character.src,
-        width: '200px',
-        length: '300px'
-      });
-    }.bind(this));
-
-    return React.createElement(
-      'div',
-      null,
-      characterList
-    );
-  }
-});
-
-module.exports = CharactersBox;
-
-/***/ }),
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6724,14 +6724,14 @@ module.exports = CharactersBox;
 
 
 var React = __webpack_require__(17);
-var CharactersBox = __webpack_require__(52);
+var CharactersBox = __webpack_require__(33);
 
 var QuestionsForm = React.createClass({
   displayName: 'QuestionsForm',
 
 
   render: function render() {
-    var array = ["Moustache", "Mask", "Hair"];
+    var array = ["Fictional", "Alive", "Politician", "Hair", "Moustache"];
     var options = array.map(function (characteristic, index) {
       return React.createElement(
         'option',
@@ -7317,7 +7317,7 @@ var ReactMultiChildUpdateTypes = __webpack_require__(78);
 var ReactPerf = __webpack_require__(7);
 
 var setInnerHTML = __webpack_require__(32);
-var setTextContent = __webpack_require__(48);
+var setTextContent = __webpack_require__(49);
 var invariant = __webpack_require__(1);
 
 /**
@@ -7678,7 +7678,7 @@ var PooledClass = __webpack_require__(13);
 var ReactElement = __webpack_require__(6);
 
 var emptyFunction = __webpack_require__(9);
-var traverseAllChildren = __webpack_require__(50);
+var traverseAllChildren = __webpack_require__(51);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -8779,9 +8779,9 @@ var ReactMount = __webpack_require__(5);
 var ReactPerf = __webpack_require__(7);
 var ReactReconciler = __webpack_require__(15);
 var ReactUpdates = __webpack_require__(8);
-var ReactVersion = __webpack_require__(40);
+var ReactVersion = __webpack_require__(41);
 
-var findDOMNode = __webpack_require__(41);
+var findDOMNode = __webpack_require__(42);
 var renderSubtreeIntoContainer = __webpack_require__(164);
 var warning = __webpack_require__(3);
 
@@ -8892,7 +8892,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var LinkedValueUtils = __webpack_require__(35);
+var LinkedValueUtils = __webpack_require__(36);
 var ReactMount = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(8);
 
@@ -9089,14 +9089,14 @@ module.exports = ReactDOMSelect;
 
 
 var DOMChildrenOperations = __webpack_require__(61);
-var DOMPropertyOperations = __webpack_require__(34);
-var ReactComponentBrowserEnvironment = __webpack_require__(36);
+var DOMPropertyOperations = __webpack_require__(35);
+var ReactComponentBrowserEnvironment = __webpack_require__(37);
 var ReactMount = __webpack_require__(5);
 
 var assign = __webpack_require__(2);
 var escapeTextContentForBrowser = __webpack_require__(31);
-var setTextContent = __webpack_require__(48);
-var validateDOMNesting = __webpack_require__(51);
+var setTextContent = __webpack_require__(49);
+var validateDOMNesting = __webpack_require__(52);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -9302,7 +9302,7 @@ var EnterLeaveEventPlugin = __webpack_require__(115);
 var ExecutionEnvironment = __webpack_require__(4);
 var HTMLDOMPropertyConfig = __webpack_require__(118);
 var ReactBrowserComponentMixin = __webpack_require__(120);
-var ReactComponentBrowserEnvironment = __webpack_require__(36);
+var ReactComponentBrowserEnvironment = __webpack_require__(37);
 var ReactDefaultBatchingStrategy = __webpack_require__(70);
 var ReactDOMComponent = __webpack_require__(124);
 var ReactDOMTextComponent = __webpack_require__(69);
@@ -9411,7 +9411,7 @@ var ReactPropTypeLocationNames = __webpack_require__(26);
 var ReactCurrentOwner = __webpack_require__(11);
 
 var canDefineProperty = __webpack_require__(30);
-var getIteratorFn = __webpack_require__(45);
+var getIteratorFn = __webpack_require__(46);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(3);
 
@@ -10334,7 +10334,7 @@ var ReactElement = __webpack_require__(6);
 var ReactPropTypeLocationNames = __webpack_require__(26);
 
 var emptyFunction = __webpack_require__(9);
-var getIteratorFn = __webpack_require__(45);
+var getIteratorFn = __webpack_require__(46);
 
 /**
  * Collection of methods that allow declaration and validation of props that are
@@ -10937,7 +10937,7 @@ module.exports = isTextInputElement;
 
 var React = __webpack_require__(17);
 var GuessForm = __webpack_require__(91);
-var CharactersBox = __webpack_require__(52);
+var CharactersBox = __webpack_require__(33);
 var QuestionsForm = __webpack_require__(53);
 var NationalityForm = __webpack_require__(92);
 var bastards = __webpack_require__(93);
@@ -10952,20 +10952,22 @@ var GameBox = React.createClass({
   componentDidMount: function componentDidMount() {
     this.selectRandomCharacter();
   },
+
   selectRandomCharacter: function selectRandomCharacter() {
-    var villains = this.getVillains();
-    console.log(villains);
+    var villains = this.state.allBastards;
     var rand = villains[Math.floor(Math.random() * villains.length)];
-    console.log(rand);
+    this.setState({ eliminated: villains });
     this.setRandomCharacter(rand);
   },
+
   setRandomCharacter: function setRandomCharacter(name) {
     var gVillain = name;
-    console.log(name);
     this.setState({ gameVillain: gVillain });
+    console.log(gVillain);
   },
-  getNationalities: function getNationalities() {
-    var nationalities = [];
+
+  getVillains: function getVillains() {
+    var villains = [];
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
@@ -10974,7 +10976,7 @@ var GameBox = React.createClass({
       for (var _iterator = this.state.allBastards[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var item = _step.value;
 
-        nationalities.push(item.Nationality);
+        villains.push(item.Name);
       }
     } catch (err) {
       _didIteratorError = true;
@@ -10991,42 +10993,19 @@ var GameBox = React.createClass({
       }
     }
 
-    console.log(nationalities);
-    return nationalities;
-  },
-  setSelectedNationality: function setSelectedNationality(selectedCountry) {
-    console.log(selectedCountry);
-    console.log(this.state.gameVillain);
-  },
-  getVillains: function getVillains() {
-    var villains = [];
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
-
-    try {
-      for (var _iterator2 = this.state.allBastards[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-        var item = _step2.value;
-
-        villains.push(item.Name);
-      }
-    } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-          _iterator2.return();
-        }
-      } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
-        }
-      }
-    }
-
-    console.log(villains);
     return villains;
+  },
+
+  correctResponse: function correctResponse() {
+    var villains = this.state.allBastards;
+    this.changeImageEnMass(villains);
+    window.alert("Good guess! You are one step closer to pinning down that sneaky bastard0.");
+  },
+
+  incorrectResponse: function incorrectResponse() {
+    var villains = this.state.allBastards;
+    this.changeImageEnMass(villains);
+    window.alert("Your selection is not true of the bastard in question");
   },
 
   checkForGoodSelection: function checkForGoodSelection(e) {
@@ -11034,147 +11013,98 @@ var GameBox = React.createClass({
     var cpuPlayer = this.state.gameVillain;
     var villains = this.state.allBastards;
     var selection = e.target.value;
-    // console.log(selection);
-    var deSelection = [];
-    // console.log(cpuPlayer);
-    // console.log(villains[0].Moustache);
-
 
     if (selection === "0") {
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
-
-      try {
-        for (var _iterator3 = villains[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var villain = _step3.value;
-
-          if (villain.Moustache === "Yes") {
-            window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
-          } else {
-            deSelection.push(villain);
-            this.changeImageEnMass(deSelection);
+      if (cpuPlayer.Fictional === "Yes") {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Fictional === "No") {
+            el.src = "./images/not_this_bastard.jpg";
           }
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.correctResponse();
+      } else {
+        var villainsNew = villains.map(function (el) {
+          console.log(el);
+          if (el.Fictional === "Yes") {
+            el.src = "./images/not_this_bastard.jpg";
           }
-        } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
-          }
-        }
-      }
-    }
-
-    if (selection === "1") {
-      var _iteratorNormalCompletion4 = true;
-      var _didIteratorError4 = false;
-      var _iteratorError4 = undefined;
-
-      try {
-        for (var _iterator4 = villains[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-          var villain = _step4.value;
-
-          if (villain.Mask === "Yes") {
-            window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
-          } else {
-            deSelection.push(villain);
-            this.changeImageEnMass(deSelection);
-          }
-        }
-      } catch (err) {
-        _didIteratorError4 = true;
-        _iteratorError4 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion4 && _iterator4.return) {
-            _iterator4.return();
-          }
-        } finally {
-          if (_didIteratorError4) {
-            throw _iteratorError4;
-          }
-        }
-      }
-    }
-
-    if (selection === "2") {
-      var _iteratorNormalCompletion5 = true;
-      var _didIteratorError5 = false;
-      var _iteratorError5 = undefined;
-
-      try {
-        for (var _iterator5 = villains[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-          var villain = _step5.value;
-
-          if (villain.Hair === "Yes") {
-            window.alert("Good guess! You are one step closer to pinning down that sneaky bastard.");
-          } else {
-            deSelection.push(villain);
-            this.changeImageEnMass(deSelection);
-          }
-        }
-      } catch (err) {
-        _didIteratorError5 = true;
-        _iteratorError5 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion5 && _iterator5.return) {
-            _iterator5.return();
-          }
-        } finally {
-          if (_didIteratorError5) {
-            throw _iteratorError5;
-          }
-        }
+          return el;
+        });
+        this.setState({ allBastards: villainsNew });
+        this.incorrectResponse();
       }
     }
   },
 
-  handleCountry: function handleCountry(e) {
-    var options = this.state.allBastards;
-    console.log(options);
-    e.preventDefault();
-    console.log(e.target.value);
-    console.log(e.target.id);
-    var names = [];
-    var _iteratorNormalCompletion6 = true;
-    var _didIteratorError6 = false;
-    var _iteratorError6 = undefined;
+  // if(selection === "1"){
+  //   for(var villain of villains){
+  //     if(villain.Alive === "Yes"){
+  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard1.");
 
-    try {
-      for (var _iterator6 = options[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-        var item = _step6.value;
+  //     }else{
+  //     deSelection.push(villain);
+  //     this.changeImageEnMass(deSelection);
+  //   }
+  //   }
+  // }
 
-        names.push(item.Name);
-      }
-    } catch (err) {
-      _didIteratorError6 = true;
-      _iteratorError6 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion6 && _iterator6.return) {
-          _iterator6.return();
-        }
-      } finally {
-        if (_didIteratorError6) {
-          throw _iteratorError6;
-        }
-      }
-    }
+  // if(selection === "2"){
+  //   for(var villain of villains){
+  //     if(villain.Politician === "Yes"){
+  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard2.");
 
-    var index = e.target.value;
-    names.splice(index, 1);
+  //     }else{
+  //     deSelection.push(villain);
+  //     this.changeImageEnMass(deSelection);
+  //   }
+  // }
+  // }
 
-    console.log(options);
-    this.changeImageEnMass(names);
-  },
+  // if(selection === "3"){
+  //   for(var villain of villains){
+  //     if(villain.Hair === "Yes"){
+  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard3.");
+
+  //     }else{
+  //     deSelection.push(villain);
+  //     this.changeImageEnMass(deSelection);
+  //   }
+  // }
+  // }
+
+  // if(selection === "4"){
+  //   for(var villain of villains){
+  //     if(villain.Moustache === "Yes"){
+  //       window.alert("Good guess! You are one step closer to pinning down that sneaky bastard4.");
+
+  //     }else{
+  //     deSelection.push(villain);
+  //     this.changeImageEnMass(deSelection);
+  //   }
+  // }
+  // }
+
+
+  // handleCountry: function(e){
+  //   var options= this.state.allBastards
+  //   console.log(options);
+  //   e.preventDefault();
+  //   console.log(e.target.value);
+  //   console.log(e.target.id);
+  //   var names =[]
+  //   for (var item of options){
+  //     names.push(item.Name)
+  //   }
+
+  //   var index = e.target.value
+  //   names.splice(index, 1);
+
+  //   console.log(options);
+  //   this.changeImageEnMass(names)
+  // },
 
   handleVillain: function handleVillain(e) {
     var options = this.state.allBastards;
@@ -11205,68 +11135,10 @@ var GameBox = React.createClass({
     console.log(e.target.src);
   },
 
-  changeImageEnMass: function changeImageEnMass(array) {
+  changeImageEnMass: function changeImageEnMass() {
     var all = this.state.allBastards;
-    var cpuPlayer = this.state.gameVillain;
-    console.log(all);
-    console.log(cpuPlayer);
-    console.log(array);
-    // array = ["Skeletor", "Hitler", "Stalin"]
-    var _iteratorNormalCompletion7 = true;
-    var _didIteratorError7 = false;
-    var _iteratorError7 = undefined;
-
-    try {
-      for (var _iterator7 = array[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-        var item = _step7.value;
-        var _iteratorNormalCompletion8 = true;
-        var _didIteratorError8 = false;
-        var _iteratorError8 = undefined;
-
-        try {
-          for (var _iterator8 = all[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-            var character = _step8.value;
-
-            if (item === character) {
-              if (item != cpuPlayer) {
-                character.src = "./images/not_this_bastard.jpg";
-              }
-            }
-          }
-        } catch (err) {
-          _didIteratorError8 = true;
-          _iteratorError8 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion8 && _iterator8.return) {
-              _iterator8.return();
-            }
-          } finally {
-            if (_didIteratorError8) {
-              throw _iteratorError8;
-            }
-          }
-        }
-      }
-    } catch (err) {
-      _didIteratorError7 = true;
-      _iteratorError7 = err;
-    } finally {
-      try {
-        if (!_iteratorNormalCompletion7 && _iterator7.return) {
-          _iterator7.return();
-        }
-      } finally {
-        if (_didIteratorError7) {
-          throw _iteratorError7;
-        }
-      }
-    }
-
-    console.log(all);
-    this.setState({ allBastards: all });
-    return all;
     this.render();
+    return all;
   },
 
   render: function render() {
@@ -11293,26 +11165,11 @@ var GameBox = React.createClass({
         React.createElement(
           'h1',
           { id: 'DoesVillainHave' },
-          'Does The Bastard Have?'
+          'Eliminate Some Bastards'
         ),
         React.createElement(QuestionsForm, {
           data: this.state.allBastards,
           handleQuestion: this.checkForGoodSelection
-        })
-      ),
-      React.createElement(
-        'div',
-        { className: 'NationalityForm' },
-        React.createElement(
-          'h1',
-          { id: 'Nationality' },
-          'Bastard Nationality'
-        ),
-        React.createElement(NationalityForm, {
-          data: this.state.allBastards,
-          nations: this.getNationalities(),
-          onSelectCountry: this.setSelectedNationality,
-          handleCountry: this.handleCountry
         })
       ),
       React.createElement(
@@ -11355,7 +11212,7 @@ module.exports = __webpack_require__(66);
 var React = __webpack_require__(17);
 var ReactDOM = __webpack_require__(89);
 var GameBox = __webpack_require__(88);
-var CharactersBox = __webpack_require__(52);
+var CharactersBox = __webpack_require__(33);
 
 window.onload = function () {
   ReactDOM.render(React.createElement(
@@ -11466,157 +11323,138 @@ module.exports = NationalityForm;
 "use strict";
 
 
-module.exports = [{ id: 1,
-  Name: "Darth Vader",
+module.exports = [{ Name: "Darth Vader",
+  Fictional: "Yes",
+  Alive: "No",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "Yes",
   Hair: "No",
-  Nationality: "Tatooinian",
+  Moustache: "No",
   src: "./images/DarthVader.jpg"
-}, { id: 2,
-  Name: "Ming The Merciless",
+}, { Name: "Ming The Merciless",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "Yes",
-  Moustache: "Yes",
-  Mask: "No",
-  Hair: "Yes",
-  Nationality: "Mongolian",
+  Hair: "No",
+  Moustache: "yes",
   src: "./images/MingTheMerciless.jpg"
-}, { id: 3,
-  Name: "Skeletor",
+}, { Name: "Skeletor",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "No",
-  Nationality: "Eternian",
+  Moustache: "No",
   src: "./images/Skeletor.jpg"
-}, { id: 4,
-  Name: "Hitler",
+}, { Name: "Hitler",
+  Fictional: "No",
+  Alive: "No",
   Politician: "Yes",
-  Moustache: "Yes",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "German",
+  Moustache: "Yes",
   src: "./images/Hitler.jpg"
-}, { id: 5,
-  Name: "Stalin",
+}, { Name: "Stalin",
+  Fictional: "No",
+  Alive: "No",
   Politician: "Yes",
-  Moustache: "Yes",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "Russian",
+  Moustache: "Yes",
   src: "./images/Stalin.jpg"
-}, { id: 6,
-  Name: "Trump",
+}, { Name: "Trump",
+  Fictional: "No",
+  Alive: "Yes",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "American",
+  Moustache: "No",
   src: "./images/Trump.jpg"
-}, { id: 7,
-  Name: "Joffrey",
+}, { Name: "Joffrey",
+  Fictional: "Yes",
+  Alive: "No",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "Westerosi",
+  Moustache: "No",
   src: "./images/Joffrey.jpg"
-}, { id: 8,
-  Name: "Dr Doom",
+}, { Name: "Dr Doom",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "Yes",
   Hair: "No",
-  Nationality: "Latverian",
+  Moustache: "No",
   src: "./images/DrDoom.jpg"
-}, { id: 9,
-  Name: "Justin Bieber",
+}, { Name: "Justin Bieber",
+  Fictional: "No",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "Canada",
+  Moustache: "No",
   src: "./images/JustinBieber.jpg"
-}, { id: 10,
-  Name: "Mumm-Ra",
+}, { Name: "Mumm-Ra",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "No",
-  Nationality: "Thunderian",
+  Moustache: "No",
   src: "./images/Mumm-Ra.jpg"
-}, { id: 11,
-  Name: "M Bison",
+}, { Name: "M Bison",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "Bisonian",
+  Moustache: "No",
   src: "./images/Mbison.jpg"
-}, { id: 12,
-  Name: "Katie Hopkins",
+}, { Name: "Katie Hopkins",
+  Fictional: "No",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "British",
+  Moustache: "No",
   src: "./images/Hopkins.jpg"
-}, { id: 13,
-  Name: "Jon Snow",
-  Politician: "Yes",
-  Moustache: "Yes",
-  Mask: "No",
+}, { Name: "Jon Snow",
+  Fictional: "No",
+  Alive: "Yes",
+  Politician: "No",
   Hair: "Yes",
-  Nationality: "Westerosian",
+  Moustache: "No",
   src: "./images/JonSnow.jpg"
-}, { id: 14,
-  Name: "Maria Carey",
+}, { Name: "Maria Carey",
+  Fictional: "No",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "American",
+  Moustache: "No",
   src: "./images/mariah-carey.jpg"
-}, { id: 15,
-  Name: "George Osborne",
+}, { Name: "George Osborne",
+  Fictional: "No",
+  Alive: "Yes",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "British",
+  Moustache: "No",
   src: "./images/osborne.jpg"
-}, { id: 16,
-  Name: "Simon Cowell",
+}, { Name: "Simon Cowell",
+  Fictional: "No",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "British",
+  Moustache: "No",
   src: "./images/Simon-Cowell.jpg"
-}, { id: 17,
-  Name: "Thanos",
+}, { Name: "Thanos",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "No",
-  Moustache: "No",
-  Mask: "No",
   Hair: "No",
-  Nationality: "Titanian",
+  Moustache: "Moustache",
   src: "./images/thanos.png"
-}, { id: 18,
-  Name: "Thatcher",
+}, { Name: "Thatcher",
+  Fictional: "No",
+  Alive: "No",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "British",
+  Moustache: "No",
   src: "./images/Thatcher.jpg"
-}, { id: 19,
-  Name: "Zelda",
+}, { Name: "Zelda",
+  Fictional: "Yes",
+  Alive: "Yes",
   Politician: "Yes",
-  Moustache: "No",
-  Mask: "No",
   Hair: "Yes",
-  Nationality: "Outer Space",
+  Moustache: "No",
   src: "./images/zelda.jpeg"
 }];
 
@@ -12322,7 +12160,7 @@ module.exports = toArray;
 
 var ReactMount = __webpack_require__(5);
 
-var findDOMNode = __webpack_require__(41);
+var findDOMNode = __webpack_require__(42);
 var focusNode = __webpack_require__(56);
 
 var Mixin = {
@@ -12961,8 +12799,8 @@ var ExecutionEnvironment = __webpack_require__(4);
 var ReactUpdates = __webpack_require__(8);
 var SyntheticEvent = __webpack_require__(16);
 
-var getEventTarget = __webpack_require__(44);
-var isEventSupported = __webpack_require__(47);
+var getEventTarget = __webpack_require__(45);
+var isEventSupported = __webpack_require__(48);
 var isTextInputElement = __webpack_require__(87);
 var keyOf = __webpack_require__(12);
 
@@ -14219,7 +14057,7 @@ module.exports = React;
 
 var ReactInstanceMap = __webpack_require__(22);
 
-var findDOMNode = __webpack_require__(41);
+var findDOMNode = __webpack_require__(42);
 var warning = __webpack_require__(3);
 
 var didWarnKey = '_getDOMNodeDidWarn';
@@ -14263,9 +14101,9 @@ module.exports = ReactBrowserComponentMixin;
 
 var ReactReconciler = __webpack_require__(15);
 
-var instantiateReactComponent = __webpack_require__(46);
-var shouldUpdateReactComponent = __webpack_require__(49);
-var traverseAllChildren = __webpack_require__(50);
+var instantiateReactComponent = __webpack_require__(47);
+var shouldUpdateReactComponent = __webpack_require__(50);
+var traverseAllChildren = __webpack_require__(51);
 var warning = __webpack_require__(3);
 
 function instantiateChild(childInstances, child, name) {
@@ -14389,7 +14227,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var ReactComponentEnvironment = __webpack_require__(37);
+var ReactComponentEnvironment = __webpack_require__(38);
 var ReactCurrentOwner = __webpack_require__(11);
 var ReactElement = __webpack_require__(6);
 var ReactInstanceMap = __webpack_require__(22);
@@ -14397,12 +14235,12 @@ var ReactPerf = __webpack_require__(7);
 var ReactPropTypeLocations = __webpack_require__(27);
 var ReactPropTypeLocationNames = __webpack_require__(26);
 var ReactReconciler = __webpack_require__(15);
-var ReactUpdateQueue = __webpack_require__(39);
+var ReactUpdateQueue = __webpack_require__(40);
 
 var assign = __webpack_require__(2);
 var emptyObject = __webpack_require__(19);
 var invariant = __webpack_require__(1);
-var shouldUpdateReactComponent = __webpack_require__(49);
+var shouldUpdateReactComponent = __webpack_require__(50);
 var warning = __webpack_require__(3);
 
 function getDeclarationErrorAddendum(component) {
@@ -15152,10 +14990,10 @@ module.exports = ReactDOMButton;
 var AutoFocusUtils = __webpack_require__(108);
 var CSSPropertyOperations = __webpack_require__(110);
 var DOMProperty = __webpack_require__(14);
-var DOMPropertyOperations = __webpack_require__(34);
+var DOMPropertyOperations = __webpack_require__(35);
 var EventConstants = __webpack_require__(10);
 var ReactBrowserEventEmitter = __webpack_require__(25);
-var ReactComponentBrowserEnvironment = __webpack_require__(36);
+var ReactComponentBrowserEnvironment = __webpack_require__(37);
 var ReactDOMButton = __webpack_require__(123);
 var ReactDOMInput = __webpack_require__(126);
 var ReactDOMOption = __webpack_require__(127);
@@ -15164,18 +15002,18 @@ var ReactDOMTextarea = __webpack_require__(130);
 var ReactMount = __webpack_require__(5);
 var ReactMultiChild = __webpack_require__(137);
 var ReactPerf = __webpack_require__(7);
-var ReactUpdateQueue = __webpack_require__(39);
+var ReactUpdateQueue = __webpack_require__(40);
 
 var assign = __webpack_require__(2);
 var canDefineProperty = __webpack_require__(30);
 var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
-var isEventSupported = __webpack_require__(47);
+var isEventSupported = __webpack_require__(48);
 var keyOf = __webpack_require__(12);
 var setInnerHTML = __webpack_require__(32);
-var setTextContent = __webpack_require__(48);
+var setTextContent = __webpack_require__(49);
 var shallowEqual = __webpack_require__(59);
-var validateDOMNesting = __webpack_require__(51);
+var validateDOMNesting = __webpack_require__(52);
 var warning = __webpack_require__(3);
 
 var deleteListener = ReactBrowserEventEmitter.deleteListener;
@@ -16299,8 +16137,8 @@ module.exports = ReactDOMFactories;
 
 
 
-var ReactDOMIDOperations = __webpack_require__(38);
-var LinkedValueUtils = __webpack_require__(35);
+var ReactDOMIDOperations = __webpack_require__(39);
+var LinkedValueUtils = __webpack_require__(36);
 var ReactMount = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(8);
 
@@ -16775,7 +16613,7 @@ module.exports = ReactDOMSelection;
 
 var ReactDefaultInjection = __webpack_require__(71);
 var ReactServerRendering = __webpack_require__(142);
-var ReactVersion = __webpack_require__(40);
+var ReactVersion = __webpack_require__(41);
 
 ReactDefaultInjection.inject();
 
@@ -16805,8 +16643,8 @@ module.exports = ReactDOMServer;
 
 
 
-var LinkedValueUtils = __webpack_require__(35);
-var ReactDOMIDOperations = __webpack_require__(38);
+var LinkedValueUtils = __webpack_require__(36);
+var ReactDOMIDOperations = __webpack_require__(39);
 var ReactUpdates = __webpack_require__(8);
 
 var assign = __webpack_require__(2);
@@ -17428,7 +17266,7 @@ var ReactMount = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(8);
 
 var assign = __webpack_require__(2);
-var getEventTarget = __webpack_require__(44);
+var getEventTarget = __webpack_require__(45);
 var getUnboundedScrollPosition = __webpack_require__(98);
 
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -17638,7 +17476,7 @@ module.exports = ReactEventListener;
 
 var DOMProperty = __webpack_require__(14);
 var EventPluginHub = __webpack_require__(20);
-var ReactComponentEnvironment = __webpack_require__(37);
+var ReactComponentEnvironment = __webpack_require__(38);
 var ReactClass = __webpack_require__(64);
 var ReactEmptyComponent = __webpack_require__(73);
 var ReactBrowserEventEmitter = __webpack_require__(25);
@@ -17687,7 +17525,7 @@ var ReactDOMFactories = __webpack_require__(125);
 var ReactElement = __webpack_require__(6);
 var ReactElementValidator = __webpack_require__(72);
 var ReactPropTypes = __webpack_require__(81);
-var ReactVersion = __webpack_require__(40);
+var ReactVersion = __webpack_require__(41);
 
 var assign = __webpack_require__(2);
 var onlyChild = __webpack_require__(162);
@@ -17762,7 +17600,7 @@ module.exports = React;
 
 
 
-var ReactComponentEnvironment = __webpack_require__(37);
+var ReactComponentEnvironment = __webpack_require__(38);
 var ReactMultiChildUpdateTypes = __webpack_require__(78);
 
 var ReactCurrentOwner = __webpack_require__(11);
@@ -18363,7 +18201,7 @@ module.exports = ReactOwner;
 
 
 
-var CallbackQueue = __webpack_require__(33);
+var CallbackQueue = __webpack_require__(34);
 var PooledClass = __webpack_require__(13);
 var ReactBrowserEventEmitter = __webpack_require__(25);
 var ReactDOMFeatureFlags = __webpack_require__(67);
@@ -18641,7 +18479,7 @@ var ReactServerRenderingTransaction = __webpack_require__(143);
 var ReactUpdates = __webpack_require__(8);
 
 var emptyObject = __webpack_require__(19);
-var instantiateReactComponent = __webpack_require__(46);
+var instantiateReactComponent = __webpack_require__(47);
 var invariant = __webpack_require__(1);
 
 /**
@@ -18724,7 +18562,7 @@ module.exports = {
 
 
 var PooledClass = __webpack_require__(13);
-var CallbackQueue = __webpack_require__(33);
+var CallbackQueue = __webpack_require__(34);
 var Transaction = __webpack_require__(29);
 
 var assign = __webpack_require__(2);
@@ -19205,7 +19043,7 @@ var SyntheticUIEvent = __webpack_require__(23);
 var SyntheticWheelEvent = __webpack_require__(155);
 
 var emptyFunction = __webpack_require__(9);
-var getEventCharCode = __webpack_require__(42);
+var getEventCharCode = __webpack_require__(43);
 var invariant = __webpack_require__(1);
 var keyOf = __webpack_require__(12);
 
@@ -20005,9 +19843,9 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = __webpack_require__(23);
 
-var getEventCharCode = __webpack_require__(42);
+var getEventCharCode = __webpack_require__(43);
 var getEventKey = __webpack_require__(160);
-var getEventModifierState = __webpack_require__(43);
+var getEventModifierState = __webpack_require__(44);
 
 /**
  * @interface KeyboardEvent
@@ -20096,7 +19934,7 @@ module.exports = SyntheticKeyboardEvent;
 
 var SyntheticUIEvent = __webpack_require__(23);
 
-var getEventModifierState = __webpack_require__(43);
+var getEventModifierState = __webpack_require__(44);
 
 /**
  * @interface TouchEvent
@@ -20370,7 +20208,7 @@ module.exports = deprecated;
 
 
 
-var traverseAllChildren = __webpack_require__(50);
+var traverseAllChildren = __webpack_require__(51);
 var warning = __webpack_require__(3);
 
 /**
@@ -20426,7 +20264,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(42);
+var getEventCharCode = __webpack_require__(43);
 
 /**
  * Normalization of deprecated HTML5 `key` values

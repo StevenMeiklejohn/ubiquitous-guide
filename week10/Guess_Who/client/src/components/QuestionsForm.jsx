@@ -13,7 +13,7 @@ var QuestionsForm = React.createClass({
 
 
 render: function() {
-  var array = ["Moustache", "Mask", "Hair"]
+  var array = ["Fictional", "Alive", "Politician", "Hair", "Moustache"]
   var options = array.map(function(characteristic, index){
     return <option value={index} key={index}> {characteristic} </option>
   })
