@@ -40,13 +40,13 @@ var GameBox = React.createClass({
   correctResponse: function(){
     var villains=this.state.allBastards;
     this.changeImageEnMass(villains);
-    window.alert("Good guess! You are one step closer to pinning down that sneaky bastard0.");
+    swal("Yay!", "Good guess! You are one step closer to pinning down that sneaky bastard.", "success");
   },
 
   incorrectResponse: function(){
     var villains=this.state.allBastards;
     this.changeImageEnMass(villains);
-    window.alert("Your selection is not true of the bastard in question");
+    swal("Oops!", "Your selection is not true of the bastard in question", "error");
   },
 
 
@@ -203,14 +203,12 @@ var GameBox = React.createClass({
 
     handleWin: function(){
       console.log("You Win")
-      // window.alert("You win! Yaaaaaas!")
-      swal("You win! Yaaaaaas!")
+      swal("You Win!", "Yaaaaaaaaaaaaaaas!", "success")
     },
 
     handleLose: function(){
       console.log("You Lose")
-      // window.alert("Close but no cigar")
-      swal("Close but no cigar")
+      swal("Oops!", "Close but no cigar", "error");
     },
 
 
@@ -230,6 +228,8 @@ var GameBox = React.createClass({
       console.log("Rest function")
          window.location.reload();
     },
+
+
 
 
   render: function() {
