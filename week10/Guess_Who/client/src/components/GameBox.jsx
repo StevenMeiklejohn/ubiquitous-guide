@@ -213,6 +213,7 @@ var GameBox = React.createClass({
 
 
     changeImage: function(e){
+      var all = this.state.allBastards;
       var cpuPlayer=this.state.gameVillain;
       var target = e.target;
       var index = e.target.value;
@@ -220,11 +221,18 @@ var GameBox = React.createClass({
 
       if(cpuPlayer.Name === target.id){
         this.handleWin()
-      } else {
+      } 
+      if(cpuPlayer.Name != target.id){
         this.handleLose()
+        var villains = all.map(function(el){
+              console.log(el);
+              if(el.Name === target.id){
+              el.src = "./images/not_this_bastard.jpg"
+              }
+        });
+        this.setState( { allBastards: all });
       }
-
-    },
+  },
 
     changeImageEnMass: function(){
       var all = this.state.allBastards
