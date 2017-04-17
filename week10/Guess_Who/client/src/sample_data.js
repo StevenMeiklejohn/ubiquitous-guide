@@ -96,7 +96,7 @@ module.exports = [
     src: "./images/Hopkins.jpg",
   },
   { Name: "Jon Snow",
-    Fictional: "No",
+    Fictional: "Yes",
     Alive: "Yes",
     Politician: "No",
     Hair: "Yes",
