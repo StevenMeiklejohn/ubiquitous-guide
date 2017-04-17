@@ -18,6 +18,8 @@ body {
 img {
   height: 200px;
   width: 200px;
+  display: inline-block;
+  margin: 10px;
 }
 
 .Reset {
@@ -126,57 +128,7 @@ img {
   color: red;
 }
 
-#Vader{
-  display: inline-block;
-  margin: 10px;
-}
 
-#Ming{
-  display: inline-block;
-  margin: 10px;
-}
-
-#Skeletor{
-  display: inline-block;
-  margin: 10px;
-}
-
-#Hitler{
-  display: inline-block;
-  margin: 10px;
-
-}
-
-#Stalin{
-  display: inline-block;
-  margin: 10px;
-}
-
-#Trump{
-  display: inline-block;
-  margin: 10px;
-}
-
-#Joffrey{
-  display: inline-block;
-  margin: 10px;
-}
-
-#DrDoom{
-  display: inline-block;
-  margin: 10px;
-}
-
-#Beiber{
-  display: inline-block;
-  margin: 10px;
-}
-
-#MummRa{
-  display: inline-block;
-  margin: 10px;
-  height:50px;
-}
 
 #Result{
   display:block;

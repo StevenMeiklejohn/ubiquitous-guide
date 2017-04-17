@@ -11500,7 +11500,7 @@ module.exports = [{ Name: "Darth Vader",
   Moustache: "No",
   src: "./images/Hopkins.jpg"
 }, { Name: "Jon Snow",
-  Fictional: "No",
+  Fictional: "Yes",
   Alive: "Yes",
   Politician: "No",
   Hair: "Yes",
